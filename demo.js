@@ -29,14 +29,14 @@ const btns=[...document.querySelectorAll('[onclick="play()"]')];btns.forEach(x=>
 function setBtn(on){btns.forEach(x=>x.innerHTML=on?'❚❚ Pause':x.dataset.label)}
 function run(done){
   timer.forEach(clearTimeout);timer=[];chat.innerHTML='';stepOn(0);
-  let t=600;
+  const F=.5;let t=300;
   S.forEach((m,i)=>{
-    if(m.typing){const ti=t;timer.push(setTimeout(()=>{const d=document.createElement('div');d.className='msg '+m.c+' typing';d.id='ty';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(m.c==='ace'&&i===1){stepOn(1);setTimeout(()=>stepOn(2),900)}},ti));t+=m.typing}
+    if(m.typing){const ti=t;timer.push(setTimeout(()=>{const d=document.createElement('div');d.className='msg '+m.c+' typing';d.id='ty';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(m.c==='ace'&&i===1){stepOn(1);setTimeout(()=>stepOn(2),450)}},ti));t+=m.typing*F}
     const tt=t;timer.push(setTimeout(()=>{const y=document.getElementById('ty');if(y)y.remove();bubble(m);if(m.step)stepOn(m.step)},tt));
-    t+=(m.d||700)+ (m.h?900:0);
+    t+=((m.d||700)+ (m.h?900:0))*F;
   });
-  timer.push(setTimeout(()=>stepOn(5),t+300));
-  if(done)timer.push(setTimeout(done,t+2500));
+  timer.push(setTimeout(()=>stepOn(5),t+150));
+  if(done)timer.push(setTimeout(done,t+800));
 }
 const wrap=document.querySelector('.wrap');
 let slides=[...wrap.children].filter(e=>e.matches('.hero,section')).map((e,k)=>{const s=document.createElement('div');s.className='slide';s.dataset.o=e.dataset.slide||(k+1);e.replaceWith(s);s.appendChild(e);return s});
@@ -77,7 +77,7 @@ function paged(){
   function fitP(s){const el=s.firstElementChild;el.style.transform='';const k=Math.min(1,(s.clientHeight-20)/el.scrollHeight);if(k<1)el.style.transform=`scale(${k})`}
   function go(i){
     clr();cur=i;track.style.transform=`translateX(${-i*100}vw)`;
-    pb.forEach((b,k)=>b.classList.toggle('on',k===i));fitP(slides[i]);const sc=slides[i].querySelector('#sigc');if(sc){let n=0;const T=4812,st=performance.now();const tick=t=>{const f=Math.min(1,(t-st)/2200);n=Math.round(T*(1-Math.pow(1-f,3)));sc.textContent=n.toLocaleString();if(f<1&&cur===i)requestAnimationFrame(tick)};requestAnimationFrame(tick)}
+    pb.forEach((b,k)=>b.classList.toggle('on',k===i));fitP(slides[i]);const sc=slides[i].querySelector('#sigc');if(sc){let n=0;const T=4812,st=performance.now();const tick=t=>{const f=Math.min(1,(t-st)/1200);n=Math.round(T*(1-Math.pow(1-f,3)));sc.textContent=n.toLocaleString();if(f<1&&cur===i)requestAnimationFrame(tick)};requestAnimationFrame(tick)}
     const nx=(i+1)%slides.length;
     if(slides[i].querySelector('#chat')){run(()=>{if(auto)pt.push(setTimeout(()=>go(nx),5000))})}
     else if(slides[i].querySelector('.icp')){anim2(slides[i],()=>{if(auto)pt.push(setTimeout(()=>go(nx),5000))})}
@@ -90,15 +90,15 @@ function paged(){
     const rows=[...s.querySelectorAll('.leads .lr')],note=s.querySelector('.icp small');
     ICPV.forEach(o=>o.li.innerHTML=o.b+'<span class="val"><span class="ghost">'+o.v+'</span></span>');
     rows.forEach(r=>r.classList.add('wait'));note.style.opacity=0;
-    let t=2600;const at=(ms,f)=>pt.push(setTimeout(f,ms));
+    let t=150;const at=(ms,f)=>pt.push(setTimeout(f,ms));
     ICPV.forEach(o=>{
       at(t,()=>{o.li.classList.add('typing');o.li.querySelector('.val').innerHTML='<span class="tt"></span><span class="caret"></span><span class="ghost">'+o.v+'</span>'});
-      for(let k=1;k<=o.v.length;k++)at(t+k*55,()=>{const tt=o.li.querySelector('.tt'),g=o.li.querySelector('.ghost');if(tt){tt.textContent=o.v.slice(0,k);g.textContent=o.v.slice(k)}});
-      t+=o.v.length*55+300;
-      at(t,()=>{o.li.classList.remove('typing');o.li.querySelector('.val').innerHTML=o.v+' <span class="ok">✓</span>'});t+=150;
+      for(let k=1;k<=o.v.length;k++)at(t+k*12,()=>{const tt=o.li.querySelector('.tt'),g=o.li.querySelector('.ghost');if(tt){tt.textContent=o.v.slice(0,k);g.textContent=o.v.slice(k)}});
+      t+=o.v.length*12+60;
+      at(t,()=>{o.li.classList.remove('typing');o.li.querySelector('.val').innerHTML=o.v+' <span class="ok">✓</span>'});t+=30;
     });
-    at(t,()=>note.style.opacity=1);t+=500;
-    rows.forEach(r=>{at(t,()=>{r.classList.remove('wait');r.classList.add('scan')});t+=650;at(t,()=>r.classList.remove('scan'))});
+    at(t,()=>note.style.opacity=1);t+=80;
+    rows.forEach(r=>{at(t,()=>{r.classList.remove('wait');r.classList.add('scan')});t+=170;at(t,()=>r.classList.remove('scan'))});
     at(t,done);
   }
   function anim3(s,done){
@@ -106,11 +106,11 @@ function paged(){
     sl.classList.remove('in');sl.classList.add('typing');
     QA.forEach(o=>{o.q.classList.remove('ans');o.p.innerHTML=(o.pre?o.pre+' ':'')+o.txt});
     let t=200;const at=(ms,f)=>pt.push(setTimeout(f,ms));
-    at(t+1300,()=>{sl.classList.remove('typing');sl.classList.add('in')});
+    at(t+400,()=>{sl.classList.remove('typing');sl.classList.add('in')});
     QA.forEach(o=>o.q.classList.add('show'));
-    t+=1700;
-    QA.forEach((o,k)=>at(t+k*650,()=>o.q.classList.add('ans')));
-    t+=QA.length*650+300;
+    t+=500;
+    QA.forEach((o,k)=>at(t+k*300,()=>o.q.classList.add('ans')));
+    t+=QA.length*300+100;
     at(t,done);
   }
   function setAuto(on){auto=on;ap.classList.toggle('on',on);ap.textContent=on?'❚❚ Autoplay on':'▶ Autoplay off'}
