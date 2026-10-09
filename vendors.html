@@ -8,7 +8,7 @@
   <div>
     <span class="pill">For vendors</span>
     <h1 style="margin-top:18px">Warm intros that arrive<br><em>qualified and briefed.</em></h1>
-    <p class="lead">Founders, VCs and operators already recommend tools to their friends. Ace turns those moments into booked meetings: every lead is checked against your ICP before they ever hear about you, and your AE gets a research brief before the call.</p>
+    <p class="lead">Founders, VCs and operators already recommend tools to their friends. Atrios turns those moments into booked meetings: every lead is checked against your ICP before they ever hear about you, and your AE gets a research brief before the call.</p>
     <button class="btn" onclick="play()">▶ Watch an intro happen</button>
     <div class="meet"><img src="ace.jpg" alt="Ace"><div><b>Ace Trios</b><span>The Atrios AI teammate that runs every intro</span></div></div>
     <div class="brain" id="brain">
@@ -28,8 +28,8 @@
   <h2>From a text to your calendar</h2>
   <p class="sub">The intro comes from someone the buyer already trusts. Ace handles everything in between.</p>
   <div class="flow">
-    <div><span class="n">01</span><b>Tastemaker texts</b><p>"Meet my friend Maya, she just raised her seed."</p></div>
-    <div><span class="n">02</span><b>Ace qualifies</b><p>Public research + your ICP and intake rules, scored 0-100.</p></div>
+    <div><span class="n">01</span><b>Tastemaker texts</b><p>"My friend just raised a round, can you send the best perks for Brex and Deel?"</p></div>
+    <div><span class="n">02</span><b>Atrios qualifies</b><p>Public research + your ICP and intake rules, scored 0-100.</p></div>
     <div><span class="n">03</span><b>Your perk, pitched</b><p>Only if she fits, with one line on why it matters to her.</p></div>
     <div><span class="n">04</span><b>Meeting booked</b><p>Straight onto your AE's calendar. No forms for the lead.</p></div>
     <div><span class="n">05</span><b>Brief in Slack</b><p>Who, why now, fit score, talking points.</p></div>
@@ -47,12 +47,12 @@
   <p class="sub">Every booking posts to your shared Slack channel with Atrios.</p>
   <div class="slack">
     <div class="hd"><img src="ace.jpg"><div><b>Ace Trios</b> <span>APP · 9:41 AM</span></div></div>
-    <p>📅 <b style="color:#fff">New meeting booked: Maya Chen, CEO @ Lumen</b> · Tue 2:00 PM ET · via tastemaker Taylor Offer</p>
+    <p>📅 <b style="color:#fff">New meeting booked: Maya Chen, CEO @ Lumen</b> · Brex · Tue 2:00 PM ET · via tastemaker Taylor Offer</p>
     <div class="q">
       <p><b style="color:#fff">Who:</b> Seed-stage AI infra company, 9 people, NYC. Raised $3.2M seed (Aug), a16z speedrun alum.</p>
-      <p><b style="color:#fff">Why now:</b> Fresh raise sitting in a legacy bank, 2 open engineering reqs, first enterprise pilots asking about SOC 2.</p>
-      <p><b style="color:#fff">Fit score:</b> 92/100. Clears every ICP rule ($500k+ raised, US-based, $500k+ liquid).</p>
-      <p><b style="color:#fff">Talking points:</b> treasury yield on the raise, card + bill pay for a growing team, $875 welcome bonus.</p>
+      <p><b style="color:#fff">Why now:</b> Just closed the round, still on a legacy bank and personal cards, hiring 4 in the next quarter.</p>
+      <p><b style="color:#fff">Fit score:</b> 94/100. Clears every ICP rule ($500k+ raised, US-based, founder/CEO).</p>
+      <p><b style="color:#fff">Talking points:</b> corporate card + spend controls before the team grows, bill pay, up to $15k in founder perks.</p>
     </div>
   </div>
 </section>
@@ -60,11 +60,23 @@
 <section>
   <h2>You stay in control</h2>
   <div class="grid3">
-    <div class="box"><div class="k">Your ICP</div><h3>Set the rules</h3><p>Funding, revenue, team size, location and intake questions. Ace never offers you to a lead who doesn't clear them.</p></div>
+    <div class="box"><div class="k">Your ICP</div><h3>Set your ICP</h3><p>Funding, revenue, team size, location and intake questions. Ace never offers you to a lead who doesn't clear them.</p></div>
     <div class="box"><div class="k">Your perk</div><h3>Your offer, your words</h3><p>Welcome bonus, months free, % off. Ace pitches it with a reason tied to the lead's business.</p></div>
     <div class="box"><div class="k">Your calendar</div><h3>Meetings, not leads</h3><p>You get booked conversations with warm, researched buyers, not a list to work.</p></div>
   </div>
 </section>
 
 <footer><img src="logo.svg" alt="Atrios"><span>Illustrative demo. Maya and Lumen are fictional; perks shown are live Atrios perks.</span></footer>
-</div><script src="demo.js"></script></body></html>
+</div><script>
+window.SCRIPT=[
+ {w:'Taylor',c:'me',t:"My friend Maya just raised a round of funding, can you send the best perks for Brex for banking and Deel for HR software?",d:400,step:0},
+ {w:'Ace',c:'ace',typing:1600,t:"Maya, great to meet you, thanks for the intro Taylor! Congrats on the round. Here's what you'd get:",step:1},
+ {w:'Ace',c:'ace',typing:2200,h:"<b>1. Brex</b>: cards, banking and spend controls, set up before the team grows.\nPerk: <b>up to $15k in founder perks</b>\n\n<b>2. Deel</b>: payroll, HR and global hiring in one place as you start hiring.\nPerk: <b>Atrios-exclusive offer</b>",step:3},
+ {w:'Ace',c:'ace',typing:900,t:"Send me a few times that work, or I can drop booking links!"},
+ {w:'Maya',c:'them',typing:1400,t:"Both! Tue after 2pm works for Brex, Deel anytime Wed"},
+ {w:'Ace',c:'ace',typing:1500,h:"Done. <b>Brex Tue 2:00 PM ET</b> and <b>Deel Wed 11:00 AM ET</b>. Invites are in your inbox.<div class='card'><div class='t'>Confirmed</div>Brex × Lumen · Tue 2:00-2:30 PM ET<br>Deel × Lumen · Wed 11:00-11:30 AM ET</div>",step:4},
+ {w:'Taylor',c:'me',typing:800,t:"🙌 that was fast"}
+];
+window.SCORES=[['Brex',94,'$500k+ raised, founder/CEO, fresh round, no corporate card yet'],['Deel',88,'3+ employees, hiring now'],['Rho',86,'$500k+ raised, US-based, new bank wanted'],['Superposition',80,'Actively hiring engineers in the US'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Veroa',40,'No offshore hiring signal yet'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
+</script>
+<script src="demo.js"></script></body></html>

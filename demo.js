@@ -1,5 +1,5 @@
 
-const S=[
+const S=window.SCRIPT||[
  {w:'Taylor',c:'me',t:"Ace, meet my friend Maya Chen. She's CEO of Lumen (seed AI infra, NYC). Can you share the perks that make sense for her?",d:400,step:0},
  {w:'Ace',c:'ace',typing:1600,t:"Maya, great to meet you, thanks for the intro Taylor! A few that fit Lumen right now:",step:1},
  {w:'Ace',c:'ace',typing:2200,h:"<b>1. Rho</b>: startup banking with treasury yield on your seed.\nPerk: <b>$875 welcome bonus</b>\n\n<b>2. Superposition</b>: AI headhunter for those 2 open eng reqs.\nPerk: <b>1 month free + 20% off + $1,050 bonus</b>\n\n<b>3. Secure Cloud</b>: SOC 2 before your enterprise pilots ask twice.\nPerk: <b>10% off yr 1 + $825 bonus</b>",step:3},
@@ -23,7 +23,7 @@ function play(){
     t+=(m.d||700)+ (m.h?900:0);
   });
 }
-const V=[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
+const V=window.SCORES||[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
 const sc=document.getElementById('score');
 if(sc)V.forEach(([n,s,w])=>{sc.insertAdjacentHTML('beforeend',`<div><b>${n}</b></div><div>${s}<div class="bar"><i style="width:${s}%"></i></div></div><div style="color:#c4d1cb">${w}</div>`)});
 setTimeout(play,900);
