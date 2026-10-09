@@ -306,3 +306,4 @@ em.g{font-style:normal;color:var(--gold)}
 .legend{font-size:12.5px}
 .introc b{font-variant-numeric:tabular-nums;color:#FCE2A0;text-shadow:0 0 18px rgba(252,226,160,.45)}.introc .up{font-style:normal;color:#7cc49a;font-size:11px;margin-left:4px;animation:blink 1.4s infinite}.introc b.bump{animation:bump .3s}@keyframes bump{50%{transform:scale(1.12)}}.introc b{display:inline-block}
 .introc b{display:block;font-size:56px!important;line-height:1;transform-origin:left center}.introc span{display:block;margin-top:6px;font-size:14px}
+.reach{font-size:clamp(18px,1.5vw,24px);color:#dce6e1;margin:-4px 0 14px}.reach b{color:var(--gold)}
