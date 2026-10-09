@@ -104,10 +104,10 @@ function paged(){
   function anim3(s,done){
     const sl=s.querySelector('.slack.live');
     sl.classList.remove('in');sl.classList.add('typing');
-    QA.forEach(o=>{o.q.classList.remove('show','ans');o.p.innerHTML=(o.pre?o.pre+' ':'')+o.txt});
+    QA.forEach(o=>{o.q.classList.remove('ans');o.p.innerHTML=(o.pre?o.pre+' ':'')+o.txt});
     let t=200;const at=(ms,f)=>pt.push(setTimeout(f,ms));
     at(t+1300,()=>{sl.classList.remove('typing');sl.classList.add('in')});
-    QA.forEach((o,k)=>at(t+150+k*220,()=>o.q.classList.add('show')));
+    QA.forEach(o=>o.q.classList.add('show'));
     t+=1700;
     QA.forEach((o,k)=>at(t+k*650,()=>o.q.classList.add('ans')));
     t+=QA.length*650+300;

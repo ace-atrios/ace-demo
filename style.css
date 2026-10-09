@@ -251,3 +251,6 @@ em.g{font-style:normal;color:var(--gold)}
 .bow.live .qa.ans p{opacity:1}
 .slack.live.typing>*:not(.sty),.slack.live.typing .q p{opacity:0!important}
 .slack.live{min-height:350px}
+
+.bow.live .qa{opacity:1!important;transform:none!important}
+.bow.live .qa p{transform:translateY(6px);transition:opacity .4s,transform .4s}.bow.live .qa.ans p{transform:none}
