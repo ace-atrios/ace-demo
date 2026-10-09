@@ -185,3 +185,19 @@ em.g{font-style:normal;color:var(--gold)}
 .allan b{display:block;font-size:20px;color:#fff}.allan span{color:var(--gold);font-size:15px}
 
 .creds{display:flex;gap:6px;margin-top:8px}.creds i{font-style:normal;font-size:12.5px;font-weight:600;color:#e3ebe7;border:1px solid rgba(201,169,110,.55);border-radius:999px;padding:3px 10px}
+
+/* signals band */
+.sig{display:grid;grid-template-columns:1fr 170px 170px;gap:26px;align-items:center;margin:18px 0 6px;height:150px}
+.stream{position:relative;overflow:hidden;height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 70%,transparent)}
+.stream .row{display:flex;gap:10px;width:max-content;animation:flow 22s linear infinite}
+.stream .r2{animation-duration:28s;margin-left:-120px}
+.stream span{font-size:13px;color:#cfe5d7;border:1px solid rgba(96,157,119,.35);background:rgba(18,42,36,.8);border-radius:999px;padding:6px 12px;white-space:nowrap;box-shadow:0 0 14px rgba(96,157,119,.15)}
+@keyframes flow{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.core{position:relative;width:150px;height:150px;display:flex;align-items:center;justify-content:center}
+.core .ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:rgba(201,169,110,.3);animation:spin 3s linear infinite;box-shadow:0 0 40px rgba(201,169,110,.25)}
+.core .ring.r2{inset:14px;border-top-color:#7cc49a;border-left-color:rgba(124,196,154,.3);animation-duration:4.5s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cin{text-align:center;line-height:1.1}.cin small{display:block;color:var(--gold);font-size:11px;letter-spacing:.8px;text-transform:uppercase}.cin b{display:block;font-size:26px;color:#fff;margin:4px 0;font-variant-numeric:tabular-nums}.cin span{font-size:11px;color:#9fb1a9}
+.out{background:var(--panel);border:1px solid rgba(201,169,110,.5);border-radius:16px;padding:14px 16px;text-align:center}
+.out span{display:block;font-size:11.5px;color:#9fb1a9;text-transform:uppercase;letter-spacing:.6px}.out b{display:block;font-size:34px;color:var(--gold)}.out b small{font-size:14px;color:#9fb1a9}.out i{font-style:normal;font-size:13px;color:#7cc49a;font-weight:700}
+.icpwrap{margin-top:16px}.leads .lh,.leads .lr{padding:9px 0}.icp li{padding:7px 0}

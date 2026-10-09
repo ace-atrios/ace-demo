@@ -77,7 +77,7 @@ function paged(){
   function fitP(s){const el=s.firstElementChild;el.style.transform='';const k=Math.min(1,(s.clientHeight-20)/el.scrollHeight);if(k<1)el.style.transform=`scale(${k})`}
   function go(i){
     clr();cur=i;track.style.transform=`translateX(${-i*100}vw)`;
-    pb.forEach((b,k)=>b.classList.toggle('on',k===i));fitP(slides[i]);
+    pb.forEach((b,k)=>b.classList.toggle('on',k===i));fitP(slides[i]);const sc=slides[i].querySelector('#sigc');if(sc){let n=0;const T=4812,st=performance.now();const tick=t=>{const f=Math.min(1,(t-st)/2200);n=Math.round(T*(1-Math.pow(1-f,3)));sc.textContent=n.toLocaleString();if(f<1&&cur===i)requestAnimationFrame(tick)};requestAnimationFrame(tick)}
     const nx=(i+1)%slides.length;
     if(slides[i].querySelector('#chat')){run(()=>{if(auto)pt.push(setTimeout(()=>go(nx),5000))})}
     else if(auto)pt.push(setTimeout(()=>go(nx),5000));
