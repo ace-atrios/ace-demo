@@ -124,7 +124,7 @@ function paged(){
         if(d2>0){ctx.moveTo(m.h.x,m.h.y);ctx.lineTo(m.h.x+(cx-m.h.x)*d2,m.h.y+(cy-m.h.y)*d2)}
         ctx.stroke();ctx.fillStyle='rgba(252,226,160,'+fade+')';ctx.beginPath();ctx.arc(m.n.x,m.n.y,6.5,0,7);ctx.fill();
         ctx.globalAlpha=Math.max(0,1-age/1.2)*fade;ctx.strokeStyle='rgba(252,226,160,.7)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(m.n.x,m.n.y,10+age*12,0,7);ctx.stroke();
-        ctx.globalAlpha=fade*Math.min(1,age/0.2);ctx.shadowBlur=0;ctx.font='700 19px Aspekta,sans-serif';const lb='✓ Lead matched',tw=ctx.measureText(lb).width;ctx.fillStyle='rgba(14,39,35,.92)';ctx.fillRect(m.n.x+12,m.n.y-34,tw+20,30);ctx.fillStyle='#FCE2A0';ctx.fillText(lb,m.n.x+22,m.n.y-12);ctx.restore()});
+        ctx.globalAlpha=fade*Math.min(1,age/0.2);ctx.shadowBlur=0;ctx.font='700 19px Aspekta,sans-serif';const lb='✓ New customer',tw=ctx.measureText(lb).width;ctx.fillStyle='rgba(14,39,35,.92)';ctx.fillRect(m.n.x+12,m.n.y-34,tw+20,30);ctx.fillStyle='#FCE2A0';ctx.fillText(lb,m.n.x+22,m.n.y-12);ctx.restore()});
       if(cur===slides.indexOf(s))netRAF=requestAnimationFrame(draw)};
     netRAF=requestAnimationFrame(draw);
     pt.push(setTimeout(done,1600));
