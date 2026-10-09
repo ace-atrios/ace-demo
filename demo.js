@@ -1,3 +1,14 @@
+window.SCRIPT=[
+ {w:'Taylor',c:'me',t:"My friend Maya just raised a round of funding, can you send the best perks for Brex for banking and Deel for HR software?",d:400,step:0},
+ {w:'Ace',c:'ace',typing:1600,t:"Maya, great to meet you, thanks for the intro Taylor! Congrats on the round. Here's what you'd get:",step:1},
+ {w:'Ace',c:'ace',typing:2200,h:"<b>1. Brex</b>: cards, banking and spend controls, set up before the team grows.\nPerk: <b>up to $15k in founder perks</b>\n\n<b>2. Deel</b>: payroll, HR and global hiring in one place as you start hiring.\nPerk: <b>3 months free</b>",step:3},
+ {w:'Ace',c:'ace',typing:900,t:"Send me a few times that work, or I can drop booking links!"},
+ {w:'Maya',c:'them',typing:1400,t:"Both! Tue after 2pm works for Brex, Deel anytime Wed"},
+ {w:'Ace',c:'ace',typing:1500,h:"Done. <b>Brex Tue 2:00 PM ET</b> and <b>Deel Wed 11:00 AM ET</b>. Invites are in your inbox.<div class='card'><div class='t'>Confirmed</div>Brex × Lumen · Tue 2:00-2:30 PM ET<br>Deel × Lumen · Wed 11:00-11:30 AM ET</div>",step:4},
+ {w:'Taylor',c:'me',typing:800,t:"🙌 that was fast"}
+];
+window.SCORES=[['Brex',94,'$500k+ raised, founder/CEO, fresh round, no corporate card yet'],['Deel',88,'3+ employees, hiring now'],['Rho',86,'$500k+ raised, US-based, new bank wanted'],['Superposition',80,'Actively hiring engineers in the US'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Veroa',40,'No offshore hiring signal yet'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
+
 
 const S=window.SCRIPT||[
  {w:'Taylor',c:'me',t:"Ace, meet my friend Maya Chen. She's CEO of Lumen (seed AI infra, NYC). Can you share the perks that make sense for her?",d:400,step:0},
