@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0E2723">
+<title>Atrios</title>
+<style>
+@font-face{font-family:Aspekta;src:url(AspektaVF.woff2) format("woff2");font-weight:100 900}
+:root{--g:#0E2723;--g2:#16352f;--gold:#C9A96E;--cream:#F6F2EA;--ink:#14201d;--mut:#6b7a76;--line:#e7e2d8;--ok:#2f8f5b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#d9d4c8;font-family:Aspekta,-apple-system,Helvetica,Arial,sans-serif;color:var(--ink)}
+.stage{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+.phone{width:390px;height:844px;background:var(--cream);border-radius:48px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35),0 0 0 10px #111,0 0 0 12px #333;display:flex;flex-direction:column}
+@media (max-width:500px){.stage{padding:0}.phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}}
+.status{height:44px;flex:none;background:var(--g);color:#fff;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 6px;font-size:14px;font-weight:600}
+@media (max-width:500px){.status{display:none}}
+header{background:var(--g);color:#fff;padding:14px 20px 18px;flex:none}
+header .row{display:flex;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:26px;font-weight:700;letter-spacing:-.5px}
+header .sub{color:#b9c7c2;font-size:13px;margin-top:4px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.3px}
+.logo b{width:26px;height:26px;border-radius:8px;background:var(--gold);color:var(--g);display:grid;place-items:center;font-size:15px}
+.earn{background:rgba(201,169,110,.15);color:var(--gold);border:1px solid rgba(201,169,110,.4);padding:6px 12px;border-radius:99px;font-size:13px;font-weight:600}
+.search{margin-top:14px;background:var(--g2);border-radius:12px;display:flex;align-items:center;gap:8px;padding:10px 12px;color:#9fb1ab}
+.search input{background:none;border:0;outline:0;color:#fff;font:inherit;font-size:15px;flex:1}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 90px}
+.view{display:none}.view.on{display:block}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin:0 -16px 14px;padding-left:16px;padding-right:16px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600;color:var(--mut);cursor:pointer}
+.chip.on{background:var(--g);color:#fff;border-color:var(--g)}
+.card{background:#fff;border-radius:16px;padding:14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);cursor:pointer;transition:transform .12s}
+.card:active{transform:scale(.98)}
+.av{width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px}
+.card .t{font-weight:700;font-size:16px}
+.card .d{font-size:13px;color:var(--mut);margin-top:3px;line-height:1.35}
+.perk{display:inline-block;margin-top:8px;background:#f3ecdc;color:#7a5a1e;font-size:12px;font-weight:700;padding:5px 9px;border-radius:8px}
+.perk.fb{background:#e8f1ec;color:var(--ok)}
+.sec{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:18px 4px 10px}
+.sec:first-child{margin-top:4px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.cat h3{margin:0;padding:14px 16px;font-size:16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.cat h3 span{font-size:12px;color:var(--mut);font-weight:600}
+.cat .items{border-top:1px solid var(--line)}
+.pi{display:flex;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.pi:last-child{border-bottom:0}
+.pi .av{width:36px;height:36px;font-size:15px;border-radius:10px}
+.pi .n{font-weight:700;font-size:14px}.pi .p{font-size:13px;color:#7a5a1e;font-weight:600;margin-top:2px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.stat{background:var(--g);color:#fff;border-radius:14px;padding:12px}
+.stat .v{font-size:22px;font-weight:700;color:var(--gold)}.stat .l{font-size:11px;color:#b9c7c2;margin-top:2px}
+.ref{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.ref .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.ref .who{font-weight:700}.ref .co{font-size:13px;color:var(--mut)}
+.amt{font-weight:700;color:var(--ok);white-space:nowrap}.amt.pend{color:var(--mut)}
+.steps{display:flex;gap:4px;margin-top:12px}
+.steps i{flex:1;height:5px;border-radius:3px;background:#e9e4da}
+.steps i.done{background:var(--gold)}
+.steplab{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-top:6px}
+.tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;background:#eef3f1;color:var(--g)}
+.prof{text-align:center;padding:10px 0 4px}
+.pav{width:88px;height:88px;border-radius:50%;margin:0 auto;background:linear-gradient(135deg,var(--gold),#8c6d34);display:grid;place-items:center;color:var(--g);font-size:34px;font-weight:800;border:4px solid #fff;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.prof h2{margin:12px 0 2px;font-size:22px}.prof .r{color:var(--mut);font-size:14px}
+.badge{display:inline-block;margin-top:10px;background:var(--g);color:var(--gold);font-size:12px;font-weight:700;padding:6px 12px;border-radius:99px}
+.list{background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:14px;overflow:hidden}
+.li{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.li:last-child{border-bottom:0}.li span{color:var(--mut);font-size:14px}
+.btn{display:block;width:100%;text-align:center;background:var(--g);color:#fff;border:0;border-radius:14px;padding:15px;font:inherit;font-weight:700;font-size:16px;margin-top:14px;text-decoration:none;cursor:pointer}
+.btn.gold{background:var(--gold);color:var(--g)}
+.btn.ghost{background:#fff;color:var(--g);border:1px solid var(--line)}
+nav{position:absolute;bottom:0;left:0;right:0;height:78px;background:#fff;border-top:1px solid var(--line);display:flex;padding-bottom:14px}
+nav button{flex:1;background:none;border:0;font:inherit;font-size:11px;font-weight:600;color:#9aa5a2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer}
+nav button svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
+nav button.on{color:var(--g)}
+.sheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.sheet-bg.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--cream);border-radius:24px 24px 0 0;padding:10px 20px 30px;transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:11;max-height:85%;overflow-y:auto}
+.sheet.on{transform:none}
+.grab{width:40px;height:5px;border-radius:3px;background:#cfc8ba;margin:0 auto 16px}
+.sh-top{display:flex;gap:14px;align-items:center}
+.sh-top .av{width:56px;height:56px;font-size:22px;border-radius:16px}
+.sh-top h2{margin:0;font-size:22px}.sh-top .c{color:var(--mut);font-size:13px;margin-top:2px}
+.bigperk{background:var(--g);color:#fff;border-radius:16px;padding:16px;margin-top:16px}
+.bigperk .l{font-size:12px;color:#b9c7c2;text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.bigperk .v{font-size:19px;font-weight:700;color:var(--gold);margin-top:4px}
+.sheet p{color:#3b4a46;line-height:1.5;font-size:15px}
+.how{font-size:13px;color:var(--mut);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:4px;line-height:1.5}
+.toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:var(--g);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:20;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.empty{text-align:center;color:var(--mut);padding:30px 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="stage"><div class="phone">
+  <div class="status"><span>9:41</span><span>●●● ᯤ ▮</span></div>
+  <header>
+    <div class="row"><div class="logo"><b>A</b>ATRIOS</div><div class="earn" id="earnPill">$2,145 earned</div></div>
+    <h1 id="title" style="margin-top:14px">Vendors</h1>
+    <div class="sub" id="subtitle">Hand-picked companies with exclusive perks</div>
+    <div class="search" id="searchWrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search vendors or perks"></div>
+  </header>
+  <main id="main">
+    <section class="view on" id="v-vendors"><div class="chips" id="vchips"></div><div id="vlist"></div></section>
+    <section class="view" id="v-perks"><div id="plist"></div></section>
+    <section class="view" id="v-activity">
+      <div class="stats"><div class="stat"><div class="v">$2,145</div><div class="l">Earned</div></div><div class="stat"><div class="v">$1,150</div><div class="l">Pending</div></div><div class="stat"><div class="v">9</div><div class="l">Intros</div></div></div>
+      <div class="chips" id="achips"></div>
+      <div id="alist"></div>
+    </section>
+    <section class="view" id="v-profile">
+      <div class="prof"><div class="pav">JL</div><h2>Jordan Lee</h2><div class="r">Founder advisor · San Francisco</div><div class="badge">★ Atrios Gold Tastemaker</div></div>
+      <div class="list">
+        <div class="li">Your perks page<span>atrios.com/t/jordan</span></div>
+        <div class="li">Lifetime earnings<span>$2,145</span></div>
+        <div class="li">Intros made<span>9</span></div>
+        <div class="li">Meetings held<span>6</span></div>
+        <div class="li">Founders who became customers<span>1</span></div>
+      </div>
+      <button class="btn gold" onclick="share()">Share my perks page</button>
+      <a class="btn" href="sms:+15303064813&body=Hey%20Ace%2C%20my%20friend%20">Text Ace a founder to intro</a>
+      <div class="list">
+        <div class="li">Payout method<span>Bank •••• 4821</span></div>
+        <div class="li">Phone<span>Verified ✓</span></div>
+        <div class="li">LinkedIn<span>Connected ✓</span></div>
+        <div class="li">Notifications<span>On</span></div>
+      </div>
+      <button class="btn ghost" onclick="toast('Signed out (demo)')">Sign out</button>
+    </section>
+  </main>
+  <nav id="nav">
+    <button class="on" data-v="vendors"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Vendors</button>
+    <button data-v="perks"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>Perks</button>
+    <button data-v="activity"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Activity</button>
+    <button data-v="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</button>
+  </nav>
+  <div class="sheet-bg" id="bg"></div>
+  <div class="sheet" id="sheet"></div>
+  <div class="toast" id="toast"></div>
+</div></div>
+<script>
+const V=[
+["Rho","Banking & Finance","$875 welcome bonus","Banking and financial automation platform built for startups.","#1f5c4a"],
+["Slash","Banking & Finance","$875 welcome bonus","Banking for high-spend businesses with top cashback and treasury yields.","#222"],
+["Brex","Banking & Finance","Up to $15k in personal founder perks","Cards, banking, expenses and bill pay for startups.","#e8590c"],
+["Highbeam","Banking & Finance","Free cash flow audit + dedicated relationship manager","AI-powered financial command center for consumer brands.","#2b59c3"],
+["Finaloop","Banking & Finance","50% off first 3 months + free P&L report","AI-native accounting, inventory and analytics for consumer brands.","#5b3fd1"],
+["Numeral","Banking & Finance","Earn $50 for feedback","AI-powered sales tax compliance across states and countries.","#0c7a6b",1],
+["Thera","HR, Payroll & Benefits","3 months free + $260 welcome bonus","Payroll, contractors, EOR and benefits in one platform.","#6c3fb5"],
+["Corridor","HR, Payroll & Benefits","$700 welcome bonus + free benefits benchmark","AI-native health insurance brokerage for startups (5-500 employees).","#0b6e99"],
+["Rockwell","HR, Payroll & Benefits","Free savings analysis + $1,050 welcome bonus","Modern benefits brokerage for mid-sized employers.","#8a5a2b"],
+["WithCoverage","HR, Payroll & Benefits","10% off first year + $700 welcome bonus","Modern insurance and risk management, replacing traditional brokers.","#1d4ed8"],
+["SUPERPOWER","HR, Payroll & Benefits","5 free memberships","Proactive health platform using biomarker testing to detect disease early.","#b4232c"],
+["Superposition","Hiring & Talent","1 month free + 20% off + $1,050 welcome bonus","AI headhunter for startups.","#111827"],
+["Veroa","Hiring & Talent","1 month free + 40% off + $1,225 welcome bonus","AI-native offshore talent across finance, engineering, support and ops.","#0f766e"],
+["Globaltize","Hiring & Talent","30% off first placement + 12-month guarantee","Recruit, hire and pay remote employees anywhere in the world.","#c2410c"],
+["Secure Cloud Innovations","Security & Compliance","10% off first year + $825 welcome bonus","Embedded cybersecurity for SaaS pursuing SOC 2, ISO 27001, HIPAA, GDPR.","#334155"],
+["Charlemagne Labs","Security & Compliance","6 months free","AI security agent that protects your team from scams, hackers and data leaks.","#4338ca"],
+["Chord","Growth & Sales","$350 welcome bonus","AI-native commerce data platform that unifies data and finds customers.","#7c3aed"],
+["Pinpoint","Growth & Sales","Earn $100 for feedback","Turns social engagement into revenue with AI-personalized DMs.","#db2777",1],
+["Relay","Growth & Sales","Earn $100 for feedback","Software-backed agency that goes viral for your brand organically.","#ea580c",1],
+["Stanify","Growth & Sales","Earn $100 for feedback","AI for social media moderation, engagement and audience insights.","#0891b2",1],
+["Onward","Commerce","$5k-$100k upfront + $0 SaaS fees","Post-purchase benefits like shipping protection and free returns for brands.","#16a34a"],
+["Passport","Commerce","Earn $100 for feedback","Cross-border shipping, compliance and localization for DTC brands.","#2563eb",1],
+["FlagshipRTL","Commerce","Earn $100 for feedback","AI inventory optimization for modern retail businesses.","#9333ea",1],
+["Supper","Data & Infrastructure","2 months free","AI data analyst that answers business questions from your live data.","#a16207"],
+["North.Cloud","Data & Infrastructure","Earn $100 for feedback","FinOps platform to reduce AWS and GCP cloud costs.","#0369a1",1],
+["Starch","Industry Solutions","10% off first year","Agentic solutions for investment banking due diligence in M&A.","#57534e"]
+];
+const CATS=["All",...new Set(V.map(v=>v[1]))];
+const ini=n=>n.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+const av=v=>`<div class="av" style="background:${v[4]}">${ini(v[0])}</div>`;
+let cat="All",q="";
+function renderVendors(){
+  document.getElementById("vchips").innerHTML=CATS.map(c=>`<div class="chip ${c==cat?"on":""}" onclick="cat='${c}';renderVendors()">${c}</div>`).join("");
+  const L=V.filter(v=>(cat=="All"||v[1]==cat)&&(v[0]+v[2]+v[3]+v[1]).toLowerCase().includes(q));
+  document.getElementById("vlist").innerHTML=L.length?L.map(v=>`<div class="card" onclick="openV('${v[0]}')">${av(v)}<div style="flex:1"><div class="t">${v[0]}</div><div class="d">${v[3]}</div><span class="perk ${v[5]?"fb":""}">${v[5]?"💬 ":"🎁 "}${v[2]}</span></div></div>`).join(""):`<div class="empty">No vendors match "${q}"</div>`;
+}
+function renderPerks(){
+  const cs=CATS.slice(1);
+  document.getElementById("plist").innerHTML=cs.map((c,i)=>{const L=V.filter(v=>v[1]==c&&(v[0]+v[2]+v[3]).toLowerCase().includes(q));if(!L.length)return"";return `<div class="cat"><h3 onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">${c}<span>${L.length} perk${L.length>1?"s":""} ▾</span></h3><div class="items">${L.map(v=>`<div class="pi" onclick="openV('${v[0]}')">${av(v)}<div><div class="n">${v[0]}</div><div class="p" style="${v[5]?"color:var(--ok)":""}">${v[2]}</div></div></div>`).join("")}</div></div>`}).join("")||`<div class="empty">No perks match "${q}"</div>`;
+}
+const R=[
+["Maya Chen","Northwind AI","Rho",3,"$300","Paid",""],
+["Sam Patel","Ledgerly","Superposition",4,"$450 + $1,050","Customer bonus","Became a customer"],
+["Priya Rao","Kitebase","Thera",3,"$250","Paid",""],
+["Leo Martins","Fernhill","Deel",2,"$400","Pending","Meeting Tue 2pm"],
+["Ava Brooks","Lumen Labs","Secure Cloud Innovations",3,"$350","Paid",""],
+["Noah Kim","Tidepool","Veroa",2,"$350","Pending","Meeting Thu 11am"],
+["Zoe Alvarez","Brightline","Corridor",3,"$300","Paid",""],
+["Ethan Wu","Copperleaf","Brex",1,"$400","Pending","Intro sent"],
+["Isla Novak","Quartzly","Rho",3,"$300","Paid",""]
+];
+let af="All";
+function renderAct(){
+  const F=["All","Pending","Paid","Customer bonus"];
+  document.getElementById("achips").innerHTML=F.map(f=>`<div class="chip ${f==af?"on":""}" onclick="af='${f}';renderAct()">${f}</div>`).join("");
+  const L=R.filter(r=>(af=="All"||r[5]==af)&&(r.join(" ")).toLowerCase().includes(q));
+  document.getElementById("alist").innerHTML=L.map(r=>`<div class="ref"><div class="top"><div><div class="who">${r[0]}</div><div class="co">${r[1]} → ${r[2]}</div></div><div style="text-align:right"><div class="amt ${r[5]=="Pending"?"pend":""}">${r[4]}</div><span class="tag">${r[5]}</span></div></div><div class="steps">${[1,2,3,4].map(s=>`<i class="${s<=r[3]?"done":""}"></i>`).join("")}</div><div class="steplab"><span>Intro sent</span><span>Booked</span><span>Meeting held</span><span>Customer</span></div>${r[6]?`<div class="d" style="font-size:12px;color:var(--mut);margin-top:8px">${r[6]}</div>`:""}</div>`).join("")||`<div class="empty">Nothing here yet</div>`;
+}
+function openV(n){
+  const v=V.find(x=>x[0]==n);
+  document.getElementById("sheet").innerHTML=`<div class="grab"></div><div class="sh-top">${av(v)}<div><h2>${v[0]}</h2><div class="c">${v[1]}</div></div></div><div class="bigperk"><div class="l">${v[5]?"Feedback reward":"Exclusive perk"}</div><div class="v">${v[2]}</div></div><p>${v[3]}</p><div class="how"><b>How it works:</b> know a founder who needs ${v[0]}? Send them this perk. When they take the meeting, you get paid. If they become a customer, some vendors pay a bonus too.</div><a class="btn gold" href="sms:+15303064813&body=${encodeURIComponent("Hey Ace, I want to intro a founder to "+v[0]+": ")}">Intro a founder via Ace</a><button class="btn" onclick="toast('Booking request sent (demo)');closeS()">Get this perk for my company</button><button class="btn ghost" onclick="share('${v[0]}')">Share perk link</button>`;
+  document.getElementById("sheet").classList.add("on");document.getElementById("bg").classList.add("on");
+}
+function closeS(){document.getElementById("sheet").classList.remove("on");document.getElementById("bg").classList.remove("on")}
+document.getElementById("bg").onclick=closeS;
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
+function share(v){const u="https://www.atrios.com/t/jordan";if(navigator.share){navigator.share({title:"Atrios perks",text:v?("Exclusive "+v+" perk via Atrios"):"My Atrios perks",url:u}).catch(()=>{})}else{navigator.clipboard&&navigator.clipboard.writeText(u);toast("Link copied")}}
+const META={vendors:["Vendors","Hand-picked companies with exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0]};
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x==b));
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+b.dataset.v));
+  const m=META[b.dataset.v];document.getElementById("title").textContent=m[0];document.getElementById("subtitle").textContent=m[1];document.getElementById("searchWrap").style.display=m[2]?"flex":"none";
+  document.getElementById("main").scrollTop=0;
+});
+document.getElementById("q").oninput=e=>{q=e.target.value.toLowerCase();renderVendors();renderPerks();renderAct()};
+renderVendors();renderPerks();renderAct();
+</script>
+</body>
+</html>
