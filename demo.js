@@ -91,42 +91,43 @@ function paged(){
   const COL={pf:'#C9A96E',pi:'#7cc49a',pc:'#8fb4ff',po:'#e6a3c8'};
   let netRAF=null;
   function netAnim(s,done){
-    const box=s.querySelector('#netviz'),cv=box.querySelector('canvas');
-    box.querySelectorAll('.pcard').forEach(x=>x.remove());
-    const OX=40,OY=90,W=box.clientWidth+OX*2,H=box.clientHeight+OY*2,dpr=window.devicePixelRatio||1;cv.width=W*dpr;cv.height=H*dpr;const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
-    const cx=W/2,cy=H/2,R1=Math.min(W-OX*2,H-OY*2)*0.33;
-    const BW=W-OX*2,BH=H-OY*2;const POS=[[-0.36,-0.31],[0.05,-0.41],[0.37,-0.30],[0.44,0.04],[0.33,0.33],[-0.06,0.40],[-0.35,0.31],[-0.44,-0.03]];const hubs=PEOPLE.map((p,k)=>{const x=cx+POS[k][0]*BW,y=cy+POS[k][1]*BH;const a=Math.atan2(y-cy,x-cx);return {p,a,x,y,kids:[]}});
-    // network nodes per person
+    const box=s.querySelector('#netviz'),world=box.querySelector('.world'),cv=world.querySelector('canvas');
+    world.querySelectorAll('.pcard').forEach(x=>x.remove());
+    const BW=box.clientWidth,BH=box.clientHeight,Z=2.1,W=Math.round(BW*Z),H=Math.round(BH*Z),dpr=Math.min(1.5,window.devicePixelRatio||1);
+    world.style.width=W+'px';world.style.height=H+'px';world.style.transition='none';world.style.transform='translate(-50%,-50%) scale(1)';
+    cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cx=W/2,cy=H/2,SZ=Math.min(BW/W,BH/H)*1.12;
     let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
-    hubs.forEach(h=>{for(let n=0;n<60;n++){const a=h.a+(rnd()-.5)*1.5,d=25+rnd()*Math.max(W,H)*0.38;h.kids.push({x:h.x+Math.cos(a)*d,y:h.y+Math.sin(a)*d,r:.8+rnd()*1.8,c:'#FCF7E9',ph:rnd()*6})}});
-    const freeOK=(x,y)=>x>OX+60&&x+135<W-OX&&y-24>OY+20&&y<H-OY-20&&Math.hypot(x-cx,y-cy)>85&&!hubs.some(o=>{const L=o.x-96,R=o.x+96,T=o.y-70,B=o.y+70;return (x>L&&x<R&&y>T&&y<B)||(x+135>L&&x+6<R&&y>T&&y-24<B)});
-    hubs.forEach(h=>{h.cands=[];for(let tries=0;tries<120&&h.cands.length<6;tries++){const a=rnd()*Math.PI*2,d=95+rnd()*150,x=h.x+Math.cos(a)*d,y=h.y+Math.sin(a)*d;if(freeOK(x,y)){const n={x,y,r:2,c:'#FCF7E9',ph:rnd()*6};h.cands.push(n);h.kids.push(n)}}});
-    // pop profile cards
-    hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='pcard';el.style.left=(h.x-OX)+'px';el.style.top=(h.y-OY)+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');el.innerHTML=`<div class="ctop"><div class="av" style="background:${COL[h.p[2]]}">${ini}</div><div><b>${h.p[0]}</b><span>${h.p[1]}</span></div></div><div class="cmeta">${h.p[3]}</div><div class="cnet"><i style="background:${COL[h.p[2]]}"></i>${h.p[4]} connections</div>`;box.appendChild(el);pt.push(setTimeout(()=>el.classList.add('in'),60+k*65))});
-    const t0=performance.now();cancelAnimationFrame(netRAF);let matches=[],nextM=0.8;const ic=s.querySelector('#introc');let icv=0;
+    const POS=[[-0.36,-0.31],[0.05,-0.41],[0.37,-0.30],[0.44,0.04],[0.33,0.33],[-0.06,0.40],[-0.35,0.31],[-0.44,-0.03]];
+    const hubs=PEOPLE.map((p,k)=>{const x=cx+POS[k][0]*BW,y=cy+POS[k][1]*BH;return {p,a:Math.atan2(y-cy,x-cx),x,y,kids:[],cands:[]}});
+    const ringR=Math.max(...hubs.map(h=>Math.hypot(h.x-cx,h.y-cy)))+110;
+    const inCard=(x,y,pad)=>hubs.some(o=>x>o.x-84-pad&&x<o.x+84+pad&&y>o.y-56-pad&&y<o.y+56+pad);
+    hubs.forEach(h=>{for(let n=0;n<110;n++){const a=h.a+(rnd()-.5)*1.7,d=60+Math.pow(rnd(),.8)*Math.min(W,H)*0.5;const x=h.x+Math.cos(a)*d,y=h.y+Math.sin(a)*d;if(x<10||y<10||x>W-10||y>H-10)continue;const node={x,y,r:1.2+rnd()*2.2,c:'#FCF7E9',ph:rnd()*6};h.kids.push(node);
+      if(Math.hypot(x-cx,y-cy)>ringR&&x+220<W-20&&y-40>20&&y<H-20&&!inCard(x,y,30))h.cands.push(node)}});
+    hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='pcard';el.style.left=h.x+'px';el.style.top=h.y+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');el.innerHTML=`<div class="ctop"><div class="av" style="background:${COL[h.p[2]]}">${ini}</div><div><b>${h.p[0]}</b><span>${h.p[1]}</span></div></div><div class="cmeta">${h.p[3]}</div><div class="cnet"><i style="background:${COL[h.p[2]]}"></i>${h.p[4]} connections</div>`;world.appendChild(el);pt.push(setTimeout(()=>el.classList.add('in'),60+k*65))});
+    // zoom out after tastemakers are up
+    pt.push(setTimeout(()=>{world.style.transition='transform .75s cubic-bezier(.65,0,.35,1)';world.style.transform=`translate(-50%,-50%) scale(${SZ})`},650));
+    const ic=s.querySelector('#introc');let icv=0,matches=[],nextM=1.15;
+    const t0=performance.now();cancelAnimationFrame(netRAF);
     const draw=t=>{const e=(t-t0)/1000;ctx.clearRect(0,0,W,H);
-      // spokes hub->people
-      hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.06-k*0.065)/0.15));if(f<=0)return;ctx.strokeStyle='rgba(201,169,110,'+(0.45*f)+')';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
-        // pulse dot along spoke
-        const pp=((e*1.2+k*0.13)%1);ctx.fillStyle='rgba(201,169,110,.9)';ctx.beginPath();ctx.arc(cx+(h.x-cx)*pp,cy+(h.y-cy)*pp,1.8,0,7);ctx.fill();
-        // network expand
-        const g=Math.min(1,Math.max(0,(e-0.6)/0.5));if(g<=0)return;const ease=1-Math.pow(1-g,3);
-        h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(201,169,110,'+(0.09*ease)+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.c;ctx.beginPath();ctx.arc(x,y,n.r,0,7);ctx.fill();ctx.globalAlpha=1});
+      hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.06-k*0.065)/0.15));if(f<=0)return;ctx.strokeStyle='rgba(201,169,110,'+(0.5*f)+')';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
+        const pp=((e*1.2+k*0.13)%1);ctx.fillStyle='rgba(201,169,110,.9)';ctx.beginPath();ctx.arc(cx+(h.x-cx)*pp,cy+(h.y-cy)*pp,2.6,0,7);ctx.fill();
+        const g=Math.min(1,Math.max(0,(e-0.7)/0.65));if(g<=0)return;const ease=1-Math.pow(1-g,3);
+        h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(201,169,110,'+(0.08*ease)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.c;ctx.beginPath();ctx.arc(x,y,n.r*1.6,0,7);ctx.fill();ctx.globalAlpha=1});
       });
-      // glowing match paths: lead -> tastemaker -> company
-      if(e>0.8){while(nextM<e){nextM+=0.11;const hs=hubs.filter(x=>x.cands.length);if(!hs.length)break;const h=hs[Math.floor(rnd()*hs.length)];const fr=h.cands.filter(c=>!matches.some(m=>m.n===c||Math.hypot(m.n.x-c.x,m.n.y-c.y)<40));if(!fr.length)continue;const n=fr[Math.floor(rnd()*fr.length)];matches.push({h,n,t:nextM-0.11});if(ic){icv+=4+Math.floor(rnd()*9);ic.textContent=icv.toLocaleString();ic.classList.remove('bump');void ic.offsetWidth;ic.classList.add('bump')}}}
-      if(ic&&e>0.8&&Math.random()<.4){icv+=1;ic.textContent=icv.toLocaleString()}
-      if(ic&&e<=0.8){icv=Math.round(120*(1-Math.pow(1-Math.min(1,e/0.8),3)));ic.textContent=icv}
+      if(e>1.15){while(nextM<e){nextM+=0.1;const hs=hubs.filter(x=>x.cands.length);if(!hs.length)break;const h=hs[Math.floor(rnd()*hs.length)];const fr=h.cands.filter(c=>!matches.some(m=>Math.hypot(m.n.x-c.x,m.n.y-c.y)<120));if(!fr.length)continue;const n=fr[Math.floor(rnd()*fr.length)];matches.push({h,n,t:nextM-0.1});if(ic){icv+=4+Math.floor(rnd()*9);ic.textContent=icv.toLocaleString();ic.classList.remove('bump');void ic.offsetWidth;ic.classList.add('bump')}}}
+      if(ic&&e<=1.15){icv=Math.round(120*(1-Math.pow(1-Math.min(1,e/1.15),3)));ic.textContent=icv}
       matches=matches.filter(m=>e-m.t<1.8);
-      matches.forEach(m=>{const age=e-m.t,draw1=Math.min(1,age/0.15),draw2=Math.min(1,Math.max(0,(age-0.15)/0.15)),fade=age>1.3?Math.max(0,1-(age-1.3)/0.5):1;
-        ctx.save();ctx.shadowColor='rgba(252,226,160,.95)';ctx.shadowBlur=14;ctx.strokeStyle='rgba(252,226,160,'+(0.9*fade)+')';ctx.lineWidth=1.8;ctx.beginPath();
-        ctx.moveTo(m.n.x,m.n.y);ctx.lineTo(m.n.x+(m.h.x-m.n.x)*draw1,m.n.y+(m.h.y-m.n.y)*draw1);
-        if(draw2>0){ctx.moveTo(m.h.x,m.h.y);ctx.lineTo(m.h.x+(cx-m.h.x)*draw2,m.h.y+(cy-m.h.y)*draw2)}
-        ctx.stroke();ctx.fillStyle='rgba(252,226,160,'+fade+')';ctx.beginPath();ctx.arc(m.n.x,m.n.y,3.6,0,7);ctx.fill();
-        ctx.strokeStyle='rgba(252,226,160,'+(0.6*fade)+')';ctx.lineWidth=1;ctx.beginPath();ctx.arc(m.n.x,m.n.y,6+age*4,0,7);ctx.globalAlpha=Math.max(0,1-age/1.2)*fade;ctx.stroke();ctx.globalAlpha=fade*Math.min(1,age/0.3);ctx.shadowBlur=0;ctx.font='600 11px Aspekta,sans-serif';const lb='✓ Lead matched',tw=ctx.measureText(lb).width;ctx.fillStyle='rgba(14,39,35,.9)';ctx.fillRect(m.n.x+8,m.n.y-20,tw+12,18);ctx.fillStyle='#FCE2A0';ctx.fillText(lb,m.n.x+14,m.n.y-7);ctx.restore()});
+      matches.forEach(m=>{const age=e-m.t,d1=Math.min(1,age/0.15),d2=Math.min(1,Math.max(0,(age-0.15)/0.15)),fade=age>1.3?Math.max(0,1-(age-1.3)/0.5):1;
+        ctx.save();ctx.shadowColor='rgba(252,226,160,.95)';ctx.shadowBlur=22;ctx.strokeStyle='rgba(252,226,160,'+(0.95*fade)+')';ctx.lineWidth=3.2;ctx.beginPath();
+        ctx.moveTo(m.n.x,m.n.y);ctx.lineTo(m.n.x+(m.h.x-m.n.x)*d1,m.n.y+(m.h.y-m.n.y)*d1);
+        if(d2>0){ctx.moveTo(m.h.x,m.h.y);ctx.lineTo(m.h.x+(cx-m.h.x)*d2,m.h.y+(cy-m.h.y)*d2)}
+        ctx.stroke();ctx.fillStyle='rgba(252,226,160,'+fade+')';ctx.beginPath();ctx.arc(m.n.x,m.n.y,6.5,0,7);ctx.fill();
+        ctx.globalAlpha=Math.max(0,1-age/1.2)*fade;ctx.strokeStyle='rgba(252,226,160,.7)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(m.n.x,m.n.y,10+age*12,0,7);ctx.stroke();
+        ctx.globalAlpha=fade*Math.min(1,age/0.2);ctx.shadowBlur=0;ctx.font='700 19px Aspekta,sans-serif';const lb='✓ Lead matched',tw=ctx.measureText(lb).width;ctx.fillStyle='rgba(14,39,35,.92)';ctx.fillRect(m.n.x+12,m.n.y-34,tw+20,30);ctx.fillStyle='#FCE2A0';ctx.fillText(lb,m.n.x+22,m.n.y-12);ctx.restore()});
       if(cur===slides.indexOf(s))netRAF=requestAnimationFrame(draw)};
     netRAF=requestAnimationFrame(draw);
-    pt.push(setTimeout(done,1400));
+    pt.push(setTimeout(done,1600));
   }
   function anim2(s,done){
     const rows=[...s.querySelectorAll('.leads .lr')],note=s.querySelector('.icp small');
