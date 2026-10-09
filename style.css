@@ -233,3 +233,21 @@ em.g{font-style:normal;color:var(--gold)}
 @keyframes scanx{from{background-position:100% 0}to{background-position:-100% 0}}
 .livedot{color:#ff6b6b!important}
 .icp li{width:100%}.icp li .val{margin-left:auto;text-align:right;white-space:nowrap}
+
+/* page 3 v2 */
+.slack.live{opacity:1!important;transform:none!important;min-height:330px}
+.slack.live>*:not(.sty){transition:opacity .25s}
+.slack.live.typing>*:not(.sty){opacity:0}
+.slack.live .sty{display:none;align-items:center;gap:8px;color:#9a9b9d;font-size:13px;position:absolute;left:22px;bottom:18px}
+.slack.live.typing .sty{display:flex}
+.slack.live .sty img{width:22px;height:22px;border-radius:5px}.slack.live .sty b{color:#d1d2d3}
+.slack.live .sty .tdots{background:transparent;padding:0}.slack.live .sty .tdots i{background:#9a9b9d;width:5px;height:5px}
+.slack.live.in{animation:slackin .35s ease-out}
+@keyframes slackin{from{background:#2a2410}to{background:#1a1d21}}
+.slack.live .q p,.slack.live>p{opacity:1!important;transform:none!important}
+.bow.live .qa{opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.bow.live .qa.show{opacity:1;transform:none}
+.bow.live .qa p{opacity:0;transition:opacity .35s}
+.bow.live .qa.ans p{opacity:1}
+.slack.live.typing>*:not(.sty),.slack.live.typing .q p{opacity:0!important}
+.slack.live{min-height:350px}
