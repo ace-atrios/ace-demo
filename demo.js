@@ -24,10 +24,10 @@ function stepOn(n){document.querySelectorAll('.step').forEach(s=>s.classList.tog
 function bubble(m){
   if(m.w!=='Taylor'){const w=document.createElement('div');w.className='who';w.textContent=m.w;chat.appendChild(w)}
   const b=document.createElement('div');b.className='msg '+m.c;if(m.h)b.innerHTML=m.h;else b.textContent=m.t;chat.appendChild(b);chat.scrollTop=chat.scrollHeight}
-let looping=false;
+let looping=false,deckT=[];
 const btns=[...document.querySelectorAll('[onclick="play()"]')];btns.forEach(x=>x.dataset.label=x.innerHTML);
 function setBtn(on){btns.forEach(x=>x.innerHTML=on?'❚❚ Pause':x.dataset.label)}
-function run(){
+function run(done){
   timer.forEach(clearTimeout);timer=[];chat.innerHTML='';stepOn(0);
   let t=600;
   S.forEach((m,i)=>{
@@ -36,15 +36,28 @@ function run(){
     t+=(m.d||700)+ (m.h?900:0);
   });
   timer.push(setTimeout(()=>stepOn(5),t+300));
-  timer.push(setTimeout(()=>{if(looping)run()},t+3500));
+  if(done)timer.push(setTimeout(done,t+2500));
+}
+const wrap=document.querySelector('.wrap');
+let slides=[...wrap.children].filter(e=>e.matches('.hero,section')).map((e,k)=>{const s=document.createElement('div');s.className='slide';s.dataset.o=e.dataset.slide||(k+1);e.replaceWith(s);s.appendChild(e);return s});
+slides=slides.slice().sort((x,y)=>x.dataset.o-y.dataset.o);
+const ctl=document.createElement('div');ctl.className='deckctl';ctl.innerHTML='<div class="dots">'+slides.map(()=>'<i></i>').join('')+'</div><button onclick="play()">❚❚ Pause</button>';document.body.appendChild(ctl);
+function fit(s){const el=s.firstElementChild;el.style.transform='';const h=el.scrollHeight,avail=window.innerHeight-120;const k=Math.min(1,avail/h);el.style.transform=k<1?`scale(${k})`:''}
+function show(i){slides.forEach((s,k)=>s.classList.toggle('on',k===i));ctl.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===i));fit(slides[i]);ctl.querySelector('button').style.visibility=slides[i].querySelector('[onclick="play()"]')?'hidden':'visible'}
+function deck(i){
+  if(!looping)return;
+  show(i);
+  const nx=(i+1)%slides.length;
+  if(slides[i].querySelector('#chat'))run(()=>{if(looping)deck(nx)});
+  else deckT.push(setTimeout(()=>deck(nx),slides[i].querySelector('.qrbox')?9000:7000));
 }
 function play(){
-  if(looping){looping=false;timer.forEach(clearTimeout);timer=[];const y=document.getElementById('ty');if(y)y.remove();setBtn(false);return}
-  looping=true;setBtn(true);
-  document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'center'});
-  run();
+  if(looping){looping=false;timer.forEach(clearTimeout);timer=[];deckT.forEach(clearTimeout);deckT=[];const y=document.getElementById('ty');if(y)y.remove();
+    document.body.classList.remove('deck');slides.forEach(s=>{s.classList.remove('on');s.firstElementChild.style.transform=''});setBtn(false);window.scrollTo(0,0);return}
+  looping=true;setBtn(true);window.scrollTo(0,0);document.body.classList.add('deck');deck(0);
 }
+window.addEventListener('resize',()=>{const s=slides.find(x=>x.classList.contains('on'));if(s)fit(s)});
 const V=window.SCORES||[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
 const sc=document.getElementById('score');
 if(sc)V.forEach(([n,s,w])=>{sc.insertAdjacentHTML('beforeend',`<div><b>${n}</b></div><div>${s}<div class="bar"><i style="width:${s}%"></i></div></div><div style="color:#c4d1cb">${w}</div>`)});
-setTimeout(run,900);
+setTimeout(()=>{if(!looping)run()},900);
