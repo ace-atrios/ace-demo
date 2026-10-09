@@ -179,3 +179,7 @@ em.g{font-style:normal;color:var(--gold)}
 .leads .res{font-weight:700;font-size:14px}.leads .ok .res{color:var(--gold)}.leads .no .res{color:#8fa39b}
 .leads .no b,.leads .no i{opacity:.75}
 @media(max-width:1000px){.icpwrap{grid-template-columns:1fr}.icpwrap .arrow{transform:rotate(90deg)}}
+
+.allan{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.allan img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.allan b{display:block;font-size:20px;color:#fff}.allan span{color:var(--gold);font-size:15px}
