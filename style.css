@@ -149,3 +149,16 @@ body.deck footer{display:none}
 body.deck .deckctl{display:flex}
 .deckctl button{background:var(--gold);color:#021714;border:0;border-radius:999px;padding:10px 18px;font:600 14px Aspekta,sans-serif;cursor:pointer}
 .deckctl .dots{display:flex;gap:6px}.deckctl .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:background .3s}.deckctl .dots i.on{background:var(--gold)}
+
+/* vendors paged mode (always on) */
+body.paged{overflow:hidden;height:100vh}
+.track{position:fixed;left:0;top:84px;bottom:74px;display:flex;transition:transform .8s cubic-bezier(.65,0,.35,1)}
+.track .slide{width:100vw;height:100%;display:flex;align-items:center;justify-content:center;padding:0 28px;flex:none}
+.track .slide>*{width:min(1180px,100%);border-top:0;padding:0;margin:0;transform-origin:center center}
+.pbar{position:fixed;left:0;right:0;bottom:0;height:74px;display:flex;align-items:center;justify-content:center;gap:10px;z-index:45}
+.pbar button{background:transparent;color:#cfd9d4;border:1px solid rgba(252,247,233,.18);border-radius:999px;padding:9px 18px;font:500 14px Aspekta,sans-serif;cursor:pointer}
+.pbar button.on{background:var(--gold);color:#021714;border-color:var(--gold);font-weight:600}
+.pbar .ap{margin-left:18px;border-color:rgba(201,169,110,.6);color:var(--gold)}
+.pbar .ap.on{background:rgba(201,169,110,.15)}
+body.paged footer{display:none}
+.pbar button.ap.on{color:var(--gold);background:rgba(201,169,110,.15);border-color:rgba(201,169,110,.6);font-weight:600}

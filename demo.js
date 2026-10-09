@@ -60,4 +60,32 @@ window.addEventListener('resize',()=>{const s=slides.find(x=>x.classList.contain
 const V=window.SCORES||[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
 const sc=document.getElementById('score');
 if(sc)V.forEach(([n,s,w])=>{sc.insertAdjacentHTML('beforeend',`<div><b>${n}</b></div><div>${s}<div class="bar"><i style="width:${s}%"></i></div></div><div style="color:#c4d1cb">${w}</div>`)});
-setTimeout(()=>{if(!looping)run()},900);
+if(document.body.classList.contains('vp')){paged()}else{setTimeout(()=>{if(!looping)run()},900)}
+
+function paged(){
+  document.body.classList.add('paged');
+  const track=document.createElement('div');track.className='track';document.body.appendChild(track);
+  slides.forEach(s=>track.appendChild(s));
+  track.style.width=(slides.length*100)+'vw';
+  const bar=document.createElement('div');bar.className='pbar';
+  bar.innerHTML=slides.map((s,k)=>`<button data-k="${k}">Page ${k+1}</button>`).join('')+'<button class="ap"></button>';
+  document.body.appendChild(bar);
+  ctl.remove();
+  const pb=[...bar.querySelectorAll('[data-k]')],ap=bar.querySelector('.ap');
+  let cur=0,auto=true,pt=[];
+  const clr=()=>{pt.forEach(clearTimeout);pt=[]};
+  function fitP(s){const el=s.firstElementChild;el.style.transform='';const k=Math.min(1,(s.clientHeight-20)/el.scrollHeight);if(k<1)el.style.transform=`scale(${k})`}
+  function go(i){
+    clr();cur=i;track.style.transform=`translateX(${-i*100}vw)`;
+    pb.forEach((b,k)=>b.classList.toggle('on',k===i));fitP(slides[i]);
+    const nx=(i+1)%slides.length;
+    if(slides[i].querySelector('#chat')){run(()=>{if(auto)pt.push(setTimeout(()=>go(nx),5000))})}
+    else if(auto)pt.push(setTimeout(()=>go(nx),5000));
+  }
+  function setAuto(on){auto=on;ap.classList.toggle('on',on);ap.textContent=on?'❚❚ Autoplay on':'▶ Autoplay off'}
+  pb.forEach(b=>b.onclick=()=>{setAuto(false);go(+b.dataset.k)});
+  ap.onclick=()=>{if(auto){setAuto(false);clr()}else{setAuto(true);const nx=(cur+1)%slides.length;slides[cur].querySelector('#chat')?go(cur):go(nx)}};
+  btns.forEach(x=>{x.removeAttribute('onclick');x.innerHTML='▶ Replay the intro';x.onclick=()=>go(0)});
+  window.addEventListener('resize',()=>fitP(slides[cur]));
+  setAuto(true);setTimeout(()=>go(0),400);
+}
