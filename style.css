@@ -276,3 +276,19 @@ em.g{font-style:normal;color:var(--gold)}
 .slack.sw.in{animation:none}
 .slack.sw .newmsg .q p,.slack.sw .newmsg>p{font-size:13.5px}
 .slack.sw .ini{width:32px;height:32px;border-radius:8px;background:#5b3fa0;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* network page */
+.netwrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:30px;align-items:center}
+.netstats{display:flex;gap:28px;margin:24px 0 18px}.netstats b{display:block;font-size:34px;color:var(--gold);line-height:1}.netstats span{font-size:13px;color:#9fb1a9}
+.legend{font-size:13px;color:#c4d1cb;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.legend i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-left:8px}.legend i:first-child{margin-left:0}
+.lf,.pf{background:#C9A96E}.li,.pi{background:#7cc49a}.lc,.pc{background:#8fb4ff}.lo,.po{background:#e6a3c8}
+.netviz{position:relative;height:min(600px,calc(100vh - 200px));min-height:460px}
+.netviz canvas{position:absolute;inset:0;width:100%;height:100%}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2f5a4c,#0E2723);border:2px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(201,169,110,.08),0 0 60px rgba(201,169,110,.35);z-index:3}
+.hub small{font-size:10.5px;color:var(--gold);letter-spacing:.6px;text-transform:uppercase}.hub b{font-size:24px;color:#fff}
+.pcard{position:absolute;transform:translate(-50%,-50%) scale(.3);opacity:0;transition:transform .35s cubic-bezier(.2,1.5,.4,1),opacity .25s;z-index:4;display:flex;align-items:center;gap:8px;background:rgba(14,39,35,.92);border:1px solid rgba(201,169,110,.35);border-radius:999px;padding:5px 12px 5px 5px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.45);backdrop-filter:blur(4px)}
+.pcard.in{transform:translate(-50%,-50%) scale(1);opacity:1}
+.pcard .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#021714}
+.pcard b{display:block;font-size:12.5px;color:#fff;line-height:1.1}.pcard span{font-size:11px;color:#9fb1a9}
+.netviz canvas{-webkit-mask-image:radial-gradient(ellipse at center,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse at center,#000 62%,transparent 100%)}
+.netviz canvas{inset:-90px -40px;width:calc(100% + 80px);height:calc(100% + 180px);z-index:0}
