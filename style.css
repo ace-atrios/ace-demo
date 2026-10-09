@@ -183,3 +183,5 @@ em.g{font-style:normal;color:var(--gold)}
 .allan{display:flex;align-items:center;gap:16px;margin-bottom:18px}
 .allan img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .allan b{display:block;font-size:20px;color:#fff}.allan span{color:var(--gold);font-size:15px}
+
+.creds{display:flex;gap:6px;margin-top:8px}.creds i{font-style:normal;font-size:12.5px;font-weight:600;color:#e3ebe7;border:1px solid rgba(201,169,110,.55);border-radius:999px;padding:3px 10px}
