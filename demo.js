@@ -87,7 +87,7 @@ function paged(){
   }
   const QA=[...document.querySelectorAll('.bow.live .qa')].map(q=>{const p=q.querySelector('p');const pre=[...p.querySelectorAll('span')].map(s=>s.outerHTML).join(' ');const tmp=p.cloneNode(true);tmp.querySelectorAll('span').forEach(s=>s.remove());return {q,p,pre,txt:tmp.textContent.trim()}});
   const ICPV=[...document.querySelectorAll('.icp li')].map(li=>{const b=li.querySelector('b');const v=li.textContent.replace(b.textContent,'').trim();return {li,b:b.outerHTML,v}});
-  const PEOPLE=[['Priya S.','Founder · YC W24','pf'],['Marcus L.','Seed investor','pi'],['Dana K.','Community builder','pc'],['Ethan R.','Fractional CFO','po'],['Sofia M.','Angel investor','pi'],['Jamal T.','Founder · Series A','pf'],['Lena W.','Startup community lead','pc'],['Omar H.','VC partner','pi']];
+  const PEOPLE=[['Priya S.','Founder & CEO','pf','YC W24 · SF','2.4k'],['Marcus L.','Partner','pi','Seed fund · NYC','5.1k'],['Dana K.','Community lead','pc','Founder meetups · Austin','3.8k'],['Ethan R.','Fractional CFO','po','12 startups · Boston','1.9k'],['Sofia M.','Angel investor','pi','40+ checks · LA','4.2k'],['Jamal T.','Founder','pf','Series A · Chicago','2.7k'],['Lena W.','Accelerator director','pc','Demo days · Miami','6.3k'],['Omar H.','VC principal','pi','Fintech fund · NYC','3.3k']];
   const COL={pf:'#C9A96E',pi:'#7cc49a',pc:'#8fb4ff',po:'#e6a3c8'};
   let netRAF=null;
   function netAnim(s,done){
@@ -95,22 +95,31 @@ function paged(){
     box.querySelectorAll('.pcard').forEach(x=>x.remove());
     const OX=40,OY=90,W=box.clientWidth+OX*2,H=box.clientHeight+OY*2,dpr=window.devicePixelRatio||1;cv.width=W*dpr;cv.height=H*dpr;const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
     const cx=W/2,cy=H/2,R1=Math.min(W-OX*2,H-OY*2)*0.33;
-    const hubs=PEOPLE.map((p,k)=>{const a=-Math.PI/2+k*2*Math.PI/PEOPLE.length;const x=cx+Math.cos(a)*R1*1.3,y=cy+Math.sin(a)*R1*1.02;return {p,a,x,y,kids:[]}});
+    const BW=W-OX*2,BH=H-OY*2;const POS=[[-0.36,-0.31],[0.05,-0.41],[0.37,-0.30],[0.44,0.04],[0.33,0.33],[-0.06,0.40],[-0.35,0.31],[-0.44,-0.03]];const hubs=PEOPLE.map((p,k)=>{const x=cx+POS[k][0]*BW,y=cy+POS[k][1]*BH;const a=Math.atan2(y-cy,x-cx);return {p,a,x,y,kids:[]}});
     // network nodes per person
     let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
-    hubs.forEach(h=>{for(let n=0;n<60;n++){const a=h.a+(rnd()-.5)*1.5,d=25+rnd()*Math.max(W,H)*0.38;h.kids.push({x:h.x+Math.cos(a)*d,y:h.y+Math.sin(a)*d,r:.8+rnd()*1.8,c:COL[PEOPLE[Math.floor(rnd()*PEOPLE.length)][2]],ph:rnd()*6})}});
+    hubs.forEach(h=>{for(let n=0;n<60;n++){const a=h.a+(rnd()-.5)*1.5,d=25+rnd()*Math.max(W,H)*0.38;h.kids.push({x:h.x+Math.cos(a)*d,y:h.y+Math.sin(a)*d,r:.8+rnd()*1.8,c:'#FCF7E9',ph:rnd()*6})}});
     // pop profile cards
-    hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='pcard';el.style.left=(h.x-OX)+'px';el.style.top=(h.y-OY)+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');el.innerHTML=`<div class="av" style="background:${COL[h.p[2]]}">${ini}</div><div><b>${h.p[0]}</b><span>${h.p[1]}</span></div>`;box.appendChild(el);pt.push(setTimeout(()=>el.classList.add('in'),120+k*70))});
-    const t0=performance.now();cancelAnimationFrame(netRAF);
+    hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='pcard';el.style.left=(h.x-OX)+'px';el.style.top=(h.y-OY)+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');el.innerHTML=`<div class="ctop"><div class="av" style="background:${COL[h.p[2]]}">${ini}</div><div><b>${h.p[0]}</b><span>${h.p[1]}</span></div></div><div class="cmeta">${h.p[3]}</div><div class="cnet"><i style="background:${COL[h.p[2]]}"></i>${h.p[4]} connections</div>`;box.appendChild(el);pt.push(setTimeout(()=>el.classList.add('in'),100+k*110))});
+    const t0=performance.now();cancelAnimationFrame(netRAF);let matches=[],nextM=1.3;
     const draw=t=>{const e=(t-t0)/1000;ctx.clearRect(0,0,W,H);
       // spokes hub->people
-      hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.1-k*0.07)/0.3));if(f<=0)return;ctx.strokeStyle='rgba(201,169,110,'+(0.45*f)+')';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
+      hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.1-k*0.11)/0.2));if(f<=0)return;ctx.strokeStyle='rgba(201,169,110,'+(0.45*f)+')';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
         // pulse dot along spoke
         const pp=((e*0.5+k*0.13)%1);ctx.fillStyle='rgba(201,169,110,.9)';ctx.beginPath();ctx.arc(cx+(h.x-cx)*pp,cy+(h.y-cy)*pp,1.8,0,7);ctx.fill();
         // network expand
-        const g=Math.min(1,Math.max(0,(e-0.9)/0.9));if(g<=0)return;const ease=1-Math.pow(1-g,3);
-        h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(124,196,154,'+(0.10*ease)+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.c;ctx.beginPath();ctx.arc(x,y,n.r,0,7);ctx.fill();ctx.globalAlpha=1});
+        const g=Math.min(1,Math.max(0,(e-1.05)/0.85));if(g<=0)return;const ease=1-Math.pow(1-g,3);
+        h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(201,169,110,'+(0.09*ease)+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.c;ctx.beginPath();ctx.arc(x,y,n.r,0,7);ctx.fill();ctx.globalAlpha=1});
       });
+      // glowing match paths: lead -> tastemaker -> company
+      if(e>1.3){while(nextM<e){const h=hubs[Math.floor(rnd()*hubs.length)];const ok=h.kids.filter(n=>{const d=Math.hypot(n.x-h.x,n.y-h.y);return d>110&&d<260&&n.x>OX+30&&n.x<W-OX-30&&n.y>OY+10&&n.y<H-OY-10&&!hubs.some(o=>Math.abs(n.x-o.x)<95&&Math.abs(n.y-o.y)<60)&&Math.hypot(n.x-cx,n.y-cy)>90});const n=ok.length?ok[Math.floor(rnd()*ok.length)]:h.kids[0];matches.push({h,n,t:nextM});nextM+=0.32}}
+      matches=matches.filter(m=>e-m.t<3.2);
+      matches.forEach(m=>{const age=e-m.t,draw1=Math.min(1,age/0.35),draw2=Math.min(1,Math.max(0,(age-0.35)/0.35)),fade=age>2.4?Math.max(0,1-(age-2.4)/0.8):1;
+        ctx.save();ctx.shadowColor='rgba(252,226,160,.95)';ctx.shadowBlur=14;ctx.strokeStyle='rgba(252,226,160,'+(0.9*fade)+')';ctx.lineWidth=1.8;ctx.beginPath();
+        ctx.moveTo(m.n.x,m.n.y);ctx.lineTo(m.n.x+(m.h.x-m.n.x)*draw1,m.n.y+(m.h.y-m.n.y)*draw1);
+        if(draw2>0){ctx.moveTo(m.h.x,m.h.y);ctx.lineTo(m.h.x+(cx-m.h.x)*draw2,m.h.y+(cy-m.h.y)*draw2)}
+        ctx.stroke();ctx.fillStyle='rgba(252,226,160,'+fade+')';ctx.beginPath();ctx.arc(m.n.x,m.n.y,3.6,0,7);ctx.fill();
+        ctx.strokeStyle='rgba(252,226,160,'+(0.6*fade)+')';ctx.lineWidth=1;ctx.beginPath();ctx.arc(m.n.x,m.n.y,6+age*4,0,7);ctx.globalAlpha=Math.max(0,1-age/1.2)*fade;ctx.stroke();ctx.globalAlpha=fade*Math.min(1,age/0.3);ctx.shadowBlur=0;ctx.font='600 11px Aspekta,sans-serif';const lb='✓ Lead matched',tw=ctx.measureText(lb).width;ctx.fillStyle='rgba(14,39,35,.9)';ctx.fillRect(m.n.x+8,m.n.y-20,tw+12,18);ctx.fillStyle='#FCE2A0';ctx.fillText(lb,m.n.x+14,m.n.y-7);ctx.restore()});
       if(cur===slides.indexOf(s))netRAF=requestAnimationFrame(draw)};
     netRAF=requestAnimationFrame(draw);
     pt.push(setTimeout(done,2000));
