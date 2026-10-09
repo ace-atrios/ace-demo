@@ -29,9 +29,9 @@ const btns=[...document.querySelectorAll('[onclick="play()"]')];btns.forEach(x=>
 function setBtn(on){btns.forEach(x=>x.innerHTML=on?'❚❚ Pause':x.dataset.label)}
 function run(done){
   timer.forEach(clearTimeout);timer=[];chat.innerHTML='';stepOn(0);
-  const F=.5;let t=300;
+  const F=.13;let t=100;
   S.forEach((m,i)=>{
-    if(m.typing){const ti=t;timer.push(setTimeout(()=>{const d=document.createElement('div');d.className='msg '+m.c+' typing';d.id='ty';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(m.c==='ace'&&i===1){stepOn(1);setTimeout(()=>stepOn(2),450)}},ti));t+=m.typing*F}
+    if(m.typing){const ti=t;timer.push(setTimeout(()=>{const d=document.createElement('div');d.className='msg '+m.c+' typing';d.id='ty';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(m.c==='ace'&&i===1){stepOn(1);setTimeout(()=>stepOn(2),120)}},ti));t+=m.typing*F}
     const tt=t;timer.push(setTimeout(()=>{const y=document.getElementById('ty');if(y)y.remove();bubble(m);if(m.step)stepOn(m.step)},tt));
     t+=((m.d||700)+ (m.h?900:0))*F;
   });
