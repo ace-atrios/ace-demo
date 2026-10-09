@@ -254,3 +254,25 @@ em.g{font-style:normal;color:var(--gold)}
 
 .bow.live .qa{opacity:1!important;transform:none!important}
 .bow.live .qa p{transform:translateY(6px);transition:opacity .4s,transform .4s}.bow.live .qa.ans p{transform:none}
+
+/* slack window v3 */
+.slack.sw{padding:0;min-height:0;height:440px;display:flex;flex-direction:column}
+.slack.sw::before{display:none}
+.slack.sw .swh{padding:12px 18px;border-bottom:1px solid #2c2f33;display:flex;align-items:baseline;gap:10px}.slack.sw .swh b{color:#fff;font-size:15px}.slack.sw .swh span{color:#8a8b8d;font-size:12px}
+.slack.sw .swb{flex:1;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 18px}
+.slack.sw .old{opacity:.45;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}.slack.sw .old p{font-size:13.5px;margin:2px 0 0 42px}
+.slack.sw .old .hd{margin-bottom:0}.slack.sw .old .hd img{width:32px;height:32px}
+.slack.sw .newmsg{padding:10px 0 4px}
+.slack.sw .newmsg>p{margin-left:46px}.slack.sw .newmsg .q{margin-left:46px}
+.slack.sw .newmsg .hd{margin-bottom:0}.slack.sw .newmsg .hd+p{margin-top:-6px}
+.slack.sw .swf{padding:8px 18px 10px}
+.slack.sw .comp{border:1px solid #3a3d42;border-radius:8px;padding:9px 12px;color:#7c7e81;font-size:13.5px}
+.slack.sw .sty{position:static;display:flex;visibility:hidden;height:18px;margin-top:5px;gap:6px;font-size:12px}
+.slack.sw.typing .sty{visibility:visible}
+.slack.sw.typing .newmsg{display:none}
+.slack.sw.typing>*:not(.sty),.slack.sw.typing .q p{opacity:1!important}
+.slack.sw.in .newmsg{animation:msgin .28s ease-out}
+@keyframes msgin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slack.sw.in{animation:none}
+.slack.sw .newmsg .q p,.slack.sw .newmsg>p{font-size:13.5px}
+.slack.sw .ini{width:32px;height:32px;border-radius:8px;background:#5b3fa0;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}

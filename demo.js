@@ -106,11 +106,11 @@ function paged(){
     sl.classList.remove('in');sl.classList.add('typing');
     QA.forEach(o=>{o.q.classList.remove('ans');o.p.innerHTML=(o.pre?o.pre+' ':'')+o.txt});
     let t=200;const at=(ms,f)=>pt.push(setTimeout(f,ms));
-    at(t+400,()=>{sl.classList.remove('typing');sl.classList.add('in')});
+    at(t+1150,()=>{sl.classList.remove('typing');sl.classList.add('in')});
     QA.forEach(o=>o.q.classList.add('show'));
-    t+=500;
-    QA.forEach((o,k)=>at(t+k*300,()=>o.q.classList.add('ans')));
-    t+=QA.length*300+100;
+    t+=1050;
+    QA.forEach((o,k)=>at(t+k*180,()=>o.q.classList.add('ans')));
+    t+=QA.length*180+100;
     at(t,done);
   }
   function setAuto(on){auto=on;ap.classList.toggle('on',on);ap.textContent=on?'❚❚ Autoplay on':'▶ Autoplay off'}
