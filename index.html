@@ -14,6 +14,7 @@ a{color:var(--gold)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
 nav img{height:30px}
+.tabs{display:flex;gap:10px}.tabs a{font-size:13px;color:#9fb3ac;text-decoration:none;border:1px solid rgba(252,247,233,.15);border-radius:999px;padding:6px 14px}.tabs a.on{color:#021714;background:#C9A96E;border-color:#C9A96E}
 .pill{border:1px solid rgba(201,169,110,.5);color:var(--gold);border-radius:999px;padding:6px 14px;font-size:13px;letter-spacing:.3px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:40px 0 70px}
 h1{font-size:56px;line-height:1.05;font-weight:650;letter-spacing:-1.2px}
@@ -82,7 +83,7 @@ footer img{height:22px;opacity:.8}
 </head>
 <body>
 <div class="wrap">
-<nav><img src="logo.svg" alt="Atrios"><span class="pill">a16z speedrun · AI Faire demo</span></nav>
+<nav><img src="logo.svg" alt="Atrios"><div class="tabs"><a class="on" href="index.html">Overview</a><a href="tastemakers.html">Tastemakers & leads</a><a href="vendors.html">Vendors</a></div></nav>
 
 <div class="hero">
   <div>
