@@ -101,7 +101,7 @@ function paged(){
     hubs.forEach(h=>{for(let n=0;n<60;n++){const a=h.a+(rnd()-.5)*1.5,d=25+rnd()*Math.max(W,H)*0.38;h.kids.push({x:h.x+Math.cos(a)*d,y:h.y+Math.sin(a)*d,r:.8+rnd()*1.8,c:'#FCF7E9',ph:rnd()*6})}});
     // pop profile cards
     hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='pcard';el.style.left=(h.x-OX)+'px';el.style.top=(h.y-OY)+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');el.innerHTML=`<div class="ctop"><div class="av" style="background:${COL[h.p[2]]}">${ini}</div><div><b>${h.p[0]}</b><span>${h.p[1]}</span></div></div><div class="cmeta">${h.p[3]}</div><div class="cnet"><i style="background:${COL[h.p[2]]}"></i>${h.p[4]} connections</div>`;box.appendChild(el);pt.push(setTimeout(()=>el.classList.add('in'),100+k*110))});
-    const t0=performance.now();cancelAnimationFrame(netRAF);let matches=[],nextM=1.3;
+    const t0=performance.now();cancelAnimationFrame(netRAF);let matches=[],nextM=1.3;const ic=s.querySelector('#introc');let icv=0;
     const draw=t=>{const e=(t-t0)/1000;ctx.clearRect(0,0,W,H);
       // spokes hub->people
       hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.1-k*0.11)/0.2));if(f<=0)return;ctx.strokeStyle='rgba(201,169,110,'+(0.45*f)+')';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
@@ -112,7 +112,8 @@ function paged(){
         h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(201,169,110,'+(0.09*ease)+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.c;ctx.beginPath();ctx.arc(x,y,n.r,0,7);ctx.fill();ctx.globalAlpha=1});
       });
       // glowing match paths: lead -> tastemaker -> company
-      if(e>1.3){while(nextM<e){const h=hubs[Math.floor(rnd()*hubs.length)];const ok=h.kids.filter(n=>{const d=Math.hypot(n.x-h.x,n.y-h.y);return d>110&&d<260&&n.x>OX+30&&n.x<W-OX-30&&n.y>OY+10&&n.y<H-OY-10&&!hubs.some(o=>Math.abs(n.x-o.x)<95&&Math.abs(n.y-o.y)<60)&&Math.hypot(n.x-cx,n.y-cy)>90});const n=ok.length?ok[Math.floor(rnd()*ok.length)]:h.kids[0];matches.push({h,n,t:nextM});nextM+=0.32}}
+      if(e>1.3){while(nextM<e){const h=hubs[Math.floor(rnd()*hubs.length)];const ok=h.kids.filter(n=>{const d=Math.hypot(n.x-h.x,n.y-h.y);return d>110&&d<260&&n.x>OX+70&&n.x<W-OX-30&&n.y>OY+10&&n.y<H-OY-10&&!hubs.some(o=>Math.abs(n.x-o.x)<95&&Math.abs(n.y-o.y)<60)&&Math.hypot(n.x-cx,n.y-cy)>90});const n=ok.length?ok[Math.floor(rnd()*ok.length)]:h.kids[0];matches.push({h,n,t:nextM});nextM+=0.32;if(ic){icv+=1+Math.floor(rnd()*3);ic.textContent=icv.toLocaleString();ic.classList.remove('bump');void ic.offsetWidth;ic.classList.add('bump')}}}
+      if(ic&&e<=1.3){icv=Math.round(120*(1-Math.pow(1-Math.min(1,e/1.3),3)));ic.textContent=icv}
       matches=matches.filter(m=>e-m.t<3.2);
       matches.forEach(m=>{const age=e-m.t,draw1=Math.min(1,age/0.35),draw2=Math.min(1,Math.max(0,(age-0.35)/0.35)),fade=age>2.4?Math.max(0,1-(age-2.4)/0.8):1;
         ctx.save();ctx.shadowColor='rgba(252,226,160,.95)';ctx.shadowBlur=14;ctx.strokeStyle='rgba(252,226,160,'+(0.9*fade)+')';ctx.lineWidth=1.8;ctx.beginPath();
