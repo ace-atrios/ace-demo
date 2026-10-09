@@ -95,3 +95,16 @@ footer img{height:22px;opacity:.8}
 .vflow .step b{display:block;color:#fff;font-size:15px}
 .vflow .step span{color:#a9bab3;font-size:13.5px}
 .ctarow{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.ctarow .meet{margin:0}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.two .slack{max-width:none}
+.k2{display:inline-block;font-size:12px;color:var(--gold);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+.bow{background:var(--panel);border:1px solid rgba(96,157,119,.25);border-radius:16px;padding:18px 20px}
+.bow .bh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:1px solid rgba(96,157,119,.15);padding-bottom:10px;margin-bottom:6px}
+.bow .bh b{color:#fff}.bow .bh span{color:#9fb1a9;font-size:12.5px}
+.bow .qa{padding:9px 0;border-bottom:1px solid rgba(96,157,119,.1)}.bow .qa:last-child{border:0}
+.bow .qa i{font-style:normal;color:var(--gold);font-size:13px;font-weight:600}
+.bow .qa p{margin:3px 0 0;font-size:15px;color:#e3ebe7}
+.bow .tag{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;margin-right:6px}.bow .tag.y{background:rgba(96,157,119,.3);color:#bfe3cc}
+.bow .stars{color:var(--gold);margin-right:4px}
+@media(max-width:900px){.two{grid-template-columns:1fr}}

@@ -24,9 +24,11 @@ function stepOn(n){document.querySelectorAll('.step').forEach(s=>s.classList.tog
 function bubble(m){
   if(m.w!=='Taylor'){const w=document.createElement('div');w.className='who';w.textContent=m.w;chat.appendChild(w)}
   const b=document.createElement('div');b.className='msg '+m.c;if(m.h)b.innerHTML=m.h;else b.textContent=m.t;chat.appendChild(b);chat.scrollTop=chat.scrollHeight}
-function play(){
+let looping=false;
+const btns=[...document.querySelectorAll('[onclick="play()"]')];btns.forEach(x=>x.dataset.label=x.innerHTML);
+function setBtn(on){btns.forEach(x=>x.innerHTML=on?'❚❚ Pause':x.dataset.label)}
+function run(){
   timer.forEach(clearTimeout);timer=[];chat.innerHTML='';stepOn(0);
-  document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'center'});
   let t=600;
   S.forEach((m,i)=>{
     if(m.typing){const ti=t;timer.push(setTimeout(()=>{const d=document.createElement('div');d.className='msg '+m.c+' typing';d.id='ty';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(m.c==='ace'&&i===1){stepOn(1);setTimeout(()=>stepOn(2),900)}},ti));t+=m.typing}
@@ -34,8 +36,15 @@ function play(){
     t+=(m.d||700)+ (m.h?900:0);
   });
   timer.push(setTimeout(()=>stepOn(5),t+300));
+  timer.push(setTimeout(()=>{if(looping)run()},t+3500));
+}
+function play(){
+  if(looping){looping=false;timer.forEach(clearTimeout);timer=[];const y=document.getElementById('ty');if(y)y.remove();setBtn(false);return}
+  looping=true;setBtn(true);
+  document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'center'});
+  run();
 }
 const V=window.SCORES||[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
 const sc=document.getElementById('score');
 if(sc)V.forEach(([n,s,w])=>{sc.insertAdjacentHTML('beforeend',`<div><b>${n}</b></div><div>${s}<div class="bar"><i style="width:${s}%"></i></div></div><div style="color:#c4d1cb">${w}</div>`)});
-setTimeout(play,900);
+setTimeout(run,900);
