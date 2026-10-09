@@ -33,6 +33,7 @@ function play(){
     const tt=t;timer.push(setTimeout(()=>{const y=document.getElementById('ty');if(y)y.remove();bubble(m);if(m.step)stepOn(m.step)},tt));
     t+=(m.d||700)+ (m.h?900:0);
   });
+  timer.push(setTimeout(()=>stepOn(5),t+300));
 }
 const V=window.SCORES||[['Rho',92,'$500k+ raised, US-based, fresh seed in a legacy bank'],['Superposition',90,'Actively hiring engineers in the US'],['Secure Cloud Innovations',84,'10+ team, enterprise pilots will require SOC 2'],['Veroa',70,'$1M+ raised, but no ops/SDR hiring signal yet'],['Corridor',55,'5+ US W-2s, renewal date unknown'],['Deel',30,'No international hires'],['Finaloop',4,'Shopify-only, not a fit'],['WithCoverage',3,'Requires $20M+ revenue']];
 const sc=document.getElementById('score');
