@@ -90,6 +90,40 @@ nav button.on{color:var(--g)}
 .toast{position:absolute;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:var(--g);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:20;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .empty{text-align:center;color:var(--mut);padding:30px 0;font-size:14px}
+
+#v-ace{display:none;height:100%}
+#v-ace.on{display:flex;flex-direction:column}
+main.chat{padding:0}
+.msgs{flex:1;overflow-y:auto;padding:16px 16px 8px}
+.hello{text-align:center;padding:30px 10px 10px}
+.hello .ace{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;background:url(ace.jpg) center/cover;border:3px solid var(--gold)}
+.hello h2{margin:0;font-size:22px}.hello p{color:var(--mut);font-size:14px;margin:6px 0 18px}
+.sugs{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left}
+.sug{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:13px;line-height:1.35;cursor:pointer}
+.sug b{display:block;font-size:13px;margin-bottom:2px}
+.m{display:flex;gap:8px;margin:10px 0;align-items:flex-end}
+.m.u{justify-content:flex-end}
+.m .b{max-width:82%;padding:10px 14px;border-radius:18px;font-size:15px;line-height:1.45;white-space:pre-wrap}
+.m.u .b{background:var(--g);color:#fff;border-bottom-right-radius:6px}
+.m.a .b{background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px}
+.m.a .ai{width:28px;height:28px;border-radius:50%;flex:none;background:url(ace.jpg) center/cover}
+.mini{margin-top:8px;display:flex;flex-direction:column;gap:6px;white-space:normal}
+.mini .x{display:flex;gap:10px;align-items:center;background:var(--cream);border-radius:12px;padding:8px;cursor:pointer}
+.mini .x .av{width:32px;height:32px;font-size:13px;border-radius:9px}
+.mini .x .n{font-weight:700;font-size:13px}.mini .x .p{font-size:12px;color:#7a5a1e;font-weight:600}
+.mini .x .e{margin-left:auto;font-size:12px;font-weight:700;color:var(--ok);white-space:nowrap}
+.typing span{display:inline-block;width:7px;height:7px;border-radius:50%;background:#b8b1a3;margin:0 2px;animation:bl 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.composer{flex:none;padding:10px 12px 92px;background:var(--cream)}
+.composer .box{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:26px;padding:6px 6px 6px 16px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.composer input{flex:1;border:0;outline:0;font:inherit;font-size:16px;background:none}
+.composer button{width:38px;height:38px;border-radius:50%;border:0;background:var(--g);color:#fff;font-size:18px;cursor:pointer}
+.askbar{margin-top:14px;background:var(--g2);border-radius:12px;display:flex;align-items:center;gap:10px;padding:11px 12px;color:#9fb1ab;cursor:pointer;font-size:15px}
+.askbar .aimg{width:22px;height:22px;border-radius:50%;background:url(ace.jpg) center/cover;border:1.5px solid var(--gold)}
+.youearn{display:inline-block;margin:8px 0 0 6px;background:#e8f1ec;color:var(--ok);font-size:12px;font-weight:700;padding:5px 9px;border-radius:8px}
+.pi .e{margin-left:auto;font-size:12px;font-weight:700;color:var(--ok);white-space:nowrap;text-align:right}
+.bigperk.earn2{background:#e8f1ec;color:var(--ink)}.bigperk.earn2 .l{color:var(--ok)}.bigperk.earn2 .v{color:var(--ok)}
 </style>
 </head>
 <body>
@@ -99,7 +133,7 @@ nav button.on{color:var(--g)}
     <div class="row"><div class="logo"><b>A</b>ATRIOS</div><div class="earn" id="earnPill">$2,145 earned</div></div>
     <h1 id="title" style="margin-top:14px">Vendors</h1>
     <div class="sub" id="subtitle">Hand-picked companies with exclusive perks</div>
-    <div class="search" id="searchWrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search vendors or perks"></div>
+    <div class="askbar" id="searchWrap" onclick="go('ace')"><div class="aimg"></div>Ask Ace anything...</div>
   </header>
   <main id="main">
     <section class="view on" id="v-vendors"><div class="chips" id="vchips"></div><div id="vlist"></div></section>
@@ -109,7 +143,13 @@ nav button.on{color:var(--g)}
       <div class="chips" id="achips"></div>
       <div id="alist"></div>
     </section>
-    <section class="view" id="v-profile">
+    <section class="view" id="v-ace"><div class="msgs" id="msgs"><div class="hello" id="hello"><div class="ace"></div><h2>Hey, I'm Ace</h2><p>Your Atrios agent. Ask about perks, send me a founder, or check your earnings.</p><div class="sugs">
+<div class="sug" onclick="ask(this.dataset.q)" data-q="My friend Maya just raised $2M and is hiring engineers"><b>Intro a founder</b>My friend just raised $2M and is hiring engineers</div>
+<div class="sug" onclick="ask(this.dataset.q)" data-q="What banking perks do you have?"><b>Find perks</b>What banking perks do you have?</div>
+<div class="sug" onclick="ask(this.dataset.q)" data-q="How much have I earned this month?"><b>My earnings</b>How much have I earned this month?</div>
+<div class="sug" onclick="ask(this.dataset.q)" data-q="How do I make $10k a month on Atrios?"><b>Grow</b>How do I make $10k a month on Atrios?</div>
+</div></div></div><div class="composer"><div class="box"><input id="ci" placeholder="Message Ace" onkeydown="if(event.key=='Enter')send()"><button onclick="send()">↑</button></div></div></section>
+<section class="view" id="v-profile">
       <div class="prof"><div class="pav">JL</div><h2>Jordan Lee</h2><div class="r">Founder advisor · San Francisco</div><div class="badge">★ Atrios Gold Tastemaker</div></div>
       <div class="list">
         <div class="li">Your perks page<span>atrios.com/t/jordan</span></div>
@@ -132,6 +172,7 @@ nav button.on{color:var(--g)}
   <nav id="nav">
     <button class="on" data-v="vendors"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Vendors</button>
     <button data-v="perks"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>Perks</button>
+    <button data-v="ace"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ace</button>
     <button data-v="activity"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Activity</button>
     <button data-v="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</button>
   </nav>
@@ -168,6 +209,8 @@ const V=[
 ["North.Cloud","Data & Infrastructure","Earn $100 for feedback","FinOps platform to reduce AWS and GCP cloud costs.","#0369a1",1],
 ["Starch","Industry Solutions","10% off first year","Agentic solutions for investment banking due diligence in M&A.","#57534e"]
 ];
+const EARN={"Rho": "$550", "Slash": "$550", "Brex": "Varies", "Highbeam": "$350", "Finaloop": "$250", "Numeral": "$266", "Thera": "$317", "Corridor": "$600", "Rockwell": "$300", "WithCoverage": "$550", "SUPERPOWER": "$120", "Superposition": "$300", "Veroa": "$200 + $1,225 if they sign", "Globaltize": "$250", "Secure Cloud Innovations": "$310", "Charlemagne Labs": "$300", "Chord": "$550", "Pinpoint": "$200", "Relay": "$550", "Stanify": "$111", "Onward": "Varies", "Passport": "$250", "FlagshipRTL": "$240", "Supper": "$250", "North.Cloud": "$500", "Starch": "Varies"};
+const earn=n=>EARN[n]||"Varies";
 const CATS=["All",...new Set(V.map(v=>v[1]))];
 const ini=n=>n.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
 const av=v=>`<div class="av" style="background:${v[4]}">${ini(v[0])}</div>`;
@@ -175,11 +218,11 @@ let cat="All",q="";
 function renderVendors(){
   document.getElementById("vchips").innerHTML=CATS.map(c=>`<div class="chip ${c==cat?"on":""}" onclick="cat='${c}';renderVendors()">${c}</div>`).join("");
   const L=V.filter(v=>(cat=="All"||v[1]==cat)&&(v[0]+v[2]+v[3]+v[1]).toLowerCase().includes(q));
-  document.getElementById("vlist").innerHTML=L.length?L.map(v=>`<div class="card" onclick="openV('${v[0]}')">${av(v)}<div style="flex:1"><div class="t">${v[0]}</div><div class="d">${v[3]}</div><span class="perk ${v[5]?"fb":""}">${v[5]?"💬 ":"🎁 "}${v[2]}</span></div></div>`).join(""):`<div class="empty">No vendors match "${q}"</div>`;
+  document.getElementById("vlist").innerHTML=L.length?L.map(v=>`<div class="card" onclick="openV('${v[0]}')">${av(v)}<div style="flex:1"><div class="t">${v[0]}</div><div class="d">${v[3]}</div><span class="perk ${v[5]?"fb":""}">${v[5]?"💬 ":"🎁 "}${v[2]}</span><span class="youearn">💰 ${earn(v[0])=="Varies"?"Payout varies":"You earn "+earn(v[0])}</span></div></div>`).join(""):`<div class="empty">No vendors match "${q}"</div>`;
 }
 function renderPerks(){
   const cs=CATS.slice(1);
-  document.getElementById("plist").innerHTML=cs.map((c,i)=>{const L=V.filter(v=>v[1]==c&&(v[0]+v[2]+v[3]).toLowerCase().includes(q));if(!L.length)return"";return `<div class="cat"><h3 onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">${c}<span>${L.length} perk${L.length>1?"s":""} ▾</span></h3><div class="items">${L.map(v=>`<div class="pi" onclick="openV('${v[0]}')">${av(v)}<div><div class="n">${v[0]}</div><div class="p" style="${v[5]?"color:var(--ok)":""}">${v[2]}</div></div></div>`).join("")}</div></div>`}).join("")||`<div class="empty">No perks match "${q}"</div>`;
+  document.getElementById("plist").innerHTML=cs.map((c,i)=>{const L=V.filter(v=>v[1]==c&&(v[0]+v[2]+v[3]).toLowerCase().includes(q));if(!L.length)return"";return `<div class="cat"><h3 onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">${c}<span>${L.length} perk${L.length>1?"s":""} ▾</span></h3><div class="items">${L.map(v=>`<div class="pi" onclick="openV('${v[0]}')">${av(v)}<div><div class="n">${v[0]}</div><div class="p" style="${v[5]?"color:var(--ok)":""}">${v[2]}</div></div><div class="e">You earn<br>${earn(v[0])}</div></div>`).join("")}</div></div>`}).join("")||`<div class="empty">No perks match "${q}"</div>`;
 }
 const R=[
 ["Maya Chen","Northwind AI","Rho",3,"$300","Paid",""],
@@ -201,22 +244,40 @@ function renderAct(){
 }
 function openV(n){
   const v=V.find(x=>x[0]==n);
-  document.getElementById("sheet").innerHTML=`<div class="grab"></div><div class="sh-top">${av(v)}<div><h2>${v[0]}</h2><div class="c">${v[1]}</div></div></div><div class="bigperk"><div class="l">${v[5]?"Feedback reward":"Exclusive perk"}</div><div class="v">${v[2]}</div></div><p>${v[3]}</p><div class="how"><b>How it works:</b> know a founder who needs ${v[0]}? Send them this perk. When they take the meeting, you get paid. If they become a customer, some vendors pay a bonus too.</div><a class="btn gold" href="sms:+15303064813&body=${encodeURIComponent("Hey Ace, I want to intro a founder to "+v[0]+": ")}">Intro a founder via Ace</a><button class="btn" onclick="toast('Booking request sent (demo)');closeS()">Get this perk for my company</button><button class="btn ghost" onclick="share('${v[0]}')">Share perk link</button>`;
+  document.getElementById("sheet").innerHTML=`<div class="grab"></div><div class="sh-top">${av(v)}<div><h2>${v[0]}</h2><div class="c">${v[1]}</div></div></div><div class="bigperk"><div class="l">${v[5]?"Feedback reward":"Exclusive perk"}</div><div class="v">${v[2]}</div></div><div class="bigperk earn2"><div class="l">You earn per intro</div><div class="v">${earn(v[0])}</div></div><p>${v[3]}</p><div class="how"><b>How it works:</b> know a founder who needs ${v[0]}? Send them this perk. When they take the meeting, you get paid. If they become a customer, some vendors pay a bonus too.</div><a class="btn gold" href="sms:+15303064813&body=${encodeURIComponent("Hey Ace, I want to intro a founder to "+v[0]+": ")}">Intro a founder via Ace</a><button class="btn" onclick="toast('Booking request sent (demo)');closeS()">Get this perk for my company</button><button class="btn ghost" onclick="share('${v[0]}')">Share perk link</button>`;
   document.getElementById("sheet").classList.add("on");document.getElementById("bg").classList.add("on");
 }
 function closeS(){document.getElementById("sheet").classList.remove("on");document.getElementById("bg").classList.remove("on")}
 document.getElementById("bg").onclick=closeS;
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
 function share(v){const u="https://www.atrios.com/t/jordan";if(navigator.share){navigator.share({title:"Atrios perks",text:v?("Exclusive "+v+" perk via Atrios"):"My Atrios perks",url:u}).catch(()=>{})}else{navigator.clipboard&&navigator.clipboard.writeText(u);toast("Link copied")}}
-const META={vendors:["Vendors","Hand-picked companies with exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0]};
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x==b));
-  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+b.dataset.v));
-  const m=META[b.dataset.v];document.getElementById("title").textContent=m[0];document.getElementById("subtitle").textContent=m[1];document.getElementById("searchWrap").style.display=m[2]?"flex":"none";
-  document.getElementById("main").scrollTop=0;
-});
-document.getElementById("q").oninput=e=>{q=e.target.value.toLowerCase();renderVendors();renderPerks();renderAct()};
+const META={vendors:["Vendors","Hand-picked companies with exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0],ace:["Ace","Your Atrios agent",0]};
+function go(v){
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x.dataset.v==v));
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+v));
+  const m=META[v];document.getElementById("title").textContent=m[0];document.getElementById("subtitle").textContent=m[1];document.getElementById("searchWrap").style.display=m[2]?"flex":"none";
+  const mn=document.getElementById("main");mn.classList.toggle("chat",v=="ace");mn.style.overflowY=v=="ace"?"hidden":"auto";mn.scrollTop=0;
+}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
 renderVendors();renderPerks();renderAct();
+const mv=n=>V.find(v=>v[0]==n);
+const cards=ns=>`<div class="mini">${ns.map(n=>{const v=mv(n);return `<div class="x" onclick="openV('${n}')">${av(v)}<div><div class="n">${n}</div><div class="p">${v[2]}</div></div><div class="e">${earn(n)=="Varies"?"varies":"+"+earn(n)}</div></div>`}).join("")}</div>`;
+const K=[
+[/(raised|funding|seed|series)/i,t=>{const ns=["Rho","Brex"];let w="Congrats to them! A fresh raise means banking first.";if(/hir|engineer|dev/i.test(t)){ns.push("Superposition");w+=" Since they're hiring engineers, Superposition is a great fit too."}return w+" Here's what I'd send them:\x01"+ns.join("|")+"\x02Send me their number and I'll start a group text with you two. You earn when they take each meeting."}],
+[/bank|card|treasury|cash/i,()=>"Top banking perks right now:\x01Rho|Slash|Brex\x02Rho and Slash for founders with $500k+ raised, Brex for a16z speedrun companies."],
+[/payroll|benefit|insurance|health|hr\b/i,()=>"For payroll, benefits and insurance:\x01Thera|Corridor|Rockwell|WithCoverage\x02Thera for early teams, Corridor and Rockwell once they're 5+ people."],
+[/hir|recruit|engineer|talent|offshore/i,()=>"Hiring perks:\x01Superposition|Veroa|Globaltize\x02Superposition for US engineers, Veroa and Globaltize for offshore talent."],
+[/soc ?2|security|complian|hipaa|iso/i,()=>"Security and compliance:\x01Secure Cloud Innovations|Charlemagne Labs\x02Secure Cloud is the move for anyone selling to enterprise."],
+[/ecom|brand|shopify|dtc|retail|cpg/i,()=>"For consumer brands:\x01Highbeam|Finaloop|Onward|Chord\x02Onward pays brands $5k-$100k upfront, that one gets attention."],
+[/earn|made|money this|payout|paid/i,()=>"This month you've earned $2,145 across 9 intros, with $1,150 pending. Biggest win: Sam Patel at Ledgerly became a Superposition customer. Leo and Noah both have meetings this week, so ~$750 more is on the way."],
+[/10k|10,000|rolex|more money|grow/i,()=>"$10k a month is about 25 intros. Easiest path:\n1. Put your perks page link in your bio, newsletter or community\n2. After every founder coffee, text me their name\n3. Focus on fresh raises, they need banking and hiring at once (2+ intros each)\nYou're at 9 this month, 16 to go 💪"],
+[/how (does|do) (it|atrios) work|what is atrios/i,()=>"You recommend tools to founders you know. They get exclusive perks, the vendor gets a warm intro, and you get paid when they take the meeting. I handle the matching and booking."],
+[/^(hi|hey|hello|yo)\b/i,()=>"Hey! Who are you meeting with this week? Send me a founder's name and what they're working on and I'll pull the perks that fit."]
+];
+function reply(t){for(const [r,f] of K)if(r.test(t))return f(t);const hit=V.filter(v=>t.toLowerCase().includes(v[0].toLowerCase().split(" ")[0].replace(".cloud","")));if(hit.length)return "Here you go:\x01"+hit.map(v=>v[0]).join("|")+"\x02Want to intro a founder to "+hit[0][0]+"? Send me their name.";return "Got it. Tell me a bit about the founder (stage, team size, what they need) and I'll find the vendors they qualify for."}
+function addMsg(who,html){const d=document.createElement("div");d.className="m "+who;d.innerHTML=(who=="a"?'<div class="ai"></div>':"")+`<div class="b">${html}</div>`;const M=document.getElementById("msgs");M.appendChild(d);M.scrollTop=M.scrollHeight;return d}
+function ask(t){go("ace");document.getElementById("hello").style.display="none";addMsg("u",t.replace(/</g,"&lt;"));const ty=addMsg("a",'<span class="typing"><span></span><span></span><span></span></span>');setTimeout(()=>{let r=reply(t),html=r;if(r.includes("\x01")){const[a,rest]=r.split("\x01");const[ns,b]=rest.split("\x02");html=a+cards(ns.split("|"))+(b?`<div style="margin-top:8px">${b}</div>`:"")}ty.querySelector(".b").innerHTML=html;document.getElementById("msgs").scrollTop=1e6},900)}
+function send(){const i=document.getElementById("ci");const t=i.value.trim();if(!t)return;i.value="";ask(t)}
 </script>
 </body>
 </html>
