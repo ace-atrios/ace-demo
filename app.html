@@ -211,6 +211,31 @@ header.compact .acehd{display:flex}
  main{padding:12px 12px 90px}
  .card{padding:12px}
 }
+
+/* v7 page builder */
+.pgcard{background:linear-gradient(135deg,#05483A,#0E2723);border:1px solid rgba(201,169,110,.45);border-radius:18px;padding:16px;margin-top:14px;cursor:pointer}
+.pgcard .h{display:flex;justify-content:space-between;align-items:center}
+.pgcard b{font-size:16px}.pgcard small{color:var(--mut);font-size:12px}
+.pgcard .logos{display:flex;margin-top:12px}
+.pgcard .logos .av{width:34px;height:34px;border-radius:10px;margin-right:-6px;border:2px solid #0E2723;font-size:13px}
+.coll{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+.coll:last-child{border-bottom:0}
+.coll .cn{font-weight:700;font-size:15px}.coll .cc{font-size:12px;color:var(--mut)}
+.pick{display:flex;gap:12px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.pick .av{width:36px;height:36px;font-size:14px;border-radius:10px}
+.pick .n{font-weight:700;font-size:14px}.pick .p{font-size:12px;color:var(--soft)}
+.tick{margin-left:auto;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(252,247,233,.3);display:grid;place-items:center;font-size:14px;color:transparent;flex:none}
+.pick.on .tick{background:var(--gold);border-color:var(--gold);color:#021714}
+.nm{width:100%;background:rgba(252,247,233,.06);border:1px solid rgba(201,169,110,.3);border-radius:12px;padding:12px 14px;color:var(--cream);font:inherit;font-size:16px;outline:0;margin:6px 0 10px}
+.pv{background:var(--bg);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:6px}
+.pv .top{padding:18px 16px;text-align:center;background:linear-gradient(180deg,#05483A,#021714)}
+.pv .top .ph{width:56px;height:56px;border-radius:50%;margin:0 auto 8px;background:url(allan.jpg) center/cover;border:2px solid var(--gold)}
+.pv .top b{display:block;font-size:17px}.pv .top span{font-size:12px;color:var(--mut)}
+.pv .lst{padding:10px}
+.pv .row2{display:flex;gap:10px;align-items:center;background:rgba(14,39,35,.9);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px}
+.pv .row2 .av{width:32px;height:32px;font-size:13px;border-radius:9px}
+.pv .row2 .n{font-weight:700;font-size:13px}.pv .row2 .p{font-size:12px;color:var(--soft)}
+.addpg{margin-left:auto;font-size:12px;font-weight:700;color:var(--gold);border:1px solid rgba(201,169,110,.45);border-radius:99px;padding:5px 10px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -239,6 +264,11 @@ header.compact .acehd{display:flex}
 </div></div></div><div class="composer"><div class="box"><input id="ci" placeholder="Message Ace" onkeydown="if(event.key=='Enter')send()"><button onclick="send()">↑</button></div></div></section>
 <section class="view" id="v-profile">
       <div class="prof"><div class="pav" style="background:url(allan.jpg) center/cover;color:transparent">AL</div><h2>Allan Lvov</h2><div class="r">Head of GTM, Atrios · New York</div><div class="badge">★ Atrios Gold Tastemaker</div></div>
+      <div class="pgcard" onclick="openBuilder('page')"><div class="h"><div><b>My perks page</b><br><small id="pgcount"></small></div><span class="addpg">Edit</span></div><div class="logos" id="pglogos"></div></div>
+      <div class="sec">My collections</div>
+      <div class="list" id="colls" style="margin-top:0"></div>
+      <button class="btn ghost" onclick="openBuilder('new')">+ New collection</button>
+      <div class="sec">Stats</div>
       <div class="list">
         <div class="li">Your perks page<span>atrios.com/t/allan-lvov</span></div>
         <div class="li">Lifetime earnings<span>$2,145</span></div>
@@ -334,7 +364,7 @@ function renderAct(){
 }
 function openV(n){
   const v=V.find(x=>x[0]==n);
-  document.getElementById("sheet").innerHTML=`<div class="grab"></div><div class="sh-top">${av(v)}<div><h2>${v[0]}</h2><div class="c">${v[1]}</div></div></div><div class="bigperk"><div class="l">${v[5]?"Feedback reward":"Exclusive perk"}</div><div class="v">${v[2]}</div></div><div class="bigperk earn2"><div class="l">You earn per intro</div><div class="v">${earn(v[0])}</div></div><p>${v[3]}</p><div class="how"><b>How it works:</b> know a founder who needs ${v[0]}? Send them this perk. When they take the meeting, you get paid. If they become a customer, some vendors pay a bonus too.</div><a class="btn gold" href="sms:+15303064813&body=${encodeURIComponent("Hey Ace, I want to intro a founder to "+v[0]+": ")}">Intro a founder via Ace</a><button class="btn" onclick="toast('Booking request sent (demo)');closeS()">Get this perk for my company</button><button class="btn ghost" onclick="share('${v[0]}')">Share perk link</button>`;
+  document.getElementById("sheet").innerHTML=`<div class="grab"></div><div class="sh-top">${av(v)}<div><h2>${v[0]}</h2><div class="c">${v[1]}</div></div></div><div class="bigperk"><div class="l">${v[5]?"Feedback reward":"Exclusive perk"}</div><div class="v">${v[2]}</div></div><div class="bigperk earn2"><div class="l">You earn per intro</div><div class="v">${earn(v[0])}</div></div><p>${v[3]}</p><div class="how"><b>How it works:</b> know a founder who needs ${v[0]}? Send them this perk. When they take the meeting, you get paid. If they become a customer, some vendors pay a bonus too.</div><a class="btn gold" href="sms:+15303064813&body=${encodeURIComponent("Hey Ace, I want to intro a founder to "+v[0]+": ")}">Intro a founder via Ace</a><button class="btn" onclick="toast('Booking request sent (demo)');closeS()">Get this perk for my company</button><button class="btn ghost" onclick="MY.includes('${v[0]}')||MY.push('${v[0]}');renderProfile();toast('Added to your perks page ✓');closeS()">+ Add to my perks page</button><button class="btn ghost" onclick="share('${v[0]}')">Share perk link</button>`;
   document.getElementById("sheet").classList.add("on");document.getElementById("bg").classList.add("on");
 }
 function closeS(){document.getElementById("sheet").classList.remove("on");document.getElementById("bg").classList.remove("on")}
@@ -350,6 +380,27 @@ function go(v){
 }
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
 renderVendors();renderAct();
+let MY=["Rho","Superposition","Thera","Secure Cloud Innovations","Corridor","Brex"];
+let COLL=[{n:"Just raised",v:["Rho","Brex","Slash","Superposition"]},{n:"Hiring stack",v:["Superposition","Veroa","Globaltize","Thera"]},{n:"Consumer brands",v:["Highbeam","Finaloop","Onward","Chord"]}];
+const mvv=n=>V.find(v=>v[0]==n);
+const slugify=t=>(t||"new-collection").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+function renderProfile(){document.getElementById("pgcount").textContent=MY.length+" perks · atrios.com/t/allan-lvov";document.getElementById("pglogos").innerHTML=MY.slice(0,8).map(n=>av(mvv(n))).join("");document.getElementById("colls").innerHTML=COLL.map((c,i)=>`<div class="coll" onclick="openBuilder(${i})"><div><div class="cn">${c.n}</div><div class="cc">${c.v.length} perks · /t/allan-lvov/${slugify(c.n)}</div></div><span class="addpg">Edit</span></div>`).join("")}
+let B=null;
+function openBuilder(k){const isPage=k=="page",isNew=k=="new";B={k,name:isPage?"":isNew?"":COLL[k].n,sel:new Set(isPage?MY:isNew?[]:COLL[k].v)};drawBuilder();document.getElementById("sheet").classList.add("on");document.getElementById("bg").classList.add("on")}
+function updName(t){B.name=t;document.getElementById("pvname").textContent=t||"New collection";document.getElementById("pvurl").textContent="atrios.com/t/allan-lvov/"+slugify(t)}
+function drawBuilder(){const isPage=B.k=="page";
+document.getElementById("sheet").innerHTML=`<div class="grab"></div><h2 style="margin:0 0 4px">${isPage?"Build your perks page":B.k=="new"?"New collection":"Edit collection"}</h2><div style="color:var(--mut);font-size:13px;margin-bottom:10px">Pick the perks you personally recommend. Anyone who signs up through your link is credited to you.</div>
+${isPage?"":`<input class="nm" placeholder="Collection name (e.g. Seed founders)" value="${B.name}" oninput="updName(this.value)">`}
+<div class="sec" style="margin-top:6px">Preview</div>
+<div class="pv"><div class="top"><div class="ph"></div><b id="pvname">${isPage?"Allan's picks":(B.name||"New collection")}</b><span id="pvurl">atrios.com/t/allan-lvov${isPage?"":"/"+slugify(B.name)}</span></div><div class="lst" id="pvlist"></div></div>
+<div class="sec" id="selh"></div><div id="picks"></div>
+<button class="btn gold" onclick="saveB()">${isPage?"Save my page":"Save collection"}</button><button class="btn ghost" onclick="closeS()">Cancel</button>`;
+drawPicks()}
+function drawPicks(){document.getElementById("selh").textContent=`Choose perks (${B.sel.size} selected)`;document.getElementById("picks").innerHTML=V.map(v=>`<div class="pick ${B.sel.has(v[0])?"on":""}" onclick="tog('${v[0]}')">${av(v)}<div><div class="n">${v[0]}</div><div class="p">${v[2]}</div></div><div class="tick">✓</div></div>`).join("");
+document.getElementById("pvlist").innerHTML=[...B.sel].map(n=>{const v=mvv(n);return `<div class="row2">${av(v)}<div><div class="n">${n}</div><div class="p">🎁 ${v[2]}</div></div></div>`}).join("")||'<div class="empty" style="padding:12px">Pick perks below</div>'}
+function tog(n){B.sel.has(n)?B.sel.delete(n):B.sel.add(n);drawPicks()}
+function saveB(){const arr=[...B.sel];if(B.k=="new"&&!arr.length){toast("Pick at least one perk");return}if(B.k=="page")MY=arr;else if(B.k=="new")COLL.push({n:B.name||"New collection",v:arr});else COLL[B.k]={n:B.name||COLL[B.k].n,v:arr};const w=B.k;renderProfile();closeS();toast(w=="page"?"Perks page saved ✓":"Collection saved ✓")}
+renderProfile();
 const mv=n=>V.find(v=>v[0]==n);
 const cards=ns=>`<div class="mini">${ns.map(n=>{const v=mv(n);return `<div class="x" onclick="openV('${n}')">${av(v)}<div style="flex:1;min-width:0"><div class="n">${n}</div><div class="d2">${v[3]}</div><div class="p" style="margin-top:4px">🎁 ${v[2]}</div></div><div class="e"><small>You earn</small>${earn(n)=="Varies"?"Varies":earn(n)}</div></div>`}).join("")}</div>`;
 const K=[
