@@ -197,7 +197,7 @@ nav button.on{color:var(--gold)}
     <div class="row"><img class="lg" src="logo.svg" alt="Atrios"><div class="earn" id="earnPill">$2,145 earned</div></div>
     <h1 id="title" style="margin-top:14px">Perks</h1>
     <div class="sub" id="subtitle">Hand-picked companies and their exclusive perks</div>
-    <div class="askbar" id="searchWrap" onclick="go('ace')"><div class="aimg"></div>Ask Ace anything...</div>
+    <div class="askbar" id="searchWrap" style="display:none" onclick="go('ace')"><div class="aimg"></div>Ask Ace anything...</div>
   </header>
   <main id="main">
     <section class="view on" id="v-vendors"><div class="chips" id="vchips"></div><div id="vlist"></div></section>
@@ -317,7 +317,7 @@ function closeS(){document.getElementById("sheet").classList.remove("on");docume
 document.getElementById("bg").onclick=closeS;
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
 function share(v){const u="https://www.atrios.com/t/jordan";if(navigator.share){navigator.share({title:"Atrios perks",text:v?("Exclusive "+v+" perk via Atrios"):"My Atrios perks",url:u}).catch(()=>{})}else{navigator.clipboard&&navigator.clipboard.writeText(u);toast("Link copied")}}
-const META={vendors:["Perks","Hand-picked companies and their exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0],ace:["Ace","Your Atrios agent",0]};
+const META={vendors:["Perks","Hand-picked companies and their exclusive perks",0],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",0],profile:["Profile","Your tastemaker account",0],ace:["Ace","Your Atrios agent",0]};
 function go(v){
   document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x.dataset.v==v));
   document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+v));
