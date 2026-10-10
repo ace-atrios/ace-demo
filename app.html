@@ -195,13 +195,13 @@ nav button.on{color:var(--gold)}
   <div class="status"><span>9:41</span><span>●●● ᯤ ▮</span></div>
   <header>
     <div class="row"><img class="lg" src="logo.svg" alt="Atrios"><div class="earn" id="earnPill">$2,145 earned</div></div>
-    <h1 id="title" style="margin-top:14px">Vendors</h1>
-    <div class="sub" id="subtitle">Hand-picked companies with exclusive perks</div>
+    <h1 id="title" style="margin-top:14px">Perks</h1>
+    <div class="sub" id="subtitle">Hand-picked companies and their exclusive perks</div>
     <div class="askbar" id="searchWrap" onclick="go('ace')"><div class="aimg"></div>Ask Ace anything...</div>
   </header>
   <main id="main">
     <section class="view on" id="v-vendors"><div class="chips" id="vchips"></div><div id="vlist"></div></section>
-    <section class="view" id="v-perks"><div id="plist"></div></section>
+    
     <section class="view" id="v-activity">
       <div class="stats"><div class="stat"><div class="v">$2,145</div><div class="l">Earned</div></div><div class="stat"><div class="v">$1,150</div><div class="l">Pending</div></div><div class="stat"><div class="v">9</div><div class="l">Intros</div></div></div>
       <div class="chips" id="achips"></div>
@@ -234,8 +234,7 @@ nav button.on{color:var(--gold)}
     </section>
   </main>
   <nav id="nav">
-    <button class="on" data-v="vendors"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Vendors</button>
-    <button data-v="perks"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>Perks</button>
+    <button class="on" data-v="vendors"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>Perks</button>
     <button data-v="ace"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Ace</button>
     <button data-v="activity"><svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Activity</button>
     <button data-v="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profile</button>
@@ -283,7 +282,9 @@ let cat="All",q="";
 function renderVendors(){
   document.getElementById("vchips").innerHTML=CATS.map(c=>`<div class="chip ${c==cat?"on":""}" onclick="cat='${c}';renderVendors()">${c}</div>`).join("");
   const L=V.filter(v=>(cat=="All"||v[1]==cat)&&(v[0]+v[2]+v[3]+v[1]).toLowerCase().includes(q));
-  document.getElementById("vlist").innerHTML=L.length?L.map(v=>`<div class="card" onclick="openV('${v[0]}')">${av(v)}<div style="flex:1"><div class="t">${v[0]}</div><div class="d">${v[3]}</div><span class="perk ${v[5]?"fb":""}">${v[5]?"💬 ":"🎁 "}${v[2]}</span><span class="youearn">💰 ${earn(v[0])=="Varies"?"Payout varies":"You earn "+earn(v[0])}</span></div></div>`).join(""):`<div class="empty">No vendors match "${q}"</div>`;
+  const row=v=>`<div class="card" onclick="openV('${v[0]}')">${av(v)}<div style="flex:1"><div class="t">${v[0]}</div><div class="d">${v[3]}</div><span class="perk ${v[5]?"fb":""}">${v[5]?"💬 ":"🎁 "}${v[2]}</span><span class="youearn">💰 ${earn(v[0])=="Varies"?"Payout varies":"You earn "+earn(v[0])}</span></div></div>`;
+  let html="";if(cat=="All"){CATS.slice(1).forEach(c=>{const G=L.filter(v=>v[1]==c);if(G.length)html+=`<div class="sec">${c}</div>`+G.map(row).join("")})}else html=L.map(row).join("");
+  document.getElementById("vlist").innerHTML=html||`<div class="empty">No perks match "${q}"</div>`;
 }
 function renderPerks(){
   const cs=CATS.slice(1);
@@ -316,7 +317,7 @@ function closeS(){document.getElementById("sheet").classList.remove("on");docume
 document.getElementById("bg").onclick=closeS;
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
 function share(v){const u="https://www.atrios.com/t/jordan";if(navigator.share){navigator.share({title:"Atrios perks",text:v?("Exclusive "+v+" perk via Atrios"):"My Atrios perks",url:u}).catch(()=>{})}else{navigator.clipboard&&navigator.clipboard.writeText(u);toast("Link copied")}}
-const META={vendors:["Vendors","Hand-picked companies with exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0],ace:["Ace","Your Atrios agent",0]};
+const META={vendors:["Perks","Hand-picked companies and their exclusive perks",1],perks:["Perks","Every perk, organized by category",1],activity:["Activity","Track every intro and payout",1],profile:["Profile","Your tastemaker account",0],ace:["Ace","Your Atrios agent",0]};
 function go(v){
   document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x.dataset.v==v));
   document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id=="v-"+v));
@@ -324,7 +325,7 @@ function go(v){
   const mn=document.getElementById("main");mn.classList.toggle("chat",v=="ace");mn.style.overflowY=v=="ace"?"hidden":"auto";mn.scrollTop=0;
 }
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
-renderVendors();renderPerks();renderAct();
+renderVendors();renderAct();
 const mv=n=>V.find(v=>v[0]==n);
 const cards=ns=>`<div class="mini">${ns.map(n=>{const v=mv(n);return `<div class="x" onclick="openV('${n}')">${av(v)}<div><div class="n">${n}</div><div class="p">${v[2]}</div></div><div class="e">${earn(n)=="Varies"?"varies":"+"+earn(n)}</div></div>`}).join("")}</div>`;
 const K=[
