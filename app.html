@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0E2723">
-<title>Atrios</title>
+<meta name="theme-color" content="#021714"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Atrios</title><link rel="icon" href="logo-A.png"><link rel="apple-touch-icon" href="logo-A.png">
 <style>
 @font-face{font-family:Aspekta;src:url(AspektaVF.woff2) format("woff2");font-weight:100 900}
 :root{--g:#0E2723;--g2:#16352f;--gold:#C9A96E;--cream:#F6F2EA;--ink:#14201d;--mut:#6b7a76;--line:#e7e2d8;--ok:#2f8f5b}
@@ -124,13 +124,77 @@ main.chat{padding:0}
 .youearn{display:inline-block;margin:8px 0 0 6px;background:#e8f1ec;color:var(--ok);font-size:12px;font-weight:700;padding:5px 9px;border-radius:8px}
 .pi .e{margin-left:auto;font-size:12px;font-weight:700;color:var(--ok);white-space:nowrap;text-align:right}
 .bigperk.earn2{background:#e8f1ec;color:var(--ink)}.bigperk.earn2 .l{color:var(--ok)}.bigperk.earn2 .v{color:var(--ok)}
+
+/* ===== DARK LUXE THEME (matches demo deck) ===== */
+:root{--bg:#021714;--panel:#0E2723;--panel2:#0f2f28;--green:#05483A;--emerald:#609D77;--gold:#C9A96E;--soft:#FBE8A6;--cream:#FCF7E9;--mut:#9fb3ac;--line:rgba(201,169,110,.18);--ink:#FCF7E9;--ok:#7fd1a0}
+html,body{background:#000}
+.stage{background:radial-gradient(1200px 600px at 50% -10%,#0c3a30 0%,#021714 55%,#000 100%)}
+.phone{background:var(--bg);color:var(--cream);box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 10px #050505,0 0 0 11px #24433b}
+.status{background:transparent;color:var(--cream)}
+header{background:linear-gradient(180deg,#05483A 0%,#021714 100%);position:relative;overflow:hidden;padding-bottom:16px}
+header:after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.28),transparent 70%);pointer-events:none}
+.lg{height:24px;display:block}
+header h1{font-weight:650;letter-spacing:-.8px;font-size:30px}
+header .sub{color:var(--mut)}
+.earn{background:rgba(201,169,110,.12);color:var(--soft);border-color:rgba(201,169,110,.45)}
+.askbar{background:rgba(252,247,233,.06);border:1px solid rgba(201,169,110,.3);color:#c9d6d1;backdrop-filter:blur(8px)}
+main{background:var(--bg)}
+.chip{background:rgba(252,247,233,.05);border-color:var(--line);color:var(--mut)}
+.chip.on{background:var(--gold);color:#021714;border-color:var(--gold)}
+.card,.cat,.ref,.list,.sug{background:linear-gradient(180deg,rgba(14,39,35,.95),rgba(10,32,28,.95));border:1px solid var(--line);color:var(--cream)}
+.card{box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.card .d,.pi .d,.ref .co,.li span,.cat h3 span{color:var(--mut)}
+.perk{background:rgba(201,169,110,.14);color:var(--soft)}
+.perk.fb{background:rgba(96,157,119,.16);color:var(--ok)}
+.youearn{background:rgba(96,157,119,.16);color:var(--ok)}
+.cat .items,.pi,.li{border-color:var(--line)}
+.pi .p{color:var(--soft)}
+.pi .e,.amt{color:var(--ok)}
+.amt.pend{color:var(--mut)}
+.av{background:#fff!important;color:#021714;overflow:hidden;box-shadow:0 0 0 1px rgba(201,169,110,.35)}
+.av.ini{color:#fff}
+.av img{width:70%;height:70%;object-fit:contain}
+.stat{background:linear-gradient(160deg,#05483A,#0E2723);border:1px solid var(--line)}
+.stat .v{color:var(--soft)}
+.steps i{background:rgba(252,247,233,.1)}
+.steps i.done{background:linear-gradient(90deg,var(--gold),var(--soft))}
+.tag{background:rgba(201,169,110,.15);color:var(--soft)}
+.pav{background:linear-gradient(135deg,var(--soft),var(--gold) 55%,#8c6d34);color:#021714;border:3px solid rgba(252,247,233,.9);box-shadow:0 0 0 6px rgba(201,169,110,.18),0 10px 30px rgba(0,0,0,.4)}
+.badge{background:rgba(201,169,110,.14);color:var(--soft);border:1px solid rgba(201,169,110,.45)}
+.btn{background:var(--gold);color:#021714}
+.btn.gold{background:linear-gradient(90deg,var(--gold),var(--soft));color:#021714}
+.btn:not(.gold):not(.ghost){background:#05483A;color:var(--cream);border:1px solid rgba(96,157,119,.5)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid rgba(252,247,233,.2)}
+nav{background:rgba(2,23,20,.92);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+nav button{color:#5f7a72}
+nav button.on{color:var(--gold)}
+.sheet{background:linear-gradient(180deg,#0E2723,#021714);color:var(--cream);border-top:1px solid var(--line)}
+.grab{background:rgba(252,247,233,.25)}
+.sheet p{color:#cfd9d4}
+.how{background:rgba(252,247,233,.04);border-color:var(--line);color:var(--mut)}
+.bigperk{background:linear-gradient(135deg,#05483A,#0E2723);border:1px solid rgba(201,169,110,.4)}
+.bigperk .v{color:var(--soft)}
+.bigperk.earn2{background:linear-gradient(135deg,rgba(96,157,119,.22),rgba(14,39,35,.9));border:1px solid rgba(96,157,119,.45)}
+.bigperk.earn2 .v,.bigperk.earn2 .l{color:var(--ok)}
+.sh-top .c{color:var(--mut)}
+.composer{background:var(--bg)}
+.composer .box{background:rgba(252,247,233,.06);border:1px solid rgba(201,169,110,.3);box-shadow:none}
+.composer input{color:var(--cream)}
+.composer button{background:var(--gold);color:#021714;font-weight:700}
+.m.u .b{background:#0a84ff;color:#fff}
+.m.a .b{background:#123b31;color:var(--cream);border:1px solid rgba(201,169,110,.35)}
+.mini .x{background:rgba(2,23,20,.6);border:1px solid var(--line)}
+.mini .x .p{color:var(--soft)}
+.hello h2{color:var(--cream)}.hello p{color:var(--mut)}
+.toast{background:var(--gold);color:#021714}
+.empty{color:var(--mut)}
 </style>
 </head>
 <body>
 <div class="stage"><div class="phone">
   <div class="status"><span>9:41</span><span>●●● ᯤ ▮</span></div>
   <header>
-    <div class="row"><div class="logo"><b>A</b>ATRIOS</div><div class="earn" id="earnPill">$2,145 earned</div></div>
+    <div class="row"><img class="lg" src="logo.svg" alt="Atrios"><div class="earn" id="earnPill">$2,145 earned</div></div>
     <h1 id="title" style="margin-top:14px">Vendors</h1>
     <div class="sub" id="subtitle">Hand-picked companies with exclusive perks</div>
     <div class="askbar" id="searchWrap" onclick="go('ace')"><div class="aimg"></div>Ask Ace anything...</div>
@@ -213,7 +277,8 @@ const EARN={"Rho": "$550", "Slash": "$550", "Brex": "Varies", "Highbeam": "$350"
 const earn=n=>EARN[n]||"Varies";
 const CATS=["All",...new Set(V.map(v=>v[1]))];
 const ini=n=>n.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
-const av=v=>`<div class="av" style="background:${v[4]}">${ini(v[0])}</div>`;
+const DOM={"Rho": "rho.co", "Brex": "brex.com", "Highbeam": "highbeam.co", "Finaloop": "finaloop.com", "Numeral": "numeralhq.com", "Thera": "getthera.com", "WithCoverage": "withcoverage.com", "SUPERPOWER": "superpower.com", "Veroa": "veroa.ai", "Globaltize": "globaltize.com", "Chord": "chord.co", "Passport": "passportglobal.com", "North.Cloud": "north.cloud", "Corridor": "corridoradvisors.com"};
+const av=v=>DOM[v[0]]?`<div class="av"><img src="https://www.google.com/s2/favicons?domain=${DOM[v[0]]}&sz=128" alt="" onerror="this.parentNode.classList.add('ini');this.parentNode.style.setProperty('background','${v[4]}','important');this.replaceWith('${ini(v[0])}')"></div>`:`<div class="av ini" style="background:${v[4]}!important">${ini(v[0])}</div>`;
 let cat="All",q="";
 function renderVendors(){
   document.getElementById("vchips").innerHTML=CATS.map(c=>`<div class="chip ${c==cat?"on":""}" onclick="cat='${c}';renderVendors()">${c}</div>`).join("");
