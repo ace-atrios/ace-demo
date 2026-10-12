@@ -51,7 +51,7 @@ function match(t){if(ft!='All'&&t.type!=ft)return false;if(!q)return true;const 
 function render(){const L=D.filter(match);const el=document.getElementById('list');
  if(!L.length){el.innerHTML='<div class="empty">No matches</div>';return}
  el.innerHTML=L.map(t=>{const last=t.msgs[t.msgs.length-1];let pv=last;if(q){const h=t.msgs.find(m=>m.x.toLowerCase().includes(q.toLowerCase()));if(h)pv=h}
-  return `<div class="row ${sel==t.k?'sel':''}" data-k="${t.k}"><div class="top"><span class="nm">${hl(t.name)}</span><span class="tm">${fmt(last.t)}</span></div>
+  return `<div class="row ${sel==t.k?'sel':''}" data-k="${t.k}"><div class="top"><span class="nm">${t.ch=='email'?'✉️ ':'💬 '}${hl(t.name)}</span><span class="tm">${fmt(last.t)}</span></div>
   <div class="co">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${hl(t.co||'')}</div><div class="pv"><b>${esc(pv.w)}:</b> ${hl(pv.x.slice(0,140))}</div></div>`}).join('')}
 document.getElementById('list').onclick=e=>{const r=e.target.closest('.row');if(r)openT(r.dataset.k)};
 function openT(k){sel=k;const t=D.find(x=>x.k==k);render();document.getElementById('wrap').classList.add('open');
