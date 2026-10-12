@@ -251,7 +251,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 
 
 .pair{perspective:1100px}
-.face{position:relative}.face img{display:block;width:100%;transition:opacity .55s ease}
+.face{position:relative}.face img{display:block;width:100%;transition:opacity .35s ease}
 .face img.t{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0}
 .pt.talk .face img.t,.pt.listen .face img.t{opacity:1}
 .pair .pt{transform-style:preserve-3d}
@@ -262,7 +262,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 
 
 .salon3{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:70px 34px;max-width:1150px;margin:0 auto;padding-top:120px;perspective:1200px}
-.salon3 .pt{position:relative;transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s;transform-style:preserve-3d}
+.salon3 .pt{position:relative;transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .55s;transform-style:preserve-3d}
 .salon3 .pt:nth-child(odd){margin-top:26px}
 .salon3 .pt.fr{transform:rotateY(16deg) scale(1.05)}
 .salon3 .pt.fl{transform:rotateY(-16deg) scale(1.05)}
@@ -491,8 +491,8 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
   setTimeout(()=>{T.textContent=M[mi];const sr=S.getBoundingClientRect(),W=Math.min(290,sr.width-20);B.style.maxWidth=W+'px';
    const cx=(ar.left+ar.right+lr.left+lr.right)/4-sr.left;const x=Math.max(0,Math.min(cx-W/2,sr.width-W));
    const top=Math.min(ar.top,lr.top)-sr.top-122;B.style.left=x+'px';B.style.top=Math.max(-14,top)+'px';
-   const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},420);
-  setTimeout(step,2700)}
+   const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},260);
+  setTimeout(step,1800)}
  new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.25}).observe(S);
 })();
 // counter
