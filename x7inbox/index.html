@@ -15,6 +15,7 @@ header h1{font:600 17px Georgia,serif;margin:0}header .sub{opacity:.7;font-size:
 .row .co{color:#6b665c;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row .pv{color:#555;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 .tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:9px;margin-right:4px;background:#efe9db;color:#5d5442}
+.ch{display:inline-block;font:700 9.5px/1 Inter,Helvetica,Arial;letter-spacing:.06em;padding:3px 6px;border-radius:4px;margin-right:6px;vertical-align:1px}.ch.text{background:#e5f2e8;color:#22603a}.ch.email{background:#e3ecf7;color:#234b7a}.st{display:inline-block;font:700 9.5px/1 Inter,Helvetica,Arial;padding:3px 6px;border-radius:4px;margin-left:6px;background:#fbe3e0;color:#9b2c1f}
 .tag.Vendor{background:#e3ecf7;color:#234b7a}.tag.Lead{background:#f7e8e3;color:#7a3a23}.tag.Tastemaker{background:#e5f2e8;color:#22603a}.tag.Partner{background:#efe6f7;color:#57307a}
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
 .mh{padding:14px 22px;border-bottom:1px solid #e2ddd2;background:#fff}.mh h2{margin:0 0 3px;font:600 19px Georgia,serif}.mh .meta{color:#6b665c;font-size:12.5px}
@@ -30,7 +31,7 @@ mark{background:#ffe58a;padding:0 1px;border-radius:2px}
 .back{display:none;margin-right:8px;cursor:pointer;color:#0e3b2e;font-weight:600}
 @media(max-width:760px){.side{width:100%}.main{display:none}.wrap.open .side{display:none}.wrap.open .main{display:flex}.back{display:inline-block}}
 </style></head><body><div id="gate" style="position:fixed;inset:0;background:#0e3b2e;display:flex;align-items:center;justify-content:center;z-index:9"><form id="gf" style="text-align:center;color:#f5efe2"><div style="font:600 22px Georgia,serif;margin-bottom:12px">Ace Inbox</div><input id="pc" type="password" inputmode="numeric" placeholder="Passcode" style="padding:10px 14px;border-radius:10px;border:0;font-size:16px;width:180px;text-align:center"><div id="ge" style="margin-top:8px;font-size:12px;opacity:.8"></div></form></div>
-<header><h1>Ace Inbox</h1><span class="sub">Every text thread Ace has with tastemakers, leads &amp; vendors · newest first · <span id="upd"></span></span></header>
+<header><h1>Ace Inbox</h1><span class="sub">Every text + email thread Ace has with tastemakers, leads &amp; vendors · newest first · <span id="upd"></span></span></header>
 <div class="wrap" id="wrap">
 <div class="side"><div class="search"><input id="q" placeholder="Search names, companies, messages…" autofocus></div>
 <div class="filters" id="f"></div><div class="list" id="list"></div></div>
@@ -43,19 +44,20 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const hl=s=>{s=esc(s);if(!q)return s;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return s.replace(re,'<mark>$1</mark>')};
 const dt=t=>new Date(t+':00-04:00');
 const fmt=t=>{const d=dt(t);const now=new Date();return d.toDateString()===now.toDateString()?d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString([],{month:'short',day:'numeric'})};
-const types=['All','Vendor','Lead','Tastemaker','Partner'];
+const types=['All','Text','Email','Vendor','Lead','Tastemaker','Partner'];
+const isCh=t=>t=='Text'||t=='Email';const chOf=x=>x.ch=='email'?'Email':'Text';
 const F=document.getElementById('f');
-function buildF(){F.innerHTML=types.map(t=>`<button data-t="${t}" class="${t==ft?'on':''}">${t} <span style="opacity:.6">${t=='All'?D.length:D.filter(x=>x.type==t).length}</span></button>`).join('')}
+function buildF(){F.innerHTML=types.map(t=>`<button data-t="${t}" class="${t==ft?'on':''}">${t} <span style="opacity:.6">${t=='All'?D.length:D.filter(x=>isCh(t)?chOf(x)==t:x.type==t).length}</span></button>`).join('')}
 F.onclick=e=>{const b=e.target.closest('button');if(!b)return;ft=b.dataset.t;[...F.children].forEach(x=>x.classList.toggle('on',x.dataset.t==ft));render()};
-function match(t){if(ft!='All'&&t.type!=ft)return false;if(!q)return true;const s=q.toLowerCase();return (t.name+' '+t.co+' '+t.stage+' '+t.by).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
+function match(t){if(ft!='All'&&(isCh(ft)?chOf(t)!=ft:t.type!=ft))return false;if(!q)return true;const s=q.toLowerCase();return (t.name+' '+t.co+' '+t.stage+' '+t.by).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
 function render(){const L=D.filter(match);const el=document.getElementById('list');
  if(!L.length){el.innerHTML='<div class="empty">No matches</div>';return}
  el.innerHTML=L.map(t=>{const last=t.msgs[t.msgs.length-1];let pv=last;if(q){const h=t.msgs.find(m=>m.x.toLowerCase().includes(q.toLowerCase()));if(h)pv=h}
-  return `<div class="row ${sel==t.k?'sel':''}" data-k="${t.k}"><div class="top"><span class="nm">${t.ch=='email'?'✉️ ':'💬 '}${hl(t.name)}</span><span class="tm">${fmt(last.t)}</span></div>
+  return `<div class="row ${sel==t.k?'sel':''}" data-k="${t.k}"><div class="top"><span class="nm">${t.ch=='email'?'<span class="ch email">EMAIL</span>':'<span class="ch text">TEXT</span>'}${hl(t.name)}${t.stage=='UNRESPONSIVE'?'<span class="st">UNRESPONSIVE</span>':''}</span><span class="tm">${fmt(last.t)}</span></div>
   <div class="co">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${hl(t.co||'')}</div><div class="pv"><b>${esc(pv.w)}:</b> ${hl(pv.x.slice(0,140))}</div></div>`}).join('')}
 document.getElementById('list').onclick=e=>{const r=e.target.closest('.row');if(r)openT(r.dataset.k)};
 function openT(k){sel=k;const t=D.find(x=>x.k==k);render();document.getElementById('wrap').classList.add('open');
- document.getElementById('mh').innerHTML=`<span class="back" onclick="document.getElementById('wrap').classList.remove('open')">‹ Back</span><h2 style="display:inline">${esc(t.name)}</h2><div class="meta">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${esc(t.co||'')}${t.by?' · intro by '+esc(t.by):''}${t.stage?' · '+esc(t.stage):''} · ${t.msgs.length} messages</div>`;
+ document.getElementById('mh').innerHTML=`<span class="back" onclick="document.getElementById('wrap').classList.remove('open')">‹ Back</span>${t.ch=='email'?'<span class="ch email">EMAIL</span>':'<span class="ch text">TEXT</span>'}<h2 style="display:inline">${esc(t.name)}</h2><div class="meta">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${esc(t.co||'')}${t.by?' · intro by '+esc(t.by):''}${t.stage?' · '+esc(t.stage):''} · ${t.msgs.length} messages</div>`;
  let day='',h='';for(const m of t.msgs){const d=dt(m.t).toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});if(d!=day){day=d;h+=`<div class="day">${d}</div>`}
   const cls=m.w=='Ace'?'ace':(STAFF.includes(m.w)?'staff':'');h+=`<div class="m ${cls}"><div class="who">${esc(m.w)} · ${dt(m.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</div><div class="b">${hl(m.x)}</div></div>`}
  const el=document.getElementById('msgs');el.innerHTML=h;
