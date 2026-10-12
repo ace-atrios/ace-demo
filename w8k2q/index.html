@@ -64,7 +64,7 @@ body.dragging-on{overflow:hidden;touch-action:none}
 </style></head><body>
 <header><div class="top"><h1>Williamsburg Apartment Hunt</h1><div class="sync"><span class="dot" id="dot"></span><span id="synctxt">Synced</span></div></div>
 <div class="seg"><button data-t="top" class="on">★ Favorites</button><button data-t="all">All · <span id="ca">0</span></button></div>
-<div style="display:flex;gap:8px"><button class="sortbtn" id="sortbtn">⇅ Sort <span id="sortlbl">Our order</span></button><button class="sortbtn" id="filtbtn">⚲ Filter <span id="filtlbl">None</span></button></div></header>
+<div style="display:flex;gap:8px"><button class="sortbtn" id="sortbtn">⇅ Sort <span id="sortlbl">Default</span></button><button class="sortbtn" id="filtbtn">⚲ Filter <span id="filtlbl">None</span></button></div></header>
 <div class="hint" id="hint"></div><div id="showing" style="display:none;margin:6px 10px 0;padding:6px 10px;border-radius:9px;background:var(--chip);font:600 12px -apple-system,system-ui;color:var(--t)"></div>
 <main id="list"></main><div class="toast" id="toast"><span id="toastt">Deleted</span><button id="undo">Undo</button></div>
 <div class="sheet" id="sheet"><div class="in"><h3>Sort by</h3><div id="opts"></div><div class="dir"><button data-d="1" id="d1">Low → High</button><button data-d="-1" id="d2">High → Low</button></div></div></div>
@@ -130,7 +130,7 @@ document.getElementById('filtbtn').onclick=()=>{drawF();document.getElementById(
 document.getElementById('fsheet').onclick=e=>{if(e.target.id==='fsheet')e.currentTarget.classList.remove('on')};
 document.getElementById('fdone').onclick=()=>document.getElementById('fsheet').classList.remove('on');
 document.getElementById('fclear').onclick=()=>{F.clear();drawF();render()};
-const SORTS=[['mine','Our order'],['newk','New'],['amin','Allan commute'],['emin','Eliza commute'],['rnum','Rent'],['tmin','Walk to train']];
+const SORTS=[['mine','Default'],['newk','New'],['amin','Allan commute'],['emin','Eliza commute'],['rnum','Rent'],['tmin','Walk to train']];
 function drawSheet(){document.getElementById('opts').innerHTML=SORTS.map(([k,l])=>`<button class="opt ${k===sort?'on':''}" data-k="${k}">${l}</button>`).join('');
  document.getElementById('d1').textContent=sort==='newk'?'Newest first':'Low → High';document.getElementById('d2').textContent=sort==='newk'?'Oldest first':'High → Low';
  document.querySelectorAll('.dir button').forEach(b=>{b.disabled=sort==='mine';b.classList.toggle('on',sort!=='mine'&&+b.dataset.d===dir)});
