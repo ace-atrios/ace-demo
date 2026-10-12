@@ -109,8 +109,9 @@ ul.n{color:#c9cede}
 .del{background:linear-gradient(135deg,#ff453a,#ff2d55);box-shadow:0 0 12px rgba(255,69,58,.6)}
 .card.lift{box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 0 1px rgba(91,140,255,.5)!important}
 .toast{background:rgba(24,26,34,.95);border:1px solid var(--line)}
+.syncbox{white-space:nowrap;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.pulled{white-space:nowrap;font:500 9.5px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.3px;text-transform:uppercase;color:var(--m);opacity:.75}
 </style></head><body>
-<header><div class="top"><h1>Williamsburg Apartment Hunt</h1><div class="sync"><span class="dot" id="dot"></span><span id="synctxt">Synced</span></div></div>
+<header><div class="top"><h1>Williamsburg Apartment Hunt</h1><div class="syncbox"><div class="sync"><span class="dot" id="dot"></span><span id="synctxt">Synced</span></div><div class="pulled" id="pulled"></div></div></div>
 <div class="seg"><button data-t="top" class="on">★ Favorites</button><button data-t="all">All · <span id="ca">0</span></button></div>
 <div style="display:flex;gap:8px"><button class="sortbtn" id="sortbtn">⇅ Sort <span id="sortlbl">Default</span></button><button class="sortbtn" id="filtbtn">⚲ Filter <span id="filtlbl">None</span></button></div></header>
 <div class="hint" id="hint"></div><div id="showing" style="display:none;margin:6px 10px 0;padding:6px 10px;border-radius:9px;background:var(--chip);font:600 12px -apple-system,system-ui;color:var(--t)"></div>
@@ -125,7 +126,13 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function setSync(t,ok){document.getElementById('synctxt').textContent=t;document.getElementById('dot').style.background=ok?'#30d158':'#ff9f0a'}
+const PULLED='2026-10-12T08:30:56-04:00';let lastSync=null;
+function fmtT(d){return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}).replace(' ','').toLowerCase()}
+function ago(d){const m=Math.round((Date.now()-d)/60000);if(m<1)return 'just now';if(m<60)return m+'m ago';const h=Math.round(m/60);return h<24?h+'h ago':fmtT(d)}
+function dayLbl(d){const n=new Date(),y=new Date(n);y.setDate(n.getDate()-1);if(d.toDateString()===n.toDateString())return 'today';if(d.toDateString()===y.toDateString())return 'yesterday';return d.toLocaleDateString([],{month:'short',day:'numeric'})}
+function paintSync(){const p=document.getElementById('pulled');if(p&&PULLED){const d=new Date(PULLED);p.textContent='Listings '+dayLbl(d)+' '+fmtT(d)}}
+function setSync(t,ok){if(t==='Synced'){lastSync=new Date();t='Synced '+ago(lastSync)}document.getElementById('synctxt').textContent=t;document.getElementById('dot').style.background=ok?'#30d158':'#ff9f0a';paintSync()}
+setInterval(()=>{if(lastSync&&document.getElementById('synctxt').textContent.startsWith('Synced'))document.getElementById('synctxt').textContent='Synced '+ago(lastSync)},15000);
 async function pull(){try{const r=await fetch(SB+'?key=eq.'+ROW+'&select=data,updated_at',{headers:H});const j=await r.json();if(!j[0])return;
  if(j[0].updated_at!==ver&&!dragging&&!pending){ver=j[0].updated_at;const d=j[0].data||{};if(d.stars){S={stars:d.stars,orders:d.orders||{},seen:d.seen||[],hidden:d.hidden||[],tours:d.tours||{}};render()}}setSync('Synced',true)}catch(e){setSync('Offline',false)}}
 function push(){setSync('Saving…',false);clearTimeout(pending);pending=setTimeout(async()=>{try{const r=await fetch(SB+'?key=eq.'+ROW,{method:'PATCH',headers:{...H,Prefer:'return=representation'},body:JSON.stringify({data:S,updated_at:new Date().toISOString()})});const j=await r.json();ver=j[0]&&j[0].updated_at;setSync('Synced',true)}catch(e){setSync('Not saved',false)}pending=null},300)}
