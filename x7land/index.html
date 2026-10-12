@@ -132,8 +132,8 @@ footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
 .hc{position:relative;aspect-ratio:3/4.1;border-radius:10px;overflow:hidden;background:#516b66;cursor:pointer}
 .hc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,filter .35s}
 .hc canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .35s}
-.hc:hover img{transform:scale(1.04);filter:brightness(.35) saturate(.5)}
-.hc:hover canvas{opacity:1}
+.hc:hover img{transform:scale(1.03)}
+
 .hc .tag{position:absolute;top:24px;left:24px;color:#f3ecdc;font-size:10px}
 .hc .tx{position:absolute;left:0;right:0;bottom:0;padding:80px 24px 26px;background:linear-gradient(0deg,rgba(10,31,26,.88),rgba(10,31,26,0))}
 .hc h3{font:400 clamp(30px,3vw,44px)/1 "Cormorant Garamond",serif;color:#f3ecdc}
@@ -289,11 +289,11 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 <section class="how" id="how">
  <div class="mono eb reveal">How it works</div>
  <h2 class="serif reveal">The same story, brought into the present.</h2>
- <p class="sub reveal">Hover a painting to see how it works.</p>
+ 
  <div class="hcards">
-  <div class="hc reveal"><img src="a/h_box.jpg" alt=""><canvas></canvas><div class="tag mono">01 · For you</div><div class="tx"><h3>Find perks for yourself</h3><p>Free months, waived fees and real discounts on the products you need.</p><div class="rev">Browse the collection, pick a perk, book a 20-min intro.</div></div></div>
-  <div class="hc reveal" style="transition-delay:.12s"><img src="a/h_women.jpg" alt=""><canvas></canvas><div class="tag mono">02 · For your friends</div><div class="tx"><h3>Share with friends</h3><p>Text it, post it, or drop it in your newsletter. Friends get the perks through your link.</p><div class="rev">Or just text Ace a friend's name, and Ace handles the rest.</div></div></div>
-  <div class="hc reveal" style="transition-delay:.24s"><img src="a/h_coins.jpg" alt=""><canvas></canvas><div class="tag mono">03 · When they take the call</div><div class="tx"><h3>Earn cash</h3><p>When a friend takes a call through your link, you get paid.</p><div class="rev">Paid after the meeting. Some perks pay again when they sign up.</div></div></div>
+  <div class="hc reveal"><img src="a/h_box.jpg" alt=""><div class="tag mono">01 · For you</div><div class="tx"><h3>Find perks for yourself</h3><p>Free months, waived fees and real discounts on the products you need.</p><div class="rev">Browse the collection, pick a perk, book a 20-min intro.</div></div></div>
+  <div class="hc reveal" style="transition-delay:.12s"><img src="a/h_women.jpg" alt=""><div class="tag mono">02 · For your friends</div><div class="tx"><h3>Share with friends</h3><p>Text it, post it, or drop it in your newsletter. Friends get the perks through your link.</p><div class="rev">Or just text Ace a friend's name, and Ace handles the rest.</div></div></div>
+  <div class="hc reveal" style="transition-delay:.24s"><img src="a/h_coins.jpg" alt=""><div class="tag mono">03 · When they take the call</div><div class="tx"><h3>Earn cash</h3><p>When a friend takes a call through your link, you get paid.</p><div class="rev">Paid after the meeting. Some perks pay again when they sign up.</div></div></div>
  </div>
 </section>
 
@@ -406,13 +406,6 @@ addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.reveal,#chair').forEach(el=>io.observe(el));
 
-document.querySelectorAll('.hc').forEach(card=>{const im=card.querySelector('img'),cv=card.querySelector('canvas');let done=false;
- card.addEventListener('mouseenter',()=>{if(done)return;done=true;const W=cv.clientWidth,H=cv.clientHeight,d=Math.min(devicePixelRatio,2);cv.width=W*d;cv.height=H*d;const x=cv.getContext('2d');x.setTransform(d,0,0,d,0,0);
-  const cw=8,chh=12,cols=Math.ceil(W/cw),rows=Math.ceil(H/chh);const o=document.createElement('canvas');o.width=cols;o.height=rows;const ox=o.getContext('2d');
-  const ir=im.naturalWidth/im.naturalHeight,cr=W/H;let sw,sh,sx,sy;if(ir>cr){sh=im.naturalHeight;sw=sh*cr;sx=(im.naturalWidth-sw)/2;sy=0}else{sw=im.naturalWidth;sh=sw/cr;sx=0;sy=(im.naturalHeight-sh)/2}
-  ox.drawImage(im,sx,sy,sw,sh,0,0,cols,rows);const p=ox.getImageData(0,0,cols,rows).data;x.font='11px "JetBrains Mono",monospace';x.textBaseline='top';
-  for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){const k=(j*cols+i)*4,l=(.3*p[k]+.59*p[k+1]+.11*p[k+2])/255;const g=RAMP[Math.min(RAMP.length-1,Math.floor(l*RAMP.length))];if(g===' ')continue;x.fillStyle=`rgba(226,200,143,${.25+l*.75})`;x.fillText(g,i*cw,j*chh)}
- })});
 
 // phones: play chat when visible, loop
 document.querySelectorAll('[data-chat]').forEach(ch=>{const ms=[...ch.querySelectorAll('.im')];let started=false;
