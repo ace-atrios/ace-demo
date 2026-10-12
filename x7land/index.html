@@ -272,6 +272,14 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .salon3 .pt.speak .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
 .salon3.active .pt:not(.fr):not(.fl){filter:brightness(.6) saturate(.75)}
 @media(max-width:900px){.salon3{grid-template-columns:repeat(2,1fr);gap:40px 18px}}
+/* one-screen collection (Taylor 10/12) */
+.wall2{min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:96px 3vw 4vh}
+.wall2 h2{font-size:clamp(34px,3.8vw,58px);margin:10px auto 8px}
+.wall2 .sub{margin-bottom:0}
+.salon3{grid-template-columns:repeat(8,1fr);gap:22px 18px;max-width:1360px;width:100%;padding-top:150px}
+.salon3 .pt:nth-child(odd){margin-top:18px}
+@media(max-width:900px){.wall2{min-height:0;padding:12vh 5vw 8vh}.salon3{grid-template-columns:repeat(2,1fr);gap:40px 18px}}
+
 
 
 .feed{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding-bottom:18px;margin-bottom:16px;border-bottom:1px solid rgba(201,169,110,.18)}
