@@ -1,11 +1,16 @@
-// Fixed background of 1s and 0s that shows while scrolling, fades when you stop
+// While scrolling, 1s and 0s flicker only on the images in view, then fade when you stop
 (function(){
-  const d=document.createElement('div');
-  d.id='bgbin';
-  d.style.cssText='position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;font:400 12px/14px "JetBrains Mono",monospace;color:rgba(190,150,80,.13);word-break:break-all;overflow-wrap:anywhere;padding:4px;opacity:0;transition:opacity .75s cubic-bezier(.2,.6,.3,1)';
-  document.body.appendChild(d);
-  const fill=()=>{const n=Math.ceil(innerWidth/7.2)*Math.ceil(innerHeight/14);let t='';for(let i=0;i<n;i++)t+=Math.random()<.5?'0':'1';d.textContent=t};
+  const SEL='.frame,.hc,.shot,.card3 .img,.chairwrap';
+  const hosts=[...document.querySelectorAll(SEL)];
+  const layers=new Map();
+  hosts.forEach(h=>{if(getComputedStyle(h).position==='static')h.style.position='relative';
+    const d=document.createElement('div');
+    d.style.cssText='position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;font:400 11px/12px "JetBrains Mono",monospace;color:rgba(226,200,143,.55);word-break:break-all;overflow-wrap:anywhere;padding:4px;opacity:0;transition:opacity .75s cubic-bezier(.2,.6,.3,1);mix-blend-mode:screen';
+    h.appendChild(d);layers.set(h,d)});
+  const fill=(h,d)=>{const n=Math.ceil(h.clientWidth/6.6)*Math.ceil(h.clientHeight/12);let t='';for(let i=0;i<n;i++)t+=Math.random()<.5?'0':'1';d.textContent=t};
+  const vis=h=>{const r=h.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight};
   let to=null,last=0;
-  addEventListener('scroll',()=>{const now=performance.now();if(now-last>50){fill();last=now}d.style.transition='opacity .1s';d.style.opacity=1;clearTimeout(to);to=setTimeout(()=>{d.style.transition='opacity .75s cubic-bezier(.2,.6,.3,1)';d.style.opacity=0},250)},{passive:true});
-  fill();
+  addEventListener('scroll',()=>{const now=performance.now();const fresh=now-last>50;if(fresh)last=now;
+    layers.forEach((d,h)=>{if(!vis(h))return;if(fresh)fill(h,d);d.style.transition='opacity .1s';d.style.opacity=.7});
+    clearTimeout(to);to=setTimeout(()=>layers.forEach(d=>{d.style.transition='opacity .75s cubic-bezier(.2,.6,.3,1)';d.style.opacity=0}),250)},{passive:true});
 })();
