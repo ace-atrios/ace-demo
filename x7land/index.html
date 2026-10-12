@@ -249,6 +249,17 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .cin2 b{font:600 34px Inter;color:#fff;margin:4px 0}.cin2 span{font-size:12px;color:var(--muted)}
 @media(max-width:900px){.rail{grid-template-columns:1fr}}
 
+
+.pair{perspective:1100px}
+.face{position:relative}.face img{display:block;width:100%;transition:opacity .55s ease}
+.face img.t{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0}
+.pt.talk .face img.t,.pt.listen .face img.t{opacity:1}
+.pair .pt{transform-style:preserve-3d}
+.pair .pt:first-child.talk,.pair .pt:first-child.listen{transform:rotateY(16deg) translateX(8px) scale(1.04)}
+.pair .pt:last-child.talk,.pair .pt:last-child.listen{transform:rotateY(-16deg) translateX(-8px) scale(1.04)}
+.pt.talk .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.btxt.reply{background:#e7efe9}
+
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
 </style></head>
 <body>
@@ -274,12 +285,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
  <div class="mono reveal" style="color:var(--gold)">The collection</div>
  <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
  <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
- <div class="salon2" id="salon">
-  <div class="pair" data-p="0"><div class="pt"><div class="frame"><img src="a/w1.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w2.jpg" alt=""></div></div></div>
-  <div class="pair" data-p="1"><div class="pt"><div class="frame"><img src="a/w3.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w4.jpg" alt=""></div></div></div>
-  <div class="pair" data-p="2"><div class="pt"><div class="frame"><img src="a/w5.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w6.jpg" alt=""></div></div></div>
-  <div class="pair" data-p="3"><div class="pt"><div class="frame"><img src="a/w7.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w8.jpg" alt=""></div></div></div>
-  <div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div>
+ <div class="salon2" id="salon"><div class="pair" data-p="0"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w1f.jpg" alt=""><img class="t" src="a/w1.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w2f.jpg" alt=""><img class="t" src="a/w2.jpg" alt=""></div></div></div></div><div class="pair" data-p="1"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w3f.jpg" alt=""><img class="t" src="a/w3.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w4f.jpg" alt=""><img class="t" src="a/w4.jpg" alt=""></div></div></div></div><div class="pair" data-p="2"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w5f.jpg" alt=""><img class="t" src="a/w5.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w6f.jpg" alt=""><img class="t" src="a/w6.jpg" alt=""></div></div></div></div><div class="pair" data-p="3"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w7f.jpg" alt=""><img class="t" src="a/w7.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w8f.jpg" alt=""><img class="t" src="a/w8.jpg" alt=""></div></div></div></div><div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div></div>
  </div>
  </div>
 </section>
@@ -458,19 +464,21 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
  const S=document.getElementById('salon');if(!S)return;
  const B=document.getElementById('bub'),T=document.getElementById('btxt');
  const P=[...S.querySelectorAll('.pair')];
- const L=[[0,0,'"Rho gives you the highest treasury rates."'],[0,1,'"You aren\'t using Muse yet? You need it."'],[1,0,'"Higgsfield is the best AI video editor."'],[1,1,'"Superposition found our first two engineers."'],[2,0,'"Deel saved us weeks on international hiring."'],[2,1,'"Supper answers data questions right in Slack."'],[3,0,'"Get Secure Cloud before your first enterprise deal."'],[3,1,'"Noted. Sending it to my cofounder now."']];
- let i=0,run=false;
- function step(){const [pi,who,txt]=L[i%L.length];i++;
-  S.querySelectorAll('.pt').forEach(p=>p.classList.remove('talk','listen'));
-  const pts=P[pi].querySelectorAll('.pt'),A=pts[who],Lr=pts[1-who];A.classList.add('talk');Lr.classList.add('listen');S.classList.add('active');
-  B.classList.remove('on');T.textContent=txt;
-  const sr=S.getBoundingClientRect(),ar=A.getBoundingClientRect(),pr=P[pi].getBoundingClientRect();
-  const W=Math.min(300,sr.width-20);B.style.maxWidth=W+'px';
-  let x=who===0?ar.left-sr.left+ar.width*.35:ar.right-sr.left-ar.width*.35-W;x=Math.max(0,Math.min(x,sr.width-W));
-  const y=ar.top-sr.top-118;B.style.left=x+'px';B.style.top=Math.max(-10,y)+'px';
-  T.style.setProperty('--tail',who===0?'40px':(W-60)+'px');
-  setTimeout(()=>B.classList.add('on'),120);setTimeout(step,2600)}
- new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.25}).observe(S);
+ const C=[['"Rho gives you the highest treasury rates."','"Wait, really? Send me the link."'],['"Higgsfield is the best AI video editor."','"You aren\'t using Muse yet? You need it."'],['"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."'],['"Get Secure Cloud before your first enterprise deal."','"Noted. Sending it to my cofounder now."']];
+ let i=0,run=false;const at=(ms,f)=>setTimeout(f,ms);
+ function place(pair,who){const sr=S.getBoundingClientRect(),pr=pair.getBoundingClientRect(),W=Math.min(300,sr.width-20);B.style.maxWidth=W+'px';
+  const x=Math.max(0,Math.min(pr.left-sr.left+pr.width/2-W/2,sr.width-W));B.style.left=x+'px';B.style.top=Math.max(-10,pr.top-sr.top-120)+'px';
+  T.style.setProperty('--tail',who===0?'34px':'calc(100% - 52px)')}
+ function cycle(){const pi=i%P.length;i++;const pair=P[pi],pts=pair.querySelectorAll('.pt'),[a,b]=C[pi];
+  S.querySelectorAll('.pt').forEach(p=>p.classList.remove('talk','listen'));S.classList.add('active');
+  pts[0].classList.add('talk');
+  at(350,()=>pts[1].classList.add('listen'));
+  at(650,()=>{T.textContent=a;T.classList.remove('reply');place(pair,0);B.classList.add('on')});
+  at(2500,()=>{B.classList.remove('on');pts[0].classList.replace('talk','listen');pts[1].classList.replace('listen','talk')});
+  at(2800,()=>{T.textContent=b;T.classList.add('reply');place(pair,1);B.classList.add('on')});
+  at(4600,()=>{B.classList.remove('on');pts.forEach(p=>p.classList.remove('talk','listen'))});
+  at(5100,cycle)}
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;cycle()}},{threshold:.25}).observe(S);
 })();
 // counter
 (function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
