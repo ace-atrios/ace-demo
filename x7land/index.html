@@ -152,7 +152,7 @@ footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
 .ihd{padding:40px 0 10px;text-align:center;border-bottom:1px solid #1c1c1e;background:#0d0d0f}
 .iav{width:44px;height:44px;border-radius:50%;margin:0 auto 4px;background:linear-gradient(135deg,#1f5c4a,#c9a96e);display:grid;place-items:center;font:400 24px "Cormorant Garamond",serif;color:#f3ecdc}
 .ihd b{display:block;font:600 12px Inter;color:#f2f2f7}.ihd small{font-size:10px;color:#8e8e93}
-.ich{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:7px;overflow:hidden;justify-content:flex-end}
+.ich{flex:1;min-height:0;padding:14px 10px 14px 12px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.55) transparent}.ich>:first-child{margin-top:auto}.ich::-webkit-scrollbar{width:5px}.ich::-webkit-scrollbar-thumb{background:rgba(201,169,110,.55);border-radius:4px}.ich::-webkit-scrollbar-track{background:transparent}
 .im{max-width:80%;padding:8px 12px;border-radius:18px;font:400 13.5px/1.35 -apple-system,Inter,sans-serif;opacity:0;transform:translateY(8px) scale(.98);transition:opacity .35s,transform .35s}
 .im.on{opacity:1;transform:none}
 .im i{display:block;font-style:normal;font-size:10px;color:#8e8e93;margin:-2px 0 2px}
@@ -395,9 +395,9 @@ html,body{overflow-x:hidden}
 
 <section class="inside" id="inside">
  <div class="mono reveal" style="color:var(--gold)">05 / Inside Atrios</div>
- <h2 class="serif reveal" style="margin-top:18px">Just text Ace.<br><em style="color:var(--muted);font-style:normal">Perks for you, and for your friends.</em></h2>
+ <h2 class="serif reveal" style="margin-top:18px">Just text Ace.<br><em style="color:var(--muted);font-style:normal">You'll instantly get tailored recommendations and perks you can't get anywhere else.</em></h2>
  <div class="phones">
-  <div class="pcol reveal"><div class="plabel"><span class="mono">For you</span><p>Ask Ace what to use. Get picks based on your company, what similar startups use, and the perks you qualify for.</p></div>
+  <div class="pcol reveal"><div class="plabel"><span class="mono">Recommendations and perks for you</span><p>Ask Ace what to use. Get picks based on your company, what similar startups use, and the perks you qualify for.</p></div>
    <div class="iph"><div class="isc"><div class="ihd"><div class="iav">A</div><b>Ace</b><small>Atrios</small></div>
     <div class="ich" data-chat>
      <div class="im me">Hey Ace, we just closed our seed. Who should we use for banking? Any perks for us?</div>
@@ -406,9 +406,13 @@ html,body{overflow-x:hidden}
      <div class="im ace"><b>Brex</b>: if you'll spend a lot on cards and want strict spend controls as you hire.<br><span class="pk">Perk: up to $15k in founder perks</span></div>
      <div class="im ace">Most AI startups at your stage I talk to pick Rho first. Want me to set up a 20-min intro?</div>
      <div class="im me">Rho please 🙌</div>
+     <div class="im ace">Booked: Thu 11:00 AM ET with Rho. Invite's in your inbox ✨</div>
+     <div class="im me">Amazing. We're also hiring 3 engineers next quarter</div>
+     <div class="im ace"><b>Superposition</b>: recruiting for US startups, any role.<br><span class="pk">Perk: 1 month free + 20% off + $1,050</span></div>
+     <div class="im me">Set that up too 🙏</div>
     </div></div></div>
   </div>
-  <div class="pcol reveal" style="transition-delay:.15s"><div class="plabel"><span class="mono">For your friends</span><p>Introduce a friend to Ace. Ace finds the perks that fit them, and you get rewarded when they take the call.</p></div>
+  <div class="pcol reveal" style="transition-delay:.15s"><div class="plabel"><span class="mono">Recommendations and perks to share</span><p>Introduce a friend to Ace. Ace finds the perks that fit them, and you get rewarded when they take the call.</p></div>
    <div class="iph"><div class="isc"><div class="ihd"><div class="iav">A</div><b>Ace, Sam, Maya</b><small>Group</small></div>
     <div class="ich" data-chat>
      <div class="im me"><i>Sam</i>Ace meet Maya, she just started hiring her first engineers. Can you send her the best perks?</div>
@@ -417,6 +421,8 @@ html,body{overflow-x:hidden}
      <div class="im ace"><b>Deel</b>: payroll and HR as you add people, in the US or abroad.<br><span class="pk">$1,500 in credits + $250</span></div>
      <div class="im them"><i>Maya</i>Superposition sounds perfect, Wed afternoon works</div>
      <div class="im ace">Done, you're booked Wed 2:00 PM ET. Invite's in your inbox ✨</div>
+     <div class="im me"><i>Sam</i>Thanks Ace 🙏</div>
+     <div class="im ace">Anytime! Sam, your reward for the intro shows up in your Atrios dashboard after the call.</div>
     </div></div></div>
   </div>
  </div>
@@ -488,8 +494,8 @@ document.querySelectorAll('.reveal,#chair').forEach(el=>io.observe(el));
 document.querySelectorAll('[data-chat]').forEach(ch=>{const ms=[...ch.querySelectorAll('.im')];let started=false;
  const play=()=>{ms.forEach(m=>{m.classList.remove('on');m.style.display='none'});let t=300;
   ms.forEach((m,i)=>{const ace=m.classList.contains('ace');
-   if(ace){setTimeout(()=>{const ty=document.createElement('div');ty.className='typ';ty.innerHTML='<i></i><i></i><i></i>';ch.appendChild(ty);setTimeout(()=>ty.remove(),700)},t);t+=750}
-   setTimeout(()=>{m.style.display='';requestAnimationFrame(()=>m.classList.add('on'))},t);t+=ace?900:1100});
+   if(ace){setTimeout(()=>{const ty=document.createElement('div');ty.className='typ';ty.innerHTML='<i></i><i></i><i></i>';ch.appendChild(ty);ch.scrollTop=ch.scrollHeight;setTimeout(()=>ty.remove(),700)},t);t+=750}
+   setTimeout(()=>{m.style.display='';requestAnimationFrame(()=>{m.classList.add('on');ch.scrollTo({top:ch.scrollHeight,behavior:'smooth'})})},t);t+=ace?900:1100});
   setTimeout(play,t+4500)};
  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting&&!started){started=true;play();o.disconnect()}},{threshold:.4}).observe(ch)});
 
