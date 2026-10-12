@@ -477,17 +477,18 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
  const S=document.getElementById('salon');if(!S)return;
  const B=document.getElementById('bub'),T=document.getElementById('btxt');
  const P=[...S.querySelectorAll('.pt')];const NAT=['r','l','r','l','r','l','r','l'];
- const M=['"Rho gives you the highest treasury rates."','"You aren\'t using Muse yet? You need it."','"Higgsfield is the best AI video editor."','"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."','"Supper answers data questions right in Slack."','"Get Secure Cloud before your first enterprise deal."','"And Atrios has a perk on every one of these."'];
+ const M=['"Rho gives you the highest treasury rates."','"You aren\'t using Muse yet? You need it."','"Higgsfield is the best AI video editor."','"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."','"Supper answers data questions right in Slack."','"Get Secure Cloud before your first enterprise deal."','"Veroa got us a finance hire in 10 days."','"Slash has the best cashback on cards."','"Corridor cut our health insurance bill."','"Numeral handles sales tax in every state."','"Thera gave us 3 months of payroll free."'];
  const cols=()=>getComputedStyle(S).gridTemplateColumns.split(' ').length;
  let i=0,run=false;
  function face(el,k,dir){el.classList.remove('fr','fl','flip','speak');el.classList.add(dir==='r'?'fr':'fl');if(dir!==NAT[k])el.classList.add('flip')}
- function step(){const a=i%8,b=(i+1)%8;i++;
+ let lastA=-1,mi=Math.floor(Math.random()*12);function pick(){const c=cols();let a;do{a=Math.floor(Math.random()*8)}while(a===lastA);lastA=a;const col=a%c;const nb=[];if(col>0)nb.push(a-1);if(col<c-1&&a+1<8)nb.push(a+1);return [a,nb[Math.floor(Math.random()*nb.length)]]}
+ function step(){const [a,b]=pick();mi=(mi+1)%M.length;
   const A=P[a],L=P[b];const ar=A.getBoundingClientRect(),lr=L.getBoundingClientRect();
   const dirA=lr.left>ar.left?'r':'l',dirL=dirA==='r'?'l':'r';
   P.forEach((p,k)=>{if(k!==a&&k!==b)p.classList.remove('fr','fl','flip','speak')});
   face(A,a,dirA);A.classList.add('speak');face(L,b,dirL);S.classList.add('active');
   B.classList.remove('on');
-  setTimeout(()=>{T.textContent=M[a];const sr=S.getBoundingClientRect(),W=Math.min(290,sr.width-20);B.style.maxWidth=W+'px';
+  setTimeout(()=>{T.textContent=M[mi];const sr=S.getBoundingClientRect(),W=Math.min(290,sr.width-20);B.style.maxWidth=W+'px';
    const cx=(ar.left+ar.right+lr.left+lr.right)/4-sr.left;const x=Math.max(0,Math.min(cx-W/2,sr.width-W));
    const top=Math.min(ar.top,lr.top)-sr.top-122;B.style.left=x+'px';B.style.top=Math.max(-14,top)+'px';
    const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},420);
