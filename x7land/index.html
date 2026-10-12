@@ -300,11 +300,39 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .why .wc .n{display:block;margin:26px 0 10px;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.2em;color:var(--gold)}
 .why .wc p{font:400 clamp(20px,1.7vw,26px)/1.3 "Cormorant Garamond",serif;color:var(--text);margin:0}
 @media(max-width:900px){.why .wg{grid-template-columns:1fr;gap:56px}}
+
+/* ---- mobile pass (Taylor 10/12) ---- */
+html,body{overflow-x:hidden}
+.mbtn{display:none}
+@media(max-width:760px){
+ nav{padding:12px 5vw!important}
+ .mbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid rgba(243,236,220,.28);background:rgba(11,42,34,.6);color:var(--text);font-size:18px;margin-left:8px;cursor:pointer}
+ nav .links{gap:8px}
+ nav.open .links{position:absolute;top:64px;right:5vw;flex-direction:column;align-items:stretch;background:rgba(8,30,24,.96);border:1px solid rgba(201,169,110,.25);border-radius:16px;padding:12px;gap:8px;min-width:200px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+ nav.open .links a:not(.btn){display:block!important;text-align:center}
+ .agg{padding:10vh 5vw;overflow:hidden}
+ .aggin{grid-template-columns:1fr!important;gap:28px}
+ .aggin>*{min-width:0}
+ .aggl{padding-top:0}
+ .aggl h2{font-size:34px}
+ .board{padding:16px;min-width:0}
+ .feed{grid-template-columns:1fr;justify-items:center;gap:12px}
+ .feed .streams{width:100%;min-width:0}
+ .row{grid-template-columns:22px minmax(0,1fr) auto;gap:10px}
+ .row .bar{display:none}
+ .row small{display:block;white-space:normal}
+ .tgrid{gap:44px}
+ .tcard img{max-width:78%;}
+ .invite{padding-top:2vh}
+ .wall2 h2{font-size:30px}
+ .why{padding:10vh 6vw}
+ .copy h1{font-size:36px!important}
+}
 </style></head>
 <body>
 <div class="prog" id="prog"></div>
 <nav id="nav"><a class="logo" href="#"><img src="a/logo-light.png" alt="Atrios" style="height:34px;display:block"></a>
-<div class="links"><a href="./">Home</a><a href="story.html">Our story</a><a href="vendors.html">For vendors</a><a href="https://www.atrios.com/auth/signin">Sign in</a><a class="btn" href="sms:+15303064813&body=Show%20me%20some%20perks!">Get your perks</a></div></nav>
+<div class="links"><a href="./">Home</a><a href="story.html">Our story</a><a href="vendors.html">For vendors</a><a href="https://www.atrios.com/auth/signin">Sign in</a><a class="btn" href="sms:+15303064813&body=Show%20me%20some%20perks!">Get your perks</a></div><button class="mbtn" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button></nav>
 
 <section class="story" id="story">
  <div class="stage">
