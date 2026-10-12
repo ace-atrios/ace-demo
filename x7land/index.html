@@ -170,6 +170,22 @@ footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
 .reveal-img{filter:blur(6px) brightness(.6);transition:filter 1.2s ease}
 .reveal-img.ok{filter:none}
 
+
+.voices{padding:16vh 5vw;background:#0e2620}
+.voices h2{font-size:clamp(40px,5vw,72px);margin:14px 0 8vh}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3vw;max-width:1300px}
+.tcard{display:flex;flex-direction:column}
+.tf{padding:8px}.tf img{aspect-ratio:4/5;object-fit:cover}
+.tcard blockquote{font-size:19px;line-height:1.35;color:var(--text);margin:24px 0 18px;flex:1}
+.tn b{display:block;font:500 14px Inter;color:var(--text)}.tn span{font-size:13px;color:var(--gold)}
+@media(max-width:1000px){.tgrid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.tgrid{grid-template-columns:1fr}}
+/* nav emphasis */
+nav{background:linear-gradient(180deg,rgba(8,30,24,.85),rgba(8,30,24,0))}
+nav .links{gap:10px;color:var(--text)}
+nav .links a:not(.btn){padding:9px 16px;border-radius:999px;border:1px solid rgba(243,236,220,.28);background:rgba(11,42,34,.55);backdrop-filter:blur(8px);color:var(--text);font-size:14px;font-weight:500;transition:all .2s}
+nav .links a:not(.btn):hover{border-color:var(--gold2);color:var(--gold2);background:rgba(11,42,34,.8)}
+nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(--gold2);box-shadow:0 6px 20px rgba(226,200,143,.35)}
+
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
 </style></head>
 <body>
@@ -262,6 +278,11 @@ footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
  </div>
 </section>
 
+<section class="voices" id="voices">
+ <div class="mono reveal" style="color:var(--gold)">The portrait gallery</div>
+ <h2 class="serif reveal">Atrios is for everyone.</h2>
+ <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="a/t_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="a/t_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="a/t_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="a/t_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
+</section>
 <section class="faq" id="faq"><div class="grid">
  <div><div class="mono reveal" style="color:#8a6d3b">07 / Questions</div>
   <h2 class="serif reveal" style="margin-top:18px">Is this real?</h2><div class="yes reveal">Yes. You pay $0.</div>
