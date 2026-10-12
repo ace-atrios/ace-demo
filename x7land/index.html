@@ -260,6 +260,24 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .pt.talk .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
 .btxt.reply{background:#e7efe9}
 
+
+.salon3{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:70px 34px;max-width:1150px;margin:0 auto;padding-top:120px;perspective:1200px}
+.salon3 .pt{position:relative;transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s;transform-style:preserve-3d}
+.salon3 .pt:nth-child(odd){margin-top:26px}
+.salon3 .pt.fr{transform:rotateY(16deg) scale(1.05)}
+.salon3 .pt.fl{transform:rotateY(-16deg) scale(1.05)}
+.salon3 .pt.fr .face img.t,.salon3 .pt.fl .face img.t{opacity:1}
+.salon3 .pt.flip .face img.t{transform:scaleX(-1)}
+.salon3 .pt.speak .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.salon3.active .pt:not(.fr):not(.fl){filter:brightness(.6) saturate(.75)}
+@media(max-width:900px){.salon3{grid-template-columns:repeat(2,1fr);gap:40px 18px}}
+
+
+.feed{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding-bottom:18px;margin-bottom:16px;border-bottom:1px solid rgba(201,169,110,.18)}
+.feed .core2{width:118px;height:118px}.feed .ring2.b{inset:9px}.feed .cin2{inset:18px}.feed .cin2 b{font-size:19px}.feed .cin2 small{font-size:8px}.feed .cin2 span{font-size:9px}
+.feed .streams{gap:10px}.feed .sp{padding:8px 13px;font-size:13px}
+.aggin{align-items:start}.aggl{padding-top:40px}
+
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
 </style></head>
 <body>
@@ -285,25 +303,20 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
  <div class="mono reveal" style="color:var(--gold)">The collection</div>
  <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
  <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
- <div class="salon2" id="salon"><div class="pair" data-p="0"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w1f.jpg" alt=""><img class="t" src="a/w1.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w2f.jpg" alt=""><img class="t" src="a/w2.jpg" alt=""></div></div></div></div><div class="pair" data-p="1"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w3f.jpg" alt=""><img class="t" src="a/w3.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w4f.jpg" alt=""><img class="t" src="a/w4.jpg" alt=""></div></div></div></div><div class="pair" data-p="2"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w5f.jpg" alt=""><img class="t" src="a/w5.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w6f.jpg" alt=""><img class="t" src="a/w6.jpg" alt=""></div></div></div></div><div class="pair" data-p="3"><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w7f.jpg" alt=""><img class="t" src="a/w7.jpg" alt=""></div></div></div><div class="pt"><div class="frame"><div class="face"><img class="f" src="a/w8f.jpg" alt=""><img class="t" src="a/w8.jpg" alt=""></div></div></div></div><div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div></div>
+ <div class="salon3" id="salon"><div class="pt" data-n="1"><div class="frame"><div class="face"><img class="f" src="a/w1f.jpg" alt=""><img class="t" src="a/w1.jpg" alt=""></div></div></div><div class="pt" data-n="2"><div class="frame"><div class="face"><img class="f" src="a/w2f.jpg" alt=""><img class="t" src="a/w2.jpg" alt=""></div></div></div><div class="pt" data-n="3"><div class="frame"><div class="face"><img class="f" src="a/w3f.jpg" alt=""><img class="t" src="a/w3.jpg" alt=""></div></div></div><div class="pt" data-n="4"><div class="frame"><div class="face"><img class="f" src="a/w4f.jpg" alt=""><img class="t" src="a/w4.jpg" alt=""></div></div></div><div class="pt" data-n="5"><div class="frame"><div class="face"><img class="f" src="a/w5f.jpg" alt=""><img class="t" src="a/w5.jpg" alt=""></div></div></div><div class="pt" data-n="6"><div class="frame"><div class="face"><img class="f" src="a/w6f.jpg" alt=""><img class="t" src="a/w6.jpg" alt=""></div></div></div><div class="pt" data-n="7"><div class="frame"><div class="face"><img class="f" src="a/w7f.jpg" alt=""><img class="t" src="a/w7.jpg" alt=""></div></div></div><div class="pt" data-n="8"><div class="frame"><div class="face"><img class="f" src="a/w8f.jpg" alt=""><img class="t" src="a/w8.jpg" alt=""></div></div></div><div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div></div></div>
  </div>
  </div>
 </section>
 
 <section class="agg" id="agg">
- <div class="rail reveal">
-  <div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span></div></div>
-  <div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Atrios AI</small><b id="ctr2">0</b><span>signals today</span></div></div>
- </div>
  <div class="aggin">
   <div class="aggl">
    <div class="mono reveal" style="color:var(--gold)">Atrios aggregates it all</div>
    <h2 class="serif reveal">Every recommendation, ranked.<br><em>So you only hear about the best.</em></h2>
    <p class="reveal">Atrios listens to what founders, investors and operators actually recommend to each other, then tells you which tools are worth it, why, and the perk you get through a friend.</p>
-   <div class="ctr reveal"><b id="ctr">0</b><span>recommendations tracked this week</span></div>
   </div>
   <div class="board reveal">
-   <div class="bh"><span class="mono">This week's most recommended</span><span class="live">● live</span></div>
+   <div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Atrios AI</small><b id="ctr2">0</b><span>signals today</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span></div></div></div><div class="bh"><span class="mono">This week's most recommended</span><span class="live">● live</span></div>
    <div class="row"><span class="rk">1</span><div><b>Rho</b><small>Banking · "highest treasury rates"</small></div><div class="bar"><i style="--w:94%"></i></div><span class="pk">$875 bonus</span></div>
    <div class="row"><span class="rk">2</span><div><b>Higgsfield</b><small>AI video · "best AI video editor"</small></div><div class="bar"><i style="--w:88%"></i></div><span class="pk">Ask Ace</span></div>
    <div class="row"><span class="rk">3</span><div><b>Muse</b><small>AI tool · "you need it"</small></div><div class="bar"><i style="--w:81%"></i></div><span class="pk">Ask Ace</span></div>
@@ -372,7 +385,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 <section class="voices" id="voices">
  <div class="mono reveal" style="color:var(--gold)">The portrait gallery</div>
  <h2 class="serif reveal">Atrios is for everyone.</h2>
- <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="a/tp_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="a/tp_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="a/tp_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="a/tp_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
+ <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="a/t_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="a/t_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="a/t_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="a/t_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
 </section>
 <section class="faq" id="faq"><div class="grid">
  <div><div class="mono reveal" style="color:#8a6d3b">07 / Questions</div>
@@ -463,22 +476,23 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
 (function(){
  const S=document.getElementById('salon');if(!S)return;
  const B=document.getElementById('bub'),T=document.getElementById('btxt');
- const P=[...S.querySelectorAll('.pair')];
- const C=[['"Rho gives you the highest treasury rates."','"Wait, really? Send me the link."'],['"Higgsfield is the best AI video editor."','"You aren\'t using Muse yet? You need it."'],['"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."'],['"Get Secure Cloud before your first enterprise deal."','"Noted. Sending it to my cofounder now."']];
- let i=0,run=false;const at=(ms,f)=>setTimeout(f,ms);
- function place(pair,who){const sr=S.getBoundingClientRect(),pr=pair.getBoundingClientRect(),W=Math.min(300,sr.width-20);B.style.maxWidth=W+'px';
-  const x=Math.max(0,Math.min(pr.left-sr.left+pr.width/2-W/2,sr.width-W));B.style.left=x+'px';B.style.top=Math.max(-10,pr.top-sr.top-120)+'px';
-  T.style.setProperty('--tail',who===0?'34px':'calc(100% - 52px)')}
- function cycle(){const pi=i%P.length;i++;const pair=P[pi],pts=pair.querySelectorAll('.pt'),[a,b]=C[pi];
-  S.querySelectorAll('.pt').forEach(p=>p.classList.remove('talk','listen'));S.classList.add('active');
-  pts[0].classList.add('talk');
-  at(350,()=>pts[1].classList.add('listen'));
-  at(650,()=>{T.textContent=a;T.classList.remove('reply');place(pair,0);B.classList.add('on')});
-  at(2500,()=>{B.classList.remove('on');pts[0].classList.replace('talk','listen');pts[1].classList.replace('listen','talk')});
-  at(2800,()=>{T.textContent=b;T.classList.add('reply');place(pair,1);B.classList.add('on')});
-  at(4600,()=>{B.classList.remove('on');pts.forEach(p=>p.classList.remove('talk','listen'))});
-  at(5100,cycle)}
- new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;cycle()}},{threshold:.25}).observe(S);
+ const P=[...S.querySelectorAll('.pt')];const NAT=['r','l','r','l','r','l','r','l'];
+ const M=['"Rho gives you the highest treasury rates."','"You aren\'t using Muse yet? You need it."','"Higgsfield is the best AI video editor."','"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."','"Supper answers data questions right in Slack."','"Get Secure Cloud before your first enterprise deal."','"And Atrios has a perk on every one of these."'];
+ const cols=()=>getComputedStyle(S).gridTemplateColumns.split(' ').length;
+ let i=0,run=false;
+ function face(el,k,dir){el.classList.remove('fr','fl','flip','speak');el.classList.add(dir==='r'?'fr':'fl');if(dir!==NAT[k])el.classList.add('flip')}
+ function step(){const a=i%8,b=(i+1)%8;i++;
+  const A=P[a],L=P[b];const ar=A.getBoundingClientRect(),lr=L.getBoundingClientRect();
+  const dirA=lr.left>ar.left?'r':'l',dirL=dirA==='r'?'l':'r';
+  P.forEach((p,k)=>{if(k!==a&&k!==b)p.classList.remove('fr','fl','flip','speak')});
+  face(A,a,dirA);A.classList.add('speak');face(L,b,dirL);S.classList.add('active');
+  B.classList.remove('on');
+  setTimeout(()=>{T.textContent=M[a];const sr=S.getBoundingClientRect(),W=Math.min(290,sr.width-20);B.style.maxWidth=W+'px';
+   const cx=(ar.left+ar.right+lr.left+lr.right)/4-sr.left;const x=Math.max(0,Math.min(cx-W/2,sr.width-W));
+   const top=Math.min(ar.top,lr.top)-sr.top-122;B.style.left=x+'px';B.style.top=Math.max(-14,top)+'px';
+   const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},420);
+  setTimeout(step,2700)}
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.25}).observe(S);
 })();
 // counter
 (function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
