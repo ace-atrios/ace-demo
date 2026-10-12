@@ -279,11 +279,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .wall2 .sub{margin-bottom:0}
 .salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:124px;position:relative}
 .salon3 .pt:nth-child(odd){margin-top:0}
-.salon3 .pt::before{content:'';position:absolute;left:18%;right:18%;top:-30px;height:30px;pointer-events:none;
- background:linear-gradient(to top right,transparent calc(50% - .7px),rgba(201,169,110,.6) 50%,transparent calc(50% + .7px)) left/50% 100% no-repeat,linear-gradient(to top left,transparent calc(50% - .7px),rgba(201,169,110,.6) 50%,transparent calc(50% + .7px)) right/50% 100% no-repeat}
-.salon3 .pt::after{content:'';position:absolute;left:50%;top:-34px;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f1d9a6,#8a6a35);box-shadow:0 1px 2px rgba(0,0,0,.6);pointer-events:none}
 .salon3 .pt .frame{box-shadow:0 18px 30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
-.salon3 .pt:nth-child(n+5)::before{top:-30px}
 @media(max-width:900px){.wall2{min-height:0;padding:12vh 5vw 8vh}.salon3{grid-template-columns:repeat(2,1fr);gap:56px 18px;max-width:none}.salon3::before{display:none}}
 
 
@@ -474,7 +470,7 @@ function binFill(el){const w=el.clientWidth,h=el.clientHeight;const n=Math.ceil(
 function decode(host){if(host.dataset.dec)return;host.dataset.dec=1;const img=host.querySelector('img');const b=document.createElement('div');b.className='bin';host.appendChild(b);
  if(img)img.classList.add('reveal-img');let k=0;const iv=setInterval(()=>{b.textContent=binFill(host);if(++k>4){clearInterval(iv);b.classList.add('gone');if(img)img.classList.add('ok');setTimeout(()=>b.remove(),800)}},50)}
 const decIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){decode(e.target);decIO.unobserve(e.target)}}),{threshold:.25});
-document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=>decIO.observe(el));
+document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chairwrap').forEach(el=>decIO.observe(el));
 // hero: binary rain behind painting on load
 (function(){const st=document.querySelector('.stage');const b=document.createElement('div');b.className='bin';b.style.zIndex=0;st.insertBefore(b,st.querySelector('#ascii'));paint.style.opacity=0;paint.style.transition='opacity .75s ease';
  let k=0;const iv=setInterval(()=>{b.textContent=binFill(st);k++;if(k==2)paint.style.opacity=1;if(k>4){clearInterval(iv);b.classList.add('gone');setTimeout(()=>{b.remove();paint.style.transition=''},800)}},50)})();
@@ -500,7 +496,7 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
    const top=Math.min(ar.top,lr.top)-sr.top-122;B.style.left=x+'px';B.style.top=Math.max(-14,top)+'px';
    const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},260);
   setTimeout(step,1800)}
- new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.25}).observe(S);
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:0,rootMargin:'0px 0px 15% 0px'}).observe(S);
 })();
 // counter
 (function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
