@@ -27,7 +27,7 @@ main{padding:2px 10px}
 .tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.3px;color:var(--acc);border:1px solid var(--acc);border-radius:5px;padding:0 4px;margin-left:4px;vertical-align:2px}
 .cm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0 6px}
 .c{min-width:0;background:var(--soft);border-radius:9px;padding:5px 7px}.c .l{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.4px}.c b{font-size:15px;display:block}.c .h{font-size:10.5px;color:var(--m);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chips{display:flex;flex-wrap:wrap;gap:4px}.chip{font-size:11px;background:var(--chip);border-radius:6px;padding:2px 6px;color:var(--t)}.chip.p{background:var(--acc);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:4px}.chip{font-size:11px;background:var(--chip);border-radius:6px;padding:2px 6px;color:var(--t)}.chip.p{background:var(--acc);color:#fff}.chip.g{background:#30d158;color:#fff}.chip.y{background:#ffd60a;color:#1c1c1e}
 .meta{font-size:11px;color:var(--m);margin-top:5px}
 ul.n{margin:6px 0 0;padding-left:16px;font-size:12px}ul.n li{margin:1px 0}
 .act{display:flex;gap:6px;margin-top:8px}.go{flex:1;text-align:center;background:var(--t);color:var(--card);text-decoration:none;border-radius:9px;padding:7px;font-weight:600;font-size:13px}
@@ -85,7 +85,7 @@ function tourBtn(r){const tr=(S.tours||{})[r.id];const nm=r.listing[0].split(','
  const body=encodeURIComponent(`Tour request: ${nm} (${r.rent}) ${r.url||''}\nTimes that work: `);
  return tr?`<a class="tour req" data-tour="${r.id}" href="sms:+15303064813&body=${body}">Tour requested ${new Date(tr).toLocaleDateString(undefined,{month:'short',day:'numeric'})} · ask again</a>`:`<a class="tour" data-tour="${r.id}" href="sms:+15303064813&body=${body}">Request tour</a>`}
 function card(r,i){const take=r.type.some(t=>/takeover/i.test(t));const on=S.stars.includes(r.id);
- const chips=r.notes.filter(n=>n.length<40).map(n=>`<span class="chip ${/pool/i.test(n)?'p':''}">${esc(n.replace(/^Swimming pool/,'Pool').replace(/^Heated indoor pool/,'Heated indoor pool'))}</span>`).join('');
+ const chips=r.notes.filter(n=>n.length<40).map(n=>`<span class="chip ${/pool/i.test(n)?'p':/gym|fitness/i.test(n)?'g':/roof/i.test(n)?'y':''}">${esc(n.replace(/^Swimming pool/,'Pool').replace(/^Heated indoor pool/,'Heated indoor pool'))}</span>`).join('');
  const m=r.rent.match(/^\$[\d,]+/);const main=m?m[0]:r.rent;const free=(r.rent.match(/[\d.]+ mo free/)||[''])[0];const net=(r.rent.match(/net \$[\d,]+/)||[''])[0];
  const sqft=(r.size.match(/\d+ sf/)||[''])[0];const bd=r.size.split(' ')[0];
  const bldg=(r.listing[1]||'').split(',')[0];const how=s=>esc(s.replace(/^\d+ min ?/,''));
