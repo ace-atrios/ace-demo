@@ -186,6 +186,43 @@ nav .links a:not(.btn){padding:9px 16px;border-radius:999px;border:1px solid rgb
 nav .links a:not(.btn):hover{border-color:var(--gold2);color:var(--gold2);background:rgba(11,42,34,.8)}
 nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(--gold2);box-shadow:0 6px 20px rgba(226,200,143,.35)}
 
+
+.wall2{padding:14vh 5vw 10vh;background:#10241f;text-align:center;overflow:hidden}
+.wall2 h2{font-size:clamp(38px,4.8vw,70px);line-height:1.02;max-width:1000px;margin:14px auto 12px}
+.wall2 .sub{color:var(--gold2);font:italic 400 clamp(20px,2vw,28px) "Cormorant Garamond",serif;margin-bottom:7vh}
+.salon{position:relative;max-width:1250px;height:min(64vw,760px);margin:0 auto}
+.pt{position:absolute;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s}
+.pt .frame{padding:7px}.pt .frame img{display:block;width:100%}
+.pt .nm{display:block;margin-top:10px;font-size:9px;color:var(--muted);text-align:center}
+.pt.talk{transform:scale(1.06) rotate(-1deg);z-index:4}.pt.talk .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.pt.listen{transform:scale(1.03);z-index:3}
+.salon.active .pt:not(.talk):not(.listen){filter:brightness(.55) saturate(.7)}
+.bub{position:absolute;z-index:6;max-width:300px;opacity:0;transform:translateY(8px) scale(.96);transition:opacity .35s,transform .35s;pointer-events:none;text-align:left}
+.bub.on{opacity:1;transform:none}
+.btxt{background:var(--cream);color:var(--ink);font:400 20px/1.25 "Cormorant Garamond",serif;padding:14px 18px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.45);position:relative}
+.btxt:after{content:"";position:absolute;bottom:-9px;left:var(--tail,24px);width:18px;height:18px;background:var(--cream);transform:rotate(45deg);border-radius:3px}
+.trk{display:inline-flex;align-items:center;gap:7px;margin-bottom:8px;background:rgba(11,42,34,.92);border:1px solid var(--gold);color:var(--gold2);font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.trk i{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 0 0 rgba(226,200,143,.7);animation:ping 1.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(226,200,143,0)}100%{box-shadow:0 0 0 0 rgba(226,200,143,0)}}
+.agg{padding:12vh 5vw;background:radial-gradient(1000px 600px at 75% 30%,#14402f,var(--ink));position:relative}
+.aggin{display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;max-width:1250px;margin:0 auto;align-items:center}
+.aggl h2{font-size:clamp(36px,4vw,60px);line-height:1.05;margin:14px 0 20px}.aggl h2 em{color:var(--muted);font-style:normal}
+.aggl p{color:var(--muted);font-size:17px;max-width:460px}
+.ctr{margin-top:34px}.ctr b{display:block;font:400 64px/1 "Cormorant Garamond",serif;color:var(--gold2)}.ctr span{color:var(--muted);font-size:14px}
+.board{background:rgba(8,28,23,.75);border:1px solid rgba(201,169,110,.3);border-radius:18px;padding:22px;box-shadow:0 40px 100px rgba(0,0,0,.45)}
+.board .bh{display:flex;justify-content:space-between;margin-bottom:14px}.board .bh .mono{color:var(--gold);font-size:10px}.board .live{color:#7cc49a;font-size:12px}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 150px 112px;gap:14px;align-items:center;padding:12px 4px;border-top:1px solid rgba(243,236,220,.08)}
+.row .rk{font:400 22px "Cormorant Garamond",serif;color:var(--gold2)}
+.row b{display:block;font-weight:500;font-size:15px}.row small{color:var(--muted);font-size:12px}
+.row .bar{height:6px;background:rgba(243,236,220,.08);border-radius:9px;overflow:hidden}.row .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a96e,#e8cf8e);border-radius:9px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.board.in .row .bar i{width:var(--w)}
+.row .pk{text-align:center;font-size:12px;color:var(--ink);background:var(--gold2);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.tips{display:grid;gap:10px;margin-top:16px}
+.tip{background:#123a2f;border:1px solid rgba(201,169,110,.2);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--text)}
+.tip .mono{color:var(--gold2);font-size:10px;margin-right:8px}
+.agg .note{position:absolute;right:5vw;bottom:24px;font-size:11px;color:rgba(243,236,220,.35)}
+@media(max-width:900px){.salon{height:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.pt{position:relative;left:auto!important;top:auto!important;width:auto!important}.bub{position:fixed;left:5vw!important;right:5vw;top:auto!important;bottom:24px;max-width:none}.aggin{grid-template-columns:1fr}}
+
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
 </style></head>
 <body>
@@ -207,19 +244,47 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 
 
 
-<section class="gallery" id="perks">
- <div class="k reveal">The collection</div>
- <h2 class="serif reveal">Perks on the tools you need.</h2>
- <div class="wall">
-  <div class="piece reveal"><div class="frame"><img src="a/g_banker.jpg" alt=""></div><div class="plac"><div class="mono">No. 01 · The Banker</div><b>Rho · $875 welcome bonus</b><div class="more">Startup banking and treasury. For US companies that raised $500k+.</div></div></div>
-  <div class="col2">
-   <div class="piece reveal" style="transition-delay:.1s"><div class="frame"><img src="a/g_still.jpg" alt=""></div><div class="plac"><div class="mono">No. 02 · Still life</div><b>Deel · $1,500 in credits + $250</b><div class="more">Payroll, HR and global hiring, for teams of 3+ hiring abroad.</div></div></div>
-   <div class="piece share reveal" style="transition-delay:.2s"><div class="frame"><img src="a/g_messenger.jpg" alt=""></div><div class="plac"><div class="mono">No. 05 · The Messenger</div><b>Share any perk with a friend</b><div class="more">When they take the call through your link, you get paid.</div></div></div>
-  </div>
-  <div class="piece reveal" style="transition-delay:.15s"><div class="frame"><img src="a/g_physician.jpg" alt=""></div><div class="plac"><div class="mono">No. 03 · The Physician</div><b>Superpower · 5 free memberships</b><div class="more">Proactive health with biomarker testing, for your whole team.</div></div></div>
-  <div class="piece reveal" style="transition-delay:.25s;margin-top:2vh"><div class="frame"><img src="a/g_patron.jpg" alt=""></div><div class="plac"><div class="mono">No. 04 · The Patron</div><b>Veroa · 1 month free + 40% off</b><div class="more">AI-native offshore talent across finance, engineering and ops. Plus a $1,225 bonus.</div></div></div>
+<section class="wall2" id="perks">
+ <div class="mono reveal" style="color:var(--gold)">The collection</div>
+ <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
+ <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
+ <div class="salon" id="salon">
+  <div class="pt" id="p1" style="left:0%;top:4%;width:17%"><div class="frame"><img src="a/g_banker.jpg" alt=""></div><span class="nm mono">The Banker</span></div>
+  <div class="pt" id="p2" style="left:21%;top:0%;width:22%"><div class="frame"><img src="a/g_still.jpg" alt=""></div><span class="nm mono">Still Life</span></div>
+  <div class="pt" id="p3" style="left:21%;top:40%;width:15%"><div class="frame"><img src="a/t_erica.jpg" alt=""></div><span class="nm mono">The Investor</span></div>
+  <div class="pt" id="p4" style="left:47%;top:6%;width:16%"><div class="frame"><img src="a/g_physician.jpg" alt=""></div><span class="nm mono">The Physician</span></div>
+  <div class="pt" id="p5" style="left:40%;top:58%;width:22%"><div class="frame"><img src="a/g_messenger.jpg" alt=""></div><span class="nm mono">The Messenger</span></div>
+  <div class="pt" id="p6" style="left:67%;top:0%;width:15%"><div class="frame"><img src="a/g_scholar.jpg" alt=""></div><span class="nm mono">The Scholar</span></div>
+  <div class="pt" id="p7" style="left:85%;top:8%;width:15%"><div class="frame"><img src="a/g_patron.jpg" alt=""></div><span class="nm mono">The Patron</span></div>
+  <div class="pt" id="p8" style="left:68%;top:56%;width:14%"><div class="frame"><img src="a/t_tommy.jpg" alt=""></div><span class="nm mono">The Founder</span></div>
+  <div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div>
  </div>
 </section>
+
+<section class="agg" id="agg">
+ <div class="aggin">
+  <div class="aggl">
+   <div class="mono reveal" style="color:var(--gold)">Atrios aggregates it all</div>
+   <h2 class="serif reveal">Every recommendation, ranked.<br><em>So you only hear about the best.</em></h2>
+   <p class="reveal">Atrios listens to what founders, investors and operators actually recommend to each other, then tells you which tools are worth it, why, and the perk you get through a friend.</p>
+   <div class="ctr reveal"><b id="ctr">0</b><span>recommendations tracked this week</span></div>
+  </div>
+  <div class="board reveal">
+   <div class="bh"><span class="mono">This week's most recommended</span><span class="live">● live</span></div>
+   <div class="row"><span class="rk">1</span><div><b>Rho</b><small>Banking · "highest treasury rates"</small></div><div class="bar"><i style="--w:94%"></i></div><span class="pk">$875 bonus</span></div>
+   <div class="row"><span class="rk">2</span><div><b>Higgsfield</b><small>AI video · "best AI video editor"</small></div><div class="bar"><i style="--w:88%"></i></div><span class="pk">Ask Ace</span></div>
+   <div class="row"><span class="rk">3</span><div><b>Muse</b><small>AI tool · "you need it"</small></div><div class="bar"><i style="--w:81%"></i></div><span class="pk">Ask Ace</span></div>
+   <div class="row"><span class="rk">4</span><div><b>Deel</b><small>Payroll & HR · "saved us weeks"</small></div><div class="bar"><i style="--w:76%"></i></div><span class="pk">$1,500 credits</span></div>
+   <div class="row"><span class="rk">5</span><div><b>Superposition</b><small>Eng hiring · "found our first engineers"</small></div><div class="bar"><i style="--w:70%"></i></div><span class="pk">1 mo free</span></div>
+   <div class="tips">
+    <div class="tip"><span class="mono">Tip</span>Raised $500k+ and still on a legacy bank? Seed teams are moving treasury to Rho for the yield, and you get $875 for switching.</div>
+    <div class="tip"><span class="mono">Tip</span>Hiring your first engineers? Superposition plus a month free beats paying a recruiter 20%.</div>
+   </div>
+  </div>
+ </div>
+ <p class="note">Illustrative</p>
+</section>
+
 
 <section class="how" id="how">
  <div class="mono eb reveal">How it works</div>
@@ -367,6 +432,29 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
 // hero: binary rain behind painting on load
 (function(){const st=document.querySelector('.stage');const b=document.createElement('div');b.className='bin';b.style.zIndex=0;st.insertBefore(b,st.querySelector('#ascii'));paint.style.opacity=0;paint.style.transition='opacity .75s ease';
  let k=0;const iv=setInterval(()=>{b.textContent=binFill(st);k++;if(k==2)paint.style.opacity=1;if(k>4){clearInterval(iv);b.classList.add('gone');setTimeout(()=>{b.remove();paint.style.transition=''},800)}},50)})();
+
+// talking paintings
+(function(){
+ const S=document.getElementById('salon');if(!S)return;
+ const B=document.getElementById('bub'),T=document.getElementById('btxt');
+ const L=[['p1','p7','"Rho gives you the highest treasury rates."'],['p4','p6','"Higgsfield is the best AI video editor."'],['p7','p1','"You aren\'t using Muse yet? You need it."'],['p3','p8','"Deel saved us weeks on international hiring."'],['p6','p4','"Superposition found our first two engineers."'],['p8','p3','"Get Secure Cloud before your first enterprise deal."'],['p5','p2','"Supper answers data questions right in Slack."']];
+ let i=0,run=false;
+ function step(){const [a,b,txt]=L[i%L.length];i++;
+  S.querySelectorAll('.pt').forEach(p=>p.classList.remove('talk','listen'));
+  const A=document.getElementById(a),Bt=document.getElementById(b);A.classList.add('talk');Bt.classList.add('listen');S.classList.add('active');
+  B.classList.remove('on');T.textContent=txt;
+  const sr=S.getBoundingClientRect(),ar=A.getBoundingClientRect(),br=Bt.getBoundingClientRect();
+  if(innerWidth>900){const toRight=br.left>ar.left;let x=toRight?ar.left-sr.left+ar.width*.55:ar.left-sr.left+ar.width*.45-300;x=Math.max(0,Math.min(x,sr.width-300));
+   const y=Math.max(0,ar.top-sr.top+ar.height*.25-110);B.style.left=x+'px';B.style.top=y+'px';
+   T.style.setProperty('--tail',toRight?'24px':'250px')}
+  setTimeout(()=>B.classList.add('on'),120);
+  setTimeout(step,2600)}
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.3}).observe(S);
+})();
+// counter
+(function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!done){done=true;const T=12480,st=performance.now();const f=t=>{const k=Math.min(1,(t-st)/1600);c.textContent=Math.round(T*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}},{threshold:.4}).observe(c)})();
+
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
 <script src="bgbin.js"></script></body></html>
