@@ -164,10 +164,10 @@ footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
 @media(max-width:820px){.phones{grid-template-columns:1fr}}
 
 
-.bin{position:absolute;inset:0;pointer-events:none;overflow:hidden;font:400 11px/12px "JetBrains Mono",monospace;color:rgba(226,200,143,.55);white-space:normal;word-break:break-all;overflow-wrap:anywhere;z-index:2;padding:4px;transition:opacity .45s ease;mix-blend-mode:screen}
+.bin{position:absolute;inset:0;pointer-events:none;overflow:hidden;font:400 11px/12px "JetBrains Mono",monospace;color:rgba(226,200,143,.55);white-space:normal;word-break:break-all;overflow-wrap:anywhere;z-index:2;padding:4px;transition:opacity .75s cubic-bezier(.2,.6,.3,1);mix-blend-mode:screen}
 .bin.gone{opacity:0}
 .frame,.hc,.shot,.card3 .img,.chairwrap{position:relative}
-.reveal-img{filter:blur(6px) brightness(.6);transition:filter .5s ease}
+.reveal-img{filter:blur(6px) brightness(.6);transition:filter .75s ease}
 .reveal-img.ok{filter:none}
 
 
@@ -191,7 +191,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 <body>
 <div class="prog" id="prog"></div>
 <nav id="nav"><a class="logo" href="#">Atrios</a>
-<div class="links"><a href="#perks">Perks</a><a href="#how">How it works</a><a href="vendors.html">For companies</a><a href="https://www.atrios.com/auth/signin">Sign in</a><a class="btn" href="sms:+15303064813&body=Show%20me%20some%20perks!">Get your perks</a></div></nav>
+<div class="links"><a href="#perks">Perks</a><a href="#how">How it works</a><a href="story.html">Our story</a><a href="vendors.html">For companies</a><a href="https://www.atrios.com/auth/signin">Sign in</a><a class="btn" href="sms:+15303064813&body=Show%20me%20some%20perks!">Get your perks</a></div></nav>
 
 <section class="story" id="story">
  <div class="stage">
@@ -305,7 +305,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
  </div>
  <img class="pines" src="a/pines.jpg" alt="">
  <footer><img class="wm" src="a/wordmark.png" alt="Atrios">
-  <div class="cols"><div><b>Company</b><a href="#">About</a><a href="#">Contact</a></div><div><b>Resources</b><a href="vendors.html">For companies</a><a href="#">Help</a></div><div><b>Legal</b><a href="https://www.atrios.com/privacy">Privacy</a><a href="https://www.atrios.com/terms">Terms</a></div></div></footer>
+  <div class="cols"><div><b>Company</b><a href="story.html">Our story</a><a href="#">Contact</a></div><div><b>Resources</b><a href="vendors.html">For companies</a><a href="#">Help</a></div><div><b>Legal</b><a href="https://www.atrios.com/privacy">Privacy</a><a href="https://www.atrios.com/terms">Terms</a></div></div></footer>
  <div class="legal">© 2026 Atrios</div>
 </section>
 
@@ -375,12 +375,12 @@ document.querySelectorAll('[data-chat]').forEach(ch=>{const ms=[...ch.querySelec
 // 1s and 0s "decoding" behind/over artwork, on load and when scrolled into view
 function binFill(el){const w=el.clientWidth,h=el.clientHeight;const n=Math.ceil(w/6.6)*Math.ceil(h/12);let t='';for(let i=0;i<n;i++)t+=Math.random()<.5?'0':'1';return t}
 function decode(host){if(host.dataset.dec)return;host.dataset.dec=1;const img=host.querySelector('img');const b=document.createElement('div');b.className='bin';host.appendChild(b);
- if(img)img.classList.add('reveal-img');let k=0;const iv=setInterval(()=>{b.textContent=binFill(host);if(++k>4){clearInterval(iv);b.classList.add('gone');if(img)img.classList.add('ok');setTimeout(()=>b.remove(),1400)}},45)}
+ if(img)img.classList.add('reveal-img');let k=0;const iv=setInterval(()=>{b.textContent=binFill(host);if(++k>4){clearInterval(iv);b.classList.add('gone');if(img)img.classList.add('ok');setTimeout(()=>b.remove(),800)}},50)}
 const decIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){decode(e.target);decIO.unobserve(e.target)}}),{threshold:.25});
 document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=>decIO.observe(el));
 // hero: binary rain behind painting on load
-(function(){const st=document.querySelector('.stage');const b=document.createElement('div');b.className='bin';b.style.zIndex=0;st.insertBefore(b,st.querySelector('#ascii'));paint.style.opacity=0;paint.style.transition='opacity .6s ease';
- let k=0;const iv=setInterval(()=>{b.textContent=binFill(st);k++;if(k==3)paint.style.opacity=1;if(k>7){clearInterval(iv);b.classList.add('gone');setTimeout(()=>{b.remove();paint.style.transition=''},700)}},45)})();
+(function(){const st=document.querySelector('.stage');const b=document.createElement('div');b.className='bin';b.style.zIndex=0;st.insertBefore(b,st.querySelector('#ascii'));paint.style.opacity=0;paint.style.transition='opacity .75s ease';
+ let k=0;const iv=setInterval(()=>{b.textContent=binFill(st);k++;if(k==2)paint.style.opacity=1;if(k>4){clearInterval(iv);b.classList.add('gone');setTimeout(()=>{b.remove();paint.style.transition=''},800)}},50)})();
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
-</body></html>
+<script src="bgbin.js"></script></body></html>
