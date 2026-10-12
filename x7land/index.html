@@ -26,7 +26,9 @@ nav .links .btn{padding:9px 18px;font-size:13px;color:var(--ink)}
 .story{position:relative;height:100vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden}
 .stage .layer{position:absolute;inset:0;background-size:cover;background-position:60% 50%;will-change:transform,opacity}
-#paint{background-image:url(a/still.jpg?v=7)}
+#paint{background-image:url(a/adam.jpg?v=1);background-position:90% 50%!important}@media(max-width:700px){#paint{background-position:52% 50%!important}}
+#coins{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.92!important;z-index:1}
+.stage .copy,.stage .foot{z-index:2}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
 .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,42,34,.94) 0%,rgba(11,42,34,.72) 34%,rgba(11,42,34,.08) 62%,rgba(11,42,34,0) 100%),linear-gradient(0deg,rgba(11,42,34,.7),rgba(11,42,34,0) 30%)}
 .copy{position:absolute;left:5vw;top:50%;transform:translateY(-50%);max-width:560px;transition:opacity .5s,transform .5s}
@@ -339,6 +341,7 @@ html,body{overflow-x:hidden}
   <div class="layer" id="paint"></div>
   <canvas id="ascii"></canvas>
   <div class="shade" id="shade"></div>
+  <canvas id="coins"></canvas>
   <div class="copy" id="c1">
    <h1 class="serif">Perks so good you'll want to share them with friends</h1><p class="aside serif">(After you get them for yourself first...)</p>
       <div class="ctas"><a class="btn" href="sms:+15303064813&body=Show%20me%20some%20perks!">Get your perks</a></div></div>
@@ -454,7 +457,7 @@ html,body{overflow-x:hidden}
 const $=s=>document.querySelector(s);
 const story=$('#story'),paint=$('#paint'),cv=$('#ascii'),hot=$('#hot');
 const c1=$('#c1');
-const img=new Image(); img.src='a/still.jpg?v=7';
+const img=new Image(); img.src='a/adam.jpg?v=1';
 const RAMP=' .:-=+*%#@';
 let cells=[],cw=0,ch=0,ctx=cv.getContext('2d');
 function prep(){
@@ -540,4 +543,24 @@ document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chai
 (function(){const c=document.getElementById('ctr2');if(!c)return;let n=48213;const tick=()=>{n+=Math.floor(Math.random()*9)+1;c.textContent=n.toLocaleString()};tick();setInterval(tick,140)})();
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
-<script src="bgbin.js"></script></body></html>
+<script src="bgbin.js"></script>
+<script>
+/* gold coin rain over the hero (Taylor 10/12) */
+(()=>{const c=document.getElementById('coins');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const x=c.getContext('2d');let W,H,D,coins=[];
+function size(){D=Math.min(devicePixelRatio,2);W=c.clientWidth;H=c.clientHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
+function mk(top){const r=(W<700?5:7)+Math.random()*(W<700?5:7);return{x:W*.08+Math.random()*W*.6,y:top?-20-Math.random()*H:Math.random()*H*-0.2,r,vy:1.1+Math.random()*1.6,vx:(Math.random()-.35)*.5,a:Math.random()*6.28,va:.05+Math.random()*.09}}
+size();addEventListener('resize',size);
+const N=()=>W<700?38:70;for(let i=0;i<N();i++)coins.push(mk(true));
+function draw(o){const w=Math.abs(Math.cos(o.a))*o.r+o.r*.12;x.save();x.translate(o.x,o.y);
+ const g=x.createLinearGradient(-w,-o.r,w,o.r);g.addColorStop(0,'#fff1b8');g.addColorStop(.45,'#e7b84a');g.addColorStop(1,'#9a6a12');
+ x.fillStyle=g;x.beginPath();x.ellipse(0,0,w,o.r,0,0,6.283);x.fill();
+ x.strokeStyle='rgba(120,80,10,.7)';x.lineWidth=1;x.stroke();
+ if(w>o.r*.5){x.strokeStyle='rgba(255,240,190,.55)';x.beginPath();x.ellipse(0,0,w*.65,o.r*.65,0,0,6.283);x.stroke()}
+ x.restore()}
+let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+(function loop(){requestAnimationFrame(loop);if(!vis)return;x.clearRect(0,0,W,H);
+ for(const o of coins){o.y+=o.vy;o.x+=o.vx;o.a+=o.va;if(o.y>H+20)Object.assign(o,mk(false),{y:-20});draw(o)}})();
+})();
+</script>
+</body></html>
