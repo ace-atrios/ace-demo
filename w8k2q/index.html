@@ -48,13 +48,19 @@ ul.n{margin:6px 0 0;padding-left:16px;font-size:12px}ul.n li{margin:1px 0}
 .lb .x{border:0;background:rgba(255,255,255,.15);color:#fff;border-radius:50%;width:34px;height:34px;font-size:18px}
 .lb .sc{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.lb .sc div{flex:none;width:100vw;height:100%;display:flex;align-items:center;justify-content:center;scroll-snap-align:center}
 .lb .sc img{max-width:100%;max-height:100%;object-fit:contain}
+@keyframes jig{0%{transform:rotate(-.6deg)}50%{transform:rotate(.6deg)}100%{transform:rotate(-.6deg)}}
+body.edit .card{animation:jig .28s infinite ease-in-out;position:relative}body.edit .card:nth-child(2n){animation-delay:-.14s}
+.del{display:none;position:absolute;top:-7px;left:-7px;width:26px;height:26px;border-radius:50%;border:0;background:#ff3b30;color:#fff;font:700 15px -apple-system,system-ui;line-height:26px;z-index:3;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+body.edit .del{display:block}.card{position:relative}
+.done{display:none;border:0;background:var(--acc);color:#fff;border-radius:14px;padding:5px 14px;font:600 13px -apple-system,system-ui}body.edit .done{display:block}body.edit .sync{display:none}
+.toast{width:max-content;max-width:92vw;white-space:nowrap;position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);background:#1c1c1e;color:#fff;border-radius:12px;padding:10px 14px;font:14px -apple-system,system-ui;display:none;gap:14px;align-items:center;z-index:40;box-shadow:0 6px 20px rgba(0,0,0,.35)}.toast.on{display:flex}.toast button{border:0;background:none;color:#0a84ff;font:600 14px -apple-system,system-ui}
 .empty{color:var(--m);text-align:center;margin:30px}.lnk{background:none;border:0;color:var(--acc);font-size:11px;padding:0}
 </style></head><body>
-<header><div class="top"><h1>Apartments</h1><div class="sync"><span class="dot" id="dot"></span><span id="synctxt">Synced</span></div></div>
-<div class="seg"><button data-t="top" class="on">★ Favorites</button><button data-t="pool">Pool · 21</button><button data-t="nopool">No pool · 63</button></div>
+<header><div class="top"><h1>Apartments</h1><button class="done" id="done">Done</button><div class="sync"><span class="dot" id="dot"></span><span id="synctxt">Synced</span></div></div>
+<div class="seg"><button data-t="top" class="on">★ Favorites</button><button data-t="pool">Pool · <span id="cp">21</span></button><button data-t="nopool">No pool · <span id="cn">63</span></button></div>
 <button class="sortbtn" id="sortbtn">⇅ Sort <span id="sortlbl">Our order</span></button></header>
 <div class="hint" id="hint"></div>
-<main id="list"></main>
+<main id="list"></main><div class="toast" id="toast"><span id="toastt">Deleted</span><button id="undo">Undo</button></div>
 <div class="sheet" id="sheet"><div class="in"><h3>Sort by</h3><div id="opts"></div><div class="dir"><button data-d="1" id="d1">Low → High</button><button data-d="-1" id="d2">High → Low</button></div></div></div>
 <div class="lb" id="lb"><div class="bar"><span id="lbn"></span><button class="x" id="lbx">✕</button></div><div class="sc" id="lbsc"></div></div>
 <script>
@@ -66,7 +72,7 @@ let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',draggi
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function setSync(t,ok){document.getElementById('synctxt').textContent=t;document.getElementById('dot').style.background=ok?'#30d158':'#ff9f0a'}
 async function pull(){try{const r=await fetch(SB+'?key=eq.'+ROW+'&select=data,updated_at',{headers:H});const j=await r.json();if(!j[0])return;
- if(j[0].updated_at!==ver&&!dragging&&!pending){ver=j[0].updated_at;const d=j[0].data||{};if(d.stars){S={stars:d.stars,orders:d.orders||{},seen:d.seen||[]};render()}}setSync('Synced',true)}catch(e){setSync('Offline',false)}}
+ if(j[0].updated_at!==ver&&!dragging&&!pending){ver=j[0].updated_at;const d=j[0].data||{};if(d.stars){S={stars:d.stars,orders:d.orders||{},seen:d.seen||[],hidden:d.hidden||[]};render()}}setSync('Synced',true)}catch(e){setSync('Offline',false)}}
 function push(){setSync('Saving…',false);clearTimeout(pending);pending=setTimeout(async()=>{try{const r=await fetch(SB+'?key=eq.'+ROW,{method:'PATCH',headers:{...H,Prefer:'return=representation'},body:JSON.stringify({data:S,updated_at:new Date().toISOString()})});const j=await r.json();ver=j[0]&&j[0].updated_at;setSync('Synced',true)}catch(e){setSync('Not saved',false)}pending=null},300)}
 function card(r,i){const take=r.type.some(t=>/takeover/i.test(t));const on=S.stars.includes(r.id);
  const chips=r.notes.filter(n=>n.length<40).map(n=>`<span class="chip ${/pool/i.test(n)?'p':''}">${esc(n.replace(/^Swimming pool/,'Pool').replace(/^Heated indoor pool/,'Heated indoor pool'))}</span>`).join('');
@@ -75,17 +81,17 @@ function card(r,i){const take=r.type.some(t=>/takeover/i.test(t));const on=S.sta
  const bldg=(r.listing[1]||'').split(',')[0];const how=s=>esc(s.replace(/^\d+ min ?/,''));
  const lease=r.type.slice(1).filter(t=>!/StreetEasy/.test(t)).map(esc).join(' · ');
  const notes=r.mine?`<ul class="n">${r.mine.split(/\.\s+/).map(s=>s.replace(/\.$/,'').trim()).filter(Boolean).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'';
- return `<div class="card" data-id="${r.id}"><div class="r1">${tab==='top'?`<div class="num">${i+1}</div>`:''}<div class="ttl"><div class="name">${esc(r.listing[0].replace(/, 1bd.*$/,''))}${take?'<span class="tag">TAKEOVER</span>':''}${(r.new&&!(S.seen||[]).includes(r.id))?'<span class="tag nw" style="color:#30d158;border-color:#30d158">NEW</span>':''}</div>
+ return `<div class="card" data-id="${r.id}"><button class="del" data-del="${r.id}">✕</button><div class="r1">${tab==='top'?`<div class="num">${i+1}</div>`:''}<div class="ttl"><div class="name">${esc(r.listing[0].replace(/, 1bd.*$/,''))}${take?'<span class="tag">TAKEOVER</span>':''}${(r.new&&!(S.seen||[]).includes(r.id))?'<span class="tag nw" style="color:#30d158;border-color:#30d158">NEW</span>':''}</div>
  <div class="sub">${esc(bldg)}${bldg?' · ':''}${esc(r.hood)}</div></div><div class="price"><b>${esc(main)}</b><div>${esc(bd)}${sqft?' · '+sqft:''}</div>${free||net?`<div>${esc([free,net].filter(Boolean).join(' · '))}</div>`:''}</div></div>
  <div class="cm"><div class="c"><span class="l">Allan</span><b>${r.amin} min</b><div class="h">${how(r.allan)}</div></div><div class="c"><span class="l">Eliza</span><b>${r.emin} min</b><div class="h">${how(r.eliza)}</div></div><div class="c"><span class="l">Train</span><b>${esc((r.train.match(/^\d+/)||['?'])[0])} min</b><div class="h">${how(r.train)}</div></div></div>
  <div class="chips">${chips}</div>${lease?`<div class="meta">${lease}</div>`:''}${notes}
  ${r.ph&&r.ph.length?`<div class="strip" id="s${r.id}"></div>`:''}<div class="act">${r.ph&&r.ph.length?`<button class="phb" data-ph="${r.id}">Photos (${r.ph.length}) ▾</button>`:''}${r.url?`<a class="go" data-go="${r.id}" href="${r.url}" target="_blank" rel="noopener">View listing</a>`:''}<button class="st ${on?'on':''}" data-star="${r.id}">${on?'★':'☆'}</button></div></div>`}
-function list(){if(tab==='top')return S.stars.map(id=>byId[id]).filter(Boolean);
- let L=D.filter(r=>tab==='pool'?r.pool:!r.pool);const isN=r=>r.new&&!(S.seen||[]).includes(r.id);L=[...L.filter(isN),...L.filter(r=>!isN(r))];const ord=S.orders[tab];
+function list(){const hid=S.hidden||[];if(tab==='top')return S.stars.map(id=>byId[id]).filter(r=>r&&!hid.includes(r.id));
+ let L=D.filter(r=>(tab==='pool'?r.pool:!r.pool)&&!hid.includes(r.id));const isN=r=>r.new&&!(S.seen||[]).includes(r.id);L=[...L.filter(isN),...L.filter(r=>!isN(r))];const ord=S.orders[tab];
  if(ord){const pos=Object.fromEntries(ord.map((id,i)=>[id,i]));L.sort((a,b)=>(pos[a.id]??-1)-(pos[b.id]??-1));}return L;}
 function render(){let L=list();const nk=r=>r.new?((S.seen||[]).includes(r.id)?1:0)-Date.parse(r.new+' 2026')/1e13:2;const val=(r,k)=>k==='newk'?nk(r):r[k];if(sort!=='mine')L=[...L].sort((a,b)=>(val(a,sort)-val(b,sort))*dir);
  const el=document.getElementById('list');el.innerHTML=L.length?L.map(card).join(''):'<div class="empty">No favorites yet. Tap ☆ on a listing.</div>';
- document.getElementById('hint').innerHTML=sort==='mine'?'Hold a card, then drag. Changes sync for both of you. <button class="lnk" id="rs">Reset</button>':'Sorted view. Choose "Our order" in Sort to drag.';
+ document.getElementById('hint').innerHTML=sort==='mine'?(edit?'Drag to reorder. Tap ✕ to delete. Tap Done when finished.':'Hold a card to move or delete. Syncs for both of you.')+' <button class="lnk" id="rs">Reset</button>':'Sorted view. Choose "Our order" in Sort to drag.';
  const rs=document.getElementById('rs');if(rs)rs.onclick=()=>{if(!confirm('Reset this list order for both of you?'))return;if(tab==='top')S.stars=defStars();else delete S.orders[tab];push();render()};
  const markSeen=id=>{S.seen=S.seen||[];if(byId[id]&&byId[id].new&&!S.seen.includes(id)){S.seen.push(id);clearTimeout(pending);pending=null;
   fetch(SB+'?key=eq.'+ROW,{method:'PATCH',keepalive:true,headers:{...H,Prefer:'return=representation'},body:JSON.stringify({data:S,updated_at:new Date().toISOString()})}).then(r=>r.json()).then(j=>{ver=j[0]&&j[0].updated_at}).catch(()=>{});
@@ -97,8 +103,11 @@ function render(){let L=list();const nk=r=>r.new?((S.seen||[]).includes(r.id)?1:
   const fill=()=>{if(!s.childElementCount)s.innerHTML=r.ph.map((u,i)=>`<img loading="lazy" src="${sm(u)}" data-i="${i}">`).join('');s.querySelectorAll('img').forEach(im=>im.onclick=()=>lbOpen(id,+im.dataset.i))};
   if(open[id]){fill();s.classList.add('on');b.textContent=`Photos (${r.ph.length}) ▴`}
   b.onclick=e=>{e.stopPropagation();open[id]=!open[id];if(open[id])fill();s.classList.toggle('on',!!open[id]);b.textContent=`Photos (${r.ph.length}) ${open[id]?'▴':'▾'}`}});
+{const hid=S.hidden||[];document.getElementById('cp').textContent=D.filter(r=>r.pool&&!hid.includes(r.id)).length;document.getElementById('cn').textContent=D.filter(r=>!r.pool&&!hid.includes(r.id)).length;}
+ el.querySelectorAll('[data-del]').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=+b.dataset.del;S.hidden=S.hidden||[];if(!S.hidden.includes(id))S.hidden.push(id);lastDel={id,wasStar:S.stars.includes(id),pos:S.stars.indexOf(id)};S.stars=S.stars.filter(x=>x!==id);push();render();
+  const nm=byId[id].listing[0].split(',')[0];document.getElementById('toastt').textContent='Deleted '+nm.slice(0,26);const tt=document.getElementById('toast');tt.classList.add('on');clearTimeout(window.tto);window.tto=setTimeout(()=>tt.classList.remove('on'),6000)});
  if(window.srt){window.srt.destroy();window.srt=null}
- if(sort==='mine'&&L.length>1&&window.Sortable)window.srt=Sortable.create(el,{animation:150,delay:280,delayOnTouchOnly:true,touchStartThreshold:8,ghostClass:'ghost',chosenClass:'chosen',filter:'a,button,.strip',preventOnFilter:false,
+ if(edit&&sort==='mine'&&L.length>1&&window.Sortable)window.srt=Sortable.create(el,{animation:150,delay:120,delayOnTouchOnly:true,touchStartThreshold:8,ghostClass:'ghost',chosenClass:'chosen',filter:'a,button,.strip,.del',preventOnFilter:false,
   onStart:()=>dragging=true,onEnd:()=>{dragging=false;const ids=[...el.querySelectorAll('.card')].map(c=>+c.dataset.id);if(tab==='top')S.stars=ids;else S.orders[tab]=ids;push();render()}});}
 document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on',x===b));render();scrollTo(0,0)});
 const SORTS=[['mine','Our order'],['newk','New'],['amin','Allan commute'],['emin','Eliza commute'],['rnum','Rent'],['tmin','Walk to train']];
@@ -116,5 +125,16 @@ function lbOpen(id,i){const r=byId[id];const sc=document.getElementById('lbsc');
  const f=()=>{n.textContent=(Math.round(sc.scrollLeft/sc.clientWidth)+1)+' / '+r.ph.length};sc.onscroll=f;requestAnimationFrame(()=>{sc.scrollLeft=i*sc.clientWidth;f()})}
 document.getElementById('lbx').onclick=()=>{document.getElementById('lb').classList.remove('on');document.body.style.overflow=''};
 const sm=u=>u.includes('zillowstatic')?u+'-se_medium_500_250.webp':u, big=u=>u.includes('zillowstatic')?u+'-se_extra_large_1500_800.webp':u;
+let edit=false,lastDel=null;
+function setEdit(v){edit=v;document.body.classList.toggle('edit',v);if(v&&navigator.vibrate)navigator.vibrate(15);render()}
+document.getElementById('done').onclick=()=>setEdit(false);
+document.getElementById('undo').onclick=()=>{if(!lastDel)return;const {id,wasStar,pos}=lastDel;S.hidden=(S.hidden||[]).filter(x=>x!==id);if(wasStar){S.stars.splice(Math.max(0,pos),0,id)}push();render();document.getElementById('toast').classList.remove('on');lastDel=null};
+(()=>{let tm=null,sx=0,sy=0;const L=document.getElementById('list');
+ const start=e=>{if(edit)return;const c=e.target.closest('.card');if(!c||e.target.closest('a,button,.strip'))return;const p=e.touches?e.touches[0]:e;sx=p.clientX;sy=p.clientY;clearTimeout(tm);tm=setTimeout(()=>{tm=null;setEdit(true)},450)};
+ const move=e=>{if(!tm)return;const p=e.touches?e.touches[0]:e;if(Math.abs(p.clientX-sx)>8||Math.abs(p.clientY-sy)>8){clearTimeout(tm);tm=null}};
+ const end=()=>{clearTimeout(tm);tm=null};
+ L.addEventListener('touchstart',start,{passive:true});L.addEventListener('touchmove',move,{passive:true});L.addEventListener('touchend',end);L.addEventListener('touchcancel',end);
+ L.addEventListener('mousedown',start);L.addEventListener('mousemove',move);L.addEventListener('mouseup',end);
+ L.addEventListener('contextmenu',e=>{if(e.target.closest('.card'))e.preventDefault()});})();
 render();pull();setInterval(pull,5000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});
 </script></body></html>
