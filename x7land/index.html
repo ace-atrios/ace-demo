@@ -223,6 +223,32 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .agg .note{position:absolute;right:5vw;bottom:24px;font-size:11px;color:rgba(243,236,220,.35)}
 @media(max-width:900px){.salon{height:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.pt{position:relative;left:auto!important;top:auto!important;width:auto!important}.bub{position:fixed;left:5vw!important;right:5vw;top:auto!important;bottom:24px;max-width:none}.aggin{grid-template-columns:1fr}}
 
+
+.salon2{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6vw 7vw;max-width:1200px;margin:0 auto;padding-top:90px}
+.pair{display:flex;gap:18px;justify-content:center;align-items:flex-end}
+.pair .pt{position:relative;width:46%;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s}
+.pair:nth-child(odd) .pt:first-child{margin-bottom:24px}.pair:nth-child(even) .pt:last-child{margin-bottom:30px}
+.salon2.active .pt:not(.talk):not(.listen){filter:brightness(.5) saturate(.6)}
+@media(max-width:900px){.salon2{grid-template-columns:1fr;padding-top:70px}.bub{position:absolute!important}}
+
+
+.rail{display:grid;grid-template-columns:1fr 240px;gap:30px;align-items:center;max-width:1250px;margin:0 auto 9vh}
+.streams{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 80%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 80%,transparent);display:grid;gap:14px}
+.srow{display:flex;gap:12px;width:max-content;animation:flow 26s linear infinite}
+.srow.s2{animation-duration:32s}
+@keyframes flow{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.sp{display:inline-flex;align-items:center;gap:9px;white-space:nowrap;padding:12px 18px;border-radius:999px;border:1px solid rgba(124,196,154,.25);background:rgba(18,58,47,.55);box-shadow:0 0 24px rgba(124,196,154,.06) inset;color:var(--text);font-size:15px}
+.sp i{width:7px;height:7px;border-radius:50%;background:#7cc49a;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.core2{position:relative;width:220px;height:220px;justify-self:center}
+.ring2{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:rgba(124,196,154,.6);animation:spin 6s linear infinite;box-shadow:0 0 60px rgba(201,169,110,.15)}
+.ring2.b{inset:16px;border-top-color:rgba(124,196,154,.5);border-left-color:var(--gold2);animation-duration:9s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cin2{position:absolute;inset:34px;border-radius:50%;background:#071a15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cin2 small{font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.cin2 b{font:600 34px Inter;color:#fff;margin:4px 0}.cin2 span{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.rail{grid-template-columns:1fr}}
+
 .prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
 </style></head>
 <body>
@@ -248,20 +274,21 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
  <div class="mono reveal" style="color:var(--gold)">The collection</div>
  <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
  <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
- <div class="salon" id="salon">
-  <div class="pt" id="p1" style="left:0%;top:4%;width:17%"><div class="frame"><img src="a/g_banker.jpg" alt=""></div><span class="nm mono">The Banker</span></div>
-  <div class="pt" id="p2" style="left:21%;top:0%;width:22%"><div class="frame"><img src="a/g_still.jpg" alt=""></div><span class="nm mono">Still Life</span></div>
-  <div class="pt" id="p3" style="left:21%;top:40%;width:15%"><div class="frame"><img src="a/t_erica.jpg" alt=""></div><span class="nm mono">The Investor</span></div>
-  <div class="pt" id="p4" style="left:47%;top:6%;width:16%"><div class="frame"><img src="a/g_physician.jpg" alt=""></div><span class="nm mono">The Physician</span></div>
-  <div class="pt" id="p5" style="left:40%;top:58%;width:22%"><div class="frame"><img src="a/g_messenger.jpg" alt=""></div><span class="nm mono">The Messenger</span></div>
-  <div class="pt" id="p6" style="left:67%;top:0%;width:15%"><div class="frame"><img src="a/g_scholar.jpg" alt=""></div><span class="nm mono">The Scholar</span></div>
-  <div class="pt" id="p7" style="left:85%;top:8%;width:15%"><div class="frame"><img src="a/g_patron.jpg" alt=""></div><span class="nm mono">The Patron</span></div>
-  <div class="pt" id="p8" style="left:68%;top:56%;width:14%"><div class="frame"><img src="a/t_tommy.jpg" alt=""></div><span class="nm mono">The Founder</span></div>
+ <div class="salon2" id="salon">
+  <div class="pair" data-p="0"><div class="pt"><div class="frame"><img src="a/w1.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w2.jpg" alt=""></div></div></div>
+  <div class="pair" data-p="1"><div class="pt"><div class="frame"><img src="a/w3.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w4.jpg" alt=""></div></div></div>
+  <div class="pair" data-p="2"><div class="pt"><div class="frame"><img src="a/w5.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w6.jpg" alt=""></div></div></div>
+  <div class="pair" data-p="3"><div class="pt"><div class="frame"><img src="a/w7.jpg" alt=""></div></div><div class="pt"><div class="frame"><img src="a/w8.jpg" alt=""></div></div></div>
   <div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div>
+ </div>
  </div>
 </section>
 
 <section class="agg" id="agg">
+ <div class="rail reveal">
+  <div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span></div></div>
+  <div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Atrios AI</small><b id="ctr2">0</b><span>signals today</span></div></div>
+ </div>
  <div class="aggin">
   <div class="aggl">
    <div class="mono reveal" style="color:var(--gold)">Atrios aggregates it all</div>
@@ -339,7 +366,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 <section class="voices" id="voices">
  <div class="mono reveal" style="color:var(--gold)">The portrait gallery</div>
  <h2 class="serif reveal">Atrios is for everyone.</h2>
- <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="a/t_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="a/t_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="a/t_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="a/t_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
+ <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="a/tp_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="a/tp_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="a/tp_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="a/tp_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
 </section>
 <section class="faq" id="faq"><div class="grid">
  <div><div class="mono reveal" style="color:#8a6d3b">07 / Questions</div>
@@ -430,24 +457,27 @@ document.querySelectorAll('.frame,.hc,.shot,.card3 .img,.chairwrap').forEach(el=
 (function(){
  const S=document.getElementById('salon');if(!S)return;
  const B=document.getElementById('bub'),T=document.getElementById('btxt');
- const L=[['p1','p7','"Rho gives you the highest treasury rates."'],['p4','p6','"Higgsfield is the best AI video editor."'],['p7','p1','"You aren\'t using Muse yet? You need it."'],['p3','p8','"Deel saved us weeks on international hiring."'],['p6','p4','"Superposition found our first two engineers."'],['p8','p3','"Get Secure Cloud before your first enterprise deal."'],['p5','p2','"Supper answers data questions right in Slack."']];
+ const P=[...S.querySelectorAll('.pair')];
+ const L=[[0,0,'"Rho gives you the highest treasury rates."'],[0,1,'"You aren\'t using Muse yet? You need it."'],[1,0,'"Higgsfield is the best AI video editor."'],[1,1,'"Superposition found our first two engineers."'],[2,0,'"Deel saved us weeks on international hiring."'],[2,1,'"Supper answers data questions right in Slack."'],[3,0,'"Get Secure Cloud before your first enterprise deal."'],[3,1,'"Noted. Sending it to my cofounder now."']];
  let i=0,run=false;
- function step(){const [a,b,txt]=L[i%L.length];i++;
+ function step(){const [pi,who,txt]=L[i%L.length];i++;
   S.querySelectorAll('.pt').forEach(p=>p.classList.remove('talk','listen'));
-  const A=document.getElementById(a),Bt=document.getElementById(b);A.classList.add('talk');Bt.classList.add('listen');S.classList.add('active');
+  const pts=P[pi].querySelectorAll('.pt'),A=pts[who],Lr=pts[1-who];A.classList.add('talk');Lr.classList.add('listen');S.classList.add('active');
   B.classList.remove('on');T.textContent=txt;
-  const sr=S.getBoundingClientRect(),ar=A.getBoundingClientRect(),br=Bt.getBoundingClientRect();
-  if(innerWidth>900){const toRight=br.left>ar.left;let x=toRight?ar.left-sr.left+ar.width*.55:ar.left-sr.left+ar.width*.45-300;x=Math.max(0,Math.min(x,sr.width-300));
-   const y=Math.max(0,ar.top-sr.top+ar.height*.25-110);B.style.left=x+'px';B.style.top=y+'px';
-   T.style.setProperty('--tail',toRight?'24px':'250px')}
-  setTimeout(()=>B.classList.add('on'),120);
-  setTimeout(step,2600)}
- new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.3}).observe(S);
+  const sr=S.getBoundingClientRect(),ar=A.getBoundingClientRect(),pr=P[pi].getBoundingClientRect();
+  const W=Math.min(300,sr.width-20);B.style.maxWidth=W+'px';
+  let x=who===0?ar.left-sr.left+ar.width*.35:ar.right-sr.left-ar.width*.35-W;x=Math.max(0,Math.min(x,sr.width-W));
+  const y=ar.top-sr.top-118;B.style.left=x+'px';B.style.top=Math.max(-10,y)+'px';
+  T.style.setProperty('--tail',who===0?'40px':(W-60)+'px');
+  setTimeout(()=>B.classList.add('on'),120);setTimeout(step,2600)}
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:.25}).observe(S);
 })();
 // counter
 (function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
  new IntersectionObserver(es=>{if(es[0].isIntersecting&&!done){done=true;const T=12480,st=performance.now();const f=t=>{const k=Math.min(1,(t-st)/1600);c.textContent=Math.round(T*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}},{threshold:.4}).observe(c)})();
 
+
+(function(){const c=document.getElementById('ctr2');if(!c)return;let n=48213;const tick=()=>{n+=Math.floor(Math.random()*9)+1;c.textContent=n.toLocaleString()};tick();setInterval(tick,140)})();
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
 <script src="bgbin.js"></script></body></html>
