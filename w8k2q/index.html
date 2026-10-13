@@ -127,7 +127,7 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1791854903';
+const BUILD='1791855278';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
 const PULLED='2026-10-12T08:30:56-04:00';let lastSync=null;
