@@ -94,34 +94,6 @@ footer { font-size: 13px; color: var(--muted); display: flex; justify-content: s
   .stamp-shadow { transition: transform .3s ease; }
   .stamp-wrap:hover .stamp-shadow { transform: rotate(0deg); }
 }
-
-/* Text Ace section: white card + the animated iMessage thread from Tech Week, restyled to the cream/forest palette */
-.textace { display: grid; grid-template-columns: 1fr 290px; gap: 32px; align-items: center; background: var(--card); border: 1px solid var(--rule); border-radius: 18px; padding: 32px; }
-.textace-copy { display: grid; gap: 16px; min-width: 0; }
-.say { background: #FFF4DE; border: 1.5px dashed var(--gold); border-radius: 12px; padding: 14px 16px; font-size: 16px; color: var(--deep); }
-.say b { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #A8874B; margin-bottom: 4px; }
-.noacct { font-size: 15.5px; }
-.noacct strong { color: var(--forest); }
-.phone { width: 290px; height: 560px; border-radius: 44px; background: var(--deep); padding: 10px; box-shadow: 0 24px 60px rgba(14,39,35,.28); }
-.screen { height: 100%; border-radius: 35px; background: #FFFDF7; display: flex; flex-direction: column; overflow: hidden; }
-.thead { padding: 18px 12px 10px; text-align: center; border-bottom: 1px solid var(--rule); background: #FBF6E8; }
-.av { width: 38px; height: 38px; border-radius: 50%; margin: 0 auto 4px; background: var(--forest); color: var(--cream); display: grid; place-items: center; font-weight: 700; font-size: 16px; }
-.thead b { display: block; font-size: 13px; color: var(--deep); }
-.thead small { font-size: 11px; color: var(--muted); }
-.chat { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; scrollbar-width: none; }
-.chat::-webkit-scrollbar { display: none; }
-.chat > :first-child { margin-top: auto; }
-.bub { max-width: 82%; padding: 8px 12px; border-radius: 18px; font-size: 13.5px; line-height: 1.35; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
-.bub.on { opacity: 1; transform: none; }
-.bub.me { align-self: flex-end; background: #0A84FF; color: #fff; border-bottom-right-radius: 5px; }
-.bub.ace { align-self: flex-start; background: #EFE7D3; color: var(--deep); border-bottom-left-radius: 5px; }
-.bub.ace b { color: var(--forest); }
-.typing { align-self: flex-start; background: #EFE7D3; border-radius: 18px; padding: 10px 12px; display: flex; gap: 4px; }
-.typing i { width: 6px; height: 6px; border-radius: 50%; background: #9C9480; animation: tb 1s infinite; }
-.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
-@keyframes tb { 0%,60%,100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-2px); } }
-@media (max-width: 640px) { .textace { grid-template-columns: 1fr; padding: 24px; } .phone { margin: 0 auto; width: 280px; height: 520px; } }
-@media (prefers-reduced-motion: reduce) { .bub { opacity: 1; transform: none; transition: none; } }
 </style>
 
 <div class="wrap">
@@ -217,11 +189,9 @@ footer { font-size: 13px; color: var(--muted); display: flex; justify-content: s
     <div class="textace">
       <div class="textace-copy">
         <h2>Get started with one text.</h2>
-        <p>Ace is Atrios's AI concierge. Text it like a friend and it sets everything up with you: your account, your community's perk page, and the intros you want to make.</p>
+        <p>Text Ace like you'd text a friend. Ace will chat with you about anything: finding the best vendors for your community, spotting the best one-off intros to make for your friends, setting up your Atrios account, and more.</p>
         <div class="say"><b>Text Ace at (530) 306-4813</b>"Hi Ace, I run [your community]. I want to bring Atrios to my members."</div>
-        <p class="noacct"><strong>No account yet? No problem.</strong> Ace sends you a 2-minute sign-up link, then builds your community's perk page with you right in the thread. The people you introduce never need an account to get their perk.</p>
-        <p class="noacct"><strong>Making a one-off intro?</strong> Start a group text with Ace and your friend: "Ace, meet Maya, she's hiring her first engineers." Ace finds the perks that fit and takes it from there.</p>
-        <div class="ctas"><a class="btn btn-primary" href="sms:+15303064813&amp;body=Hi%20Ace%2C%20I%20run%20a%20community%20and%20want%20to%20bring%20Atrios%20to%20my%20members">Text Ace</a><a class="btn btn-ghost" href="mailto:ace@atrios.com?subject=Bring%20Atrios%20to%20my%20community&amp;body=Hi%20Ace%2C%20I%20run%20a%20community%20and%20want%20to%20bring%20Atrios%20to%20my%20members">Or email ace@atrios.com</a></div>
+        <div class="ctas"><a class="btn btn-primary" href="sms:+15303064813&amp;body=Hi%20Ace%2C%20I%20run%20a%20community%20and%20want%20to%20bring%20Atrios%20to%20my%20members">Text Ace</a></div>
       </div>
       <div class="phone" role="img" aria-label="Example text conversation with Ace"><div class="screen">
         <div class="thead"><div class="av">A</div><b>Ace</b><small>Atrios</small></div>
