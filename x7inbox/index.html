@@ -45,13 +45,13 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const hl=s=>{s=esc(s);if(!q)return s;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return s.replace(re,'<mark>$1</mark>')};
 const dt=t=>new Date(t+':00-04:00');
 const fmt=t=>{const d=dt(t);const now=new Date();return d.toDateString()===now.toDateString()?d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString([],{month:'short',day:'numeric'})};
-const types=['All','Text','Email','Vendor','Lead','Tastemaker','Partner'];
+const types=['All','OPEN','BOOKED','REJECTED','GHOSTED','Text','Email','Vendor','Lead','Tastemaker','Partner'];const isSt=t=>['OPEN','BOOKED','REJECTED','GHOSTED'].includes(t);
 const isCh=t=>t=='Text'||t=='Email';const chOf=x=>x.ch=='email'?'Email':'Text';
 const F=document.getElementById('f');
-function buildF(){F.innerHTML=types.map(t=>`<button data-t="${t}" class="${t==ft?'on':''}">${t} <span style="opacity:.6">${t=='All'?D.length:D.filter(x=>isCh(t)?chOf(x)==t:x.type==t).length}</span></button>`).join('')}
+function buildF(){F.innerHTML=types.map(t=>`<button data-t="${t}" class="${t==ft?'on':''}">${t} <span style="opacity:.6">${t=='All'?D.length:D.filter(x=>isSt(t)?ST(x)==t:isCh(t)?chOf(x)==t:x.type==t).length}</span></button>`).join('')}
 F.onclick=e=>{const b=e.target.closest('button');if(!b)return;ft=b.dataset.t;[...F.children].forEach(x=>x.classList.toggle('on',x.dataset.t==ft));render()};
 const ST=t=>{const g=(t.stage||'').toLowerCase();if(t.status)return t.status;if(g.includes('book'))return 'BOOKED';if(g.includes('declin')||g.includes('closed')||g.includes('reject'))return 'REJECTED';if(g.includes('unresp'))return 'GHOSTED';return 'OPEN'};
-function match(t){if(ft!='All'&&(isCh(ft)?chOf(t)!=ft:t.type!=ft))return false;if(!q)return true;const s=q.toLowerCase();return (t.name+' '+t.co+' '+t.stage+' '+t.by+' '+ST(t)).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
+function match(t){if(ft!='All'&&(isSt(ft)?ST(t)!=ft:isCh(ft)?chOf(t)!=ft:t.type!=ft))return false;if(!q)return true;const s=q.toLowerCase();return (t.name+' '+t.co+' '+t.stage+' '+t.by+' '+ST(t)).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
 function render(){const L=D.filter(match);const el=document.getElementById('list');
  if(!L.length){el.innerHTML='<div class="empty">No matches</div>';return}
  el.innerHTML=L.map(t=>{const last=t.msgs[t.msgs.length-1];let pv=last;if(q){const h=t.msgs.find(m=>m.x.toLowerCase().includes(q.toLowerCase()));if(h)pv=h}
