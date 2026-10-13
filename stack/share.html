@@ -13,7 +13,16 @@
   .pay b{color:var(--ink);font-weight:400}
   @media (max-width:760px){.paths{grid-template-columns:1fr}}
 </style>
-</head><body>
+<style>
+  .sh-hero2{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;padding-bottom:40px}
+  .sh-hero2 .sh-hero{padding-bottom:0}.sh-hero2 h1{font-size:clamp(40px,5vw,68px)}
+  .earn{padding:26px;border-radius:var(--radius-2xl);border:1px solid rgba(201,169,110,.45);background:linear-gradient(135deg,rgba(201,169,110,.14),rgba(255,255,255,.02) 60%);box-shadow:var(--shadow-panel)}
+  .earn ul{list-style:none;margin:14px 0 18px;padding:0;display:grid;gap:10px}
+  .earn li{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--ink)}
+  .earn li span{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.35);font-size:17px;flex:none}
+  .earn .btn{width:100%;justify-content:center}
+  @media (max-width:900px){.sh-hero2{grid-template-columns:1fr}}
+</style></head><body>
 <title>Share perks | Atrios</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&amp;display=swap">
 <style>
@@ -256,10 +265,23 @@
         <a href="./"><img src="img1.svg" alt="Atrios"></a>
         <div class="navr"><a class="btn" href="#" data-chat="Hi Ace, I'd like to create an account">Create account</a><a class="btn" href="./">Back to the stack</a></div>
       </header>
-      <section class="sh-hero">
+      <section class="sh-hero2">
+        <div class="sh-hero">
         <div class="eyebrow rise" style="--i:1">For tastemakers</div>
         <h1 class="rise" style="--i:2">Get rewarded to<br><em>share perks.</em></h1>
         <p class="lede rise" style="--i:3">Your friends get perks on tools they actually need. You get paid every time one of them takes the call. Two ways to do it:</p>
+      </div>
+        <aside class="earn rise" style="--i:3">
+          <div class="eyebrow">Rewards you can get</div>
+          <ul>
+            <li><span>🎗️</span>A donation to a charity in your name</li>
+            <li><span>🎉</span>Money for events for your community</li>
+            <li><span>⌚</span>A Rolex watch</li>
+            <li><span>🛏️</span>An Eight Sleep mattress</li>
+            <li><span>🏠</span>Your rent, paid for</li>
+          </ul>
+          <a class="btn primary" href="#" data-chat="What can I earn by sharing perks?">Learn more about what I can earn</a>
+        </aside>
       </section>
       <section class="paths">
         <article class="path gold rise" style="--i:4">
