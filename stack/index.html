@@ -262,6 +262,22 @@
   .endask{margin:0}
   @media (max-width:900px){.endcta{grid-template-columns:1fr}}
   .card .foot .btn{white-space:nowrap;width:100%;justify-content:center}.card .foot .chips{gap:6px}
+
+  /* box cards: name / about / perk / why (Taylor 10/13 12:17) */
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px}
+  .card{min-height:350px;padding:22px;gap:10px}
+  .card .top,.card .cat,.card .aipick,.card .chips,.card .why-by,.card .offer .label,.card .offer p{display:none!important}
+  .card .name{order:1;margin:0;font-size:28px}
+  .card .does{order:2!important;font-size:14.5px;line-height:21px;color:var(--ink-body)}
+  .card .offer{order:3!important;padding:10px 14px}
+  .card .offer .fig{font-size:24px}.card .offer .fig small{display:inline;margin-left:6px;font-size:14px}
+  .card>div:has(.why){order:4!important}
+  .card .why{font-size:15.5px;line-height:22px}
+  .card .foot{order:5!important;padding-top:4px;margin-top:auto}
+  .card.feature{border-color:var(--gold)}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.card{aspect-ratio:auto}}
+  @media (max-width:640px){.grid{grid-template-columns:1fr!important}}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}.two .btn{width:100%;justify-content:center}
 </style>
 
 <div class="shell">
@@ -330,14 +346,11 @@
               <p>For anyone who signs up through Atrios, plus $100 for your feedback after the call.</p>
             </div>
             <div>
-              <div class="label">Why I recommend it</div>
+              <div class="label">Why Taylor recommends it</div>
               <p class="why">“They have the highest treasury rates, and the $2,500 cash bonus is awesome.”</p>
               <div class="why-by">Tastemaker running a business that raised $10M</div>
             </div>
-            <div class="foot">
-              <div class="chips"><span class="chip">3.8 of 5</span><span class="chip">99 reviews</span></div>
-              <a class="btn primary" href="#" data-chat="I'd like to book a call with Rho">Book a call with Rho</a>
-            </div>
+            <div class="foot"><div class="two"><a class="btn" href="#" data-chat="Tell me more about Rho">Learn more</a><a class="btn primary" href="#" data-chat="I'd like to claim the Rho perk">Claim perk</a></div></div>
           </article>
 
           <article class="card rise" style="--i:7" data-cat="Banking">
@@ -351,10 +364,10 @@
               <p>Better treasury terms for companies backed by Y Combinator and a16z speedrun.</p>
             </div>
             <div>
-              <div class="label">Why I recommend it</div>
+              <div class="label">Why Taylor recommends it</div>
               <p class="why">“Brex seems to be good at consolidating all requirements into one platform.”</p>
             </div>
-            <div class="foot"><div class="chips"><span class="chip">Cards</span><span class="chip">Treasury</span></div></div>
+            <div class="foot"><div class="two"><a class="btn" href="#" data-chat="Tell me more about Brex">Learn more</a><a class="btn primary" href="#" data-chat="I'd like to claim the Brex perk">Claim perk</a></div></div>
           </article>
 
           <article class="card rise" style="--i:8" data-cat="People">
@@ -368,10 +381,10 @@
               <p>Paid by Atrios after your call with Deel.</p>
             </div>
             <div>
-              <div class="label">Why I recommend it</div>
+              <div class="label">Why Taylor recommends it</div>
               <p class="why">“Very strong understanding of payroll in my situation.”</p>
             </div>
-            <div class="foot"><div class="chips"><span class="chip">134 reviews</span></div></div>
+            <div class="foot"><div class="two"><a class="btn" href="#" data-chat="Tell me more about Deel">Learn more</a><a class="btn primary" href="#" data-chat="I'd like to claim the Deel perk">Claim perk</a></div></div>
           </article>
 
           <article class="card rise" style="--i:9" data-cat="People">
@@ -385,10 +398,10 @@
               <p>Paid by Atrios after your call with Corridor.</p>
             </div>
             <div>
-              <div class="label">Why I recommend it</div>
+              <div class="label">Why Taylor recommends it</div>
               <p class="why">“Seems like a better solution than going through a PEO or traditional broker.”</p>
             </div>
-            <div class="foot"><div class="chips"><span class="chip">25 reviews</span></div></div>
+            <div class="foot"><div class="two"><a class="btn" href="#" data-chat="Tell me more about Corridor">Learn more</a><a class="btn primary" href="#" data-chat="I'd like to claim the Corridor perk">Claim perk</a></div></div>
           </article>
 
           <article class="card rise" style="--i:10" data-cat="Finance" data-ai="1">
@@ -403,10 +416,10 @@
               <p>Paid by Atrios after your call with Rillet.</p>
             </div>
             <div>
-              <div class="label">Why I recommend it</div>
+              <div class="label">Why Taylor recommends it</div>
               <p class="why">“An AI native accounting tool that replaces QuickBooks.”</p>
             </div>
-            <div class="foot"><div class="chips"><span class="chip">21 reviews</span></div></div>
+            <div class="foot"><div class="two"><a class="btn" href="#" data-chat="Tell me more about Rillet">Learn more</a><a class="btn primary" href="#" data-chat="I'd like to claim the Rillet perk">Claim perk</a></div></div>
           </article>
 
         </div>
