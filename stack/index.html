@@ -231,6 +231,31 @@
   .askhint { margin-top: 10px; font-size: 12px; color: var(--ink-muted); }
   .navr{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
   @media (max-width:560px){.navr .btn{height:32px;padding:0 12px;font-size:12px}}
+
+  /* compact owner header: recommendations above the fold (Taylor 10/13) */
+  .hero2{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:28px 0 18px;flex-wrap:wrap}
+  .who{display:flex;align-items:center;gap:22px;min-width:0}
+  .who .av{width:104px;height:104px;border-radius:50%;padding:4px;flex:none;background:conic-gradient(from 200deg,#c9a96e,#f3e2b6,#8a6d3b,#c9a96e);box-shadow:0 0 0 6px rgba(201,169,110,.12),0 12px 30px rgba(0,0,0,.4)}
+  .who .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 25%;display:block;border:3px solid var(--surface)}
+  .who h1{font:700 clamp(32px,4vw,52px)/1.05 var(--font-serif);margin:8px 0 0}
+  .who .lede{font-size:16px;line-height:24px;margin:10px 0 0;max-width:560px}
+  .side{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+  .vip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:rgba(201,169,110,.08)}
+  .vip svg{width:14px;height:14px;stroke:currentColor;fill:currentColor}
+  .mini{display:flex;gap:26px}.mini b{display:block;font:250 24px/1 var(--font-sans);color:var(--ink)}.mini span{display:block;margin-top:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+  .ask{margin-top:0;max-width:none}.asksug{margin-top:10px}.askhint{display:none}
+  #stack .sec{margin:22px 0 18px}
+  .grid{gap:16px;grid-template-columns:repeat(5,1fr)}.card{padding:20px 18px 18px;gap:9px}.card.feature{grid-column:span 1}.feature .name,.name{font-size:26px}
+  .offer{padding:12px 14px;margin-top:2px}.offer .fig{font-size:24px}.offer .fig small{display:block;margin:2px 0 0;font-size:13px}.why{font-size:15px;line-height:22px}
+  .foot{flex-direction:column;align-items:flex-start}
+  @media (max-width:1240px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.card.feature{grid-column:span 1}}
+  @media (max-width:760px){.side{align-items:flex-start}.who .av{width:76px;height:76px}.grid{grid-template-columns:1fr}.hero2{padding-top:18px}}
+
+  .hero2{flex-wrap:nowrap}.who .lede{max-width:520px}.side{flex:none}
+  @media (max-width:980px){.hero2{flex-wrap:wrap}}
+  .card .top{order:0}.card .name{order:1}.card .cat{order:2}.card .aipick{order:3}.card .offer{order:4}.card>div:has(.why){order:5}.card .does{order:6;font-size:13.5px;color:var(--ink-muted)}.card .foot{order:7}
+  .offer .label,.card .label{margin-bottom:4px}
 </style>
 
 <div class="shell">
@@ -247,13 +272,21 @@
         <div class="navr"><a class="btn" href="#" data-chat="Hi Ace, I'd like to create an account">Create account</a><a class="btn primary" href="share.html">Get rewarded to share perks</a></div>
       </header>
 
-      <section class="hero">
-        <div>
-          <div class="eyebrow rise" style="--i:1">Curated by Taylor Offer</div>
-          <h1 class="rise" style="--i:2">The tools I<br>run <em>Atrios</em> on.</h1>
-          <p class="lede rise" style="--i:3">Five vendors I would pick again. Each one earned a place after real calls with real founders, and each comes with an offer for Atrios members.</p>
-
-          <form class="ask rise" style="--i:4" id="ask" autocomplete="off">
+      <section class="hero2">
+        <div class="who rise" style="--i:1">
+          <div class="av"><img src="img2.jpg" alt="Taylor Offer"></div>
+          <div>
+            <div class="eyebrow">Curated by</div>
+            <h1>Taylor Offer's <em>perks</em></h1>
+            <p class="lede">CEO of Atrios. These are the tools Taylor actually uses, with perks you only get through Taylor.</p>
+          </div>
+        </div>
+        <div class="side rise" style="--i:2">
+          <div class="vip"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 17l-5.4 3 1.2-6-4.5-4.2 6.1-.7z"></path></svg>Exclusive to Taylor's network</div>
+          <div class="mini"><div><b>5</b><span>Picks</span></div><div><b>$2,500</b><span>Top bonus</span></div><div><b>$100</b><span>Per feedback call</span></div></div>
+        </div>
+      </section>
+      <form class="ask rise" style="--i:3" id="ask" autocomplete="off">
             <label class="askbox">
               <svg class="spark" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 17l-5.4 3 1.2-6-4.5-4.2 6.1-.7z"></path></svg>
               <input id="askq" type="text" placeholder="Chat with Atrios AI to find tools" aria-label="Chat with Atrios AI to find tools">
@@ -266,25 +299,9 @@
             </div>
             <div class="askhint">Chat right here with Ace, Atrios AI.</div>
           </form>
-          <div class="stats rise" style="--i:5">
-            <div><b>5</b><span>Vendors</span></div>
-            <div><b>$2,500</b><span>Top signup bonus</span></div>
-            <div><b>$100</b><span>For your feedback</span></div>
-          </div>
-        </div>
-
-        <div class="portrait-wrap rise" style="--i:3">
-          <div class="portrait">
-            <div class="mono" aria-hidden="true">T</div>
-            <img src="img2.jpg" alt="Portrait of Taylor Offer" onerror="this.remove()">
-          </div>
-          <div class="nameplate"><b>Taylor Offer</b><span>Atrios</span></div>
-        </div>
-      </section>
-
       <section id="stack">
         <div class="sec rise" style="--i:5">
-          <h2>What I recommend</h2>
+          <h2>Taylor's picks</h2>
           <div class="tabs" role="tablist" aria-label="Filter vendors">
             <button class="tab" role="tab" aria-selected="true" data-f="all">All</button>
             <button class="tab" role="tab" aria-selected="false" data-f="Banking">Banking</button>
