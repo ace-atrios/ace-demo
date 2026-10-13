@@ -31,6 +31,9 @@
 @keyframes pin{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
 @media (max-width:900px){.bld{grid-template-columns:1fr}.prev-col{position:static;order:-1}.tiles{grid-auto-columns:calc((100% - 8px)/2)}}
 .panel{overflow:clip!important}
+.urlrow{display:flex;align-items:center;border:1px solid rgba(255,244,222,.16);border-radius:12px;background:rgba(255,255,255,.05);overflow:hidden}
+.urlrow .pre{padding:12px 0 12px 14px;color:var(--ink-muted);font-size:15px;white-space:nowrap}.urlrow input{flex:1;border:0!important;background:transparent!important;padding-left:2px!important;color:var(--gold)!important;min-width:0}
+.urlrow:focus-within{border-color:var(--gold)}.done{display:grid;gap:12px}.done .ok{font-size:15px;color:var(--ink)}.done b{color:var(--gold);font-weight:400}
 </style></head><body>
 <title>Build your stack | Atrios</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&amp;display=swap">
@@ -332,13 +335,15 @@
     <div class="stp" id="s2"><div class="sn">2</div><div class="sb"><h3>Pick the tools you'd vouch for <span class="cnt" id="cnt">0 picked</span></h3>
       <div class="tiles" id="tiles"></div><div class="scrollhint">Scroll for more →</div></div></div>
     <div class="stp" id="s3"><div class="sn">3</div><div class="sb"><h3>Why do you recommend them?</h3><p class="hint">One line each. This is what makes your stack convincing.</p><div id="whys" style="display:grid;gap:18px"></div></div></div>
-    <div class="stp"><div class="sn">4</div><div class="sb"><h3>Go live</h3><p class="hint">Ace sets up your account with just your phone or email, and you get paid for every call booked from your stack.</p>
-      <a class="btn primary big" href="#" id="pub">Publish my stack</a></div></div>
+    <div class="stp"><div class="sn">4</div><div class="sb"><h3>Claim your link</h3><p class="hint">Your stack lives at this link. Edit it if you like, then create it.</p>
+      <div class="urlrow"><span class="pre">atrios.com/tastemaker/</span><input id="slug" maxlength="32" spellcheck="false"></div>
+      <a class="btn primary big" href="#" id="mkurl">Create URL</a>
+      <div class="done" id="done" hidden><div class="ok">✓ Your link is live: <b id="finalurl"></b></div><a class="btn big" href="#" id="howshare">Learn how to share your link</a></div></div></div>
   </section>
   <aside class="prev-col"><div class="prev-lbl">Live preview</div>
     <div class="prev" id="prev"></div></aside>
 </div></div></main></div>
-<script src="chat.js?v=2"></script>
+<script src="chat.js?v=3"></script>
 <script>
 (function(){
 var SUG={"Business banking":["Best treasury rates we found","No fees, great card controls","Set up in a day"],"Banking and spend":["Everything in one platform","Great for scaling spend","Best card for startups"],"Global payroll":["Made hiring abroad painless","Saved us weeks on compliance","Pay anyone, anywhere"],"Health benefits":["Better than a PEO","Our team loves the plans","Saved us on premiums"],"Accounting":["Finally ditched QuickBooks","Books close in days, not weeks","Our CFO loves it"],"Hiring":["Found our first engineers","Fast, quality candidates","Saved us recruiter fees"],"Global HR":["Hired in a new country fast","Compliance handled for us","Great support team"],"Security":["Got SOC 2 done fast","Unblocked enterprise deals","Took compliance off our plate"],"Insurance":["Best coverage for the price","Easy renewals","Great broker team"],"Finance":["Saves hours every month","Set it and forget it","Our finance team loves it"],"Data":["Answers data questions in seconds","Whole team uses it","Replaced our ad-hoc reports"],"_":["We use it every day","Saved us time and money","Highly recommend"]};
@@ -365,8 +370,15 @@ function preview(){
 $('nm').oninput=function(){S.name=this.value;save();preview()};$('rl').oninput=function(){S.role=this.value;save();preview()};
 $('ph').onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement('canvas');c.width=c.height=160;var x=c.getContext('2d'),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,160,160);S.photo=c.toDataURL('image/jpeg',.8);save();preview()};im.src=r.result};r.readAsDataURL(f)};
 $('tiles').onclick=function(e){var t=e.target.closest('.tile');if(!t)return;var i=+t.dataset.i,k=S.picks.indexOf(i);if(k>-1)S.picks.splice(k,1);else{if(S.picks.length>=6){t.animate([{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'none'}],{duration:200});return}S.picks.push(i)}save();render()};
-$('pub').onclick=function(e){e.preventDefault();var n=S.name.trim()||'(no name yet)';var lines=S.picks.map(function(i){return '- '+V[i][0]+(S.why[i]?': '+S.why[i]:'')});
+/*pub*/ if(false)$("x").onclick=function(e){e.preventDefault();var n=S.name.trim()||'(no name yet)';var lines=S.picks.map(function(i){return '- '+V[i][0]+(S.why[i]?': '+S.why[i]:'')});
   AtriosChat.open('Publish my stack!\nName: '+n+(S.role?' ('+S.role+')':'')+'\nPicks:\n'+(lines.join('\n')||'- none yet'))};
+
+function slugify(t){return (t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,32)}
+var slugTouched=!!S.slug;$('slug').value=S.slug||slugify((S.name||'').split(' ')[0]);
+$('slug').oninput=function(){slugTouched=true;this.value=slugify(this.value);S.slug=this.value;save()};
+var oldNm=$('nm').oninput;$('nm').oninput=function(){oldNm.call(this);if(!slugTouched){$('slug').value=slugify(this.value.split(' ')[0]);S.slug=$('slug').value;save()}};
+$('mkurl').onclick=function(e){e.preventDefault();var sl=$('slug').value||slugify(S.name.split(' ')[0])||'me';S.slug=sl;save();$('finalurl').textContent='atrios.com/tastemaker/'+sl;$('done').hidden=false;this.textContent='Update URL'};
+$('howshare').onclick=function(e){e.preventDefault();var lines=S.picks.map(function(i){return '- '+V[i][0]+(S.why[i]?': '+S.why[i]:'')});AtriosChat.open('I just created my stack: atrios.com/tastemaker/'+S.slug+'\nPicks:\n'+(lines.join('\n')||'- none yet')+'\nHow do I share my link?')};
 render();
 })();
 </script></body></html>

@@ -33,6 +33,10 @@
     '.acp-f textarea:focus{border-color:#c9a96e}' +
     '.acp-f button{width:44px;height:44px;border-radius:50%;border:0;background:#c9a96e;color:#0e2723;cursor:pointer;display:grid;place-items:center;flex:none}' +
     '.acp-f button svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
+    '.acp-fab{position:fixed;right:22px;bottom:22px;z-index:49;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:999px;border:1px solid rgba(201,169,110,.6);background:#0e2723;color:#fff4de;font:500 14px Aspekta,"Helvetica Neue",Arial,sans-serif;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.45);transition:transform .2s,opacity .2s}' +
+    '.acp-fab:hover{transform:translateY(-2px)}.acp-fab .acp-av{width:34px;height:34px;font-size:15px}' +
+    '.acp.on+.acp-fab{opacity:0;pointer-events:none}' +
+    '@media(max-width:640px){.acp-fab span{display:none}.acp-fab{padding:6px}}' +
     '@keyframes acpIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}' +
     '@keyframes acpT{0%,60%,100%{opacity:.3}30%{opacity:1}}' +
     '@media(max-width:640px){.acp{top:0;right:0;bottom:0;width:100vw;border-radius:0;border:0}}';
@@ -43,6 +47,7 @@
     '<div class="acp-m" aria-live="polite"></div>' +
     '<form class="acp-f"><textarea rows="1" placeholder="Message Ace…" aria-label="Message Ace"></textarea><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button></form>';
   document.body.appendChild(scrim); document.body.appendChild(el);
+  var fab = document.createElement('button'); fab.className = 'acp-fab'; fab.type = 'button'; fab.setAttribute('aria-label', 'Chat with Ace'); fab.innerHTML = '<div class="acp-av">A</div><span>Ask Ace</span>'; document.body.appendChild(fab); fab.onclick = function () { open(); };
   var M = el.querySelector('.acp-m'), F = el.querySelector('form'), T = el.querySelector('textarea');
   var seen = {}, last = 0, timer = null, typing = null, greeted = false;
   function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
