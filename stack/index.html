@@ -256,6 +256,12 @@
   @media (max-width:980px){.hero2{flex-wrap:wrap}}
   .card .top{order:0}.card .name{order:1}.card .cat{order:2}.card .aipick{order:3}.card .offer{order:4}.card>div:has(.why){order:5}.card .does{order:6;font-size:13.5px;color:var(--ink-muted)}.card .foot{order:7}
   .offer .label,.card .label{margin-bottom:4px}
+
+  .endcta{margin-top:40px;padding:28px;border-radius:var(--radius-2xl);border:1px solid rgba(201,169,110,.35);background:linear-gradient(135deg,rgba(201,169,110,.10),transparent 60%);display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+  .endcta h3{font:600 24px/1.2 var(--font-serif);color:var(--ink);margin:0}
+  .endask{margin:0}
+  @media (max-width:900px){.endcta{grid-template-columns:1fr}}
+  .card .foot .btn{white-space:nowrap;width:100%;justify-content:center}.card .foot .chips{gap:6px}
 </style>
 
 <div class="shell">
@@ -405,6 +411,11 @@
 
         </div>
 
+        <div class="endcta rise" style="--i:11">
+          <h3>Not sure what's best for you?</h3>
+          <form class="askbox endask" autocomplete="off"><svg class="spark" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 17l-5.4 3 1.2-6-4.5-4.2 6.1-.7z"></path></svg><input type="text" placeholder="Chat with us to find what's best for you" aria-label="Chat with us to find what's best for you"><button type="submit" aria-label="Start chat"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button></form>
+          <a class="btn" href="#" data-chat="Show me all the perks on Atrios">Browse all perks</a>
+        </div>
         <div class="note rise" style="--i:12">
           <span>Every vendor here is on Atrios. Tastemakers review them after real meetings.</span>
           <span>Offers may change. Confirm terms on your call.</span>
@@ -429,6 +440,7 @@
   (function () {
     var f = document.getElementById('ask'), q = document.getElementById('askq'), opened = false;
     f.addEventListener('submit', function (e) { e.preventDefault(); var t = q.value.trim(); AtriosChat.open(t || ''); q.value = ''; });
+    document.querySelector('.endask').addEventListener('submit', function (e) { e.preventDefault(); var i = this.querySelector('input'); AtriosChat.open(i.value.trim()); i.value = ''; });
     f.querySelectorAll('.asksug button').forEach(function (b) { b.addEventListener('click', function () { AtriosChat.open(b.textContent); }); });
   })();
 </script></body></html>
