@@ -73,7 +73,7 @@
   function send(text) {
     text = (text || '').trim(); if (!text) return;
     fetch(SB, { method: 'POST', headers: Object.assign({ Prefer: 'return=representation' }, H), body: JSON.stringify({ session: sid, sender: 'user', body: text.slice(0, 2000), page: (location.pathname.split('/').filter(Boolean).slice(-2).join('/') || 'stack').slice(0, 60) }) })
-      .then(function (r) { return r.json(); }).then(function (rows) { if (Array.isArray(rows) && rows[0]) { seen[rows[0].id] = 1; last = Math.max(last, rows[0].id); } })
+      .then(function (r) { return r.json(); }).then(function (rows) { if (Array.isArray(rows) && rows[0]) { seen[rows[0].id] = 1; } })
       .catch(function () {});
     add('u', text); showTyping(true);
   }
