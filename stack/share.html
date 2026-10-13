@@ -45,6 +45,14 @@
 .path ol{font-size:13.5px!important;gap:2px!important}
 .path .acts{padding-top:6px!important}
 .path .ico{display:none!important}
+/* clickable reward tiles (Taylor 13:14) */
+.rwgrid .rwt{position:relative;display:block;border-radius:12px;overflow:hidden;height:100px;border:1px solid rgba(201,169,110,.35);cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.rwgrid .rwt:nth-child(4){grid-column:span 2}
+.rwgrid .rwt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.rwgrid .rwt:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.4)}.rwgrid .rwt:hover img{transform:scale(1.06)}
+.rwgrid .rwt figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:6px;padding:26px 7px 7px 9px!important;font-size:12px!important;line-height:14px!important;font-weight:500;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7);background:linear-gradient(transparent,rgba(2,18,15,.95) 70%)!important}
+.rwgrid .rwt figcaption i{flex:none;font-style:normal;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#0e2723;font-size:11px;text-shadow:none;transition:transform .2s}
+.rwgrid .rwt:hover figcaption i{transform:translateX(2px)}
 </style></head><body>
 <title>Share perks | Atrios</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&amp;display=swap">
@@ -297,11 +305,11 @@
         <aside class="earn rise" style="--i:3">
           <div class="eyebrow">Rewards you can get</div>
           <div class="rwgrid">
-            <figure><img src="rw/charity.jpg" alt=""><figcaption>A donation to a charity in your name</figcaption></figure>
-            <figure><img src="rw/events.jpg" alt=""><figcaption>Money for events for your community</figcaption></figure>
-            <figure><img src="rw/watch.jpg" alt=""><figcaption>A Rolex watch</figcaption></figure>
-            <figure><img src="rw/mattress.jpg" alt=""><figcaption>An Eight Sleep mattress</figcaption></figure>
-            <figure class="wide"><img src="rw/rent.jpg" alt=""><figcaption>Your rent, paid for</figcaption></figure>
+            <a class="rwt" href="#" data-chat="How can I earn this reward: a donation to a charity in your name?"><img src="rw/charity.jpg" alt=""><figcaption><span>A donation to a charity in your name</span><i>→</i></figcaption></a>
+            <a class="rwt" href="#" data-chat="How can I earn this reward: money for events for your community?"><img src="rw/events.jpg" alt=""><figcaption><span>Money for events for your community</span><i>→</i></figcaption></a>
+            <a class="rwt" href="#" data-chat="How can I earn this reward: a Rolex watch?"><img src="rw/watch.jpg" alt=""><figcaption><span>A Rolex watch</span><i>→</i></figcaption></a>
+            <a class="rwt" href="#" data-chat="How can I earn this reward: an Eight Sleep mattress?"><img src="rw/mattress.jpg" alt=""><figcaption><span>An Eight Sleep mattress</span><i>→</i></figcaption></a>
+            <a class="rwt" href="#" data-chat="How can I earn this reward: your rent, paid for?"><img src="rw/rent.jpg" alt=""><figcaption><span>Your rent, paid for</span><i>→</i></figcaption></a>
           </div>
           <a class="earnlink" href="#" data-chat="What can I earn by sharing perks?">Learn more about what I can earn →</a>
         </aside>
