@@ -273,14 +273,14 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
 .salon3.active .pt:not(.fr):not(.fl){filter:brightness(.6) saturate(.75)}
 @media(max-width:900px){.salon3{grid-template-columns:repeat(2,1fr);gap:40px 18px}}
 /* one-screen collection, hung on a wall (Taylor 10/12) */
-.wall2{min-height:100vh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:92px 4vw 4vh;
+.wall2{min-height:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start;padding:56px 4vw 6vh;
  background:radial-gradient(ellipse 60% 45% at 50% 62%,rgba(201,169,110,.10),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 2px,transparent 2px 46px),linear-gradient(#10241f,#0d1f1a)}
 .wall2 h2{font-size:clamp(30px,3.3vw,52px);max-width:1300px;margin:0 auto 6px}
 .wall2 .sub{margin-bottom:0}
-.salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:124px;position:relative}
+.salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:112px;position:relative}
 .salon3 .pt:nth-child(odd){margin-top:0}
 .salon3 .pt .frame{box-shadow:0 18px 30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
-@media(max-width:900px){.wall2{min-height:0;padding:12vh 5vw 8vh}.salon3{grid-template-columns:repeat(2,1fr);gap:56px 18px;max-width:none}.salon3::before{display:none}}
+@media(max-width:900px){.wall2{min-height:0;padding:40px 5vw 6vh}.salon3{grid-template-columns:repeat(2,1fr);gap:56px 18px;max-width:none}.salon3::before{display:none}}
 
 
 
@@ -519,7 +519,11 @@ document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chai
  let i=0,run=false;
  function face(el,k,dir){el.classList.remove('fr','fl','flip','speak');el.classList.add(dir==='r'?'fr':'fl');if(dir!==NAT[k])el.classList.add('flip')}
  let lastA=-1,mi=Math.floor(Math.random()*12);let curRow=-1;function viewRow(){const vh=innerHeight,c=cols(),rows=Math.ceil(8/c);let best=-1,bd=1e9;for(let r=0;r<rows;r++){const e=P[r*c].getBoundingClientRect();if(e.bottom<0||e.top>vh)continue;const d=Math.abs((e.top+e.bottom)/2-vh*0.5);if(d<bd){bd=d;best=r}}return best}
- function pick(){const c=cols();if(c<=2){let r=viewRow();if(r<0)r=Math.max(0,curRow);curRow=r;const x=r*c,y=x+1;const a=(lastA===x)?y:x;lastA=a;return [a,a===x?y:x]}let a;do{a=Math.floor(Math.random()*8)}while(a===lastA);lastA=a;const col=a%c;const nb=[];if(col>0)nb.push(a-1);if(col<c-1&&a+1<8)nb.push(a+1);return [a,nb[Math.floor(Math.random()*nb.length)]]}
+ function vis(k){const e=P[k].getBoundingClientRect();const h=e.bottom-e.top;return Math.min(e.bottom,innerHeight)-Math.max(e.top,0)>h*0.55}
+ function pick(){const c=cols();if(first&&vis(0)&&vis(1)){lastA=0;curRow=0;return [0,1]}
+  if(c>2){const ok=[];for(let k=0;k<8;k++){if(!vis(k))continue;const col=k%c;const nb=[];if(col>0&&vis(k-1))nb.push(k-1);if(col<c-1&&k+1<8&&vis(k+1))nb.push(k+1);if(nb.length)ok.push([k,nb])}
+   if(ok.length){let o;do{o=ok[Math.floor(Math.random()*ok.length)]}while(ok.length>1&&o[0]===lastA);lastA=o[0];return [o[0],o[1][Math.floor(Math.random()*o[1].length)]]}}
+  if(c<=2){let r=viewRow();if(r<0)r=Math.max(0,curRow);curRow=r;const x=r*c,y=x+1;const a=(lastA===x)?y:x;lastA=a;return [a,a===x?y:x]}let a;do{a=Math.floor(Math.random()*8)}while(a===lastA);lastA=a;const col=a%c;const nb=[];if(col>0)nb.push(a-1);if(col<c-1&&a+1<8)nb.push(a+1);return [a,nb[Math.floor(Math.random()*nb.length)]]}
  let tmr=null,first=true;function step(){clearTimeout(tmr);const [a,b]=pick();mi=(mi+1)%M.length;
   const A=P[a],L=P[b];const ar=A.getBoundingClientRect(),lr=L.getBoundingClientRect();
   const dirA=lr.left>ar.left?'r':'l',dirL=dirA==='r'?'l':'r';
@@ -543,4 +547,4 @@ document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chai
 (function(){const c=document.getElementById('ctr2');if(!c)return;let n=48213;const tick=()=>{n+=Math.floor(Math.random()*9)+1;c.textContent=n.toLocaleString()};tick();setInterval(tick,140)})();
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
-<script src="bgbin.js"></script></body></html>
+<script src="bgbin.js?v=2"></script></body></html>

@@ -1,7 +1,7 @@
 // While scrolling, 1s and 0s flicker only on the images in view, then fade when you stop
 (function(){
   const SEL='.frame,.hc,.shot,.card3 .img,.chairwrap';
-  const hosts=[...document.querySelectorAll(SEL)];
+  const hosts=[...document.querySelectorAll(SEL)].filter(h=>!h.closest('#salon'));
   const layers=new Map();
   hosts.forEach(h=>{if(getComputedStyle(h).position==='static')h.style.position='relative';
     const d=document.createElement('div');

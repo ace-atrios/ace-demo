@@ -229,6 +229,8 @@
     border: 1px solid var(--line); background: transparent; color: var(--ink-body); transition: border-color .3s, color .3s; }
   .asksug button:hover { border-color: rgba(201,169,110,.5); color: var(--ink); }
   .askhint { margin-top: 10px; font-size: 12px; color: var(--ink-muted); }
+  .navr{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  @media (max-width:560px){.navr .btn{height:32px;padding:0 12px;font-size:12px}}
 </style>
 
 <div class="shell">
@@ -242,10 +244,7 @@
     <div class="content">
       <header class="bar rise">
         <img src="img1.svg" alt="Atrios">
-        <a class="btn" href="#stack">
-          View the stack
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </a>
+        <div class="navr"><a class="btn" href="#" data-chat="Hi Ace, I'd like to create an account">Create account</a><a class="btn primary" href="share.html">Get rewarded to share perks</a></div>
       </header>
 
       <section class="hero">
@@ -265,7 +264,7 @@
               <button type="button">Help me hire engineers</button>
               <button type="button">Payroll for a team abroad</button>
             </div>
-            <div class="askhint">Opens a text chat with Ace, Atrios AI.</div>
+            <div class="askhint">Chat right here with Ace, Atrios AI.</div>
           </form>
           <div class="stats rise" style="--i:5">
             <div><b>5</b><span>Vendors</span></div>
@@ -314,7 +313,7 @@
             </div>
             <div class="foot">
               <div class="chips"><span class="chip">3.8 of 5</span><span class="chip">99 reviews</span></div>
-              <a class="btn primary" href="sms:+15303064813&amp;body=Hi%20Ace%2C%20I%27d%20like%20to%20book%20a%20call%20with%20Rho">Book a call with Rho</a>
+              <a class="btn primary" href="#" data-chat="I'd like to book a call with Rho">Book a call with Rho</a>
             </div>
           </article>
 
@@ -408,14 +407,11 @@
 </script>
 
 
+<script src="chat.js?v=1"></script>
 <script>
   (function () {
-    var f = document.getElementById('ask'), q = document.getElementById('askq');
-    function go(text) {
-      var t = (text || q.value).trim() || 'Hi Ace, help me find the right tools';
-      location.href = 'sms:+15303064813' + (/iPhone|iPad|Mac/.test(navigator.userAgent) ? '&' : '?') + 'body=' + encodeURIComponent(t);
-    }
-    f.addEventListener('submit', function (e) { e.preventDefault(); go(); });
-    f.querySelectorAll('.asksug button').forEach(function (b) { b.addEventListener('click', function () { q.value = b.textContent; go(b.textContent); }); });
+    var f = document.getElementById('ask'), q = document.getElementById('askq'), opened = false;
+    f.addEventListener('submit', function (e) { e.preventDefault(); var t = q.value.trim(); AtriosChat.open(t || ''); q.value = ''; });
+    f.querySelectorAll('.asksug button').forEach(function (b) { b.addEventListener('click', function () { AtriosChat.open(b.textContent); }); });
   })();
 </script></body></html>
