@@ -277,7 +277,7 @@ nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(
  background:radial-gradient(ellipse 60% 45% at 50% 62%,rgba(201,169,110,.10),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 2px,transparent 2px 46px),linear-gradient(#10241f,#0d1f1a)}
 .wall2 h2{font-size:clamp(30px,3.3vw,52px);max-width:1300px;margin:0 auto 6px}
 .wall2 .sub{margin-bottom:0}
-.salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:112px;position:relative}
+.salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:150px;position:relative}
 .salon3 .pt:nth-child(odd){margin-top:0}
 .salon3 .pt .frame{box-shadow:0 18px 30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
 @media(max-width:900px){.wall2{min-height:0;padding:40px 5vw 6vh}.salon3{grid-template-columns:repeat(2,1fr);gap:56px 18px;max-width:none}.salon3::before{display:none}}
@@ -524,7 +524,8 @@ document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chai
   if(c>2){const ok=[];for(let k=0;k<8;k++){if(!vis(k))continue;const col=k%c;const nb=[];if(col>0&&vis(k-1))nb.push(k-1);if(col<c-1&&k+1<8&&vis(k+1))nb.push(k+1);if(nb.length)ok.push([k,nb])}
    if(ok.length){let o;do{o=ok[Math.floor(Math.random()*ok.length)]}while(ok.length>1&&o[0]===lastA);lastA=o[0];return [o[0],o[1][Math.floor(Math.random()*o[1].length)]]}}
   if(c<=2){let r=viewRow();if(r<0)r=Math.max(0,curRow);curRow=r;const x=r*c,y=x+1;const a=(lastA===x)?y:x;lastA=a;return [a,a===x?y:x]}let a;do{a=Math.floor(Math.random()*8)}while(a===lastA);lastA=a;const col=a%c;const nb=[];if(col>0)nb.push(a-1);if(col<c-1&&a+1<8)nb.push(a+1);return [a,nb[Math.floor(Math.random()*nb.length)]]}
- let tmr=null,first=true;function step(){clearTimeout(tmr);const [a,b]=pick();mi=(mi+1)%M.length;
+ let tmr=null,first=true;function anyPair(){for(let k=0;k<7;k++){if(vis(k)&&vis(k+1)&&Math.floor(k/cols())===Math.floor((k+1)/cols()))return true}return false}
+ function step(){clearTimeout(tmr);if(first&&P[0].getBoundingClientRect().bottom<0)first=false;if(first?!(vis(0)&&vis(1)):!anyPair()){B.classList.remove('on');tmr=setTimeout(step,150);return}const [a,b]=pick();mi=(mi+1)%M.length;
   const A=P[a],L=P[b];const ar=A.getBoundingClientRect(),lr=L.getBoundingClientRect();
   const dirA=lr.left>ar.left?'r':'l',dirL=dirA==='r'?'l':'r';
   P.forEach((p,k)=>{if(k!==a&&k!==b)p.classList.remove('fr','fl','flip','speak')});
