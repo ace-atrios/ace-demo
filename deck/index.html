@@ -68,7 +68,7 @@ h2{font-size:72px;line-height:1.05;font-weight:650;letter-spacing:-.03em;color:v
 .stars{color:var(--gold);font-size:28px;letter-spacing:4px}
 /* logos wall */
 .wall{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:80px}
-.lg{height:170px;border-radius:22px;background:var(--w);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:650;color:var(--g);letter-spacing:-.02em;box-shadow:0 18px 50px -32px rgba(5,72,58,.4)}
+.lg img{max-height:58px;max-width:62%;object-fit:contain}.lg img[alt="Superposition"],.lg img[alt="Corridor"]{max-height:50px;max-width:75%}.lg{height:170px;border-radius:22px;background:var(--w);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:650;color:var(--g);letter-spacing:-.02em;box-shadow:0 18px 50px -32px rgba(5,72,58,.4)}
 /* levers */
 .levers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
 .lv{border-radius:26px;padding:44px 36px;min-height:360px;background:rgba(252,247,233,.06);border:1.5px solid rgba(252,247,233,.14);min-height:300px;display:flex;flex-direction:column;justify-content:space-between}
@@ -182,8 +182,7 @@ h2{font-size:72px;line-height:1.05;font-weight:650;letter-spacing:-.03em;color:v
   <div class="kick">Live on Atrios</div>
   <h2 style="margin-top:22px">Trusted by the tools<br>startups run on.</h2>
   <div class="wall">
-    <div class="lg">Rho</div><div class="lg">Deel</div><div class="lg">Oyster</div><div class="lg">Corridor</div>
-    <div class="lg">Superposition</div><div class="lg">Rillet</div><div class="lg">Slash</div><div class="lg">Thera</div>
+    <div class="lg"><img src="logos/rho.png" alt="Rho"></div><div class="lg"><img src="logos/deel.png" alt="Deel"></div><div class="lg"><img src="logos/oyster.png" alt="Oyster"></div><div class="lg"><img src="logos/corridor.png" alt="Corridor"></div><div class="lg"><img src="logos/superposition.png" alt="Superposition"></div><div class="lg"><img src="logos/rillet.png" alt="Rillet"></div><div class="lg"><img src="logos/slash.png" alt="Slash"></div><div class="lg"><img src="logos/thera.png" alt="Thera"></div>
   </div></div>
   <div class="foot"><span></span><img src="logo-dark.svg"></div>
 </section>
@@ -205,7 +204,11 @@ h2{font-size:72px;line-height:1.05;font-weight:650;letter-spacing:-.03em;color:v
 <section class="s cover"><div class="pad" style="display:flex;flex-direction:column;justify-content:center">
   <h1 style="color:var(--cream)">Let's build<br>your channel.</h1>
   <div class="rule"></div>
-  <p class="sub" style="color:#c9dcd3">allan@atrios.com · atrios.com</p>
+  <div style="display:flex;align-items:center;gap:28px">
+    <img src="allan.jpg" style="width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)">
+    <div><div style="font-size:36px;font-weight:650;color:var(--cream)">Allan Lvov</div>
+    <div style="font-size:24px;color:#c9dcd3;margin-top:6px">Head of GTM · allan@atrios.com</div></div>
+  </div>
   <img src="logo-light.svg" style="position:absolute;left:0;bottom:0;height:44px">
 </div></section>
 
