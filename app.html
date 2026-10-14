@@ -464,5 +464,31 @@ $("pE").textContent=m;$("pI").textContent=R.length;$("pH").textContent=R.filter(
 renderVendors();renderAct();renderProfile();$("gate").remove()}
 (async()=>{const saved=localStorage.getItem("atr_pc");if(saved){const D=await unlock(saved);if(D)return boot(D)}
 const i=document.getElementById("pc");i.focus();i.oninput=async()=>{if(i.value.length==6){const D=await unlock(i.value);if(D){localStorage.setItem("atr_pc",i.value);boot(D)}else{document.getElementById("pcerr").textContent="Wrong passcode";i.value=""}}}})();
-</script></body>
+</script><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style id="x7land-theme">
+:root{--x-ink:#0b2a22;--x-deep:#071d17;--x-cream:#f4eedf;--x-gold:#c9a96e;--x-gold2:#e2c88f;--x-text:#f3ecdc;--x-muted:rgba(243,236,220,.62);--x-line:rgba(243,236,220,.10);--gx:linear-gradient(180deg,#f4eedf,#e9dfc6)}
+html,body{background:var(--x-deep)!important}
+.phone{background:radial-gradient(700px 420px at 100% -10%,rgba(201,169,110,.10),transparent 60%),linear-gradient(180deg,#0b2a22 0%,#071d17 55%,#06170f 100%)!important;color:var(--x-text)!important;font-family:Inter,-apple-system,Helvetica,sans-serif!important;font-feature-settings:normal!important}
+header{background:rgba(11,42,34,.82)!important;border-bottom:1px solid var(--x-line)!important}
+header:after{background:radial-gradient(circle,rgba(201,169,110,.18),transparent 70%)!important}
+header h1,h1,h2{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:500!important;letter-spacing:-.01em!important;color:var(--x-text)!important}
+header h1{font-size:36px!important;line-height:1.05}
+header .sub{font-family:"Cormorant Garamond",Georgia,serif!important;font-style:italic;font-size:17px!important;color:var(--x-gold2)!important;opacity:.9}
+.earn{background:var(--x-cream)!important;color:var(--x-ink)!important;font-family:Inter,sans-serif!important;font-weight:600!important;box-shadow:none!important;border:0!important;border-radius:999px!important}
+.chip{background:transparent!important;border:1px solid rgba(243,236,220,.22)!important;color:var(--x-muted)!important;border-radius:999px!important;font-family:Inter,sans-serif!important;font-weight:500!important;box-shadow:none!important}
+.chip.on{background:var(--x-cream)!important;color:var(--x-ink)!important;border-color:var(--x-cream)!important}
+.sec,.cat h3 span{font-family:"JetBrains Mono",ui-monospace,monospace!important;letter-spacing:.14em!important;text-transform:uppercase;color:var(--x-gold)!important;font-weight:400!important}
+.card,.ref,.li,.list,.pgcard,.coll,.stat,.mrow,.cat,.sug{background:rgba(243,236,220,.035)!important;border:1px solid var(--x-line)!important;box-shadow:none!important;border-radius:18px!important}
+.card .t{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:600!important;font-size:22px!important;color:var(--x-text)!important}
+.card .d{color:var(--x-muted)!important}
+.perk{background:rgba(201,169,110,.12)!important;color:var(--x-gold2)!important;border:1px solid rgba(201,169,110,.28)!important;border-radius:999px!important;font-weight:500!important}
+.perk.fb{background:rgba(243,236,220,.06)!important;color:var(--x-text)!important;border-color:var(--x-line)!important}
+.tag{background:rgba(201,169,110,.12)!important;color:var(--x-gold2)!important;border-color:rgba(201,169,110,.3)!important}
+nav{background:rgba(7,29,23,.9)!important;border-top:1px solid var(--x-line)!important}
+nav button{color:rgba(243,236,220,.45)!important;font-family:Inter,sans-serif!important;font-weight:500!important}
+nav button.on{color:var(--x-gold2)!important}
+nav button.on svg{filter:none!important}
+html.pwa header{padding-top:max(calc(env(safe-area-inset-top) + 10px),58px)!important}
+</style>
+<script>if(navigator.standalone||matchMedia('(display-mode: standalone)').matches)document.documentElement.classList.add('pwa')</script></body>
 </html>
