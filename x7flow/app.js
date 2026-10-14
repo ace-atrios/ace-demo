@@ -37,9 +37,9 @@ function vDiscover(){
   const list=V.filter(v=>S.tab==='All'||(S.tab==='Recommended'?PICKS.includes(v.id):v.cat===S.tab));
   const vn={A:'Variant A: separate Claim and Share buttons on every card.',B:'Variant B: one Claim button per card. Sharing lives in the perk panel and on the "you\'re booked" screen.',R:'Recommended: Variant B plus a quiet share icon in the card corner.'}[S.variant];
   return `<div class="wrap">
-    <div class="dhead"><div><div class="eyebrow">Discover</div><h1>Perks for your startup</h1></div><span class="sp"></span>
+    <div class="dhead"><div><div class="eyebrow">My Perks</div><h1>Perks for your startup</h1></div><span class="sp"></span>
       </div>
-    <form class="acebar" data-askform><div class="ab-top"><span class="av">A</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Ace</small><b class="sigctr">48,213</b><span>signals today</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i><b>Reviews</b>Reading reviews</span><span class="sp"><i style="animation-delay:0.3s"></i><b>Funding</b>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.6s"></i><b>Hiring</b>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.9s"></i><b>Stack</b>Mapping founder stacks</span><span class="sp"><i style="animation-delay:1.2s"></i><b>Buy-or-Why</b>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.0s"></i><b>Reviews</b>Reading reviews</span><span class="sp"><i style="animation-delay:0.3s"></i><b>Funding</b>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.6s"></i><b>Hiring</b>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.9s"></i><b>Stack</b>Mapping founder stacks</span><span class="sp"><i style="animation-delay:1.2s"></i><b>Buy-or-Why</b>Reading Buy-or-Why feedback</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i><b>Hiring</b>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i><b>Stack</b>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.6s"></i><b>Buy-or-Why</b>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.9s"></i><b>Reviews</b>Reading reviews</span><span class="sp"><i style="animation-delay:1.2s"></i><b>Funding</b>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i><b>Hiring</b>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i><b>Stack</b>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.6s"></i><b>Buy-or-Why</b>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.9s"></i><b>Reviews</b>Reading reviews</span><span class="sp"><i style="animation-delay:1.2s"></i><b>Funding</b>Tracking funding rounds</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?">What tools can help my business?</button><button type="button" data-prompt="Best tools to get more revenue">Best tools to get more revenue</button><button type="button" data-prompt="What perks am I missing out on?">What perks am I missing out on?</button></div></form>
+    <form class="acebar" data-askform><div class="ab-top"><span class="av">A</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><b class="sigctr">48,213</b><span>signals</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:0.3s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:0.6s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.9s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:1.5s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.6s"></i>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.9s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:1.2s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:1.5s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.0s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:0.6s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.9s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:1.5s"></i>Mapping founder stacks</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?">What tools can help my business?</button><button type="button" data-prompt="Best tools to get more revenue">Best tools to get more revenue</button><button type="button" data-prompt="What perks am I missing out on?">What perks am I missing out on?</button></div></form>
     <div class="tabs">${['All','Recommended'].map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}<span class="div"></span>${CATS.map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}</div>
     <div class="grid">${list.map(v=>card(v)).join('')}</div>
   </div>`;
@@ -54,26 +54,52 @@ function mineCard(v){const on=pageIds().includes(v.id);
     <p class="about">${v.about}</p>
     <div class="acts"><button class="pillbtn gold grow" data-share="${v.id}">${ic.share}Share one-on-one</button><button class="pillbtn ${on?'onpage':''}" data-addpage="${v.id}">${on?ic.check+'On your page':'+ Add to page'}</button></div>
   </article>`}
+const FRIENDS_LIKELY=[
+ {n:'Maya Chen',r:'Co-founder & CEO, Lumen Health',why:'Same YC batch as you · 14 mutual connections',v:['deel','rho']},
+ {n:'Sam Patel',r:'Founder, Orbit Labs',why:'Worked together at Stripe · 9 mutuals',v:['rho','superposition']},
+ {n:'Priya Shah',r:'COO, Northwind',why:'Same NYC founder dinners · 21 mutuals',v:['corridor','slash']},
+ {n:'Leo Park',r:'CTO, Brightline',why:'Both Penn alumni · 6 mutuals',v:['superposition','securecloud']},
+ {n:'Jordan Kim',r:'Founder, Tidepool',why:'Commented on your last 3 posts',v:['slash','deel']},
+ {n:'Ava Moreno',r:'Head of People, Fieldwork',why:'Same pickleball league · 11 mutuals',v:['corridor','globaltize']}];
+const FRIENDS_INTRO=[
+ {n:'Maya Chen',r:'Co-founder & CEO, Lumen Health',why:'Raised a $6M seed last month and is hiring 4 engineers. You message her weekly.',v:['superposition','rho','deel'],s:96},
+ {n:'Priya Shah',r:'COO, Northwind',why:'Team just passed 30 people, benefits renewal is coming up. You met twice in September.',v:['corridor','slash'],s:91},
+ {n:'Sam Patel',r:'Founder, Orbit Labs',why:'Opened a team in Lisbon and is paying contractors abroad. You worked together at Stripe.',v:['deel','rho'],s:88},
+ {n:'Jordan Kim',r:'Founder, Tidepool',why:'Spending heavily on ads after a Series A. Engages with everything you post.',v:['slash','superposition'],s:84},
+ {n:'Leo Park',r:'CTO, Brightline',why:'Prepping SOC 2 for an enterprise deal. Same Penn alumni group.',v:['securecloud','superposition'],s:79},
+ {n:'Ava Moreno',r:'Head of People, Fieldwork',why:'Hiring 10+ remote roles this quarter.',v:['globaltize','corridor'],s:74}];
+function liHave(){return !!localStorage.getItem('x7li')}
 function vMine(){
-  const mode=S.mode||'page',ids=pageIds();
-  const side=mode==='page'
-   ?`<div class="pv"><div class="eyebrow">Live preview</div>
-      <div class="pvcard"><div class="pvh"><div class="pvph"><img src="taylor.jpg" alt=""></div><div><div class="eyebrow" style="font-size:9.5px">Curated by</div><div class="pvn">Taylor Offer's <em>perks</em></div></div></div>
-      ${ids.length?ids.map(id=>{const v=BY[id];return `<div class="pvi"><div class="mark sm">${v.name[0]}</div><div style="flex:1;min-width:0"><b>${v.name}</b><span>${v.perk}</span></div><button class="pvx" data-addpage="${v.id}" title="Remove">✕</button></div>`}).join(''):'<div class="pvempty">Add companies and they show up here</div>'}
-      </div>
-      <div class="pvlink">atrios.com/c/taylor</div>
-      <div class="pvacts"><a class="pillbtn gold" href="#/c/taylor">Preview full page</a><button class="pillbtn" data-sharegen>${ic.share}Share my page</button></div></div>`
-   :`<div class="pv"><div class="eyebrow">Share one-on-one</div><h3 style="font-size:22px;margin:6px 0 8px">Know a founder who needs something?</h3>
-      <p style="margin:0 0 14px;color:var(--muted);font-size:14px">Tap "Share one-on-one" on any company. We write the text, you edit it and send it from your phone, with Ace cc'd to answer questions and book the call.</p>
-      <div class="lbl">Recently shared</div>
-      <div class="pvi"><div class="mark sm">D</div><div style="flex:1"><b>Deel → Maya</b><span>Booked a call for Monday</span></div></div>
-      <div class="pvi"><div class="mark sm">R</div><div style="flex:1"><b>Rho → Sam</b><span>Sent yesterday</span></div></div>
-      <div class="pvacts"><button class="pillbtn gold" data-share="rho">${ic.share}Share a perk now</button></div></div>`;
-  return `<div class="wrap"><div class="eyebrow">My perks</div><h1 style="font-size:36px;margin:4px 0 6px">Share perks with your network</h1>
-   <p style="color:var(--muted);margin:0 0 18px">Build your page once, or send a perk to one friend by text.</p>
-   <div class="modes"><button class="${mode==='page'?'on':''}" data-mode="page"><b>Make your page</b><span>Pick the tools you'd vouch for. One link, always up to date.</span></button><button class="${mode==='share'?'on':''}" data-mode="share"><b>Share one-on-one via text</b><span>Send one perk to one friend, pre-written for you.</span></button></div>
-   <div class="claimed">${ic.cal}<span><b>Your claimed perk:</b> Rho $875 bonus · call Thu, Oct 22 · 2:00 PM ET</span></div>
-   <div class="minegrid"><div class="grid g2">${V.map(mineCard).join('')}</div>${side}</div></div>`;
+  const sm=S.smode||'companies',q=(S.sq||'').toLowerCase();
+  const next=RW.filter(r=>r.pts>PTS).sort((a,b)=>a.pts-b.pts)[0];
+  const top=`<section class="shero"><div class="rglow"></div>
+    <div class="shl"><div class="eyebrow">Share Perks</div><h1>Share perks, <em>earn rewards</em></h1>
+     <p>Send a friend a perk they actually need. You earn cash when they book a call, plus points toward real rewards.</p>
+     <div class="howpts sm"><div class="hp"><span class="hn">1</span><b>Share a perk</b><p>By text, email or link</p></div><div class="hp"><span class="hn">2</span><b>They book a call</b><p><span class="gold">$200–$600</span> + 500 pts</p></div><div class="hp"><span class="hn">3</span><b>They sign up</b><p><span class="gold">+2,500 pts</span> bonus</p></div></div></div>
+    <div class="shr"><div class="rbal"><div class="ring" style="--p:${Math.min(100,Math.round(PTS/next.pts*100))}"><div><b>${PTS.toLocaleString()}</b><span>points</span></div></div><div class="rnext">${(next.pts-PTS).toLocaleString()} to <b>${next.name}</b></div></div>
+     <div class="rmini">${RW.slice(0,4).map(r=>{const ok=PTS>=r.pts;return `<button class="rm ${ok?'ready':''}" data-claimr="${r.id}" title="${r.name}"><span style="background-image:url(${r.img})"></span><b>${r.name}</b><i>${ok?'Claim now':r.pts.toLocaleString()+' pts'}</i></button>`}).join('')}</div></div>
+   </section>`;
+  const toggle=`<div class="stog"><button class="${sm==='companies'?'on':''}" data-smode="companies">Search by companies</button><button class="${sm==='friends'?'on':''}" data-smode="friends">Search by friends</button></div>`;
+  let body='';
+  if(sm==='companies'){
+    const list=V.filter(v=>!q||(v.name+' '+v.sub+' '+v.cat).toLowerCase().includes(q));
+    body=`<div class="ssearch"><input data-sq placeholder="Search companies, e.g. banking, hiring, payroll" value="${esc(S.sq||'')}"></div>
+     <div class="slist">${list.map(v=>`<article class="srowc"><div class="hd"><div class="mark">${v.name[0]}</div><div><h3>${v.name}</h3><div class="cat">${v.sub}</div></div></div>
+       <div class="sfor"><div class="lbl">Your friend gets</div><b>${v.perk}</b><span>For: ${v.who.join(' · ')}</span></div>
+       <div class="searn"><div class="lbl">You earn</div><b>${EARN[v.id]||'$250'}</b><span>per call booked</span></div>
+       <button class="pillbtn gold bigshare" data-share="${v.id}">${ic.share}SHARE</button></article>`).join('')||'<div class="pvempty">No companies match</div>'}</div>`;
+  }else{
+    const have=liHave(),F=have?FRIENDS_INTRO:FRIENDS_LIKELY;
+    body=(have?`<div class="liok">${ic.check}<span>LinkedIn connected (${esc(localStorage.getItem('x7li'))}). Ranked by who you're most likely to intro, and what they need right now.</span><button class="lnk" data-liclear>Disconnect</button></div>`
+      :`<form class="liform" data-liform><div><b>Connect your LinkedIn</b><span>Ace ranks your network by who you can actually help, and which perks fit each friend.</span></div><input id="liurl" placeholder="linkedin.com/in/yourname"><button class="pillbtn gold" type="button" data-liconnect>Connect</button></form>
+       <div class="lbl" style="margin:18px 0 8px">Until then: people you're most likely to connect with</div>`)
+     +`<div class="flist">${F.map((f,i)=>`<article class="frow"><div class="fav">${f.n.split(' ').map(x=>x[0]).join('')}</div>
+        <div class="fmain"><div class="fn"><b>${f.n}</b>${f.s?`<span class="fscore">${f.s}% match</span>`:''}</div><div class="fr">${f.r}</div><div class="fwhy">${f.why}</div>
+        <div class="fv">${f.v.map(id=>`<button class="fchip" data-sharef="${id}|${f.n.split(' ')[0]}">${BY[id].name} · ${BY[id].perk}</button>`).join('')}</div></div>
+        <div class="facts"><button class="pillbtn gold" data-sharef="${f.v[0]}|${f.n.split(' ')[0]}">${ic.share}Text ${f.n.split(' ')[0]}</button><button class="pillbtn" data-copylink="${f.v[0]}">Copy link</button></div></article>`).join('')}</div>
+      <div class="note"><b>Sample people.</b> In the real product this list comes from your synced LinkedIn, Gmail and calendar.</div>`;
+  }
+  return `<div class="wrap">${top}${toggle}${body}</div>`;
 }
 const RW=[
  {id:'watch',img:'rw/watch.jpg',name:'Rolex Submariner',tag:'Grand prize',pts:25000},
@@ -119,10 +145,10 @@ function vInbox(){
    {k:'Promotion',promo:1,i:ic.star,h:'Limited: Superposition first month free',p:'For founders hiring in the US or Canada. Ends Friday.',t:'2d',b:'See the perk',href:'#/discover/superposition'}
   ];
   return `<div class="wrap ibox"><div class="eyebrow">Updates</div><h1 style="font-size:36px;margin:4px 0 6px">Notifications</h1>
-   <p style="color:var(--muted);margin:0">Booking updates, rewards and special promotions. Perks and collections live in Discover, not here.</p>
+   <p style="color:var(--muted);margin:0">Booking updates, rewards and special promotions. Perks and collections live in My Perks, not here.</p>
    <div class="tabs" style="margin-top:20px"><button class="on">All</button><button>Updates</button><button>Promotions</button></div>
    <div class="ilist">${items.map(x=>`<div class="item ${x.u?'unread':''} ${x.promo?'promo':''}"><div class="ic">${x.i}</div><div style="flex:1"><div class="kind">${x.k}</div><h4>${x.h}</h4><p>${x.p}</p>${x.b?`<a class="pillbtn" href="${x.href}">${x.b}</a>`:''}</div><span class="t">${x.t}</span></div>`).join('')}</div>
-   <div class="note"><b>Routing rule:</b> collection links open the collection page, the atrios.com CTA opens Discover, and texts from Ace deep-link to a perk panel. Nothing routes into this screen. It only holds updates and promos.</div></div>`;
+   <div class="note"><b>Routing rule:</b> collection links open the collection page, the atrios.com CTA opens My Perks, and texts from Ace deep-link to a perk panel. Nothing routes into this screen. It only holds updates and promos.</div></div>`;
 }
 function vVariants(){
   const v=BY.deel;
@@ -155,7 +181,7 @@ function vCollection(){
      <div><h3>Looking for something else?</h3><p>Browse every perk on Atrios, sorted by what fits your startup.</p><a class="pillbtn" href="#/discover">Explore all perks →</a></div>
      <div><h3>Share perks like Taylor</h3><p>Build your own page in 60 seconds and earn rewards when friends claim.</p><a class="pillbtn gold" href="../stack/build.html">Build your collection</a></div>
    </div>
-   <div class="note" style="margin-top:26px"><b>This is what a copied collection link opens</b> (atrios.com/c/taylor). Visitors never land in Taylor's inbox. Each perk opens the same panel as Discover, and the rest of Atrios is one click away.</div>
+   <div class="note" style="margin-top:26px"><b>This is what a copied collection link opens</b> (atrios.com/c/taylor). Visitors never land in Taylor's inbox. Each perk opens the same panel as My Perks, and the rest of Atrios is one click away.</div>
   </div>`;
 }
 
@@ -200,7 +226,7 @@ function panelHTML(v,step){
 function openPanel(id,step){const v=BY[id];if(!v)return;const p=$('#panel');p.innerHTML=panelHTML(v,step);p.classList.add('on');$('#scrim').classList.add('on');p.setAttribute('aria-hidden','false')}
 function closePanel(){$('#panel').classList.remove('on');if(!$('#modal').classList.contains('on'))$('#scrim').classList.remove('on');$('#panel').setAttribute('aria-hidden','true')}
 
-function openShare(id){
+function openShare(id,fn){
   const v=id?BY[id]:null;
   const txt=v?`Hey! I've been looking at ${v.name} for ${v.sub.toLowerCase()}. Through Atrios you get ${v.perk} when you sign up. Thought of you, here's the link: atrios.com/p/${v.id}?ref=taylor`
     :`Hey! I've been using Atrios to get perks on startup tools (banking, hiring, payroll). Thought you'd find a few useful: atrios.com/c/taylor`;
@@ -213,6 +239,7 @@ function openShare(id){
   const upd=()=>{const t=$('#stext').value;$('#viasms').href='sms:/open?addresses=+15303064813&body='+encodeURIComponent(t);$('#viamail').href='mailto:?cc=ace@atrios.com&subject='+encodeURIComponent(v?v.name+' perk for you':'Perks for your startup')+'&body='+encodeURIComponent(t)};
   $('#fname').oninput=e=>{const n=e.target.value.trim();const t=$('#stext');t.value=t.value.replace(/^Hey[^!]*!/,n?`Hey ${n}!`:'Hey!');upd()};
   $('#stext').oninput=upd;upd();
+  if(fn){$('#fname').value=fn;$('#fname').oninput({target:$('#fname')})}
   $('#modal').classList.add('on');$('#scrim').classList.add('on');
 }
 function closeShare(){$('#modal').classList.remove('on');if(!$('#panel').classList.contains('on'))$('#scrim').classList.remove('on')}
@@ -249,7 +276,7 @@ function route(){
     document.querySelector('.demobar a[data-r="c"]').classList.add('on');
   }else{
     $('#view').dataset.r=r;
-    $('#view').innerHTML=r==='inbox'?vInbox():r==='variants'?vVariants():r==='mine'?vMine():r==='rewards'?vRewards():vDiscover();
+    $('#view').innerHTML=r==='inbox'?vInbox():r==='variants'?vVariants():r==='mine'?vMine():r==='rewards'?vMine():vDiscover();
     document.querySelector(`.demobar a[data-r="${r}"]`)?.classList.add('on');
   }
   if(id)openPanel(id,step==='claim'?'claim':step==='time'?'time':step==='done'?'done':'detail');else{closePanel();window.scrollTo(0,0)}
@@ -265,7 +292,11 @@ document.addEventListener('click',e=>{
   if(t.closest('[data-copy]')){navigator.clipboard?.writeText($('#stext').value);toast('Copied. Paste it anywhere.');return}
   if(t.closest('#viasms')||t.closest('#viamail')){setTimeout(()=>{closeShare();toast("Sent! You'll see it in Updates when they claim.")},300);return}
   const ap=t.closest('[data-addpage]');if(ap){e.stopPropagation();const id=ap.dataset.addpage;let a=pageIds();a=a.includes(id)?a.filter(x=>x!==id):[...a,id];setPage(a);$('#standalone').innerHTML='';const y=window.scrollY;$('#view').innerHTML=vMine();window.scrollTo(0,y);toast(a.includes(id)?BY[id].name+' added to your page':BY[id].name+' removed');return}
-  const md=t.closest('[data-mode]');if(md){S.mode=md.dataset.mode;$('#view').innerHTML=vMine();return}
+  const smd=t.closest('[data-smode]');if(smd){S.smode=smd.dataset.smode;$('#view').innerHTML=vMine();return}
+  const sf=t.closest('[data-sharef]');if(sf){e.preventDefault();e.stopPropagation();const [id,fn]=sf.dataset.sharef.split('|');openShare(id,fn);return}
+  const cl=t.closest('[data-copylink]');if(cl){navigator.clipboard&&navigator.clipboard.writeText('atrios.com/p/'+cl.dataset.copylink+'?ref=taylor');toast('Link copied');return}
+  if(t.closest('[data-liconnect]')){e.preventDefault();const u=($('#liurl').value||'').trim()||'linkedin.com/in/taylor-offer';localStorage.setItem('x7li',u);toast('LinkedIn connected. Ranking your network…');$('#view').innerHTML=vMine();return}
+  if(t.closest('[data-liclear]')){localStorage.removeItem('x7li');$('#view').innerHTML=vMine();return}
   const cr=t.closest('[data-claimr]');if(cr){claimReward(cr.dataset.claimr);return}
   if(t.closest('[data-claimdone]')){closeShare();toast('Reward claimed! Check your email.');return}
   const pr=t.closest('[data-prompt]');if(pr){bigAsk(pr.dataset.prompt);return}
@@ -296,4 +327,6 @@ const QS=new URLSearchParams(location.search);
 if(QS.get('embed'))document.body.classList.add('embed');
 if(QS.get('m'))document.body.classList.add('mobileview');
 setSeg();route();
+document.addEventListener('submit',e=>{if(e.target.matches('[data-liform]')){e.preventDefault();const u=($('#liurl').value||'').trim()||'linkedin.com/in/taylor-offer';localStorage.setItem('x7li',u);toast('LinkedIn connected. Ranking your network…');$('#view').innerHTML=vMine()}});
+document.addEventListener('input',e=>{if(e.target.matches('[data-sq]')){S.sq=e.target.value;const pos=e.target.selectionStart;$('#view').innerHTML=vMine();const i=$('[data-sq]');i.focus();i.setSelectionRange(pos,pos)}});
 (function(){let n=48213;setInterval(()=>{n+=Math.floor(Math.random()*9)+1;document.querySelectorAll('.sigctr').forEach(c=>c.textContent=n.toLocaleString())},140)})();
