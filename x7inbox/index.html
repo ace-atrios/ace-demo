@@ -31,7 +31,7 @@ mark{background:#ffe58a;padding:0 1px;border-radius:2px}
 .empty{color:#8a857a;padding:40px;text-align:center}
 .back{display:none;margin-right:8px;cursor:pointer;color:#0e3b2e;font-weight:600}
 @media(max-width:760px){.side{width:100%}.main{display:none}.wrap.open .side{display:none}.wrap.open .main{display:flex}.back{display:inline-block}}
-</style></head><body><div id="gate" style="position:fixed;inset:0;background:#0e3b2e;display:flex;align-items:center;justify-content:center;z-index:9"><form id="gf" style="text-align:center;color:#f5efe2"><div style="font:600 22px Georgia,serif;margin-bottom:12px">Ace Inbox</div><input id="pc" type="password" inputmode="numeric" placeholder="Passcode" autocomplete="off" maxlength="4" style="padding:10px 14px;border-radius:10px;border:0;font-size:16px;width:180px;text-align:center"><br><button type="submit" style="margin-top:10px;padding:9px 22px;border-radius:10px;border:0;background:#f5efe2;color:#0e3b2e;font:600 15px system-ui">Open</button><div id="ge" style="margin-top:8px;font-size:12px;opacity:.8"></div></form></div>
+</style></head><body><div id="gate" style="position:fixed;inset:0;background:#0e3b2e;display:flex;align-items:center;justify-content:center;z-index:9"><form id="gf" style="text-align:center;color:#f5efe2"><div style="font:600 22px Georgia,serif;margin-bottom:12px">Ace Inbox</div><input id="pc" type="password" inputmode="numeric" placeholder="Passcode" autocomplete="off" maxlength="6" style="padding:10px 14px;border-radius:10px;border:0;font-size:16px;width:180px;text-align:center"><br><button type="submit" style="margin-top:10px;padding:9px 22px;border-radius:10px;border:0;background:#f5efe2;color:#0e3b2e;font:600 15px system-ui">Open</button><div id="ge" style="margin-top:8px;font-size:12px;opacity:.8"></div></form></div>
 <header><h1>Ace Inbox</h1><span class="sub">Every text + email thread Ace has with tastemakers, leads &amp; vendors · newest first · <span id="upd"></span></span></header>
 <div class="wrap" id="wrap">
 <div class="side"><div class="search"><input id="q" placeholder="Search names, companies, messages…" autofocus></div>
@@ -74,7 +74,7 @@ let CODE=localStorage.getItem('aceinbox_pc'),VER='';
 async function load(first){try{const r=await fetch('data.json?v='+Date.now(),{cache:'no-store'});const B=await r.json();if(B.v===VER&&!first)return;const d=await dec(B,CODE);if(!d){if(first){localStorage.removeItem('aceinbox_pc');document.getElementById('gate').style.display='flex'}return}
  VER=B.v;D=d.threads;document.getElementById('upd').textContent='updated '+new Date(d.gen).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});document.getElementById('gate').style.display='none';buildF();render();if(sel)openT(sel)}catch(e){}}
 document.getElementById('gf').onsubmit=async e=>{e.preventDefault();CODE=document.getElementById('pc').value.trim();const r=await fetch('data.json?v='+Date.now());const d=await dec(await r.json(),CODE);if(!d){document.getElementById('ge').textContent='Wrong passcode';return}localStorage.setItem('aceinbox_pc',CODE);load(true)};
-document.getElementById('pc').addEventListener('input',e=>{if(e.target.value.trim().length==4)document.getElementById('gf').requestSubmit()});
+document.getElementById('pc').addEventListener('input',e=>{if(e.target.value.trim().length==6)document.getElementById('gf').requestSubmit()});
 if(CODE)load(true);
 setInterval(()=>CODE&&load(false),60000);
 </script></body></html>
