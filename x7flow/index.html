@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Atrios · A world worth sharing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b2a22;--cream:#f4eedf;--cream2:#ebe3cf;--gold:#c9a96e;--gold2:#e2c88f;--text:#f3ecdc;--muted:rgba(243,236,220,.68);--dark-text:#1c2a24}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+.mono{font:400 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--cream);color:var(--ink);padding:12px 22px;border-radius:999px;font:500 14px Inter;transition:transform .2s,box-shadow .2s;border:0;cursor:pointer}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,110,.25)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(243,236,220,.3)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 5vw;transition:background .4s,padding .4s}
+nav.solid{background:rgba(11,42,34,.82);backdrop-filter:blur(14px);padding:14px 5vw;border-bottom:1px solid rgba(201,169,110,.15)}
+nav .logo{font:400 30px "Cormorant Garamond",serif}
+nav .links{display:flex;gap:28px;align-items:center;font-size:13.5px;color:var(--muted)}
+nav .links a:hover{color:var(--text)}
+nav .links .btn{padding:9px 18px;font-size:13px;color:var(--ink)}
+@media(max-width:760px){nav .links a:not(.btn){display:none}}
+.story{position:relative;height:100vh}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.stage .layer{position:absolute;inset:0;background-size:cover;background-position:60% 50%;will-change:transform,opacity}
+#paint{background-image:url(../x7land/a/still.jpg?v=7)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,42,34,.94) 0%,rgba(11,42,34,.72) 34%,rgba(11,42,34,.08) 62%,rgba(11,42,34,0) 100%),linear-gradient(0deg,rgba(11,42,34,.7),rgba(11,42,34,0) 30%)}
+.copy{position:absolute;left:5vw;top:50%;transform:translateY(-50%);max-width:560px;transition:opacity .5s,transform .5s}
+.copy h1{font-size:clamp(40px,5vw,76px);line-height:.98}
+.copy h1 em{font-style:normal;color:var(--muted)}
+.copy p{margin:26px 0 30px;color:var(--muted);font-size:17px;max-width:430px}
+.copy .aside{font:italic 400 clamp(20px,1.8vw,26px)/1.2 "Cormorant Garamond",serif;color:var(--gold2);margin:18px 0 0}
+.copy .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
+.copy .eyebrow{color:var(--gold);margin-bottom:22px}
+.hide{opacity:0;transform:translateY(calc(-50% + 24px));pointer-events:none}
+.foot{position:absolute;bottom:28px;left:5vw;right:5vw;display:flex;justify-content:space-between;color:var(--muted)}
+.foot .pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hot{position:absolute;opacity:0;transform:translateY(10px) scale(.96);transition:opacity .5s,transform .5s;pointer-events:none}
+.hot.on{opacity:1;transform:none;pointer-events:auto}
+.hot .ring{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--gold2);box-shadow:0 0 0 6px rgba(226,200,143,.15);animation:ring 2s infinite}
+@keyframes ring{50%{box-shadow:0 0 0 14px rgba(226,200,143,0)}}
+.hot .card{position:absolute;left:30px;top:-16px;width:230px;background:rgba(11,42,34,.88);backdrop-filter:blur(10px);border:1px solid rgba(201,169,110,.45);border-radius:14px;padding:16px}
+.hot .card .mono{color:var(--gold);font-size:10px}
+.hot .card b{display:block;font:400 26px "Cormorant Garamond",serif;margin:6px 0 2px}
+.hot .card span{font-size:12.5px;color:var(--muted)}
+.hot .card a{display:inline-block;margin-top:12px;font-size:12px;color:var(--ink);background:var(--gold2);padding:6px 12px;border-radius:999px}
+.belief{background:var(--cream);color:var(--dark-text);padding:18vh 5vw;position:relative;overflow:hidden}
+.belief .wrap{max-width:780px;margin:0 auto;position:relative}
+.belief .mono{color:#8a6d3b}
+.belief h2{font-size:clamp(40px,5.4vw,76px);line-height:1.02;margin:22px 0 34px;color:var(--ink)}
+.belief p{font-size:18px;color:#3b4a43;max-width:620px;margin-bottom:18px}
+.belief .sig{font:italic 400 34px "Cormorant Garamond",serif;color:#2c6a4f;margin-top:28px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+.inside{padding:16vh 5vw;background:radial-gradient(1200px 600px at 70% 0%,#123e31,var(--ink))}
+.inside h2{font-size:clamp(38px,5vw,70px);line-height:1.02;max-width:760px}
+.steps{display:flex;gap:10px;margin:26px 0 46px;flex-wrap:wrap}
+.steps span{padding:8px 14px;border:1px solid rgba(243,236,220,.18);border-radius:999px;font-size:13px;color:var(--muted);transition:all .4s}
+.steps span.on{border-color:var(--gold);color:var(--gold2)}
+.shot{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(201,169,110,.25);box-shadow:0 40px 120px rgba(0,0,0,.45);max-width:1100px}
+.shot img{display:block;width:100%}
+.shot .glow{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(226,200,143,.12) 50%,transparent 70%);transform:translateX(-100%);animation:sweep 5s ease-in-out infinite 1s}
+@keyframes sweep{60%,100%{transform:translateX(100%)}}
+.place{background:var(--cream);color:var(--dark-text);padding:16vh 5vw}
+.place h2{font-size:clamp(38px,5vw,70px);color:var(--ink);margin-bottom:6vh}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1200px}
+.card3 .img{aspect-ratio:3/4;border-radius:12px;overflow:hidden;position:relative;background:#2a4a44}
+.card3 img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.card3:hover img{transform:scale(1.05)}
+.card3 .num{position:absolute;top:14px;left:14px;color:var(--cream);background:rgba(11,42,34,.55);backdrop-filter:blur(6px);padding:5px 10px;border-radius:999px;font-size:10px}
+.card3 h3{font:400 28px "Cormorant Garamond",serif;color:var(--ink);margin:18px 0 4px}
+.card3 p{font-size:14px;color:#2c6a4f}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.faq{padding:16vh 5vw;background:var(--cream2);color:var(--dark-text)}
+.faq .grid{display:grid;grid-template-columns:1fr 1fr;gap:6vw;max-width:1200px}
+.faq h2{font-size:clamp(40px,5vw,72px);color:var(--ink);line-height:1}
+.faq .yes{font:400 28px "Cormorant Garamond",serif;color:#2c6a4f;margin:14px 0 20px}
+.faq .lead{color:#3b4a43;max-width:420px}
+.qa{border-top:1px solid rgba(11,42,34,.15)}
+.qa button{all:unset;cursor:pointer;display:flex;justify-content:space-between;width:100%;padding:20px 0;font:400 22px "Cormorant Garamond",serif;color:var(--ink)}
+.qa button span{font:300 22px Inter;transition:transform .3s}
+.qa.open button span{transform:rotate(45deg)}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .45s ease;color:#3b4a43;font-size:15.5px}
+.qa.open .a{max-height:200px}
+.qa .a p{padding:0 0 20px}
+@media(max-width:820px){.faq .grid{grid-template-columns:1fr}}
+.invite{position:relative;padding:4vh 5vw 0;background:var(--ink);overflow:hidden}
+.invite .row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4vw;max-width:1200px;margin:0 auto}
+.invite h2{font-size:clamp(44px,5.8vw,86px);line-height:.98}
+.invite p{color:var(--muted);margin:22px 0 30px;font-size:17px}
+.chairwrap{position:relative;display:flex;justify-content:center;padding-bottom:30px}
+.chairwrap img{width:min(400px,80%);mix-blend-mode:lighten;transform:translateY(40px);opacity:0;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),opacity 1.4s}
+.chairwrap.in img{transform:none;opacity:1}
+.goldline{position:absolute;left:5%;right:5%;bottom:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform 1.6s .3s}
+.chairwrap.in .goldline{transform:scaleX(1)}
+@media(max-width:820px){.invite .row{grid-template-columns:1fr}}
+footer{position:relative;margin-top:14vh;padding:60px 5vw 40px;border-top:1px solid rgba(201,169,110,.18);display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+footer .wm{height:56px}
+footer .cols{display:flex;gap:40px;font-size:13px;color:var(--muted)}
+footer .cols div{display:flex;flex-direction:column;gap:8px}
+footer .cols b{color:var(--text);font-weight:500;margin-bottom:4px}
+.pines{position:absolute;right:0;bottom:0;width:min(560px,60vw);opacity:.35;filter:invert(1) sepia(.8) saturate(.8) brightness(.9);mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+.legal{padding:0 5vw 34px;color:rgba(243,236,220,.4);font-size:12px;position:relative}
+@media(max-width:700px){.copy{right:5vw}.copy h1{font-size:38px!important}.shade{background:linear-gradient(0deg,rgba(11,42,34,.95) 10%,rgba(11,42,34,.55) 60%,rgba(11,42,34,.25))}.hot{left:30%!important;top:30%!important}.foot span:first-child{display:none}}
+
+.gallery{padding:16vh 5vw 14vh;background:#10241f;text-align:center}
+.gallery .k{font:italic 400 17px "Cormorant Garamond",serif;color:var(--muted)}
+.gallery h2{font-size:clamp(40px,5vw,72px);margin:6px 0 9vh}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:4vw;max-width:1200px;margin:0 auto;align-items:start;text-align:left}
+.col2{display:flex;flex-direction:column;gap:5vh}
+.piece{perspective:900px;cursor:pointer}
+.frame{position:relative;padding:9px;background:linear-gradient(135deg,#b8934f,#e8cf8e 30%,#8a6a32 60%,#d4b46e);box-shadow:0 26px 50px rgba(0,0,0,.5),inset 0 0 0 2px rgba(0,0,0,.25);transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s;transform-origin:center bottom}
+.frame img{display:block;width:100%;border:3px solid #5a4421}
+.piece:hover .frame{transform:rotateX(8deg) translateY(-6px) scale(1.03);box-shadow:0 40px 70px rgba(0,0,0,.6)}
+.plac{margin-top:22px;background:#162c26;border:1px solid rgba(201,169,110,.12);padding:12px 14px;box-shadow:0 10px 24px rgba(0,0,0,.3);transition:background .45s}
+.plac .mono{font-size:9.5px;color:var(--gold)}
+.plac b{display:block;font:400 18px "Cormorant Garamond",serif;margin-top:4px;color:var(--text)}
+.plac .more{max-height:0;overflow:hidden;transition:max-height .5s ease,margin .5s;font-size:13px;color:var(--muted)}
+.piece:hover .plac .more{max-height:120px;margin-top:8px}
+.piece:hover .plac{background:#1c3830}
+.piece.share .plac{background:var(--cream)}.piece.share .plac b{color:var(--ink)}.piece.share .plac .more{color:#3b4a43}
+@media(max-width:900px){.wall{grid-template-columns:1fr 1fr}}
+.how{padding:16vh 5vw;background:#0a1f1a}
+.how .eb{color:var(--gold)}
+.how h2{font-size:clamp(38px,4.6vw,66px);margin:14px 0 10px}
+.how .sub{color:var(--muted);margin-bottom:6vh}
+.hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1300px}
+.hc{position:relative;aspect-ratio:3/4.1;border-radius:10px;overflow:hidden;background:#516b66;cursor:pointer}
+.hc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease,filter .35s}
+.hc canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .35s}
+.hc:hover img{transform:scale(1.03)}
+
+.hc .tag{position:absolute;top:24px;left:24px;color:#f3ecdc;font-size:10px}
+.hc .tx{position:absolute;left:0;right:0;bottom:0;padding:80px 24px 26px;background:linear-gradient(0deg,rgba(10,31,26,.88),rgba(10,31,26,0))}
+.hc h3{font:400 clamp(30px,3vw,44px)/1 "Cormorant Garamond",serif;color:#f3ecdc}
+.hc p{font-size:13px;color:rgba(243,236,220,.82);margin-top:10px}
+.hc .rev{max-height:0;overflow:hidden;transition:max-height .45s ease;font-size:13px;color:var(--gold2)}
+.hc:hover .rev{max-height:80px;margin-top:10px}
+@media(max-width:820px){.hcards{grid-template-columns:1fr}}
+
+
+.phones{display:grid;grid-template-columns:1fr 1fr;gap:5vw;max-width:1150px;margin:7vh auto 0}
+.pcol{display:flex;flex-direction:column;align-items:center;gap:26px}
+.plabel{text-align:center;max-width:380px}.plabel .mono{color:var(--gold2);font-size:12px}.plabel p{color:var(--muted);font-size:15px;margin-top:8px}
+.iph{width:340px;max-width:88vw;height:640px;border-radius:52px;background:#0a0a0a;padding:12px;box-shadow:0 40px 100px rgba(0,0,0,.55),inset 0 0 0 2px #2a2a2a,0 0 0 1px rgba(201,169,110,.25)}
+.isc{height:100%;border-radius:42px;background:#000;overflow:hidden;display:flex;flex-direction:column}
+.ihd{padding:40px 0 10px;text-align:center;border-bottom:1px solid #1c1c1e;background:#0d0d0f}
+.iav{width:44px;height:44px;border-radius:50%;margin:0 auto 4px;background:linear-gradient(135deg,#1f5c4a,#c9a96e);display:grid;place-items:center;font:400 24px "Cormorant Garamond",serif;color:#f3ecdc}
+.ihd b{display:block;font:600 12px Inter;color:#f2f2f7}.ihd small{font-size:10px;color:#8e8e93}
+.ich{flex:1;min-height:0;padding:14px 10px 14px 12px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;overscroll-behavior:contain;}.ich>:first-child{margin-top:auto}.ich::-webkit-scrollbar{width:6px;display:block}.ich::-webkit-scrollbar-thumb{background:rgba(201,169,110,.7);border-radius:4px}.ich::-webkit-scrollbar-track{background:rgba(255,255,255,.06);border-radius:4px;margin:8px 0}
+.im{max-width:80%;padding:8px 12px;border-radius:18px;font:400 13.5px/1.35 -apple-system,Inter,sans-serif;opacity:0;transform:translateY(8px) scale(.98);transition:opacity .35s,transform .35s}
+.im.on{opacity:1;transform:none}
+.im i{display:block;font-style:normal;font-size:10px;color:#8e8e93;margin:-2px 0 2px}
+.im.me{align-self:flex-end;background:#0a84ff;color:#fff;border-bottom-right-radius:5px}.im.me i{color:rgba(255,255,255,.75)}
+.im.them{align-self:flex-start;background:#26262a;color:#f2f2f7;border-bottom-left-radius:5px}
+.im.ace{align-self:flex-start;background:#173a30;color:#f3ecdc;border:1px solid rgba(201,169,110,.25);border-bottom-left-radius:5px}
+.im.ace b{color:var(--gold2);font-weight:600}.im .pk{display:inline-block;margin-top:4px;font-size:12px;color:var(--gold2)}
+.typ{align-self:flex-start;background:#173a30;border-radius:18px;padding:10px 14px;display:flex;gap:4px}.typ i{width:6px;height:6px;border-radius:50%;background:#c9a96e;animation:tb 1s infinite}.typ i:nth-child(2){animation-delay:.15s}.typ i:nth-child(3){animation-delay:.3s}
+@keyframes tb{50%{opacity:.3;transform:translateY(-2px)}}
+@media(max-width:820px){.phones{grid-template-columns:1fr}}
+
+
+.bin{position:absolute;inset:0;pointer-events:none;overflow:hidden;font:400 11px/12px "JetBrains Mono",monospace;color:rgba(226,200,143,.55);white-space:normal;word-break:break-all;overflow-wrap:anywhere;z-index:2;padding:4px;transition:opacity .75s cubic-bezier(.2,.6,.3,1);mix-blend-mode:screen}
+.bin.gone{opacity:0}
+.frame,.hc,.shot,.card3 .img,.chairwrap{position:relative}
+.reveal-img{filter:blur(6px) brightness(.6);transition:filter .75s ease}
+.reveal-img.ok{filter:none}
+
+
+.voices{padding:16vh 5vw;background:#0e2620}
+.voices h2{font-size:clamp(40px,5vw,72px);margin:14px 0 8vh}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:3vw;max-width:1300px}
+.tcard{display:flex;flex-direction:column}
+.tf{padding:8px}.tf img{aspect-ratio:4/5;object-fit:cover}
+.tcard blockquote{font-size:19px;line-height:1.35;color:var(--text);margin:24px 0 18px;flex:1}
+.tn b{display:block;font:500 14px Inter;color:var(--text)}.tn span{font-size:13px;color:var(--gold)}
+@media(max-width:1000px){.tgrid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.tgrid{grid-template-columns:1fr}}
+/* nav emphasis */
+nav{background:linear-gradient(180deg,rgba(8,30,24,.85),rgba(8,30,24,0))}
+nav .links{gap:10px;color:var(--text)}
+nav .links a:not(.btn){padding:9px 16px;border-radius:999px;border:1px solid rgba(243,236,220,.28);background:rgba(11,42,34,.55);backdrop-filter:blur(8px);color:var(--text);font-size:14px;font-weight:500;transition:all .2s}
+nav .links a:not(.btn):hover{border-color:var(--gold2);color:var(--gold2);background:rgba(11,42,34,.8)}
+nav .links .btn{padding:10px 20px;font-size:14px;font-weight:600;background:var(--gold2);box-shadow:0 6px 20px rgba(226,200,143,.35)}
+
+
+.wall2{padding:14vh 5vw 10vh;background:#10241f;text-align:center;overflow:hidden}
+.wall2 h2{font-size:clamp(38px,4.8vw,70px);line-height:1.02;max-width:1000px;margin:14px auto 12px}
+.wall2 .sub{color:var(--gold2);font:italic 400 clamp(20px,2vw,28px) "Cormorant Garamond",serif;margin-bottom:7vh}
+.salon{position:relative;max-width:1250px;height:min(64vw,760px);margin:0 auto}
+.pt{position:absolute;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s}
+.pt .frame{padding:7px}.pt .frame img{display:block;width:100%}
+.pt .nm{display:block;margin-top:10px;font-size:9px;color:var(--muted);text-align:center}
+.pt.talk{transform:scale(1.06) rotate(-1deg);z-index:4}.pt.talk .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.pt.listen{transform:scale(1.03);z-index:3}
+.salon.active .pt:not(.talk):not(.listen){filter:brightness(.55) saturate(.7)}
+.bub{position:absolute;z-index:6;max-width:300px;opacity:0;transform:translateY(8px) scale(.96);transition:opacity .35s,transform .35s;pointer-events:none;text-align:left}
+.bub.on{opacity:1;transform:none}
+.btxt{background:var(--cream);color:var(--ink);font:400 20px/1.25 "Cormorant Garamond",serif;padding:14px 18px;border-radius:18px;box-shadow:0 20px 40px rgba(0,0,0,.45);position:relative}
+.btxt:after{content:"";position:absolute;bottom:-9px;left:var(--tail,24px);width:18px;height:18px;background:var(--cream);transform:rotate(45deg);border-radius:3px}
+.trk{display:inline-flex;align-items:center;gap:7px;margin-bottom:8px;background:rgba(11,42,34,.92);border:1px solid var(--gold);color:var(--gold2);font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.trk i{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 0 0 rgba(226,200,143,.7);animation:ping 1.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(226,200,143,0)}100%{box-shadow:0 0 0 0 rgba(226,200,143,0)}}
+.agg{padding:12vh 5vw;background:radial-gradient(1000px 600px at 75% 30%,#14402f,var(--ink));position:relative}
+.aggin{display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;max-width:1250px;margin:0 auto;align-items:center}
+.aggl h2{font-size:clamp(36px,4vw,60px);line-height:1.05;margin:14px 0 20px}.aggl h2 em{color:var(--muted);font-style:normal}
+.aggl p{color:var(--muted);font-size:17px;max-width:460px}
+.ctr{margin-top:34px}.ctr b{display:block;font:400 64px/1 "Cormorant Garamond",serif;color:var(--gold2)}.ctr span{color:var(--muted);font-size:14px}
+.board{background:rgba(8,28,23,.75);border:1px solid rgba(201,169,110,.3);border-radius:18px;padding:22px;box-shadow:0 40px 100px rgba(0,0,0,.45)}
+.board .bh{display:flex;justify-content:space-between;margin-bottom:14px}.board .bh .mono{color:var(--gold);font-size:10px}.board .live{color:#7cc49a;font-size:12px}
+.row{display:grid;grid-template-columns:28px minmax(0,1fr) 150px 112px;gap:14px;align-items:center;padding:12px 4px;border-top:1px solid rgba(243,236,220,.08)}
+.row .rk{font:400 22px "Cormorant Garamond",serif;color:var(--gold2)}
+.row b{display:block;font-weight:500;font-size:15px}.row small{color:var(--muted);font-size:12px}
+.row .bar{height:6px;background:rgba(243,236,220,.08);border-radius:9px;overflow:hidden}.row .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c9a96e,#e8cf8e);border-radius:9px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.board.in .row .bar i{width:var(--w)}
+.row .pk{text-align:center;font-size:12px;color:var(--ink);background:var(--gold2);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.tips{display:grid;gap:10px;margin-top:16px}
+.tip{background:#123a2f;border:1px solid rgba(201,169,110,.2);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--text)}
+.tip .mono{color:var(--gold2);font-size:10px;margin-right:8px}
+.agg .note{position:absolute;right:5vw;bottom:24px;font-size:11px;color:rgba(243,236,220,.35)}
+@media(max-width:900px){.salon{height:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.pt{position:relative;left:auto!important;top:auto!important;width:auto!important}.bub{position:fixed;left:5vw!important;right:5vw;top:auto!important;bottom:24px;max-width:none}.aggin{grid-template-columns:1fr}}
+
+
+.salon2{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6vw 7vw;max-width:1200px;margin:0 auto;padding-top:90px}
+.pair{display:flex;gap:18px;justify-content:center;align-items:flex-end}
+.pair .pt{position:relative;width:46%;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s}
+.pair:nth-child(odd) .pt:first-child{margin-bottom:24px}.pair:nth-child(even) .pt:last-child{margin-bottom:30px}
+.salon2.active .pt:not(.talk):not(.listen){filter:brightness(.5) saturate(.6)}
+@media(max-width:900px){.salon2{grid-template-columns:1fr;padding-top:70px}.bub{position:absolute!important}}
+
+
+.rail{display:grid;grid-template-columns:1fr 240px;gap:30px;align-items:center;max-width:1250px;margin:0 auto 9vh}
+.streams{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 80%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 80%,transparent);display:grid;gap:14px}
+.srow{display:flex;gap:12px;width:max-content;animation:flow 26s linear infinite}
+.srow.s2{animation-duration:32s}
+@keyframes flow{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.sp{display:inline-flex;align-items:center;gap:9px;white-space:nowrap;padding:12px 18px;border-radius:999px;border:1px solid rgba(124,196,154,.25);background:rgba(18,58,47,.55);box-shadow:0 0 24px rgba(124,196,154,.06) inset;color:var(--text);font-size:15px}
+.sp i{width:7px;height:7px;border-radius:50%;background:#7cc49a;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.core2{position:relative;width:220px;height:220px;justify-self:center}
+.ring2{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:rgba(124,196,154,.6);animation:spin 6s linear infinite;box-shadow:0 0 60px rgba(201,169,110,.15)}
+.ring2.b{inset:16px;border-top-color:rgba(124,196,154,.5);border-left-color:var(--gold2);animation-duration:9s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cin2{position:absolute;inset:34px;border-radius:50%;background:#071a15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cin2 small{font:500 11px "JetBrains Mono",monospace;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.cin2 b{font:600 34px Inter;color:#fff;margin:4px 0}.cin2 span{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.rail{grid-template-columns:1fr}}
+
+
+.pair{perspective:1100px}
+.face{position:relative}.face img{display:block;width:100%;transition:opacity .35s ease}
+.face img.t{position:absolute;inset:0;height:100%;object-fit:cover;opacity:0}
+.pt.talk .face img.t,.pt.listen .face img.t{opacity:1}
+.pair .pt{transform-style:preserve-3d}
+.pair .pt:first-child.talk,.pair .pt:first-child.listen{transform:rotateY(16deg) translateX(8px) scale(1.04)}
+.pair .pt:last-child.talk,.pair .pt:last-child.listen{transform:rotateY(-16deg) translateX(-8px) scale(1.04)}
+.pt.talk .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.btxt.reply{background:#e7efe9}
+
+
+.salon3{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:70px 34px;max-width:1150px;margin:0 auto;padding-top:120px;perspective:1200px}
+.salon3 .pt{position:relative;transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .55s;transform-style:preserve-3d}
+.salon3 .pt:nth-child(odd){margin-top:26px}
+.salon3 .pt.fr{transform:rotateY(16deg) scale(1.05)}
+.salon3 .pt.fl{transform:rotateY(-16deg) scale(1.05)}
+.salon3 .pt.fr .face img.t,.salon3 .pt.fl .face img.t{opacity:1}
+.salon3 .pt.flip .face img.t{transform:scaleX(-1)}
+.salon3 .pt.speak .frame{box-shadow:0 0 0 2px var(--gold2),0 30px 60px rgba(0,0,0,.6)}
+.salon3.active .pt:not(.fr):not(.fl){filter:brightness(.6) saturate(.75)}
+@media(max-width:900px){.salon3{grid-template-columns:repeat(2,1fr);gap:40px 18px}}
+/* one-screen collection, hung on a wall (Taylor 10/12) */
+.wall2{min-height:0;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start;padding:56px 4vw 6vh;
+ background:radial-gradient(ellipse 60% 45% at 50% 62%,rgba(201,169,110,.10),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 2px,transparent 2px 46px),linear-gradient(#10241f,#0d1f1a)}
+.wall2 h2{font-size:clamp(30px,3.3vw,52px);max-width:1300px;margin:0 auto 6px}
+.wall2 .sub{margin-bottom:0}
+.salon3{grid-template-columns:repeat(4,1fr);gap:58px 56px;max-width:min(1000px,calc((100vh - 440px)*1.5 + 168px));width:100%;padding-top:150px;position:relative}
+.salon3 .pt:nth-child(odd){margin-top:0}
+.salon3 .pt .frame{box-shadow:0 18px 30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.4)}
+@media(max-width:900px){.wall2{min-height:0;padding:40px 5vw 6vh}.salon3{grid-template-columns:repeat(2,1fr);gap:56px 18px;max-width:none}.salon3::before{display:none}}
+
+
+
+.feed{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding-bottom:18px;margin-bottom:16px;border-bottom:1px solid rgba(201,169,110,.18)}
+.feed .core2{width:118px;height:118px}.feed .ring2.b{inset:9px}.feed .cin2{inset:18px}.feed .cin2 b{font-size:19px}.feed .cin2 small{font-size:8px}.feed .cin2 span{font-size:9px}
+.feed .streams{gap:10px}.feed .sp{padding:8px 13px;font-size:13px}
+.aggin{align-items:start}.aggl{padding-top:40px}
+
+.prog{position:fixed;left:0;top:0;height:2px;background:var(--gold);z-index:60;width:0}
+
+/* Why Atrios exists (Taylor 10/12) */
+.why{padding:14vh 5vw 12vh;background:linear-gradient(#0d1f1a,#10241f);text-align:center}
+.why h2{font-size:clamp(36px,4.4vw,64px);line-height:1.04;margin:0 auto 7vh}
+.why .wg{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;max-width:1200px;margin:0 auto;text-align:left}
+.why .wc .frame{padding:9px;background:linear-gradient(135deg,#8a6a35,#e8c98a 30%,#9b7a40 55%,#f1d9a6 80%,#7a5a2a);box-shadow:0 24px 50px rgba(0,0,0,.55)}
+.why .wc .frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.why .wc .n{display:block;margin:26px 0 10px;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.2em;color:var(--gold)}
+.why .wc p{font:400 clamp(20px,1.7vw,26px)/1.3 "Cormorant Garamond",serif;color:var(--text);margin:0}
+@media(max-width:900px){.why .wg{grid-template-columns:1fr;gap:56px}}
+
+/* ---- mobile pass (Taylor 10/12) ---- */
+html,body{overflow-x:hidden}
+.mbtn{display:none}
+@media(max-width:760px){
+ nav{padding:12px 5vw!important}
+ .mbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:999px;border:1px solid rgba(243,236,220,.28);background:rgba(11,42,34,.6);color:var(--text);font-size:18px;margin-left:8px;cursor:pointer}
+ nav .links{gap:8px}
+ nav.open .links{position:absolute;top:64px;right:5vw;flex-direction:column;align-items:stretch;background:rgba(8,30,24,.96);border:1px solid rgba(201,169,110,.25);border-radius:16px;padding:12px;gap:8px;min-width:200px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+ nav.open .links a:not(.btn){display:block!important;text-align:center}
+ .agg{padding:10vh 5vw;overflow:hidden}
+ .aggin{grid-template-columns:1fr!important;gap:28px}
+ .aggin>*{min-width:0}
+ .aggl{padding-top:0}
+ .aggl h2{font-size:34px}
+ .board{padding:16px;min-width:0}
+ .feed{grid-template-columns:1fr;justify-items:center;gap:12px}
+ .feed .streams{width:100%;min-width:0}
+ .row{grid-template-columns:22px minmax(0,1fr) auto;gap:10px}
+ .row .bar{display:none}
+ .row small{display:block;white-space:normal}
+ .tgrid{gap:44px}
+ .tcard img{max-width:78%;}
+ .invite{padding-top:2vh}
+ .wall2 h2{font-size:30px}
+ .why{padding:10vh 6vw}
+ .copy h1{font-size:36px!important}
+}
+</style><style>.ctas .ghost2{background:transparent!important;color:#fff4de!important;border:1px solid rgba(255,244,222,.5)!important}</style></head>
+<body>
+<div class="prog" id="prog"></div>
+<nav id="nav"><a class="logo" href="#"><img src="../x7land/a/logo-light.png" alt="Atrios" style="height:34px;display:block"></a>
+<div class="links"><a href="./">Home</a><a href="../x7land/story.html">Our story</a><a href="../x7land/vendors.html">For vendors</a><a href="flow.html">How it flows</a><a class="btn" href="app.html#/discover">Get your perks</a></div><button class="mbtn" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button></nav>
+
+<section class="story" id="story">
+ <div class="stage">
+  <div class="layer" id="paint"></div>
+  <canvas id="ascii"></canvas>
+  <div class="shade" id="shade"></div>
+  <div class="copy" id="c1">
+   <h1 class="serif">Perks so good you'll want to share them with friends</h1><p class="aside serif">(After you get them for yourself first...)</p>
+      <div class="ctas"><a class="btn" href="app.html#/discover">Get your perks</a><a class="btn ghost2" href="sms:+15303064813&body=Hi%20Ace%2C%20show%20me%20some%20perks">Or text Ace</a></div></div>
+  <div class="foot mono"><span></span><span class="pulse">Scroll ↓</span></div>
+ </div>
+</section>
+
+
+
+<section class="wall2" id="perks">
+ <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
+ <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
+ <div class="salon3" id="salon"><div class="pt" data-n="1"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w1f.jpg" alt=""><img class="t" src="../x7land/a/w1.jpg" alt=""></div></div></div><div class="pt" data-n="2"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w2f.jpg" alt=""><img class="t" src="../x7land/a/w2.jpg" alt=""></div></div></div><div class="pt" data-n="3"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w3f.jpg" alt=""><img class="t" src="../x7land/a/w3.jpg" alt=""></div></div></div><div class="pt" data-n="4"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w4f.jpg" alt=""><img class="t" src="../x7land/a/w4.jpg" alt=""></div></div></div><div class="pt" data-n="5"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w5f.jpg" alt=""><img class="t" src="../x7land/a/w5.jpg" alt=""></div></div></div><div class="pt" data-n="6"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w6f.jpg" alt=""><img class="t" src="../x7land/a/w6.jpg" alt=""></div></div></div><div class="pt" data-n="7"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w7f.jpg" alt=""><img class="t" src="../x7land/a/w7.jpg" alt=""></div></div></div><div class="pt" data-n="8"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w8f.jpg" alt=""><img class="t" src="../x7land/a/w8.jpg" alt=""></div></div></div><div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div></div></div>
+ </div>
+ </div>
+</section>
+
+
+<section class="why" id="why">
+ <h2 class="serif reveal">Why Atrios Exists</h2>
+ <div class="wg">
+  <div class="wc reveal"><div class="frame"><img src="../x7land/a/why1.jpg" alt=""></div><span class="n">01</span><p>It's impossible for you to review all the new AI tools.</p></div>
+  <div class="wc reveal" style="transition-delay:.12s"><div class="frame"><img src="../x7land/a/why2.jpg" alt=""></div><span class="n">02</span><p>People know what's best for your business. We aggregate all that data.</p></div>
+  <div class="wc reveal" style="transition-delay:.24s"><div class="frame"><img src="../x7land/a/why3.jpg?v=4" alt=""></div><span class="n">03</span><p>Instead of companies spending money on spamming you, we ask them for perks we can share with you instead.</p></div>
+ </div>
+</section>
+<section class="agg" id="agg">
+ <div class="aggin">
+  <div class="aggl">
+   <div class="mono reveal" style="color:var(--gold)">Atrios aggregates it all</div>
+   <h2 class="serif reveal">Every recommendation, ranked.<br><em>So you only hear about the best.</em></h2>
+   <p class="reveal">Atrios listens to what founders, investors and operators actually recommend to each other, then tells you which tools are worth it, why, and the perk you get through a friend.</p>
+  </div>
+  <div class="board reveal">
+   <div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Atrios AI</small><b id="ctr2">0</b><span>signals today</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span></div></div></div><div class="bh"><span class="mono">This week's most recommended</span><span class="live">● live</span></div>
+   <div class="row"><span class="rk">1</span><div><b>Rho</b><small>Banking · "highest treasury rates"</small></div><div class="bar"><i style="--w:94%"></i></div><span class="pk">$875 welcome bonus</span></div>
+   <div class="row"><span class="rk">2</span><div><b>Deel</b><small>Payroll & HR · "saved us weeks"</small></div><div class="bar"><i style="--w:86%"></i></div><span class="pk">$1,500 credits</span></div>
+   <div class="row"><span class="rk">3</span><div><b>Superposition</b><small>Eng hiring · "found our first engineers"</small></div><div class="bar"><i style="--w:79%"></i></div><span class="pk">1 mo free + 20% off</span></div>
+  </div>
+ </div>
+ <p class="note">Illustrative</p>
+</section>
+
+
+<section class="how" id="how">
+ <div class="mono eb reveal">How it works</div>
+ 
+ <div class="hcards">
+  <div class="hc reveal"><img src="../x7land/a/h_box.jpg" alt=""><div class="tag mono">01 · For you</div><div class="tx"><h3>Find perks for yourself</h3><p>Free months, waived fees and real discounts on the products you need.</p><div class="rev">Browse the collection, pick a perk, book a 20-min intro.</div></div></div>
+  <div class="hc reveal" style="transition-delay:.12s"><img src="../x7land/a/h_women.jpg" alt=""><div class="tag mono">02 · For your friends</div><div class="tx"><h3>Share with friends</h3><p>Text it, post it, or drop it in your newsletter. Friends get the perks through your link.</p><div class="rev">Or just text Ace a friend's name, and Ace handles the rest.</div></div></div>
+  <div class="hc reveal" style="transition-delay:.24s"><img src="../x7land/a/h_coins.jpg" alt=""><div class="tag mono">03 · When they take the call</div><div class="tx"><h3>Earn rewards</h3><p>When a friend takes a call through your link, you earn rewards.</p><div class="rev">Rewarded after the meeting. Some perks reward you again when they sign up.</div></div></div>
+ </div>
+</section>
+
+<section class="inside" id="inside">
+ <div class="mono reveal" style="color:var(--gold)">05 / Inside Atrios</div>
+ <h2 class="serif reveal" style="margin-top:18px">Just text Ace.<br><em style="color:var(--muted);font-style:normal;font-size:.6em;line-height:1.2;display:block;margin-top:10px;max-width:900px">You'll instantly get tailored recommendations and perks you can't get anywhere else.</em></h2>
+ <div class="phones">
+  <div class="pcol reveal"><div class="plabel"><span class="mono">Recommendations and perks for you</span><p>Ask Ace what to use. Get picks based on your company, what similar startups use, and the perks you qualify for.</p></div>
+   <div class="iph"><div class="isc"><div class="ihd"><div class="iav">A</div><b>Ace</b><small>Atrios</small></div>
+    <div class="ich" data-chat>
+     <div class="im me">Hey Ace, we just closed our seed. Who should we use for banking? Any perks for us?</div>
+     <div class="im ace">Congrats! For a 9-person seed-stage AI startup in NYC, here's what I'd look at:</div>
+     <div class="im ace"><b>Rho</b>: treasury yield on your raise + cards and bill pay in one place. Popular with seed teams your size.<br><span class="pk">Perk: $875 welcome bonus</span></div>
+     <div class="im ace"><b>Brex</b>: if you'll spend a lot on cards and want strict spend controls as you hire.<br><span class="pk">Perk: up to $15k in founder perks</span></div>
+     <div class="im ace">Most AI startups at your stage I talk to pick Rho first. Want me to set up a 20-min intro?</div>
+     <div class="im me">Rho please 🙌</div>
+     <div class="im ace">Booked: Thu 11:00 AM ET with Rho. Invite's in your inbox ✨</div>
+     <div class="im me">Amazing. We're also hiring 3 engineers next quarter</div>
+     <div class="im ace"><b>Superposition</b>: recruiting for US startups, any role.<br><span class="pk">Perk: 1 month free + 20% off + $1,050</span></div>
+     <div class="im me">Set that up too 🙏</div>
+    </div></div></div>
+  </div>
+  <div class="pcol reveal" style="transition-delay:.15s"><div class="plabel"><span class="mono">Recommendations and perks to share</span><p>Introduce a friend to Ace. Ace finds the perks that fit them, and you get rewarded when they take the call.</p></div>
+   <div class="iph"><div class="isc"><div class="ihd"><div class="iav">A</div><b>Ace, Sam, Maya</b><small>Group</small></div>
+    <div class="ich" data-chat>
+     <div class="im me"><i>Sam</i>Ace meet Maya, she just started hiring her first engineers. Can you send her the best perks?</div>
+     <div class="im ace">Great to meet you Maya, thanks for the intro Sam! A few that fit a team about to hire:</div>
+     <div class="im ace"><b>Superposition</b>: recruiting for US startups, any role.<br><span class="pk">1 month free + 20% off + $1,050 bonus</span></div>
+     <div class="im ace"><b>Deel</b>: payroll and HR as you add people, in the US or abroad.<br><span class="pk">$1,500 in credits + $250</span></div>
+     <div class="im them"><i>Maya</i>Superposition sounds perfect, Wed afternoon works</div>
+     <div class="im ace">Done, you're booked Wed 2:00 PM ET. Invite's in your inbox ✨</div>
+     <div class="im me"><i>Sam</i>Thanks Ace 🙏</div>
+     <div class="im ace">Anytime! Sam, your reward for the intro shows up in your Atrios dashboard after the call.</div>
+    </div></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="place">
+ <div class="mono reveal" style="color:#8a6d3b">06 / Find your place</div>
+ <h2 class="serif reveal" style="margin-top:18px">Your story starts here.</h2>
+ <div class="cards">
+  <div class="card3 reveal"><div class="img"><img src="../x7land/a/art1.jpg" alt=""><span class="num mono">01</span></div><h3>Create your account</h3><p>Google or email.</p></div>
+  <div class="card3 reveal" style="transition-delay:.12s"><div class="img"><img src="../x7land/a/art2.jpg" alt=""><span class="num mono">02</span></div><h3>Tell us about you</h3><p>Find relevant perks.</p></div>
+  <div class="card3 reveal" style="transition-delay:.24s"><div class="img"><img src="../x7land/a/art3.jpg" alt=""><span class="num mono">03</span></div><h3>Share with friends</h3><p>Sync your network. Optional.</p></div>
+ </div>
+</section>
+
+<section class="voices" id="voices">
+ <div class="mono reveal" style="color:var(--gold)">The portrait gallery</div>
+ <h2 class="serif reveal">Atrios is for everyone.</h2>
+ <div class="tgrid"><div class="tcard reveal" style="transition-delay:0.0s"><div class="frame tf"><img src="../x7land/a/t_john.jpg" alt="John Unitas"></div><blockquote class="serif">“Atrios just works. The best connections happen when someone actually knows both sides of the table. The platform helped me expand my network across industries and turned what I was already doing, connecting great people, into something that creates real, tangible value for everyone.”</blockquote><div class="tn"><b>John Unitas</b><span>Vice President of Sales</span></div></div><div class="tcard reveal" style="transition-delay:0.1s"><div class="frame tf"><img src="../x7land/a/t_erica.jpg" alt="Erica Wenger"></div><blockquote class="serif">“In venture, your network is everything. I've spent years making introductions that create real value, connecting founders with investors, building partnerships, opening doors. Atrios is the first platform that rewards the people making those connections happen. It's about time.”</blockquote><div class="tn"><b>Erica Wenger</b><span>Founder & GP at Park Rangers Capital</span></div></div><div class="tcard reveal" style="transition-delay:0.2s"><div class="frame tf"><img src="../x7land/a/t_tommy.jpg" alt="Tommy Riggs"></div><blockquote class="serif">“Atrios understands what I do as a connector, building relationships and making thoughtful introductions. Finally, someone recognizes the value of curation and quality connections.”</blockquote><div class="tn"><b>Tommy Riggs</b><span>Founder at Final Boss Sour</span></div></div><div class="tcard reveal" style="transition-delay:0.30000000000000004s"><div class="frame tf"><img src="../x7land/a/t_ryan.jpg" alt="Ryan Waliany"></div><blockquote class="serif">“I run a lot of founder circles and I'm constantly meeting people who need qualified introductions. Atrios pays me to recommend the best-in-class products I use every day. It subsidizes my work connecting founders and enables me to do more.”</blockquote><div class="tn"><b>Ryan Waliany</b><span>Founder & CEO at Ambiguous AI</span></div></div></div>
+</section>
+<section class="invite" id="join">
+ <img class="pines" src="../x7land/a/pines.jpg" alt="">
+ <footer><img class="wm" src="../x7land/a/wordmark.png" alt="Atrios">
+  <div class="cols"><div><b>Company</b><a href="../x7land/story.html">Our story</a><a href="#">Contact</a></div><div><b>Resources</b><a href="../x7land/vendors.html">For vendors</a><a href="#">Help</a></div><div><b>Legal</b><a href="https://www.atrios.com/privacy">Privacy</a><a href="https://www.atrios.com/terms">Terms</a></div></div></footer>
+ <div class="legal">© 2026 Atrios</div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s);
+const story=$('#story'),paint=$('#paint'),cv=$('#ascii'),hot=$('#hot');
+const c1=$('#c1');
+const img=new Image(); img.src='a/still.jpg?v=7';
+const RAMP=' .:-=+*%#@';
+let cells=[],cw=0,ch=0,ctx=cv.getContext('2d');
+function prep(){
+ const W=cv.clientWidth,H=cv.clientHeight,dpr=Math.min(devicePixelRatio,2);
+ cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+ cw=W<700?7:9;ch=cw*1.45;const cols=Math.ceil(W/cw),rows=Math.ceil(H/ch);
+ const o=document.createElement('canvas');o.width=cols;o.height=rows;const ox=o.getContext('2d');
+ const ir=img.width/img.height,cr=W/H;let sw,sh,sx,sy;
+ if(ir>cr){sh=img.height;sw=sh*cr;sx=(img.width-sw)*.6;sy=0}else{sw=img.width;sh=sw/cr;sx=0;sy=(img.height-sh)/2}
+ ox.drawImage(img,sx,sy,sw,sh,0,0,cols,rows);
+ const d=ox.getImageData(0,0,cols,rows).data;cells=[];let mn=1,mx=0;for(let i=0;i<d.length;i+=4){const l=(.3*d[i]+.59*d[i+1]+.11*d[i+2])/255;mn=Math.min(mn,l);mx=Math.max(mx,l)}
+ for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const i=(y*cols+x)*4,r=d[i],g=d[i+1],b=d[i+2];const l=Math.pow(((.3*r+.59*g+.11*b)/255-mn)/(mx-mn+1e-6),.75);
+  cells.push({x,y,l,r,g,b,t:Math.random()*.6+(1-x/cols)*.4})}
+ ctx.font=`${cw*1.35}px "JetBrains Mono",monospace`;ctx.textBaseline='top';
+}
+function drawAscii(p){
+ ctx.clearRect(0,0,cv.width,cv.height);if(p<=0)return;
+ const m=Math.min(1,p*1.1);
+ for(const c of cells){if(c.t>p*1.2)continue;const k=Math.min(1,(p*1.2-c.t)*4);
+  const g=RAMP[Math.min(RAMP.length-1,Math.floor(c.l*(RAMP.length-1)+.6))];if(g===' ')continue;
+  ctx.fillStyle=`rgba(${c.r*(1-m)+226*m|0},${c.g*(1-m)+200*m|0},${c.b*(1-m)+143*m|0},${Math.min(1,(.25+c.l*.95))*k})`;
+  ctx.fillText(g,c.x*cw,c.y*ch)}
+}
+img.onload=()=>{prep();tick()};addEventListener('resize',()=>{if(img.complete)prep();tick()});
+const cl=v=>Math.min(1,Math.max(0,v));
+function prog(){const r=story.getBoundingClientRect();return cl(-r.top/(r.height-innerHeight))}
+function tick(){
+ $('#nav').classList.toggle('solid',scrollY>innerHeight*.6);
+ $('#prog').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
+}
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal,#chair').forEach(el=>io.observe(el));
+
+
+// phones: play chat when visible, loop
+document.querySelectorAll('[data-chat]').forEach(ch=>{const ms=[...ch.querySelectorAll('.im')];let started=false;
+ const play=()=>{ms.forEach(m=>{m.classList.remove('on');m.style.display='none'});let t=300;
+  ms.forEach((m,i)=>{const ace=m.classList.contains('ace');
+   if(ace){setTimeout(()=>{const ty=document.createElement('div');ty.className='typ';ty.innerHTML='<i></i><i></i><i></i>';ch.appendChild(ty);ch.scrollTop=ch.scrollHeight;setTimeout(()=>ty.remove(),700)},t);t+=750}
+   setTimeout(()=>{m.style.display='';requestAnimationFrame(()=>{m.classList.add('on');ch.scrollTo({top:ch.scrollHeight,behavior:'smooth'})})},t);t+=ace?900:1100});
+  setTimeout(play,t+4500)};
+ new IntersectionObserver((es,o)=>{if(es[0].isIntersecting&&!started){started=true;play();o.disconnect()}},{threshold:.4}).observe(ch)});
+
+// 1s and 0s "decoding" behind/over artwork, on load and when scrolled into view
+function binFill(el){const w=el.clientWidth,h=el.clientHeight;const n=Math.ceil(w/6.6)*Math.ceil(h/12);let t='';for(let i=0;i<n;i++)t+=Math.random()<.5?'0':'1';return t}
+function decode(host){if(host.dataset.dec)return;host.dataset.dec=1;const img=host.querySelector('img');const b=document.createElement('div');b.className='bin';host.appendChild(b);
+ if(img)img.classList.add('reveal-img');let k=0;const iv=setInterval(()=>{b.textContent=binFill(host);if(++k>4){clearInterval(iv);b.classList.add('gone');if(img)img.classList.add('ok');setTimeout(()=>b.remove(),800)}},50)}
+const decIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){decode(e.target);decIO.unobserve(e.target)}}),{threshold:.25});
+document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chairwrap').forEach(el=>decIO.observe(el));
+// hero: binary rain behind painting on load
+(function(){const st=document.querySelector('.stage');const b=document.createElement('div');b.className='bin';b.style.zIndex=0;st.insertBefore(b,st.querySelector('#ascii'));paint.style.opacity=0;paint.style.transition='opacity .75s ease';
+ let k=0;const iv=setInterval(()=>{b.textContent=binFill(st);k++;if(k==2)paint.style.opacity=1;if(k>4){clearInterval(iv);b.classList.add('gone');setTimeout(()=>{b.remove();paint.style.transition=''},800)}},50)})();
+
+// talking paintings
+(function(){
+ const S=document.getElementById('salon');if(!S)return;
+ const B=document.getElementById('bub'),T=document.getElementById('btxt');
+ const P=[...S.querySelectorAll('.pt')];const NAT=['r','l','r','l','r','l','r','l'];
+ const M=['"Rho gives you the highest treasury rates."','"You aren\'t using Muse yet? You need it."','"Higgsfield is the best AI video editor."','"Deel saved us weeks on international hiring."','"Superposition found our first two engineers."','"Supper answers data questions right in Slack."','"Get Secure Cloud before your first enterprise deal."','"Veroa got us a finance hire in 10 days."','"Slash has the best cashback on cards."','"Corridor cut our health insurance bill."','"Numeral handles sales tax in every state."','"Thera gave us 3 months of payroll free."'];
+ const cols=()=>getComputedStyle(S).gridTemplateColumns.split(' ').length;
+ let i=0,run=false;
+ function face(el,k,dir){el.classList.remove('fr','fl','flip','speak');el.classList.add(dir==='r'?'fr':'fl');if(dir!==NAT[k])el.classList.add('flip')}
+ let lastA=-1,mi=Math.floor(Math.random()*12);let curRow=-1;function viewRow(){const vh=innerHeight,c=cols(),rows=Math.ceil(8/c);let best=-1,bd=1e9;for(let r=0;r<rows;r++){const e=P[r*c].getBoundingClientRect();if(e.bottom<0||e.top>vh)continue;const d=Math.abs((e.top+e.bottom)/2-vh*0.5);if(d<bd){bd=d;best=r}}return best}
+ function vis(k){const e=P[k].getBoundingClientRect();const h=e.bottom-e.top;return Math.min(e.bottom,innerHeight)-Math.max(e.top,0)>h*0.55}
+ function pick(){const c=cols();if(first&&vis(0)&&vis(1)){lastA=0;curRow=0;return [0,1]}
+  if(c>2){const ok=[];for(let k=0;k<8;k++){if(!vis(k))continue;const col=k%c;const nb=[];if(col>0&&vis(k-1))nb.push(k-1);if(col<c-1&&k+1<8&&vis(k+1))nb.push(k+1);if(nb.length)ok.push([k,nb])}
+   if(ok.length){let o;do{o=ok[Math.floor(Math.random()*ok.length)]}while(ok.length>1&&o[0]===lastA);lastA=o[0];return [o[0],o[1][Math.floor(Math.random()*o[1].length)]]}}
+  if(c<=2){let r=viewRow();if(r<0)r=Math.max(0,curRow);curRow=r;const x=r*c,y=x+1;const a=(lastA===x)?y:x;lastA=a;return [a,a===x?y:x]}let a;do{a=Math.floor(Math.random()*8)}while(a===lastA);lastA=a;const col=a%c;const nb=[];if(col>0)nb.push(a-1);if(col<c-1&&a+1<8)nb.push(a+1);return [a,nb[Math.floor(Math.random()*nb.length)]]}
+ let tmr=null,first=true;function anyPair(){for(let k=0;k<7;k++){if(vis(k)&&vis(k+1)&&Math.floor(k/cols())===Math.floor((k+1)/cols()))return true}return false}
+ function step(){clearTimeout(tmr);if(first&&P[0].getBoundingClientRect().bottom<0)first=false;if(first?!(vis(0)&&vis(1)):!anyPair()){B.classList.remove('on');tmr=setTimeout(step,150);return}const [a,b]=pick();mi=(mi+1)%M.length;
+  const A=P[a],L=P[b];const ar=A.getBoundingClientRect(),lr=L.getBoundingClientRect();
+  const dirA=lr.left>ar.left?'r':'l',dirL=dirA==='r'?'l':'r';
+  P.forEach((p,k)=>{if(k!==a&&k!==b)p.classList.remove('fr','fl','flip','speak')});
+  face(A,a,dirA);A.classList.add('speak');face(L,b,dirL);S.classList.add('active');
+  B.classList.remove('on');
+  setTimeout(()=>{T.textContent=M[mi];const sr=S.getBoundingClientRect(),W=Math.min(290,sr.width-20);B.style.maxWidth=W+'px';
+   const cx=(ar.left+ar.right+lr.left+lr.right)/4-sr.left;const x=Math.max(0,Math.min(cx-W/2,sr.width-W));
+   const top=Math.min(ar.top,lr.top)-sr.top-122;B.style.setProperty('left',x+'px','important');B.style.setProperty('top',Math.max(-14,top)+'px','important');B.style.setProperty('bottom','auto','important');B.style.setProperty('right','auto','important');
+   const tailX=(ar.left+ar.right)/2-sr.left-x-9;T.style.setProperty('--tail',Math.max(16,Math.min(W-34,tailX))+'px');B.classList.add('on')},first?0:200);
+  first=false;tmr=setTimeout(step,1800)}
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!run){run=true;step()}},{threshold:0,rootMargin:'0px 0px 25% 0px'}).observe(S);
+ // mobile (2 per row): the row you're scrolling past starts talking right away, even mid-scroll
+ let raf=0;addEventListener('scroll',()=>{if(!run||cols()>2||raf)return;raf=requestAnimationFrame(()=>{raf=0;const r=viewRow();if(r>=0&&r!==curRow){first=true;step()}})},{passive:true});
+})();
+// counter
+(function(){const c=document.getElementById('ctr');if(!c)return;let done=false;
+ new IntersectionObserver(es=>{if(es[0].isIntersecting&&!done){done=true;const T=12480,st=performance.now();const f=t=>{const k=Math.min(1,(t-st)/1600);c.textContent=Math.round(T*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}},{threshold:.4}).observe(c)})();
+
+
+(function(){const c=document.getElementById('ctr2');if(!c)return;let n=48213;const tick=()=>{n+=Math.floor(Math.random()*9)+1;c.textContent=n.toLocaleString()};tick();setInterval(tick,140)})();
+document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+</script>
+<script src="../x7land/bgbin.js?v=2"></script></body></html>
