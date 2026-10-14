@@ -9,8 +9,8 @@
 <style>
 :root{--bg:#0b1f1b;--card:#12302a;--line:rgba(255,255,255,.08);--ink:#fff4de;--body:rgba(255,244,222,.82);--muted:rgba(255,244,222,.55);--gold:#c9a96e;--gold2:#e2c48b}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;overscroll-behavior:none}
-.view{position:fixed;inset:0;display:flex;flex-direction:column;transition:transform .28s ease}
+html,body{margin:0;height:var(--apph,100%);background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;overscroll-behavior:none}
+.view{position:fixed;top:0;left:0;right:0;height:var(--apph,100%);display:flex;flex-direction:column;transition:transform .28s ease}
 #thread{transform:translateX(100%);background:var(--bg)}
 body.open #thread{transform:none}body.open #home{transform:translateX(-25%)}
 header{padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:rgba(11,31,27,.96);border-bottom:1px solid var(--line);flex:none}
@@ -47,7 +47,7 @@ h1{font:600 28px/1.1 -apple-system,Inter,sans-serif;margin:4px 0 10px;letter-spa
 #gate img{width:72px;height:72px;border-radius:18px}#gate input{font-size:28px;letter-spacing:.4em;text-align:center;width:220px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink)}
 #ge{color:#f0a0a0;font-size:13px;min-height:18px}
 mark{background:var(--gold2);color:#06140f;border-radius:3px}
-</style></head><body>
+</style><script>(function(){var s=navigator.standalone||matchMedia('(display-mode: standalone)').matches;function f(){var p=innerHeight>=innerWidth;var h=s?(p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width)):innerHeight;document.documentElement.style.setProperty('--apph',Math.max(h,innerHeight)+'px')}f();addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)})})();</script></head><body>
 <div id="gate"><img src="icon-180.png" alt=""><b style="font-size:20px">Ace Inbox</b><form id="gf"><input id="pc" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></form><div id="ge"></div></div>
 <section class="view" id="home"><header><div class="upd" id="upd"></div><h1>Ace Inbox</h1><input class="search" id="q" placeholder="Search people, companies, messages" type="search"><div class="chips" id="chips"></div></header><div class="list" id="list"></div></section>
 <section class="view" id="thread"><header><div class="th"><button class="back" id="back">‹ Inbox</button><div class="tt" id="tt"></div></div><div class="meta" id="meta"></div></header><div class="msgs" id="msgs"></div></section>
