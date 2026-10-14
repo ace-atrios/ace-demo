@@ -136,19 +136,39 @@ function claimReward(id){const r=RW.find(x=>x.id===id);if(PTS<r.pts){toast(`${(r
 function bigAsk(q){const v=q.toLowerCase();
   const hit=/(revenue|sales|grow)/.test(v)?BY.slash:/(bank|card|cash)/.test(v)?BY.rho:/(hir|recruit)/.test(v)?BY.superposition:/(payroll|abroad|international)/.test(v)?BY.deel:BY.rho;
   location.hash='#/discover/'+hit.id;setTimeout(()=>askAce(q),420)}
+const MAIL=[
+ {id:'m1',u:1,from:'Ace',av:'A',tag:'Booking',sub:'Your Rho call is confirmed',snip:'Thu, Oct 22 at 2:00 PM ET. I added it to your calendar.',t:'2m',body:'<p>Hi Taylor,</p><p>Your call with Rho is confirmed for <b>Thu, Oct 22 at 2:00 PM ET</b>. The invite is on your calendar.</p><p>After the call you get the <b>$875 bonus</b> once your account is live, plus $50 for your feedback.</p><p>Want me to prep 3 questions for the call?</p><p>Ace</p>',b:'View perk',href:'#/discover/rho'},
+ {id:'m2',u:1,from:'Maya Chen',av:'MC',tag:'Referral',sub:'Booked the Deel call you sent me',snip:'Thanks for the intro, booked Monday at 11.',t:'1h',body:'<p>Hey! Thanks for sending the Deel perk. Booked a call for Monday at 11. The $1,500 credits are a nice push since we just hired in Lisbon.</p><p>Maya</p><p style="color:var(--muted)">You earn $250 + 500 pts once the call happens.</p>'},
+ {id:'m3',u:1,from:'Atrios Perks',av:'✦',tag:'Promotion',sub:'New this week: Supper, 2 months free',snip:'Data answers in Slack. Members only through Oct 31.',t:'3h',body:'<p><b>Supper</b> answers business questions from your live data in Slack, so nobody waits on a dashboard.</p><p>Atrios members get <b>2 months free</b> through Oct 31.</p>',b:'See the perk',href:'#/discover/supper'},
+ {id:'m4',from:'Atrios Rewards',av:'★',tag:'Reward',sub:'$50 feedback reward sent',snip:'Thanks for sharing your take on Corridor after your call.',t:'Yesterday',body:'<p>Your <b>$50</b> for sharing feedback on Corridor is on its way. It lands in 1-2 business days.</p><p>You are 5,150 points from a month of rent on us.</p>'},
+ {id:'m5',from:'Atrios Perks',av:'✦',tag:'Promotion',sub:'Limited: Superposition first month free',snip:'For founders hiring in the US or Canada. Ends Friday.',t:'2d',body:'<p>Hiring in the US or Canada? <b>Superposition</b> sources candidates for any eng, sales, marketing or CS role.</p><p>First month free + 20% off your first hire + $1,050. Ends Friday.</p>',b:'See the perk',href:'#/discover/superposition'}];
 function vInbox(){
-  const items=[
-   {k:'Update',u:1,i:ic.cal,h:'Your Rho call is confirmed',p:'Thu, Oct 22 · 2:00 PM ET. Calendar invite sent to you@company.com.',t:'2m',b:'View perk',href:'#/discover/rho'},
-   {k:'Update',u:1,i:ic.user,h:'Maya claimed the Deel perk you shared',p:'She booked a call for Monday. You earn a reward once it happens.',t:'1h'},
-   {k:'Promotion',u:1,promo:1,i:ic.gift,h:'New this week: Supper, 2 months free',p:'Data answers in Slack. Members only through Oct 31.',t:'3h',b:'See the perk',href:'#/discover/supper'},
-   {k:'Update',i:ic.coin,h:'$50 feedback reward sent',p:'Thanks for sharing your take on Corridor after your call.',t:'Yesterday'},
-   {k:'Promotion',promo:1,i:ic.star,h:'Limited: Superposition first month free',p:'For founders hiring in the US or Canada. Ends Friday.',t:'2d',b:'See the perk',href:'#/discover/superposition'}
-  ];
-  return `<div class="wrap ibox"><div class="eyebrow">Updates</div><h1 style="font-size:36px;margin:4px 0 6px">Notifications</h1>
-   <p style="color:var(--muted);margin:0">Booking updates, rewards and special promotions. Perks and collections live in My Perks, not here.</p>
-   <div class="tabs" style="margin-top:20px"><button class="on">All</button><button>Updates</button><button>Promotions</button></div>
-   <div class="ilist">${items.map(x=>`<div class="item ${x.u?'unread':''} ${x.promo?'promo':''}"><div class="ic">${x.i}</div><div style="flex:1"><div class="kind">${x.k}</div><h4>${x.h}</h4><p>${x.p}</p>${x.b?`<a class="pillbtn" href="${x.href}">${x.b}</a>`:''}</div><span class="t">${x.t}</span></div>`).join('')}</div>
-   <div class="note"><b>Routing rule:</b> collection links open the collection page, the atrios.com CTA opens My Perks, and texts from Ace deep-link to a perk panel. Nothing routes into this screen. It only holds updates and promos.</div></div>`;
+  const f=S.ifilter||'All',sel=S.isel||'m1';
+  const list=MAIL.filter(m=>f==='All'||(f==='Unread'?m.u:m.tag==='Promotion'));
+  const m=MAIL.find(x=>x.id===sel)||MAIL[0];
+  return `<div class="wrap mailw"><div class="mailhd"><div><div class="eyebrow">Inbox</div><h1 style="font-size:34px;margin:4px 0 0">Inbox</h1></div>
+    <div class="mtabs">${['All','Unread','Promotions'].map(t=>`<button class="${f===t?'on':''}" data-ifilter="${t}">${t}${t==='Unread'?` <i>${MAIL.filter(x=>x.u).length}</i>`:''}</button>`).join('')}</div></div>
+   <div class="mail"><div class="mlist">${list.map(x=>`<button class="mrow ${x.u?'unread':''} ${x.id===m.id?'sel':''}" data-isel="${x.id}"><span class="mav">${x.av}</span><span class="mtxt"><span class="mtop"><b>${x.from}</b><em>${x.t}</em></span><span class="msub">${x.sub}</span><span class="msnip">${x.snip}</span></span></button>`).join('')}</div>
+    <div class="mread"><div class="mrh"><span class="mav lg">${m.av}</span><div><h3>${m.sub}</h3><div class="mfrom">${m.from} <span>· ${m.t}</span> <span class="mtag">${m.tag}</span></div></div></div>
+     <div class="mbody">${m.body}</div>${m.b?`<a class="pillbtn gold" href="${m.href}">${m.b}</a>`:''}
+     <div class="mreply"><input placeholder="Reply to ${m.from}…"><button class="pillbtn" data-ireply>Send</button></div></div></div></div>`;
+}
+const PROF_DEF={name:'Taylor Offer',title:'CEO',company:'Atrios',linkedin:'linkedin.com/in/tayloroffer',email:'taylor@atrios.com',phone:'',location:'New York, NY',bio:'Founder of Atrios. I share the tools I actually use with founders I know.'};
+function prof(){try{return Object.assign({},PROF_DEF,JSON.parse(localStorage.getItem('x7prof')||'{}'))}catch(e){return PROF_DEF}}
+function vProfile(){
+  const p=prof();
+  const f=(k,l,ph,t='text')=>`<label class="pf2"><span>${l}</span><input data-pf="${k}" type="${t}" value="${esc(p[k]||'')}" placeholder="${ph}"></label>`;
+  return `<div class="wrap profw"><div class="eyebrow">Profile</div>
+   <section class="phero"><div class="pava"><img src="taylor.jpg" alt=""><button class="pchg" data-pphoto>Change</button></div>
+    <div><h1 style="font-size:36px;margin:0">${esc(p.name)}</h1><div class="psub">${esc(p.title)}${p.company?' at '+esc(p.company):''} · ${esc(p.location)}</div>
+     <div class="pstats"><div><b>12</b><span>perks shared</span></div><div><b>5</b><span>friends booked</span></div><div><b>6,850</b><span>points</span></div></div></div></section>
+   <div class="pgrid"><section class="pcard"><h3>About you</h3>
+     <div class="pform">${f('name','Full name','Your name')}${f('title','Job title','e.g. CEO')}${f('company','Company','Company name')}${f('location','Location','City')}${f('linkedin','LinkedIn','linkedin.com/in/you')}${f('email','Email','you@company.com','email')}${f('phone','Phone','(555) 555-5555','tel')}
+      <label class="pf2 full"><span>Bio</span><textarea data-pf="bio" rows="3">${esc(p.bio||'')}</textarea></label></div>
+     <div class="pacts"><button class="pillbtn gold" data-psave>Save changes</button><button class="pillbtn" data-preset>Reset</button></div></section>
+    <aside class="pside"><section class="pcard"><h3>Connected accounts</h3><p class="pmut">Ace uses these to find which friends you can help.</p>
+      ${[['LinkedIn',1],['Gmail',1],['Google Calendar',0],['X / Twitter',0]].map(([n,on])=>`<div class="conn"><span>${n}</span><button class="tgl ${on?'on':''}" data-tgl><i></i></button></div>`).join('')}</section>
+     <section class="pcard"><h3>Notifications</h3>${[['Text me booking updates',1],['Email me new perks',1],['Weekly rewards summary',0]].map(([n,on])=>`<div class="conn"><span>${n}</span><button class="tgl ${on?'on':''}" data-tgl><i></i></button></div>`).join('')}</section></aside></div></div>`;
 }
 function vVariants(){
   const v=BY.deel;
@@ -276,7 +296,7 @@ function route(){
     document.querySelector('.demobar a[data-r="c"]').classList.add('on');
   }else{
     $('#view').dataset.r=r;
-    $('#view').innerHTML=r==='inbox'?vInbox():r==='variants'?vVariants():r==='mine'?vMine():r==='rewards'?vMine():vDiscover();
+    $('#view').innerHTML=r==='profile'?vProfile():r==='inbox'?vInbox():r==='variants'?vVariants():r==='mine'?vMine():r==='rewards'?vMine():vDiscover();
     document.querySelector(`.demobar a[data-r="${r}"]`)?.classList.add('on');
   }
   if(id)openPanel(id,step==='claim'?'claim':step==='time'?'time':step==='done'?'done':'detail');else{closePanel();window.scrollTo(0,0)}
@@ -290,12 +310,19 @@ document.addEventListener('click',e=>{
   if(t.closest('[data-sharegen]')){e.preventDefault();openShare(null);return}
   if(t.closest('[data-closemodal]')){closeShare();return}
   if(t.closest('[data-copy]')){navigator.clipboard?.writeText($('#stext').value);toast('Copied. Paste it anywhere.');return}
-  if(t.closest('#viasms')||t.closest('#viamail')){setTimeout(()=>{closeShare();toast("Sent! You'll see it in Updates when they claim.")},300);return}
+  if(t.closest('#viasms')||t.closest('#viamail')){setTimeout(()=>{closeShare();toast("Sent! You'll see it in your Inbox when they claim.")},300);return}
   const ap=t.closest('[data-addpage]');if(ap){e.stopPropagation();const id=ap.dataset.addpage;let a=pageIds();a=a.includes(id)?a.filter(x=>x!==id):[...a,id];setPage(a);$('#standalone').innerHTML='';const y=window.scrollY;$('#view').innerHTML=vMine();window.scrollTo(0,y);toast(a.includes(id)?BY[id].name+' added to your page':BY[id].name+' removed');return}
   const smd=t.closest('[data-smode]');if(smd){S.smode=smd.dataset.smode;$('#view').innerHTML=vMine();return}
   const sf=t.closest('[data-sharef]');if(sf){e.preventDefault();e.stopPropagation();const [id,fn]=sf.dataset.sharef.split('|');openShare(id,fn);return}
   const cl=t.closest('[data-copylink]');if(cl){navigator.clipboard&&navigator.clipboard.writeText('atrios.com/p/'+cl.dataset.copylink+'?ref=taylor');toast('Link copied');return}
   if(t.closest('[data-liconnect]')){e.preventDefault();const u=($('#liurl').value||'').trim()||'linkedin.com/in/taylor-offer';localStorage.setItem('x7li',u);toast('LinkedIn connected. Ranking your network…');$('#view').innerHTML=vMine();return}
+  const ifl=t.closest('[data-ifilter]');if(ifl){S.ifilter=ifl.dataset.ifilter;$('#view').innerHTML=vInbox();return}
+  const isl=t.closest('[data-isel]');if(isl){S.isel=isl.dataset.isel;const mm=MAIL.find(x=>x.id===S.isel);if(mm)mm.u=0;$('#view').innerHTML=vInbox();return}
+  if(t.closest('[data-ireply]')){toast('Reply sent');return}
+  if(t.closest('[data-psave]')){const o={};document.querySelectorAll('[data-pf]').forEach(i=>o[i.dataset.pf]=i.value);localStorage.setItem('x7prof',JSON.stringify(o));$('#view').innerHTML=vProfile();toast('Profile saved');return}
+  if(t.closest('[data-preset]')){localStorage.removeItem('x7prof');$('#view').innerHTML=vProfile();return}
+  const tg=t.closest('[data-tgl]');if(tg){tg.classList.toggle('on');return}
+  if(t.closest('[data-pphoto]')){toast('Photo upload comes with the real app');return}
   if(t.closest('[data-liclear]')){localStorage.removeItem('x7li');$('#view').innerHTML=vMine();return}
   const cr=t.closest('[data-claimr]');if(cr){claimReward(cr.dataset.claimr);return}
   if(t.closest('[data-claimdone]')){closeShare();toast('Reward claimed! Check your email.');return}
