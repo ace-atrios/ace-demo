@@ -456,3 +456,15 @@ body.mobileview .phonewrap{display:flex}
 .rdrow{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .rdimg{width:56px;height:42px;border-radius:8px;background-size:cover;background-position:center;flex:none}
 .rdrow b{display:block;color:var(--ink);font-weight:500;font-size:14px}.rdrow span{font-size:12.5px;color:var(--muted)}
+
+/* inline Talk to Ace chat */
+.ichat{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);flex-direction:column;gap:10px;max-height:420px;overflow:auto}
+.ichat.on{display:flex}
+.ichat .msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+.ichat .msg.me{align-self:flex-end;background:var(--gold);color:#06140f}
+.ichat .msg.ace{align-self:flex-start;background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--body);width:85%}
+.ichat .msg.ace p{margin:0 0 8px}
+.irec{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.irec b{display:block;color:var(--ink);font-weight:500;font-size:14px}.irec span{font-size:12.5px;color:var(--muted)}
+.irec .pillbtn{padding:6px 12px;font-size:12.5px}
+.ichat .typing{width:auto;display:flex;gap:4px}.ichat .typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}.ichat .typing i:nth-child(2){animation-delay:.2s}.ichat .typing i:nth-child(3){animation-delay:.4s}
