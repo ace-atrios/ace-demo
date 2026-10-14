@@ -343,3 +343,22 @@ body.mobileview .phonewrap{display:flex}
 @media (max-width:1000px){.minegrid{grid-template-columns:1fr}.pv{position:static;order:-1}.rgrid{grid-template-columns:repeat(2,1fr)}.howpts{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:700px){.modes{grid-template-columns:1fr}.grid.g2{grid-template-columns:1fr}.rhero{grid-template-columns:1fr;padding:24px}.rhero h1{font-size:34px}.rgrid{grid-template-columns:1fr}.rbtns{flex-wrap:wrap}.signals{display:none}.bigask input{font-size:15px}.bigask button span{display:none}.insights{grid-template-columns:repeat(3,1fr)}}
 .ccace svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;flex:none}
+
+/* signals feed (from homepage) */
+.acebar .feed{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;margin:14px 0 16px}
+.core2{position:relative;width:118px;height:118px;justify-self:center}
+.ring2{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--gold);border-right-color:rgba(124,196,154,.6);animation:spin 6s linear infinite;box-shadow:0 0 60px rgba(201,169,110,.15)}
+.ring2.b{inset:9px;border-top-color:rgba(124,196,154,.5);border-left-color:var(--gold2);animation-duration:9s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cin2{position:absolute;inset:18px;border-radius:50%;background:#071a15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cin2 small{font:500 8px "JetBrains Mono",monospace;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
+.cin2 b{font-weight:600;font-size:17px;color:#fff;margin:3px 0}.cin2 span{font-size:9px;color:var(--muted)}
+.streams{overflow:hidden;min-width:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 85%,transparent);display:grid;gap:10px}
+.srow{display:flex;gap:10px;width:max-content;animation:flow 26s linear infinite}
+.srow.s2{animation-duration:32s}
+@keyframes flow{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.streams .sp{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:8px 13px;border-radius:999px;border:1px solid rgba(124,196,154,.25);background:rgba(18,58,47,.55);color:var(--ink);font-size:13px}
+.streams .sp b{color:var(--gold2);font-weight:600}
+.streams .sp i{width:7px;height:7px;border-radius:50%;background:#7cc49a;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+@media(max-width:640px){.acebar .feed{grid-template-columns:1fr;justify-items:center}.streams{width:100%}}
