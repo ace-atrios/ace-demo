@@ -320,6 +320,35 @@
   .rv{display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:13.5px;color:var(--ink-body)}.rv b{color:var(--ink);font-weight:400;font-size:15px}
   .stars{display:inline-flex;gap:1px}.stars svg{width:14px;height:14px;fill:var(--gold);stroke:none}.stars i svg{fill:rgba(201,169,110,.35)}
   .card{min-height:0}
+
+/* Taylor 10/14: collapsible steps, search, filters, more vendors */
+.stp .sh{cursor:pointer;display:flex;align-items:center;gap:10px}
+.stp .sh h3{margin:0}
+.stp .sh .cnt{margin-left:8px}
+.stp .sum{font-size:13px;color:var(--ink-muted);margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55%}
+.stp .chev{width:26px;height:26px;border-radius:50%;border:1px solid var(--line-control);display:grid;place-items:center;font-size:12px;color:var(--ink-muted);transition:transform .2s;flex:none}
+.stp.open .chev{transform:rotate(180deg)}
+.stp .body{display:grid;gap:10px;margin-top:12px}
+.stp:not(.open) .body{display:none}
+.stp:not(.open){padding:12px 0;opacity:.85}
+.stp.open .sum{display:none}
+.nextb{justify-self:start;margin-top:4px;padding:8px 16px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;font:400 13px var(--font-sans)}
+.vtools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.vsearch{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line-control);background:rgba(255,255,255,.04)}
+.vsearch input{flex:1;background:none!important;border:0!important;outline:0;color:var(--ink);font:inherit;font-size:14px;padding:0!important;margin:0!important;box-shadow:none!important;height:auto!important}
+.vsearch svg{width:15px;height:15px;stroke:var(--ink-muted);fill:none;stroke-width:2;flex:none}
+.vchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.vchips::-webkit-scrollbar{display:none}
+.vchips button{flex:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-body);font:400 12.5px var(--font-sans);cursor:pointer;white-space:nowrap}
+.vchips button.on{border-color:var(--gold);color:var(--gold);background:rgba(201,169,110,.08)}
+.selall{padding:8px 14px;border-radius:999px;border:1px solid var(--line-control);background:transparent;color:var(--ink);font:400 13px var(--font-sans);cursor:pointer;white-space:nowrap}
+.tilewrap{position:relative}
+.tiles{grid-template-rows:repeat(3,auto)!important;grid-auto-columns:calc((100% - 16px)/3.3)!important}
+.tile.hide{display:none}
+.tarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);background:#0e2723;color:var(--gold);display:grid;place-items:center;cursor:pointer;font-size:18px;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+.tarrow.r{right:-8px}.tarrow.l{left:-8px}
+.scrollhint{display:flex;align-items:center;gap:8px;color:var(--gold)!important;font-size:13px!important}
+@media (max-width:700px){.tiles{grid-auto-columns:calc((100% - 8px)/2.2)!important}.stp .sum{display:none}}
 </style>
 
 <div class="shell"><main class="panel"><nav class="rail" aria-hidden="true"><img src="img0.png" alt=""><i></i><span>Build your stack</span></nav>
@@ -329,16 +358,16 @@
   <section class="steps-col">
     <div class="eyebrow">Create your stack</div>
     <h1 class="bh">Build your page<br>in <em>60 seconds.</em></h1>
-    <div class="stp" id="s1"><div class="sn">1</div><div class="sb"><h3>Who are you?</h3>
+    <div class="stp open" id="s1"><div class="sn">1</div><div class="sb"><div class="sh"><h3>Who are you?</h3><span class="sum" id="sum1"></span><span class="chev">▾</span></div><div class="body">
       <input id="nm" placeholder="Your name" maxlength="40"><input id="rl" placeholder="What you do (e.g. Founder, Acme)" maxlength="60">
-      <label class="up"><input type="file" id="ph" accept="image/*" hidden>Add a photo (optional)</label></div></div>
-    <div class="stp" id="s2"><div class="sn">2</div><div class="sb"><h3>Pick the tools you'd vouch for <span class="cnt" id="cnt">0 picked</span></h3>
-      <div class="tiles" id="tiles"></div><div class="scrollhint">Scroll for more →</div></div></div>
-    <div class="stp" id="s3"><div class="sn">3</div><div class="sb"><h3>Why do you recommend them?</h3><p class="hint">One line each. This is what makes your stack convincing.</p><div id="whys" style="display:grid;gap:18px"></div></div></div>
-    <div class="stp"><div class="sn">4</div><div class="sb"><h3>Claim your link</h3><p class="hint">Your stack lives at this link. Edit it if you like, then create it.</p>
+      <label class="up"><input type="file" id="ph" accept="image/*" hidden>Add a photo (optional)</label><button type="button" class="nextb" data-next="s2">Next: pick your tools →</button></div></div></div>
+    <div class="stp" id="s2"><div class="sn">2</div><div class="sb"><div class="sh"><h3>Pick the tools you'd vouch for <span class="cnt" id="cnt">0 picked</span></h3><span class="sum" id="sum2"></span><span class="chev">▾</span></div><div class="body"><div class="vtools"><label class="vsearch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="vq" placeholder="Search vendors"></label><button type="button" class="selall" id="selall">Select all</button></div><div class="vchips" id="vchips"></div>
+      <div class="tilewrap"><button type="button" class="tarrow l" id="tl" aria-label="Scroll left">‹</button><div class="tiles" id="tiles"></div><button type="button" class="tarrow r" id="tr" aria-label="Scroll right">›</button></div><div class="scrollhint" id="shint"></div><button type="button" class="nextb" data-next="s3">Next: say why →</button></div></div></div>
+    <div class="stp" id="s3"><div class="sn">3</div><div class="sb"><div class="sh"><h3>Why do you recommend them?</h3><span class="sum" id="sum3"></span><span class="chev">▾</span></div><div class="body"><p class="hint">One line each. This is what makes your stack convincing.</p><div id="whys" style="display:grid;gap:18px"></div><button type="button" class="nextb" data-next="s4">Next: claim your link →</button></div></div></div>
+    <div class="stp" id="s4"><div class="sn">4</div><div class="sb"><div class="sh"><h3>Claim your link</h3><span class="sum" id="sum4"></span><span class="chev">▾</span></div><div class="body"><p class="hint">Your stack lives at this link. Edit it if you like, then create it.</p>
       <div class="urlrow"><span class="pre">atrios.com/tastemaker/</span><input id="slug" maxlength="32" spellcheck="false"></div>
       <a class="btn primary big" href="#" id="mkurl">Create URL</a>
-      <div class="done" id="done" hidden><div class="ok">✓ Your link is live: <b id="finalurl"></b></div><a class="btn big" href="#" id="howshare">Learn how to share your link</a></div></div></div>
+      <div class="done" id="done" hidden><div class="ok">✓ Your link is live: <b id="finalurl"></b></div><a class="btn big" href="#" id="howshare">Learn how to share your link</a></div></div></div></div>
   </section>
   <aside class="prev-col"><div class="prev-lbl">Live preview</div>
     <div class="prev" id="prev"></div></aside>
@@ -369,7 +398,7 @@ function preview(){
 }
 $('nm').oninput=function(){S.name=this.value;save();preview()};$('rl').oninput=function(){S.role=this.value;save();preview()};
 $('ph').onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement('canvas');c.width=c.height=160;var x=c.getContext('2d'),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,160,160);S.photo=c.toDataURL('image/jpeg',.8);save();preview()};im.src=r.result};r.readAsDataURL(f)};
-$('tiles').onclick=function(e){var t=e.target.closest('.tile');if(!t)return;var i=+t.dataset.i,k=S.picks.indexOf(i);if(k>-1)S.picks.splice(k,1);else{if(S.picks.length>=6){t.animate([{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'none'}],{duration:200});return}S.picks.push(i)}save();render()};
+$('tiles').onclick=function(e){var t=e.target.closest('.tile');if(!t)return;var i=+t.dataset.i,k=S.picks.indexOf(i);if(k>-1)S.picks.splice(k,1);else{S.picks.push(i)}save();render()};
 /*pub*/ if(false)$("x").onclick=function(e){e.preventDefault();var n=S.name.trim()||'(no name yet)';var lines=S.picks.map(function(i){return '- '+V[i][0]+(S.why[i]?': '+S.why[i]:'')});
   AtriosChat.open('Publish my stack!\nName: '+n+(S.role?' ('+S.role+')':'')+'\nPicks:\n'+(lines.join('\n')||'- none yet'))};
 
@@ -380,5 +409,37 @@ var oldNm=$('nm').oninput;$('nm').oninput=function(){oldNm.call(this);if(!slugTo
 $('mkurl').onclick=function(e){e.preventDefault();var sl=$('slug').value||slugify(S.name.split(' ')[0])||'me';S.slug=sl;save();$('finalurl').textContent='atrios.com/tastemaker/'+sl;$('done').hidden=false;this.textContent='Update URL'};
 $('howshare').onclick=function(e){e.preventDefault();var lines=S.picks.map(function(i){return '- '+V[i][0]+(S.why[i]?': '+S.why[i]:'')});AtriosChat.open('I just created my stack: atrios.com/tastemaker/'+S.slug+'\nPicks:\n'+(lines.join('\n')||'- none yet')+'\nHow do I share my link?')};
 render();
+
+/* Taylor 10/14: accordion + search + filters */
+{
+var REC=['Rho','Slash','Superposition','Deel','Corridor','Secure Cloud'];
+var cats=[];V.forEach(function(v){if(cats.indexOf(v[1])<0)cats.push(v[1])});
+var F='All',Q='';
+var chips=['All','Recommended'].concat(cats);
+function drawChips(){$('vchips').innerHTML=chips.map(function(c){return '<button type="button" class="'+(c===F?'on':'')+'" data-c="'+c+'">'+c+'</button>'}).join('')}
+function vis(i){var v=V[i];var okF=F==='All'||(F==='Recommended'?REC.indexOf(v[0])>-1:v[1]===F);var okQ=!Q||(v[0]+' '+v[1]+' '+v[2]).toLowerCase().indexOf(Q)>-1;return okF&&okQ}
+function arrows(){var t=$('tiles');$('tl').style.display=t.scrollLeft>10?'':'none';$('tr').style.display=t.scrollLeft+t.clientWidth<t.scrollWidth-10?'':'none'}
+function filter(keep){var n=0;document.querySelectorAll('.tile').forEach(function(t){var s=vis(+t.dataset.i);t.classList.toggle('hide',!s);if(s)n++});
+  var idx=V.map(function(_,i){return i}).filter(vis);var allOn=idx.length&&idx.every(function(i){return S.picks.indexOf(i)>-1});
+  $('selall').textContent=allOn?'Clear these':(F==='All'?'Select all':'Select all '+F.toLowerCase());
+  $('shint').innerHTML=n>9?'<span>'+n+' tools · scroll for more</span><span>→</span>':'<span>'+n+' tool'+(n===1?'':'s')+'</span>';
+  if(!keep)$('tiles').scrollLeft=0;setTimeout(arrows,30)}
+$('vchips').onclick=function(e){var b=e.target.closest('button');if(!b)return;F=b.dataset.c;drawChips();filter()};
+$('vq').oninput=function(){Q=this.value.trim().toLowerCase();filter()};
+$('selall').onclick=function(){var idx=V.map(function(_,i){return i}).filter(vis);var allOn=idx.every(function(i){return S.picks.indexOf(i)>-1});
+  if(allOn)S.picks=S.picks.filter(function(i){return idx.indexOf(i)<0});else idx.forEach(function(i){if(S.picks.indexOf(i)<0)S.picks.push(i)});save();render();filter(true);sums()};
+$('tr').onclick=function(){$('tiles').scrollBy({left:$('tiles').clientWidth*.8,behavior:'smooth'})};
+$('tl').onclick=function(){$('tiles').scrollBy({left:-$('tiles').clientWidth*.8,behavior:'smooth'})};
+$('tiles').addEventListener('scroll',arrows);
+function openStep(id){document.querySelectorAll('.stp').forEach(function(s){s.classList.toggle('open',s.id===id)});sums();var el=$(id);if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});arrows()},60)}
+function sums(){$('sum1').textContent=[S.name,S.role].filter(Boolean).join(' · ')||'Not started';
+  $('sum2').textContent=S.picks.length?S.picks.map(function(i){return V[i][0]}).join(', '):'No tools yet';
+  var w=S.picks.filter(function(i){return S.why[i]}).length;$('sum3').textContent=S.picks.length?w+' of '+S.picks.length+' have a why':'Pick tools first';
+  $('sum4').textContent=S.slug?'atrios.com/tastemaker/'+S.slug:'Not claimed yet'}
+document.querySelectorAll('.stp .sh').forEach(function(h){h.onclick=function(){var s=h.closest('.stp');if(s.classList.contains('open'))return;openStep(s.id)}});
+document.querySelectorAll('[data-next]').forEach(function(b){b.onclick=function(){openStep(b.dataset.next)}});
+document.addEventListener('input',sums);document.addEventListener('click',function(e){if(e.target.closest('.tile,.sug'))setTimeout(function(){sums();filter(true)},0)});
+drawChips();filter();sums();
+}
 })();
 </script></body></html>
