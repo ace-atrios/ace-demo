@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · Sales deck</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:Aspekta;src:url(AspektaVF.woff2) format('woff2');font-weight:100 900}
+:root{--g:#05483A;--gd:#0E2723;--gx:#021714;--gold:#C9A96E;--sg:#FBE8A6;--cream:#FCF7E9;--lc:#FFF4DE;--em:#609D77;--tx:#4A4A4A;--mu:#848182;--w:#FEFEFE}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#111;font-family:Aspekta,Inter,'Helvetica Neue',sans-serif;-webkit-font-smoothing:antialiased}
+.deck{display:flex;flex-direction:column;align-items:center;gap:32px;padding:32px 0}
+.s{width:1600px;height:900px;position:relative;overflow:hidden;background:var(--cream);color:var(--tx);flex:none;transform-origin:top center}
+.dark{background:var(--g);color:var(--cream)}
+.darker{background:var(--gd);color:var(--cream)}
+.pad{position:absolute;inset:96px 120px}
+.kick{font-size:20px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.dark .kick,.darker .kick{color:var(--gold)}
+h1{font-size:104px;line-height:1.02;font-weight:650;letter-spacing:-.035em;color:var(--g)}
+h2{font-size:72px;line-height:1.05;font-weight:650;letter-spacing:-.03em;color:var(--g)}
+.dark h1,.dark h2,.darker h1,.darker h2{color:var(--cream)}
+.sub{font-size:30px;line-height:1.4;font-weight:400;color:var(--mu);max-width:900px}
+.dark .sub,.darker .sub{color:#b9c9c2}
+.gold{color:var(--gold)}
+.foot{position:absolute;left:120px;right:120px;bottom:48px;display:flex;justify-content:space-between;align-items:center;font-size:16px;color:var(--mu);letter-spacing:.04em}
+.dark .foot,.darker .foot{color:#7fa596}
+.foot img{height:26px}
+.num{font-variant-numeric:tabular-nums}
+/* cover */
+.cover{background:var(--g) url(globe-watermark-forest.jpg) right center/auto 100% no-repeat}
+.cover .logo{height:64px}
+/* two col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:64px}
+.card{background:var(--w);border-radius:28px;padding:56px 52px;min-height:330px;box-shadow:0 1px 0 rgba(0,0,0,.04),0 20px 60px -30px rgba(5,72,58,.35)}
+.card h3{font-size:42px;font-weight:650;color:var(--g);letter-spacing:-.01em;margin-bottom:14px}
+.card p{font-size:27px;line-height:1.45;color:var(--mu)}
+.card.hl{background:var(--g);color:var(--cream)}
+.card.hl h3{color:var(--cream)}.card.hl p{color:#c9dcd3}
+.tag{display:inline-block;font-size:15px;letter-spacing:.14em;text-transform:uppercase;font-weight:650;padding:8px 14px;border-radius:999px;margin-bottom:26px}
+.tag.grey{background:#efe9da;color:var(--mu)}.tag.gold{background:var(--gold);color:var(--gx)}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:18px;margin-top:64px;max-width:1300px}
+.chip{font-size:36px;font-weight:550;padding:26px 40px;border-radius:999px;border:1.5px solid rgba(252,247,233,.25);color:var(--cream)}
+.chip.on{background:var(--gold);color:var(--gx);border-color:var(--gold)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-top:120px}
+.step{border-top:3px solid var(--g);padding-top:28px}
+.step .n{font-size:22px;font-weight:650;color:var(--gold);margin-bottom:18px}
+.step h3{font-size:40px;font-weight:650;color:var(--g);line-height:1.15;letter-spacing:-.01em}
+.step p{font-size:25px;color:var(--mu);margin-top:12px;line-height:1.4}
+/* big statement */
+.big{font-size:120px;line-height:1;font-weight:650;letter-spacing:-.04em}
+/* mock UI */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;height:100%}
+.phone{width:420px;height:720px;border-radius:56px;background:#0b1d1a;padding:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);margin:0 auto}
+.screen{height:100%;border-radius:44px;background:#f4f1ea;padding:64px 22px 22px;display:flex;flex-direction:column;gap:12px;font-size:19px;line-height:1.35}
+.who{text-align:center;font-size:15px;color:#888;margin-bottom:8px}
+.b{max-width:80%;padding:12px 16px;border-radius:22px}
+.b.in{background:#e3e1db;color:#222;align-self:flex-start;border-bottom-left-radius:6px}
+.b.out{background:var(--g);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.slack{background:#fff;border-radius:22px;padding:30px 34px;box-shadow:0 30px 70px -30px rgba(5,72,58,.45);font-size:22px;color:#1d1c1d;width:620px}
+.slack .hd{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.slack .av{width:44px;height:44px;border-radius:10px;background:var(--g) url(logo-light.svg) center/70% no-repeat}
+.slack .nm{font-weight:700}.slack .app{font-size:13px;background:#eee;padding:2px 6px;border-radius:4px;color:#666;margin-left:6px}
+.slack .row{display:flex;gap:10px;margin:8px 0;line-height:1.35}.slack .k{color:#888;min-width:150px}
+.bow{background:var(--w);border-radius:22px;padding:34px;box-shadow:0 30px 70px -30px rgba(5,72,58,.45);width:620px}
+.bow .q{font-size:17px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);font-weight:650;margin-top:18px}
+.bow .a{font-size:25px;color:#222;margin-top:6px;line-height:1.35}
+.stars{color:var(--gold);font-size:28px;letter-spacing:4px}
+/* logos wall */
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:80px}
+.lg{height:170px;border-radius:22px;background:var(--w);display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:650;color:var(--g);letter-spacing:-.02em;box-shadow:0 18px 50px -32px rgba(5,72,58,.4)}
+/* levers */
+.levers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
+.lv{border-radius:26px;padding:44px 36px;min-height:360px;background:rgba(252,247,233,.06);border:1.5px solid rgba(252,247,233,.14);min-height:300px;display:flex;flex-direction:column;justify-content:space-between}
+.lv.on{background:var(--gold);border-color:var(--gold);color:var(--gx)}
+.lv .ic{font-size:44px}
+.lv h3{font-size:32px;font-weight:650;line-height:1.15}
+.lv p{font-size:20px;opacity:.75;margin-top:10px;line-height:1.4}
+.rule{height:3px;width:120px;background:var(--gold);margin:40px 0}
+@media print{html,body{background:none}.deck{padding:0;gap:0}.s{page-break-after:always;transform:none!important}@page{size:1600px 900px;margin:0}}
+</style></head><body><div class="deck">
+
+<!-- 1 cover -->
+<section class="s cover"><div class="pad">
+  <img class="logo" src="logo-light.svg" alt="Atrios">
+  <div style="position:absolute;top:250px">
+    <h1 style="color:var(--cream);max-width:900px">Warm intros<br>from people<br><span class="gold">founders trust.</span></h1>
+    <p class="sub" style="margin-top:36px">The referral marketplace for companies that sell to startups.</p>
+  </div></div>
+</section>
+
+<!-- 2 problem -->
+<section class="s"><div class="pad">
+  <div class="kick">The problem</div>
+  <h2 style="margin-top:22px;max-width:1200px">Outbound is noise.<br>Partner programs go quiet.</h2>
+  <div class="cols">
+    <div class="card"><span class="tag grey">Firm partners</span><h3>Sign the agreement, then hope.</h3><p>Law firms, accountants and VCs sign up. Almost none send a lead.</p></div>
+    <div class="card hl"><span class="tag gold">Tastemakers</span><h3>Paid for every intro.</h3><p>People founders already ask for advice, directly incentivized to recommend you.</p></div>
+  </div></div>
+  <div class="foot"><span></span><img src="logo-dark.svg"></div>
+</section>
+
+<!-- 3 who -->
+<section class="s darker"><div class="pad">
+  <div class="kick">Who intros you</div>
+  <h2 style="margin-top:22px">3,500 tastemakers<br>inside the startup ecosystem.</h2>
+  <div class="chips">
+    <span class="chip on">Founders</span><span class="chip">Investors</span><span class="chip">Community builders</span><span class="chip">Fractional CFOs</span><span class="chip">Accountants</span><span class="chip">Fractional HR</span><span class="chip">Partner leaders</span><span class="chip">Accelerators</span>
+  </div></div>
+  <div class="foot"><span></span><img src="logo-light.svg"></div>
+</section>
+
+<!-- 4 how -->
+<section class="s"><div class="pad">
+  <div class="kick">How it works</div>
+  <h2 style="margin-top:22px">From recommendation<br>to your AE's calendar.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>You set the criteria</h3><p>Who you want to meet, and who you don't.</p></div>
+    <div class="step"><div class="n">02</div><h3>Tastemakers intro</h3><p>Plus our agent, the moment a founder asks.</p></div>
+    <div class="step"><div class="n">03</div><h3>Every lead is screened</h3><p>Before anyone is introduced.</p></div>
+    <div class="step"><div class="n">04</div><h3>Booked on your calendar</h3><p>Round robin, with context attached.</p></div>
+  </div></div>
+  <div class="foot"><span></span><img src="logo-dark.svg"></div>
+</section>
+
+<!-- 5 only fits -->
+<section class="s dark"><div class="pad" style="display:flex;flex-direction:column;justify-content:center">
+  <div class="kick">Only fits</div>
+  <div class="big" style="margin-top:30px;color:var(--cream)">A rejected lead is<br>never introduced.<br><span class="gold">Never charged.</span></div>
+  </div><div class="foot"><span></span><img src="logo-light.svg"></div>
+</section>
+
+<!-- 6 agent -->
+<section class="s"><div class="pad"><div class="split">
+  <div>
+    <div class="kick">Ace, our agent</div>
+    <h2 style="margin-top:22px">Recommends you<br>the moment a<br>founder asks.</h2>
+    <p class="sub" style="margin-top:30px">Founders text Ace. Ace matches them to perks they qualify for and books the call.</p>
+  </div>
+  <div class="phone"><div class="screen">
+    <div class="who">Ace · Atrios</div>
+    <div class="b in">We just closed our seed. Need a bank + payroll for 6 people 🙏</div>
+    <div class="b out">Congrats! Two that fit you:<br>• Rho: banking, $875 perk<br>• Deel: payroll + $250 credit</div>
+    <div class="b in">Rho please</div>
+    <div class="b out">Booked Thu 2pm with Rho. Invite's in your inbox ✅</div>
+  </div></div>
+</div></div></section>
+
+<!-- 7 booked -->
+<section class="s darker"><div class="pad"><div class="split">
+  <div>
+    <div class="kick">Delivery</div>
+    <h2 style="margin-top:22px">Every meeting<br>lands with context.</h2>
+    <p class="sub" style="margin-top:30px">A shared Slack channel. A note the second it's booked, with the lead's answers.</p>
+  </div>
+  <div class="slack">
+    <div class="hd"><div class="av"></div><span class="nm">Atrios Agent</span><span class="app">APP</span></div>
+    <div style="font-weight:700;margin-bottom:12px">📅 Meeting booked</div>
+    <div class="row"><span class="k">Lead</span><span>Founder, seed-stage fintech</span></div>
+    <div class="row"><span class="k">When</span><span>Thu, 2:00 PM ET</span></div>
+    <div class="row"><span class="k">Routed AE</span><span>Your team, round robin</span></div>
+    <div class="row"><span class="k">Answers</span><span>$1.2M raised · switching banks in 30 days</span></div>
+  </div>
+</div></div></section>
+
+<!-- 8 buy or why -->
+<section class="s"><div class="pad"><div class="split">
+  <div class="bow">
+    <div class="stars">★★★★☆</div>
+    <div class="q">Will you move forward?</div><div class="a">Yes, comparing one more option this week.</div>
+    <div class="q">What would get you there tomorrow?</div><div class="a">A clear migration plan for our current cards.</div>
+  </div>
+  <div>
+    <div class="kick">Buy-or-Why</div>
+    <h2 style="margin-top:22px">Know why they<br>buy. Or why not.</h2>
+    <p class="sub" style="margin-top:30px">After every call, the lead tells us. Your rep gets it to close.</p>
+  </div>
+</div></div></section>
+
+<!-- 9 proof -->
+<section class="s"><div class="pad">
+  <div class="kick">Live on Atrios</div>
+  <h2 style="margin-top:22px">Trusted by the tools<br>startups run on.</h2>
+  <div class="wall">
+    <div class="lg">Rho</div><div class="lg">Deel</div><div class="lg">Oyster</div><div class="lg">Corridor</div>
+    <div class="lg">Superposition</div><div class="lg">Rillet</div><div class="lg">Slash</div><div class="lg">Thera</div>
+  </div></div>
+  <div class="foot"><span></span><img src="logo-dark.svg"></div>
+</section>
+
+<!-- 10 levers -->
+<section class="s dark"><div class="pad">
+  <div class="kick">Pricing</div>
+  <h2 style="margin-top:22px">Your budget.<br>Your levers.</h2>
+  <div class="levers">
+    <div class="lv"><div class="ic">◎</div><div><h3>Platform access</h3><p>The network, the agent, the team.</p></div></div>
+    <div class="lv on"><div class="ic">◆</div><div><h3>Meeting bounty</h3><p>Paid only for accepted meetings.</p></div></div>
+    <div class="lv"><div class="ic">✦</div><div><h3>Closed-won</h3><p>Optional, only when a deal closes.</p></div></div>
+    <div class="lv"><div class="ic">◇</div><div><h3>Product perk</h3><p>What founders get for choosing you.</p></div></div>
+  </div></div>
+  <div class="foot"><span>Spend cap, top-ups and thresholds are yours to set.</span><img src="logo-light.svg"></div>
+</section>
+
+<!-- 11 cta -->
+<section class="s cover"><div class="pad" style="display:flex;flex-direction:column;justify-content:center">
+  <h1 style="color:var(--cream)">Let's build<br>your channel.</h1>
+  <div class="rule"></div>
+  <p class="sub" style="color:#c9dcd3">allan@atrios.com · atrios.com</p>
+  <img src="logo-light.svg" style="position:absolute;left:0;bottom:0;height:44px">
+</div></section>
+
+</div>
+<script>
+function fit(){const w=Math.min(innerWidth-32,1600)/1600;document.querySelectorAll('.s').forEach(s=>{s.style.transform=w<1?`scale(${w})`:'';s.style.marginBottom=w<1?`${-900*(1-w)}px`:''})}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>
