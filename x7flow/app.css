@@ -468,3 +468,35 @@ body.mobileview .phonewrap{display:flex}
 .irec b{display:block;color:var(--ink);font-weight:500;font-size:14px}.irec span{font-size:12.5px;color:var(--muted)}
 .irec .pillbtn{padding:6px 12px;font-size:12.5px}
 .ichat .typing{width:auto;display:flex;gap:4px}.ichat .typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}.ichat .typing i:nth-child(2){animation-delay:.2s}.ichat .typing i:nth-child(3){animation-delay:.4s}
+
+/* 10/15 Taylor: compact Talk to Ace + one-line prompts on mobile */
+.prompts .s,.chips .s{display:none}
+@media (max-width:700px){
+.acebar{padding:14px;margin:4px 0 18px;border-radius:16px}
+.ab-top{margin-bottom:6px;gap:10px}.ab-top .av{width:30px;height:30px;font-size:14px;line-height:30px}
+.ab-top b{font-size:18px}.ab-top span{font-size:11.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acebar .feed{grid-template-columns:38px 1fr;justify-items:stretch;gap:8px;margin:6px 0 8px}
+.acebar .core2{width:38px;height:38px}.acebar .cin2{inset:6px}.acebar .cin2 b{font-size:7.5px}.acebar .cin2 span{display:none}
+.acebar .streams .sp{padding:3px 9px;font-size:11px}
+.bigask{padding:4px 4px 4px 14px;gap:6px}.bigask input{font-size:14px;padding:6px 0}.bigask button{padding:8px 12px}
+.prompts,.chips{flex-wrap:nowrap;gap:5px}.prompts{margin-top:8px}
+.prompts button,.chips button{flex:1 1 0;min-width:0;padding:6px 4px;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.prompts .l,.chips .l{display:none}.prompts .s,.chips .s{display:inline}
+}
+
+/* 10/15 one-page booking (Taylor) */
+.qualbox{border:1px solid rgba(201,169,110,.4);background:rgba(201,169,110,.07);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.qualbox b{color:var(--ink);font-size:13.5px}.qualbox ul{margin:6px 0 6px;padding-left:18px;font-size:13px;color:var(--body)}.qualbox li{margin:2px 0}
+.qualbox small{display:block;font-size:11.5px;color:var(--muted);line-height:1.4}
+.bkgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;border:1px solid var(--line2);border-radius:12px;padding:12px}
+.calh{color:var(--ink);font:400 17px var(--serif);margin-bottom:6px}
+.dow,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.dow span{font-size:10.5px;color:var(--faint);padding:2px 0}
+.days span,.days button{font-size:12.5px;padding:7px 0;border-radius:8px}
+.days .na{color:var(--faint);opacity:.5}
+.days button.av{background:rgba(201,169,110,.12);color:var(--ink);font-weight:500}
+.days button.av.on{background:var(--gold);color:var(--sunken)}
+.tms{display:flex;flex-direction:column;gap:6px}.tmh{font-size:12.5px;color:var(--muted);margin-bottom:2px}
+.tms button{padding:9px 6px;border-radius:9px;border:1px solid var(--line2);font-size:13px;color:var(--ink)}
+.tms button.on{border-color:var(--gold);background:rgba(201,169,110,.16)}
+@media (max-width:700px){.bkgrid{grid-template-columns:1fr}.tms{flex-direction:row;flex-wrap:wrap}.tms .tmh{width:100%}.tms button{flex:1 1 28%}}

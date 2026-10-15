@@ -39,7 +39,7 @@ function vDiscover(){
   return `<div class="wrap">
     <div class="dhead"><div><div class="eyebrow">My Perks</div><h1>Perks for your startup</h1></div><span class="sp"></span>
       </div>
-    <form class="acebar" data-askform><div class="ab-top"><span class="av">A</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><b class="sigctr">48,213</b><span>signals</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:0.3s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:0.6s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.9s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:1.5s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.6s"></i>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.9s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:1.2s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:1.5s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.0s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:0.6s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.9s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:1.5s"></i>Mapping founder stacks</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?">What tools can help my business?</button><button type="button" data-prompt="Best tools to get more revenue">Best tools to get more revenue</button><button type="button" data-prompt="What perks am I missing out on?">What perks am I missing out on?</button></div><div class="ichat" id="ichat"></div></form>
+    <form class="acebar" data-askform><div class="ab-top"><span class="av">A</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><b class="sigctr">48,213</b><span>signals</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:0.3s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:0.6s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.9s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:1.5s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.6s"></i>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.9s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:1.2s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:1.5s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.0s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:0.6s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.9s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:1.5s"></i>Mapping founder stacks</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?"><span class="l">What tools can help my business?</span><span class="s">Tools for me</span></button><button type="button" data-prompt="Best tools to get more revenue"><span class="l">Best tools to get more revenue</span><span class="s">More revenue</span></button><button type="button" data-prompt="What perks am I missing out on?"><span class="l">What perks am I missing out on?</span><span class="s">Perks I'm missing</span></button></div><div class="ichat" id="ichat"></div></form>
     <div class="tabs">${['All','Recommended'].map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}<span class="div"></span>${CATS.map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}</div>
     <div class="grid">${list.map(v=>card(v)).join('')}</div>
   </div>`;
@@ -230,7 +230,7 @@ function panelHTML(v,step){
       <div class="perkbox"><div class="eyebrow">Your perk</div><div class="big">${v.perk}</div><p>${v.perkLong}. Plus $50 for your feedback after the call, whether you sign up or not.</p></div>
       <div class="chatbox"><div class="chathead"><span class="av">A</span><div><b>Ask Ace about ${v.name}</b><span>Ace has every review, call note and signal on ${v.name}. Ask anything.</span></div></div>
         <div class="msgs" id="msgs"><div class="msg ace">Hi! I know ${v.name} inside out from ${v.reviews} member reviews and calls. What do you want to know?</div></div>
-        <div class="chips"><button data-q="How will ${v.name} help my company?">How will this help my company?</button><button data-q="Who is the ${v.name} perk for?">Who is the perk for?</button><button data-q="What do people say about ${v.name}?">What do people say?</button></div>
+        <div class="chips"><button data-q="How will ${v.name} help my company?"><span class="l">How will this help my company?</span><span class="s">How it helps</span></button><button data-q="Who is the ${v.name} perk for?"><span class="l">Who is the perk for?</span><span class="s">Who it's for</span></button><button data-q="What do people say about ${v.name}?"><span class="l">What do people say?</span><span class="s">Reviews</span></button></div>
         <form class="ain" data-aceform><input placeholder="Ask any question…"><button>Ask</button></form></div>
       <div class="sec"><div class="lbl">What it is</div><p>${v.long}</p></div>
       <div class="sec"><div class="lbl">Who the perk is for</div><ul>${v.who.map(w=>`<li>${w}</li>`).join('')}</ul>
@@ -240,13 +240,22 @@ function panelHTML(v,step){
         <div class="revs">${(v.quotes||[v.quote]).concat(EXTRA_Q).slice(0,4).map(q=>`<div class="revq">${q[0]}<small>${q[1]}</small></div>`).join('')}</div></div>
     </div>
     <div class="pf"><a class="pillbtn gold" href="${b}${v.id}/claim">Claim perk</a><button class="pillbtn" data-share="${v.id}">${ic.share}Share perk and earn</button></div>`;
-  if(step==='claim'){const c=S.claim;return head+`<div class="pb"><div class="prog"><i class="on"></i><i></i><i></i></div>
-      <div class="eyebrow">Claim ${v.perk}</div><h3 style="font-size:24px;margin:4px 0 6px">Who's claiming?</h3><p style="margin:0 0 18px;color:var(--muted)">We use this to book your call and apply the perk. No password, no account setup.</p>
-      <form class="form" data-claimform>
+  if(step==='claim'){const c=S.claim;
+    const days=[];for(let d=19;d<=30;d++){const dt=new Date(2026,9,d);const w=dt.getDay();if(w>0&&w<6)days.push(d)}
+    if(!S.day)S.day=days[0];
+    const lead=new Date(2026,9,1).getDay();const cells=[];for(let i=0;i<lead;i++)cells.push('<span></span>');
+    for(let d=1;d<=31;d++){const av=days.includes(d);cells.push(av?`<button type="button" data-day="${d}" class="av ${S.day===d?'on':''}">${d}</button>`:`<span class="na">${d}</span>`)}
+    const dn=new Date(2026,9,S.day).toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
+    const times=['10:00 AM','11:30 AM','1:00 PM','2:30 PM','4:00 PM'];
+    return head+`<div class="pb bk">
+      <div class="eyebrow">Claim ${v.perk}</div><h3 style="font-size:24px;margin:4px 0 4px">Book your intro with ${v.name}</h3><p style="margin:0 0 14px;color:var(--muted)">20-minute call · Times in ET · No account needed</p>
+      <div class="qualbox"><b>Who qualifies for this perk</b><ul>${v.who.map(w=>`<li>${w}</li>`).join('')}</ul><small>The perk is for companies that meet the criteria above. Not sure you qualify? Book anyway, ${v.name} may still have options for you.</small></div>
+      <div class="bkgrid"><div class="cal"><div class="calh">October 2026</div><div class="dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div><div class="days">${cells.join('')}</div></div>
+       <div class="tms"><div class="tmh">${dn}</div>${times.map(t=>{const sl=`${dn} · ${t}`;return `<button type="button" data-slot="${sl}" class="${S.slot===sl?'on':''}">${t}</button>`}).join('')}</div></div>
+      <form class="form" data-claimform style="margin-top:16px">
        <div class="row2"><div class="field"><label>First name</label><input name="first" required value="${esc(c.first||'')}" placeholder="Jamie"></div><div class="field"><label>Last name</label><input name="last" required value="${esc(c.last||'')}" placeholder="Rivera"></div></div>
-       <div class="field"><label>Work email</label><input name="email" type="email" required value="${esc(c.email||'')}" placeholder="jamie@company.com"></div>
-       <div class="field"><label>Company</label><input name="company" required value="${esc(c.company||'')}" placeholder="Company name"></div>
-       <button class="pillbtn gold" style="justify-content:center;padding:13px;margin-top:6px">Continue to pick a time</button>
+       <div class="row2"><div class="field"><label>Work email</label><input name="email" type="email" required value="${esc(c.email||'')}" placeholder="jamie@company.com"></div><div class="field"><label>Company</label><input name="company" required value="${esc(c.company||'')}" placeholder="Company name"></div></div>
+       <button class="pillbtn gold bkbtn" style="justify-content:center;padding:13px;margin-top:4px">${S.slot?'Book '+esc(S.slot):'Book my call'}</button>
        <a href="${b}${v.id}" style="text-align:center;font-size:13px;color:var(--muted)">← Back to details</a>
       </form></div>`}
   if(step==='time'){const days=[['Thu','Oct 22'],['Fri','Oct 23'],['Mon','Oct 26']],times=['10:00 AM','2:00 PM'];
@@ -261,7 +270,7 @@ function panelHTML(v,step){
       <div class="sharecta"><h4>Know someone who'd want this too?</h4><p>Send them the ${v.name} perk. We wrote the text, you can edit it.</p><button class="pillbtn gold" data-share="${v.id}">${ic.share}Share perk and earn</button></div>
       <a class="pillbtn" href="${S.back}" style="margin-top:16px">Keep exploring perks</a></div></div>`}
 }
-function openPanel(id,step){const v=BY[id];if(!v)return;const p=$('#panel');p.innerHTML=panelHTML(v,step);p.classList.add('on');$('#scrim').classList.add('on');p.setAttribute('aria-hidden','false')}
+function openPanel(id,step){const v=BY[id];if(!v)return;const p=$('#panel');const sc=[...p.querySelectorAll('*')].filter(e=>e.scrollTop>0).map(e=>[e.className,e.scrollTop]);const pst=p.scrollTop;p.innerHTML=panelHTML(v,step);p.scrollTop=pst;sc.forEach(([c,t])=>{const e=c&&p.getElementsByClassName(String(c).split(' ')[0])[0];if(e)e.scrollTop=t});p.classList.add('on');$('#scrim').classList.add('on');p.setAttribute('aria-hidden','false')}
 function closePanel(){$('#panel').classList.remove('on');if(!$('#modal').classList.contains('on'))$('#scrim').classList.remove('on');$('#panel').setAttribute('aria-hidden','true')}
 
 function openShare(id,fn){
@@ -348,7 +357,8 @@ document.addEventListener('click',e=>{
   const pr=t.closest('[data-prompt]');if(pr){inlineAsk(pr.dataset.prompt);return}
   const tab=t.closest('[data-tab]');if(tab&&$('#view').dataset.r==='discover'){S.tab=tab.dataset.tab;$('#view').innerHTML=vDiscover();return}
   const q=t.closest('[data-q]');if(q){askAce(q.dataset.q);return}
-  const sl=t.closest('[data-slot]');if(sl){S.slot=sl.dataset.slot;openPanel(curId(),'time');return}
+  const sl=t.closest('[data-slot]');if(sl){const f=document.querySelector('[data-claimform]');if(f)S.claim=Object.fromEntries(new FormData(f));S.slot=sl.dataset.slot;openPanel(curId(),f?'claim':'time');return}
+  const dy=t.closest('[data-day]');if(dy){const f=document.querySelector('[data-claimform]');if(f)S.claim=Object.fromEntries(new FormData(f));S.day=+dy.dataset.day;S.slot=null;openPanel(curId(),'claim');return}
   if(t.closest('[data-confirm]')){if(S.slot)location.hash=base()+curId()+'/done';else toast('Pick a time first');return}
   const vb=t.closest('[data-v]');if(vb){S.variant=vb.dataset.v;localStorage.setItem('x7v',S.variant);setSeg();if($('#view').dataset.r==='discover')$('#view').innerHTML=vDiscover();$('#standalone').innerHTML='';route();return}
   const vw=t.closest('[data-view]');if(vw){document.body.classList.toggle('mobileview',vw.dataset.view==='mob');setSeg();syncPhone();return}
@@ -358,7 +368,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('submit',e=>{
   e.preventDefault();const f=e.target;
-  if(f.matches('[data-claimform]')){S.claim=Object.fromEntries(new FormData(f));location.hash=base()+curId()+'/time';return}
+  if(f.matches('[data-claimform]')){S.claim=Object.fromEntries(new FormData(f));if(!S.slot){toast('Pick a time first');return}location.hash=base()+curId()+'/done';return}
   if(f.matches('[data-aceform]')){const i=f.querySelector('input');if(i.value.trim()){askAce(i.value.trim());i.value=''}return}
   if(f.matches('[data-askform]')){const q=f.querySelector('input').value||'What tools can help my business?';inlineAsk(q)}
 });
