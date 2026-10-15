@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Techpresso × Ace</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--o:#ff6b35;--o2:#ff8a5c;--bg:#f8f9fb;--ink:#1d1f24;--mut:#6b7280;--line:#e6e8ec;--ace:#0b2a22;--gold:#c9a96e}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font:400 15px/1.5 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;align-items:center}
+header{width:100%;max-width:760px;display:flex;align-items:center;justify-content:space-between;padding:18px 20px 10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.04em;font-size:15px}
+.brand img{width:34px;height:34px;border-radius:9px}
+.brand .x{color:var(--mut);font-weight:400}
+.ace-pill{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+.ace-pill i{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#2c5a4a,var(--gold));color:#fff;display:grid;place-items:center;font:600 12px Inter;font-style:normal}
+.vs{width:100%;max-width:760px;padding:0 20px;display:flex;gap:8px;font-size:12px;color:var(--mut)}
+.vs span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.vs b{color:var(--o)}
+main{width:100%;max-width:760px;flex:1;overflow-y:auto;padding:18px 20px 120px;scroll-behavior:smooth}
+.row{display:flex;margin:10px 0;animation:in .35s ease both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.row.me{justify-content:flex-end}
+.av{width:30px;height:30px;border-radius:50%;flex:none;margin-right:10px;background:linear-gradient(135deg,#2c5a4a,var(--gold));color:#fff;display:grid;place-items:center;font:600 13px Inter;margin-top:2px}
+.b{max-width:82%;background:#fff;border:1px solid var(--line);border-radius:18px 18px 18px 6px;padding:11px 15px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.me .b{background:var(--o);color:#fff;border:0;border-radius:18px 18px 6px 18px}
+.b p+p{margin-top:8px}
+.typing{display:inline-flex;gap:4px;padding:4px 2px}.typing i{width:7px;height:7px;border-radius:50%;background:#c3c7cf;animation:t 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes t{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px 40px;animation:in .35s ease both}
+.chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:500 13.5px Inter;cursor:pointer;transition:.15s;color:var(--ink)}
+.chip:hover{border-color:var(--o);color:var(--o)}
+.chip.o{background:var(--o);color:#fff;border-color:var(--o)}
+.research{margin-left:40px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;max-width:520px;animation:in .35s ease both}
+.research h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:8px;font-weight:600}
+.step{display:flex;align-items:center;gap:10px;font-size:14px;padding:4px 0;color:var(--mut);opacity:.35;transition:.3s}
+.step.on{opacity:1;color:var(--ink)}
+.step .ic{width:18px;height:18px;border-radius:50%;border:2px solid #d5d8de;flex:none;display:grid;place-items:center;font-size:11px;color:#fff}
+.step.on .ic{border-color:var(--o);border-top-color:transparent;animation:spin .7s linear infinite}
+.step.done .ic{background:#22a35a;border-color:#22a35a;animation:none}
+.step.done .ic::after{content:"✓"}
+@keyframes spin{to{transform:rotate(360deg)}}
+.prof{margin-left:40px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;max-width:520px;animation:in .4s ease both}
+.prof .top{display:flex;gap:14px;align-items:center;padding:16px}
+.prof .logo{width:52px;height:52px;border-radius:12px;background:#f1f2f4;display:grid;place-items:center;overflow:hidden;font:700 20px Inter;color:var(--o)}
+.prof .logo img{width:100%;height:100%;object-fit:cover}
+.prof h3{font-size:17px}.prof .sub{color:var(--mut);font-size:13.5px}
+.prof dl{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.prof dl div{padding:10px 16px;border-right:1px solid var(--line)}.prof dl div:last-child{border:0}
+.prof dt{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}.prof dd{font-weight:600;font-size:14px}
+.sig{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.sig span{font-size:12px;background:#fff4ee;color:#c2410c;border-radius:999px;padding:3px 9px}
+.recs{margin-left:40px;display:grid;gap:10px;max-width:560px;animation:in .4s ease both}
+.rec{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center}
+.rec .rl{width:44px;height:44px;border-radius:10px;background:#f1f2f4;overflow:hidden}.rec .rl img{width:100%;height:100%}
+.rec b{font-size:15px}.rec .why{color:var(--mut);font-size:13.5px;line-height:1.4}
+.rec .perk{display:inline-block;margin-top:5px;font-size:12.5px;font-weight:600;color:#0f7a43;background:#e9f8ef;border-radius:6px;padding:2px 8px}
+.rec button{background:var(--ink);color:#fff;border:0;border-radius:999px;padding:8px 14px;font:600 13px Inter;cursor:pointer;white-space:nowrap}
+.rec button.ok{background:#22a35a}
+.foot{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;padding:14px 16px 18px;background:linear-gradient(0deg,var(--bg) 70%,rgba(248,249,251,0))}
+.inp{width:100%;max-width:720px;display:flex;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 18px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.inp input{flex:1;border:0;outline:0;font:400 15px Inter;background:transparent}
+.inp button{background:var(--o);color:#fff;border:0;border-radius:999px;width:40px;height:40px;font-size:18px;cursor:pointer}
+.earn{position:fixed;right:18px;top:18px;background:var(--ace);color:#f3ecdc;border-radius:14px;padding:10px 14px;font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,.2);display:none;max-width:230px}
+.earn b{color:var(--gold);display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.earn.show{display:block;animation:in .4s ease both}
+@media(min-width:1100px){.earn{right:calc(50% - 600px)}}
+@media(max-width:700px){.earn{top:auto;bottom:86px;right:12px;left:12px;max-width:none}.prof dl{grid-template-columns:1fr 1fr 1fr}.vs{display:none}}
+.reset{font-size:12px;color:var(--mut);background:none;border:0;cursor:pointer;text-decoration:underline}
+</style></head><body>
+<header><div class="brand"><img src="tp.png" alt=""><span>TECHPRESSO</span><span class="x">× Ace</span></div><button class="reset" onclick="location.reload()">Restart</button></header>
+<div class="vs"><span>Before: <b>5 steps</b> of dropdowns</span><span>Now: <b>1 message</b></span></div>
+<main id="m"></main>
+<div class="earn" id="earn"><b>Louis' view</b><span id="earnT">Techpresso just got rewarded for a booked call ☕</span></div>
+<div class="foot"><form class="inp" id="f"><input id="q" autocomplete="off" placeholder="Type your work email, or just your name + company"><button>↑</button></form></div>
+<script>
+const m=document.getElementById('m'),q=document.getElementById('q');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const fav=d=>`https://www.google.com/s2/favicons?domain=${d}&sz=128`;
+const V={
+ rho:{n:'Rho',d:'rho.co',why:'Banking, cards and treasury yield in one place. Popular with seed teams.',perk:'$875 welcome bonus'},
+ deel:{n:'Deel',d:'deel.com',why:'Payroll and contractors in 150+ countries, compliant from day one.',perk:'$1,500 in credits + $250'},
+ oyster:{n:'Oyster',d:'oysterhr.com',why:'Hire full-time employees abroad without opening an entity.',perk:'20% off your first year'},
+ sup:{n:'Superposition',d:'superposition.ai',why:'Recruiting for US startups, any role. Finds your first engineers fast.',perk:'1 month free + 20% off'},
+ thera:{n:'Thera',d:'getthera.com',why:'Global payroll and HR for small international teams.',perk:'3 months free'},
+ veroa:{n:'Veroa',d:'veroa.com',why:'Vetted global talent for ops, support and growth roles.',perk:'Up to 40% off + 1st month free'}
+};
+const P={
+ 'dupple.com':{name:'Louis Corneloup',role:'Founder',co:'Dupple',dom:'dupple.com',ind:'Media',size:'2-10',loc:'Paris',sig:['780k+ newsletter readers','Remote team','Launched Toolradar'],recs:['deel','oyster','veroa'],intro:"Dupple runs a lean remote team, so if you hire beyond France I'd start with these:"},
+ 'techpresso.co':null,
+ 'atrios.com':{name:'Taylor Offer',role:'CEO',co:'Atrios',dom:'atrios.com',ind:'Software',size:'11-50',loc:'New York',sig:['Growing team','NYC-based','Hiring'],recs:['sup','rho','deel'],intro:"Atrios is growing its team in NYC, so these are the ones I'd look at first:"}
+};
+P['techpresso.co']=P['dupple.com'];
+function row(html,me){const r=document.createElement('div');r.className='row'+(me?' me':'');r.innerHTML=(me?'':'<div class="av">A</div>')+`<div class="b">${html}</div>`;m.appendChild(r);m.scrollTop=1e9;return r}
+function el(cls,html){const d=document.createElement('div');d.className=cls;d.innerHTML=html;m.appendChild(d);m.scrollTop=1e9;return d}
+async function say(html,wait=900){const t=row('<span class="typing"><i></i><i></i><i></i></span>');await sleep(wait);t.querySelector('.b').innerHTML=html;m.scrollTop=1e9;await sleep(250)}
+function chips(list,cb){const c=el('chips',list.map((x,i)=>`<button class="chip${i==0?' o':''}">${x}</button>`).join(''));c.querySelectorAll('button').forEach((b,i)=>b.onclick=()=>{c.remove();cb(list[i])});return c}
+let state='start',prof=null,booked=0;
+async function start(){
+ await say("Hey! I'm Ace ☕ I find the best AI tools for your work and get you perks you can't get anywhere else.",700);
+ await say("Skip the forms. Just send me your <b>work email</b> (or your name + company) and I'll figure out the rest.",900);
+ chips(['louis@dupple.com','taylor@atrios.com','Jane Doe, Acme'],v=>handle(v));
+}
+function parse(v){
+ v=v.trim();const em=v.match(/[\w.+-]+@([\w-]+\.[\w.]+)/);
+ if(em){const dom=em[1].toLowerCase();const local=v.split('@')[0];return{dom,name:local.split(/[._-]/).map(s=>s[0]?.toUpperCase()+s.slice(1)).join(' ')}}
+ const parts=v.split(/,| at | @ /i);if(parts.length>1){const co=parts[1].trim();return{dom:co.toLowerCase().replace(/[^a-z0-9]/g,'')+'.com',name:parts[0].trim(),co}}
+ return null;
+}
+async function research(p){
+ const box=el('research','<h4>Researching</h4>'+[
+  `Looking up ${p.dom}`,`Found ${p.co} · ${p.ind} · ${p.size} people`,`Found ${p.name}, ${p.role}`,'Checking hiring, funding and news','Seeing what similar companies use','Matching perks you qualify for'].map(s=>`<div class="step"><span class="ic"></span><span>${s}</span></div>`).join(''));
+ const st=box.querySelectorAll('.step');
+ for(const s of st){s.classList.add('on');m.scrollTop=1e9;await sleep(520);s.classList.remove('on');s.classList.add('done')}
+ await sleep(250);
+}
+function profCard(p){el('prof',`<div class="top"><div class="logo"><img src="${fav(p.dom)}" onerror="this.remove()" alt=""></div><div><h3>${p.name}</h3><div class="sub">${p.role} at ${p.co}</div></div></div><dl><div><dt>Industry</dt><dd>${p.ind}</dd></div><div><dt>Team</dt><dd>${p.size}</dd></div><div><dt>Based in</dt><dd>${p.loc}</dd></div></dl><div class="sig">${p.sig.map(s=>`<span>${s}</span>`).join('')}</div>`)}
+function recCards(keys){const box=el('recs',keys.map(k=>{const v=V[k];return`<div class="rec"><div class="rl"><img src="${fav(v.d)}" alt=""></div><div><b>${v.n}</b><div class="why">${v.why}</div><span class="perk">${v.perk}</span></div><button data-k="${k}">Book intro</button></div>`}).join(''));
+ box.querySelectorAll('button').forEach(b=>b.onclick=()=>book(b))}
+async function book(btn){
+ if(btn.classList.contains('ok'))return;const v=V[btn.dataset.k];
+ row(`Book ${v.n} please 🙌`,1);
+ await say(`Nice pick. Here are a few times for a 20-min intro with ${v.n}:`,800);
+ chips(['Tue 11:00 AM','Wed 2:30 PM','Thu 10:00 AM'],async t=>{
+  row(t,1);await say(`Done, you're booked ${t} with ${v.n} ✨ Invite's in your inbox, and your <b>${v.perk}</b> is locked in.`,900);
+  btn.textContent='Booked ✓';btn.classList.add('ok');booked++;
+  const e=document.getElementById('earn');document.getElementById('earnT').textContent=booked==1?'Techpresso just got rewarded for a booked call ☕':`Techpresso rewarded for ${booked} booked calls ☕`;e.classList.remove('show');void e.offsetWidth;e.classList.add('show');clearTimeout(window._eh);window._eh=setTimeout(()=>e.classList.remove('show'),4500);
+  if(booked==1){await say("You're also subscribed to <b>Techpresso</b>, tech news in 5 minutes every morning. Anything else your business needs? Ask me anything, like banking, hiring or payroll.",900);chips(['Who should we bank with?','Help us hire our first engineer','Cheapest payroll for a team abroad'],v=>handle(v))}
+ });
+}
+async function showFor(p){
+ prof=p;await say(`On it, looking you up…`,500);await research(p);profCard(p);await sleep(300);
+ await say(p.intro,800);recCards(p.recs);state='recs';
+}
+async function handle(v){
+ if(!v.trim())return;row(v.replace(/</g,'&lt;'),1);q.value='';
+ const lv=v.toLowerCase();
+ if(state!=='start' && !/@[\w-]+\./.test(v)){
+  if(/bank|card|treasury/.test(lv)){await say("For a startup your size I'd go with <b>Rho</b>: treasury yield on your raise, plus cards and bill pay in one place.",900);recCards(['rho']);return}
+  if(/hire|recruit|engineer/.test(lv)){await say("For your first engineers, <b>Superposition</b> is the move if you're hiring in the US. Hiring abroad? <b>Oyster</b> makes full-time hires in other countries easy.",900);recCards(['sup','oyster']);return}
+  if(/payroll|contractor|abroad|international|global/.test(lv)){await say("For a team spread across countries, <b>Deel</b> covers contractors and payroll in 150+ countries. <b>Thera</b> is great if you're smaller and want it simple.",900);recCards(['deel','thera']);return}
+  await say("Good question. I'd need a bit more context. What are you trying to get done: banking, hiring, payroll, or something else?",900);chips(['Banking','Hiring','Payroll'],x=>handle(x));return;
+ }
+ const pr=parse(v);
+ if(!pr){await say("Just send your work email, like <b>you@company.com</b>, or your name and company, like <b>Jane Doe, Acme</b>.",700);return}
+ if(P[pr.dom]){await showFor(P[pr.dom]);return}
+ const co=pr.co||pr.dom.split('.')[0].replace(/^\w/,c=>c.toUpperCase());
+ await say(`Got it, looking up ${co}…`,500);
+ const p={name:pr.name||'You',role:'Founder',co,dom:pr.dom,ind:'Startup',size:'—',loc:'—',sig:['Website found'],recs:[]};
+ const box=el('research','<h4>Researching</h4>'+[`Looking up ${pr.dom}`,`Found ${co}`,'Checking hiring, funding and news'].map(s=>`<div class="step"><span class="ic"></span><span>${s}</span></div>`).join(''));
+ for(const s of box.querySelectorAll('.step')){s.classList.add('on');await sleep(520);s.classList.remove('on');s.classList.add('done')}
+ await say(`Found ${co}. Quick one so I get this right: how big is the team?`,700);
+ chips(['Just me','2-10','11-50','51-200'],async sz=>{
+  row(sz,1);p.size=sz;p.sig=[sz==='Just me'?'Solo founder':'Growing team'];
+  await say("And what's top of mind right now?",700);
+  chips(['Hiring','Banking','Team abroad'],async g=>{
+   row(g,1);p.recs=g==='Hiring'?['sup','oyster','deel']:g==='Banking'?['rho','deel','sup']:['deel','oyster','thera'];
+   p.intro=`Here's what I'd use at ${co}:`;profCard(p);await sleep(300);await say(p.intro,700);recCards(p.recs);state='recs';
+  });
+ });
+}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();handle(q.value)};
+start();
+</script>
+</body></html>
