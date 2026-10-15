@@ -359,6 +359,40 @@ html,body{overflow-x:hidden}
 .qc figcaption b{font-weight:500;font-size:14px;color:var(--gold2)}.qc figcaption .mono{color:var(--muted);font-size:10px}
 @media(max-width:1000px){.qgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.qgrid{grid-template-columns:1fr 1fr;gap:26px 14px}.qc blockquote{font-size:16px}}
+
+/* gifts / perks section v2 */
+.gifts{padding:16vh 5vw;position:relative;overflow:hidden;background:radial-gradient(60% 70% at 25% 45%,rgba(201,169,110,.13),rgba(201,169,110,0) 70%)}
+.gin{display:grid;grid-template-columns:.85fr 1.15fr;gap:5vw;max-width:1260px;margin:0 auto;align-items:center}
+.gart{position:relative}
+.gframe{border:10px solid #8a6d3b;outline:1px solid rgba(226,200,143,.55);outline-offset:-16px;box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 0 0 3px #3a2a12;transform:rotate(-1.5deg);overflow:hidden}
+.gframe img{display:block;width:100%;height:auto;animation:gbreathe 9s ease-in-out infinite alternate}
+@keyframes gbreathe{from{transform:scale(1)}to{transform:scale(1.05)}}
+.gtag{position:absolute;right:-18px;bottom:28px;background:var(--cream);color:var(--ink);font:500 13px Inter;padding:10px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;align-items:center;gap:8px;transform:rotate(2deg)}
+.gtag i{width:8px;height:8px;border-radius:50%;background:#2f9e5a;box-shadow:0 0 0 0 rgba(47,158,90,.6);animation:gping 1.6s infinite}
+@keyframes gping{to{box-shadow:0 0 0 10px rgba(47,158,90,0)}}
+.gcopy h2{font-size:clamp(32px,3.4vw,52px);line-height:1.06;margin-top:14px}
+.gcopy h2 em{font-style:italic;color:var(--gold2)}
+.gcopy>p{color:var(--muted);font-size:17px;max-width:560px;margin-top:18px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+.vch{position:relative;padding:20px 22px 16px;border-radius:14px;background:linear-gradient(145deg,#f6efdc,#e7d9b4);color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.35);overflow:hidden;transition:transform .35s,box-shadow .35s}
+.vch::before{content:"";position:absolute;inset:6px;border:1px dashed rgba(11,42,34,.28);border-radius:10px;pointer-events:none}
+.vch::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:gshine 5s ease-in-out infinite}
+.vch:nth-child(2)::after{animation-delay:1.2s}.vch:nth-child(3)::after{animation-delay:2.4s}.vch:nth-child(4)::after{animation-delay:3.6s}
+@keyframes gshine{0%,70%{left:-60%}100%{left:130%}}
+.vch:hover{transform:translateY(-4px) rotate(-.6deg);box-shadow:0 22px 44px rgba(0,0,0,.45)}
+.vtop{display:flex;justify-content:space-between;align-items:center}
+.vtop .mono{color:#7a5c25;font-size:10px}
+.seal{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:18px;color:#f6efdc;background:radial-gradient(circle at 35% 30%,#b8483e,#7d1f1a);box-shadow:inset 0 0 0 3px rgba(0,0,0,.15),0 2px 4px rgba(0,0,0,.3)}
+.vch b{display:block;font-size:clamp(30px,2.6vw,40px);line-height:1;margin-top:10px;color:var(--ink)}
+.vch small{display:block;color:rgba(11,42,34,.72);font-size:14px;margin-top:6px}
+.vfoot{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:10px;border-top:1px solid rgba(11,42,34,.15);font:500 14px Inter}
+.vfoot .mono{font-size:9.5px;color:#7a5c25}
+.gsteps{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:30px;color:var(--muted);font-size:14.5px}
+.gsteps span{display:flex;align-items:center;gap:10px}
+.gsteps b{width:28px;height:28px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold2);font-size:16px;font-weight:400}
+.gsteps .ar{color:var(--gold)}
+@media(max-width:900px){.gin{grid-template-columns:1fr}.gart{max-width:420px;margin:0 auto}.gtag{right:8px}.gifts{padding:11vh 6vw}}
+@media(max-width:520px){.vgrid{grid-template-columns:1fr}.gsteps .ar{display:none}}
 </style><style>.ctas .ghost2{background:transparent!important;color:#fff4de!important;border:1px solid rgba(255,244,222,.5)!important}</style></head>
 <body>
 <div class="prog" id="prog"></div>
@@ -438,15 +472,16 @@ html,body{overflow-x:hidden}
   </div>
  </div>
 </section>
-<section class="free" id="credits">
- <div class="mono reveal" style="color:var(--gold)">04 / The perks</div>
- <h2 class="serif reveal">Plus free credits, trials<br><em>and huge discounts.</em></h2>
- <p class="sub reveal">Every tool Atrios recommends comes with a perk you can't get by signing up on your own.</p>
- <div class="pgrid">
-  <div class="pcard reveal"><span class="mono">Rho · Banking</span><b class="serif">$875</b><small>welcome bonus</small></div>
-  <div class="pcard reveal" style="transition-delay:.08s"><span class="mono">Deel · Payroll</span><b class="serif">$1,500</b><small>in credits + $250 bonus</small></div>
-  <div class="pcard reveal" style="transition-delay:.16s"><span class="mono">Superposition · Hiring</span><b class="serif">1 month free</b><small>+ 20% off your first hire</small></div>
-  <div class="pcard reveal" style="transition-delay:.24s"><span class="mono">Veroa · Global talent</span><b class="serif">Up to 40% off</b><small>+ first month free</small></div>
+<section class="gifts" id="credits">
+ <div class="gin">
+  <div class="gart reveal"><div class="frame gframe"><img src="a/gift.jpg" alt="A merchant offering a chest of gold"></div><div class="gtag"><i></i>Companies want your feedback</div></div>
+  <div class="gcopy">
+   <div class="mono reveal" style="color:var(--gold)">04 / The perks</div>
+   <h2 class="serif reveal">Plus, you get amazing credits, discounts and <em>cash bonuses</em> when you try companies through Atrios.</h2>
+   <p class="reveal">The best new companies want founders like you to try their tools and tell them what you think. So they pay for it, with perks you can't get by signing up on your own.</p>
+   <div class="vgrid"><div class="vch reveal" style="transition-delay:0.0s"><div class="vtop"><span class="mono">Banking</span><i class="seal serif">R</i></div><b class="serif">$875</b><small>welcome bonus</small><div class="vfoot"><span>Rho</span><span class="mono">Via Atrios</span></div></div><div class="vch reveal" style="transition-delay:0.1s"><div class="vtop"><span class="mono">Payroll & HR</span><i class="seal serif">D</i></div><b class="serif">$1,500</b><small>in credits + $250 bonus</small><div class="vfoot"><span>Deel</span><span class="mono">Via Atrios</span></div></div><div class="vch reveal" style="transition-delay:0.2s"><div class="vtop"><span class="mono">Hiring</span><i class="seal serif">S</i></div><b class="serif">1 month free</b><small>+ 20% off your first hire</small><div class="vfoot"><span>Superposition</span><span class="mono">Via Atrios</span></div></div><div class="vch reveal" style="transition-delay:0.3s"><div class="vtop"><span class="mono">Global talent</span><i class="seal serif">V</i></div><b class="serif">Up to 40% off</b><small>+ first month free</small><div class="vfoot"><span>Veroa</span><span class="mono">Via Atrios</span></div></div></div>
+   <div class="gsteps reveal"><span><b class="serif">1</b>Try a tool Atrios picked for you</span><span class="ar">→</span><span><b class="serif">2</b>Share honest feedback</span><span class="ar">→</span><span><b class="serif">3</b>Get the bonus</span></div>
+  </div>
  </div>
 </section>
 <section class="free alt" id="free">
