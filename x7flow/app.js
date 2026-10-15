@@ -89,7 +89,7 @@ function vMine(){
    <div class="mklink"><span>atrios.com/t/taylor/<b>${esc(slug)}</b></span><span class="mkn">${pid.length} perk${pid.length===1?'':'s'}</span><button class="pillbtn gold" data-mkcopy="${esc(slug)}">Create + copy link</button><a class="pillbtn" href="#/c/taylor">Preview</a></div></section>`;
   const toggle=`<div class="stog"><button class="${sm==='companies'?'on':''}" data-smode="companies">By company</button><button class="${sm==='friends'?'on':''}" data-smode="friends">By person</button><button class="${sm==='page'?'on':''}" data-smode="page">Make a page to share</button></div>`;
   let body='';
-  if(sm==='page'){body=mkpage}
+  if(sm==='page'){body=`<iframe class="buildframe" src="../stack/build.html?embed=1" title="Build your perks page" scrolling="no"></iframe>`}
   else if(sm==='companies'){
     const list=V.filter(v=>!q||(v.name+' '+v.sub+' '+v.cat).toLowerCase().includes(q));
     body=`<div class="ssearch"><input data-sq placeholder="Search companies, e.g. banking, hiring, payroll" value="${esc(S.sq||'')}"></div>
@@ -390,4 +390,5 @@ if(QS.get('m'))document.body.classList.add('mobileview');
 setSeg();route();
 document.addEventListener('submit',e=>{if(e.target.matches('[data-liform]')){e.preventDefault();const u=($('#liurl').value||'').trim()||'linkedin.com/in/taylor-offer';localStorage.setItem('x7li',u);toast('LinkedIn connected. Ranking your network…');$('#view').innerHTML=vMine()}});
 document.addEventListener('input',e=>{if(e.target.matches('[data-pname]')){S.pname=e.target.value;const sl=(S.pname||'my-perks').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'my-perks';const b=document.querySelector('.mklink b');if(b)b.textContent=sl;const c=document.querySelector('[data-mkcopy]');if(c)c.dataset.mkcopy=sl;return}if(e.target.matches('[data-sq]')){S.sq=e.target.value;const pos=e.target.selectionStart;$('#view').innerHTML=vMine();const i=$('[data-sq]');i.focus();i.setSelectionRange(pos,pos)}});
+window.addEventListener('message',e=>{if(e.data&&e.data.buildH){const f=document.querySelector('.buildframe');if(f)f.style.height=Math.max(600,e.data.buildH)+'px'}});
 (function(){let n=48213;setInterval(()=>{n+=Math.floor(Math.random()*9)+1;document.querySelectorAll('.sigctr').forEach(c=>c.textContent=n.toLocaleString())},140)})();

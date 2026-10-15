@@ -34,6 +34,11 @@
 .urlrow{display:flex;align-items:center;border:1px solid rgba(255,244,222,.16);border-radius:12px;background:rgba(255,255,255,.05);overflow:hidden}
 .urlrow .pre{padding:12px 0 12px 14px;color:var(--ink-muted);font-size:15px;white-space:nowrap}.urlrow input{flex:1;border:0!important;background:transparent!important;padding-left:2px!important;color:var(--gold)!important;min-width:0}
 .urlrow:focus-within{border-color:var(--gold)}.done{display:grid;gap:12px}.done .ok{font-size:15px;color:var(--ink)}.done b{color:var(--gold);font-weight:400}
+</style><style>/* embed mode for x7flow Share Perks tab (10/15) */
+html.embed,html.embed body,html.embed .shell,html.embed main.panel{background:transparent!important;min-height:0!important}
+html.embed .rail,html.embed header.bar,html.embed .fab,html.embed #acefab,html.embed [class*="chatfab"],html.embed .ask-fab{display:none!important}
+html.embed .shell{padding:0!important;min-height:0!important;height:auto!important;display:block!important}
+html.embed main.panel{border:0!important;box-shadow:none!important;background:transparent!important;min-height:0!important;height:auto!important;grid-template-columns:1fr!important;border-radius:0!important;overflow:visible!important}
 </style></head><body>
 <title>Build your stack | Atrios</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&amp;display=swap">
@@ -442,4 +447,9 @@ document.addEventListener('input',sums);document.addEventListener('click',functi
 drawChips();filter();sums();
 }
 })();
-</script></body></html>
+</script><script>(function(){if(!/[?&]embed=1/.test(location.search))return;document.documentElement.classList.add('embed');
+function post(){parent.postMessage({buildH:document.documentElement.scrollHeight},'*')}
+new ResizeObserver(post).observe(document.body);setInterval(post,800);addEventListener('load',post);
+// hide chat FAB injected by chat.js
+setInterval(()=>{document.querySelectorAll('body > *').forEach(el=>{const t=(el.textContent||'').trim();if(/^A?\s*Ask Ace$/.test(t)&&getComputedStyle(el).position==='fixed')el.style.display='none'})},500)})();</script>
+</body></html>
