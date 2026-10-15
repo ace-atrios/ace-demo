@@ -393,6 +393,25 @@ html,body{overflow-x:hidden}
 .gsteps .ar{color:var(--gold)}
 @media(max-width:900px){.gin{grid-template-columns:1fr}.gart{max-width:420px;margin:0 auto}.gtag{right:8px}.gifts{padding:11vh 6vw}}
 @media(max-width:520px){.vgrid{grid-template-columns:1fr}.gsteps .ar{display:none}}
+
+/* zero / always free v2 */
+.zero{padding:16vh 5vw 14vh}
+.zgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1180px;margin:40px auto 0}
+.zc{border:1px solid rgba(201,169,110,.28);border-radius:20px;padding:34px 28px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.01))}
+.zic{position:relative;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;color:var(--gold2);background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.35)}
+.zic svg{width:40px;height:40px}
+.zic b{font:600 17px Inter;letter-spacing:-.02em;color:var(--gold2);position:relative;z-index:1}
+.zring{position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(226,200,143,.6);animation:zr 2.4s ease-out infinite}.zring.b{animation-delay:1.2s}
+@keyframes zr{from{transform:scale(1);opacity:.9}to{transform:scale(1.6);opacity:0}}
+.zc h3{font-size:30px;line-height:1.05;margin-top:24px}
+.zc p{color:var(--muted);margin-top:10px;font-size:15.5px}
+.zbig{max-width:1180px;margin:28px auto 0;border-radius:26px;padding:56px 6%;display:flex;align-items:center;gap:6%;background:linear-gradient(120deg,#e9d7a6,#c9a96e 55%,#b08d4f);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.zbig::after{content:"";position:absolute;top:0;left:-50%;width:30%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);animation:gshine 6s ease-in-out infinite}
+.zamt{font-size:clamp(110px,15vw,220px);line-height:.85;letter-spacing:-.04em}
+.ztxt h2{font-size:clamp(38px,4.6vw,72px);line-height:1}
+.ztxt p{font-size:clamp(17px,1.5vw,22px);margin-top:14px;color:rgba(11,42,34,.8)}
+.ztxt .btn{margin-top:26px;background:var(--ink);color:var(--cream)}
+@media(max-width:900px){.zgrid{grid-template-columns:1fr}.zbig{flex-direction:column;text-align:center;padding:44px 7%}.zero{padding:11vh 6vw}}
 </style><style>.ctas .ghost2{background:transparent!important;color:#fff4de!important;border:1px solid rgba(255,244,222,.5)!important}</style></head>
 <body>
 <div class="prog" id="prog"></div>
@@ -484,17 +503,16 @@ html,body{overflow-x:hidden}
   </div>
  </div>
 </section>
-<section class="free alt" id="free">
- <div class="fin">
-  <div>
-   <div class="mono reveal" style="color:var(--gold)">05 / Always free</div>
-   <h2 class="serif reveal">Atrios is always free for you.<br><em>Here's why.</em></h2>
-  </div>
-  <div class="fsteps">
-   <div class="fs reveal"><span class="n serif">1</span><div><b>Great companies want to meet you</b><p>Vendors pay Atrios to get in front of founders who actually fit what they sell. You never pay a cent.</p></div></div>
-   <div class="fs reveal" style="transition-delay:.1s"><span class="n serif">2</span><div><b>That's why the perks are so good</b><p>Instead of spending on ads, they give the budget to you: bonuses, credits, free months, real discounts.</p></div></div>
-   <div class="fs reveal" style="transition-delay:.2s"><span class="n serif">3</span><div><b>You only hear about what fits</b><p>Atrios only recommends tools that match your company. No spam, no cold calls, no sales pitches you didn't ask for.</p></div></div>
-  </div>
+<section class="zero" id="free">
+ <div class="mono reveal" style="color:var(--gold);text-align:center">05 / How Atrios works for you</div>
+ <div class="zgrid">
+  <div class="zc reveal"><div class="zic"><span class="zring"></span><span class="zring b"></span><b id="zsig">0</b></div><h3 class="serif">Scans thousands of signals</h3><p>Reviews, funding news, what similar startups buy, and real feedback from founders. Every day.</p></div>
+  <div class="zc reveal" style="transition-delay:.12s"><div class="zic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="24" cy="24" r="9"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11.3 11.3l4.2 4.2M32.5 32.5l4.2 4.2M11.3 36.7l4.2-4.2M32.5 15.5l4.2-4.2"/></svg></div><h3 class="serif">Learns your business</h3><p>Your stage, team and goals, so every tool it recommends is one you should actually be using.</p></div>
+  <div class="zc reveal" style="transition-delay:.24s"><div class="zic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="8" y="18" width="32" height="22" rx="2"/><path d="M6 12h36v6H6zM24 12v28M24 12c-3-6-11-6-11-1s8 1 11 1zM24 12c3-6 11-6 11-1s-8 1-11 1z"/></svg></div><h3 class="serif">Gets you massive perks</h3><p>Credits, cash bonuses and discounts on every tool, that you can't get on your own.</p></div>
+ </div>
+ <div class="zbig reveal">
+  <div class="zamt serif">$0</div>
+  <div class="ztxt"><h2 class="serif">Always 100% free for you.</h2><p>You never pay a dollar. Not now, not ever.</p><a class="btn" href="app.html#/discover">Get your perks</a></div>
  </div>
 </section>
 
@@ -620,4 +638,5 @@ document.querySelectorAll('.frame:not(#salon .frame),.hc,.shot,.card3 .img,.chai
 (function(){const c=document.getElementById('ctr2');if(!c)return;let n=48213;const tick=()=>{n+=Math.floor(Math.random()*9)+1;c.textContent=n.toLocaleString()};tick();setInterval(tick,140)})();
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 </script>
-<script src="../x7land/bgbin.js?v=2"></script></body></html>
+<script src="../x7land/bgbin.js?v=2"></script><script>(()=>{const el=document.getElementById('zsig');if(!el)return;let done=0;new IntersectionObserver(e=>{if(e[0].isIntersecting&&!done){done=1;const t0=performance.now(),T=1400,N=1000;(function f(t){const k=Math.min(1,(t-t0)/T);el.textContent=k==1?'1000s':Math.round(N*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)})(t0)}}).observe(el)})();</script>
+</body></html>
