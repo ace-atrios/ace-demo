@@ -516,3 +516,12 @@ body.mobileview .phonewrap{display:flex}
 @media (max-width:700px){.mkpage{padding:14px}.mkh h2{font-size:21px}.mkname{min-width:0;width:100%}.mklink .pillbtn{flex:1;justify-content:center}}
 .mkchip{display:inline-flex;align-items:center;gap:6px;line-height:1.2;height:34px}
 .mkchip svg{width:13px;height:13px;flex:0 0 13px;stroke:var(--gold);fill:none;stroke-width:2.4}
+
+/* 10/15 13:35 compact rewards (Taylor) */
+.shr{grid-template-columns:auto 1fr;gap:16px}
+.shr .ring{width:130px;height:130px}.shr .ring>div{width:108px;height:108px}.shr .ring b{font-size:26px}
+.rmini{grid-template-columns:1fr 1fr;gap:8px;max-width:300px}
+.rm span{height:40px!important}
+.rm b{font-size:11.5px;padding:5px 8px 0;line-height:1.2}.rm i{font-size:10.5px;padding:2px 8px 6px}
+.rnote{grid-column:1/-1;font-size:11.5px;color:var(--muted);margin-top:2px}
+.shr .rbal .rnext{font-size:12.5px}

@@ -72,28 +72,29 @@ const FRIENDS_INTRO=[
  {n:'Ava Moreno',r:'Head of People, Fieldwork',why:'Hiring 10+ remote roles this quarter.',v:['globaltize','corridor'],s:74}];
 function liHave(){return !!localStorage.getItem('x7li')}
 function vMine(){
-  const sm='companies',q=(S.sq||'').toLowerCase();
-  const next=RW.filter(r=>r.pts>PTS).sort((a,b)=>a.pts-b.pts)[0];
+  const sm=S.smode||'companies',q=(S.sq||'').toLowerCase();
+  const next=RW.filter(r=>!r.cash&&r.pts>PTS).sort((a,b)=>a.pts-b.pts)[0];
   const top=`<section class="shero"><div class="rglow"></div>
     <div class="shl"><div class="eyebrow">Share Perks</div><h1>Share perks, <em>earn rewards</em></h1>
      <p>Send a friend a perk they actually need. You earn points when they book a call, then redeem them for real rewards.</p>
-     <div class="howpts sm"><div class="hp"><span class="hn">1</span><b>Share a perk</b><p>By text, email or link</p></div><div class="hp"><span class="hn">2</span><b>They book a call</b><p><span class="gold">20,000–60,000 pts</span> ($200–$600)</p></div><div class="hp"><span class="hn">3</span><b>They sign up</b><p><span class="gold">+25,000 pts</span> ($250) bonus</p></div></div></div>
-    <div class="shr"><div class="rbal"><div class="ring" style="--p:${Math.min(100,Math.round(PTS/next.pts*100))}"><div><b>${PTS.toLocaleString()}</b><span>points · ${usd(PTS)}</span></div></div><div class="rnext">${(next.pts-PTS).toLocaleString()} to <b>${next.name}</b></div><button class="pillbtn gold shine redeem" data-redeem>Redeem points</button></div>
-     <div class="rmini">${RW.slice(0,4).map(r=>{const ok=PTS>=r.pts;return `<button class="rm ${ok?'ready':''}" data-claimr="${r.id}" title="${r.name}"><span style="background-image:url(${r.img})"></span><b>${r.name}</b><i>${ok?'Claim now':r.pts.toLocaleString()+' pts · '+usd(r.pts)}</i></button>`}).join('')}</div></div>
+     <div class="howpts sm"><div class="hp"><span class="hn">1</span><b>Share a perk</b><p>By text, email or link</p></div><div class="hp"><span class="hn">2</span><b>They book a call</b><p><span class="gold">20,000–60,000 pts</span></p></div><div class="hp"><span class="hn">3</span><b>They sign up</b><p><span class="gold">+25,000 pts</span> bonus</p></div></div></div>
+    <div class="shr"><div class="rbal"><div class="ring" style="--p:${Math.min(100,Math.round(PTS/next.pts*100))}"><div><b>${PTS.toLocaleString()}</b><span>points</span></div></div><div class="rnext">${(next.pts-PTS).toLocaleString()} to <b>${next.name}</b></div><button class="pillbtn gold shine redeem" data-redeem>Redeem points</button></div>
+     <div class="rmini">${RW.slice(0,4).map(r=>{const ok=!r.cash&&PTS>=r.pts;return `<button class="rm ${ok?'ready':''}" data-claimr="${r.id}" title="${r.name}"><span style="background-image:url(${r.img})"></span><b>${r.name}</b><i>${r.cash?'100 pts ≈ $1':ok?'Claim now':(r.cash?'100 pts ≈ $1':r.pts.toLocaleString()+' pts')}</i></button>`}).join('')}</div><div class="rnote">100 points equal roughly $1</div></div>
    </section>`;
   const pid=pageIds(),slug=(S.pname||'my-perks').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'my-perks';
-  const toggle=`<section class="mkpage"><div class="mkh"><div><div class="eyebrow">Make your own custom page</div><h2>Your perks page, one link</h2><p>Pick the perks you'd recommend. Share one link and earn points every time a friend books.</p></div>
+  const mkpage=`<section class="mkpage"><div class="mkh"><div><div class="eyebrow">Make your own custom page</div><h2>Your perks page, one link</h2><p>Pick the perks you'd recommend. Share one link and earn points every time a friend books.</p></div>
     <div class="mkname"><label>Page name</label><input data-pname value="${esc(S.pname||'My perks')}" placeholder="My perks"></div></div>
    <div class="mkpicks">${V.map(v=>`<button class="mkchip ${pid.includes(v.id)?'on':''}" data-addpage="${v.id}">${pid.includes(v.id)?ic.check:'+'} ${v.name}</button>`).join('')}</div>
-   <div class="mklink"><span>atrios.com/t/taylor/<b>${esc(slug)}</b></span><span class="mkn">${pid.length} perk${pid.length===1?'':'s'}</span><button class="pillbtn gold" data-mkcopy="${esc(slug)}">Create + copy link</button><a class="pillbtn" href="#/c/taylor">Preview</a></div></section>
-   <div class="lbl" style="margin:22px 0 8px">Or share one perk at a time</div>`;
+   <div class="mklink"><span>atrios.com/t/taylor/<b>${esc(slug)}</b></span><span class="mkn">${pid.length} perk${pid.length===1?'':'s'}</span><button class="pillbtn gold" data-mkcopy="${esc(slug)}">Create + copy link</button><a class="pillbtn" href="#/c/taylor">Preview</a></div></section>`;
+  const toggle=`<div class="stog"><button class="${sm==='companies'?'on':''}" data-smode="companies">By company</button><button class="${sm==='friends'?'on':''}" data-smode="friends">By person</button><button class="${sm==='page'?'on':''}" data-smode="page">Make a page to share</button></div>`;
   let body='';
-  if(sm==='companies'){
+  if(sm==='page'){body=mkpage}
+  else if(sm==='companies'){
     const list=V.filter(v=>!q||(v.name+' '+v.sub+' '+v.cat).toLowerCase().includes(q));
     body=`<div class="ssearch"><input data-sq placeholder="Search companies, e.g. banking, hiring, payroll" value="${esc(S.sq||'')}"></div>
      <div class="slist">${list.map(v=>`<article class="srowc"><div class="hd"><div class="mark">${v.name[0]}</div><div><h3>${v.name}</h3><div class="cat">${v.sub}</div></div></div>
        <div class="sfor"><div class="lbl">Your friend gets</div><b>${v.perk}</b><span>For: ${v.who.join(' · ')}</span></div>
-       <div class="searn"><div class="lbl">You earn</div><b>${ptsTxt(EARN[v.id]||25000)}</b><span>${usd(EARN[v.id]||25000)} per call booked</span></div>
+       <div class="searn"><div class="lbl">You earn</div><b>${ptsTxt(EARN[v.id]||25000)}</b><span>per call booked</span></div>
        <button class="pillbtn gold bigshare" data-share="${v.id}">${ic.share}SHARE</button></article>`).join('')||'<div class="pvempty">No companies match</div>'}</div>`;
   }else{
     const have=liHave(),F=have?FRIENDS_INTRO:FRIENDS_LIKELY;
@@ -109,6 +110,7 @@ function vMine(){
   return `<div class="wrap">${top}${toggle}${body}</div>`;
 }
 const RW=[
+ {id:'cash',img:'a/z3.jpg',name:'Convert to cash',tag:'Cash',pts:10000,cash:1},
  {id:'watch',img:'rw/watch.jpg',name:'Rolex Submariner',tag:'Grand prize',pts:700000},
  {id:'mattress',img:'rw/mattress.jpg',name:'Eight Sleep Pod',tag:'Sleep upgrade',pts:250000},
  {id:'rent',img:'rw/rent.jpg',name:'A month of rent, on us',tag:'Life upgrade',pts:300000},
@@ -117,7 +119,7 @@ const RW=[
 ];
 const PTS=68500;
 function vRewards(){
-  const next=RW.filter(r=>r.pts>PTS).sort((a,b)=>a.pts-b.pts)[0];
+  const next=RW.filter(r=>!r.cash&&r.pts>PTS).sort((a,b)=>a.pts-b.pts)[0];
   return `<div class="wrap rwrap">
    <section class="rhero"><div class="rglow"></div>
      <div><div class="eyebrow">Atrios Rewards</div><h1>Turn intros into <em>rewards</em></h1><p>Every time a friend books a call through you, you earn points. Stack them toward a Rolex, an Eight Sleep, a month of rent, and more.</p>
@@ -126,8 +128,8 @@ function vRewards(){
        <div class="rnext">${(next.pts-PTS).toLocaleString()} to <b>${next.name}</b></div></div>
    </section>
    <section class="howpts"><div class="hp"><span class="hn">1</span><b>Share a perk</b><p>Send a friend a perk, or put it on your page.</p></div>
-     <div class="hp"><span class="hn">2</span><b>They book a call</b><p><span class="gold">20,000+ pts</span> ($200+) when the call happens.</p></div>
-     <div class="hp"><span class="hn">3</span><b>They become a customer</b><p><span class="gold">+25,000 pts</span> ($250) bonus when they sign up.</p></div>
+     <div class="hp"><span class="hn">2</span><b>They book a call</b><p><span class="gold">20,000+ pts</span> when the call happens.</p></div>
+     <div class="hp"><span class="hn">3</span><b>They become a customer</b><p><span class="gold">+25,000 pts</span> bonus when they sign up.</p></div>
      <div class="hp"><span class="hn">★</span><b>Streaks</b><p><span class="gold">2x points</span> on your 3rd intro in a month.</p></div></section>
    <h2 class="rh2">Rewards</h2>
    <div class="rgrid">${RW.map(r=>{const p=Math.min(100,Math.round(PTS/r.pts*100)),ok=PTS>=r.pts;return `<article class="rcard ${ok?'ready':''}">
@@ -139,7 +141,7 @@ function vRewards(){
 }
 function openRedeem(){
   $('#modal').innerHTML=`<div class="mh"><h3>Redeem points</h3><button class="x" data-closemodal aria-label="Close">✕</button></div><div class="mb"><div class="rdbal">You have <b>${PTS.toLocaleString()} points</b></div>
-   ${RW.map(r=>{const ok=PTS>=r.pts;return `<div class="rdrow"><span class="rdimg" style="background-image:url(${r.img})"></span><div style="flex:1"><b>${r.name}</b><span>${r.pts.toLocaleString()} pts</span></div><button class="pillbtn ${ok?'gold':''}" data-claimr="${r.id}" ${ok?'':'aria-disabled="true"'}>${ok?'Redeem':(r.pts-PTS).toLocaleString()+' to go'}</button></div>`}).join('')}</div>`;
+   ${RW.map(r=>{const ok=PTS>=r.pts;return `<div class="rdrow"><span class="rdimg" style="background-image:url(${r.img})"></span><div style="flex:1"><b>${r.name}</b><span>${r.cash?'100 points equal roughly $1':r.pts.toLocaleString()+' pts'}</span></div><button class="pillbtn ${ok?'gold':''}" data-claimr="${r.id}" ${ok?'':'aria-disabled="true"'}>${r.cash?'Convert':ok?'Redeem':(r.pts-PTS).toLocaleString()+' to go'}</button></div>`}).join('')}</div>`;
   $('#modal').classList.add('on');$('#scrim').classList.add('on')}
 function claimReward(id){const r=RW.find(x=>x.id===id);if(PTS<r.pts){toast(`${(r.pts-PTS).toLocaleString()} more points to unlock`);return}
   $('#modal').innerHTML=`<div class="mh"><h3>Claim your reward</h3><button class="x" data-closemodal>✕</button></div><div class="mb" style="text-align:center"><div class="rimg" style="background-image:url(${r.img});height:170px;border-radius:12px"></div><h3 style="font-size:24px;margin:16px 0 6px">${r.name}</h3><p style="color:var(--muted);margin:0 0 16px">We'll email you within a day to arrange delivery.</p><button class="pillbtn gold shine" data-claimdone style="width:100%;justify-content:center;padding:13px">Confirm claim · ${r.pts.toLocaleString()} pts</button></div>`;
@@ -163,7 +165,7 @@ function bigAsk(q){const v=q.toLowerCase();
   location.hash='#/discover/'+hit.id;setTimeout(()=>askAce(q),420)}
 const MAIL=[
  {id:'m1',u:1,from:'Ace',av:'A',tag:'Booking',sub:'Your Rho call is confirmed',snip:'Thu, Oct 22 at 2:00 PM ET. I added it to your calendar.',t:'2m',body:'<p>Hi Taylor,</p><p>Your call with Rho is confirmed for <b>Thu, Oct 22 at 2:00 PM ET</b>. The invite is on your calendar.</p><p>After the call you get the <b>$875 bonus</b> once your account is live, plus $50 for your feedback.</p><p>Want me to prep 3 questions for the call?</p><p>Ace</p>',b:'View perk',href:'#/discover/rho'},
- {id:'m2',u:1,from:'Maya Chen',av:'MC',tag:'Referral',sub:'Booked the Deel call you sent me',snip:'Thanks for the intro, booked Monday at 11.',t:'1h',body:'<p>Hey! Thanks for sending the Deel perk. Booked a call for Monday at 11. The $1,500 credits are a nice push since we just hired in Lisbon.</p><p>Maya</p><p style="color:var(--muted)">You earn 25,000 pts ($250) once the call happens.</p>'},
+ {id:'m2',u:1,from:'Maya Chen',av:'MC',tag:'Referral',sub:'Booked the Deel call you sent me',snip:'Thanks for the intro, booked Monday at 11.',t:'1h',body:'<p>Hey! Thanks for sending the Deel perk. Booked a call for Monday at 11. The $1,500 credits are a nice push since we just hired in Lisbon.</p><p>Maya</p><p style="color:var(--muted)">You earn 25,000 pts once the call happens.</p>'},
  {id:'m3',u:1,from:'Atrios Perks',av:'✦',tag:'Promotion',sub:'New this week: Supper, 2 months free',snip:'Data answers in Slack. Members only through Oct 31.',t:'3h',body:'<p><b>Supper</b> answers business questions from your live data in Slack, so nobody waits on a dashboard.</p><p>Atrios members get <b>2 months free</b> through Oct 31.</p>',b:'See the perk',href:'#/discover/supper'},
  {id:'m4',from:'Atrios Rewards',av:'★',tag:'Reward',sub:'$50 feedback reward sent',snip:'Thanks for sharing your take on Corridor after your call.',t:'Yesterday',body:'<p>Your <b>$50</b> for sharing feedback on Corridor is on its way. It lands in 1-2 business days.</p><p>You are 5,150 points from a month of rent on us.</p>'},
  {id:'m5',from:'Atrios Perks',av:'✦',tag:'Promotion',sub:'Limited: Superposition first month free',snip:'For founders hiring in the US or Canada. Ends Friday.',t:'2d',body:'<p>Hiring in the US or Canada? <b>Superposition</b> sources candidates for any eng, sales, marketing or CS role.</p><p>First month free + 20% off your first hire + $1,050. Ends Friday.</p>',b:'See the perk',href:'#/discover/superposition'}];
@@ -289,7 +291,7 @@ function openShare(id,fn){
    <label style="display:block;font-size:12px;color:var(--muted);margin-bottom:5px">Your message</label>
    <textarea id="stext">${esc(txt)}</textarea><div class="hint">Pre-written so it sounds like you. Edit anything before you send.</div>
    <div class="ccace">${ic.check}<span><b>Ace is cc'd</b> on your text or email to answer their questions and book the call.</span></div><div class="via"><a class="pillbtn gold" id="viasms" href="#">Send as text</a><button class="pillbtn" data-copy>Copy</button><a class="pillbtn" id="viamail" href="#">Email</a></div>
-   <div class="rw">${ic.gift}<span>${v?`You earn <b>${ptsTxt(EARN[v.id]||25000)} (${usd(EARN[v.id]||25000)})</b> when a friend books a call with ${v.name} through your link.`:"You earn <b>20,000 to 60,000 points ($200–$600)</b> for every friend who books a call through your page."}</span></div></div>`;
+   <div class="rw">${ic.gift}<span>${v?`You earn <b>${ptsTxt(EARN[v.id]||25000)}</b> when a friend books a call with ${v.name} through your link.`:"You earn <b>20,000 to 60,000 points</b> for every friend who books a call through your page."}</span></div></div>`;
   const upd=()=>{const t=$('#stext').value;$('#viasms').href='sms:/open?addresses=+15303064813&body='+encodeURIComponent(t);$('#viamail').href='mailto:?cc=ace@atrios.com&subject='+encodeURIComponent(v?v.name+' perk for you':'Perks for your startup')+'&body='+encodeURIComponent(t)};
   $('#fname').oninput=e=>{const n=e.target.value.trim();const t=$('#stext');t.value=t.value.replace(/^Hey[^!]*!/,n?`Hey ${n}!`:'Hey!');upd()};
   $('#stext').oninput=upd;upd();
