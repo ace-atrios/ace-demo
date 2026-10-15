@@ -348,6 +348,17 @@ html,body{overflow-x:hidden}
 .fs .n{font-size:34px;line-height:1;color:var(--gold2);min-width:30px}.fs b{font-size:17px;font-weight:500}.fs p{color:var(--muted);margin-top:6px;font-size:15px}
 @media(max-width:900px){.wgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr 1fr}.fin{grid-template-columns:1fr}.wins,.free{padding:11vh 6vw}}
 @media(max-width:520px){.pgrid{grid-template-columns:1fr}}
+
+.qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 26px;max-width:1240px;margin:60px auto 0;text-align:left}
+.qc{margin:0}
+.qf{aspect-ratio:4/5;overflow:hidden;border:6px solid #8a6d3b;outline:1px solid rgba(226,200,143,.5);outline-offset:-10px;box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 2px #3a2a12;border-radius:2px;background:#1a1a12}
+.qf img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.qc:hover .qf img{transform:scale(1.04)}
+.qc blockquote{font-size:clamp(18px,1.45vw,22px);line-height:1.25;margin:18px 0 10px;color:var(--text)}
+.qc figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1px solid rgba(201,169,110,.3);padding-top:9px}
+.qc figcaption b{font-weight:500;font-size:14px;color:var(--gold2)}.qc figcaption .mono{color:var(--muted);font-size:10px}
+@media(max-width:1000px){.qgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.qgrid{grid-template-columns:1fr 1fr;gap:26px 14px}.qc blockquote{font-size:16px}}
 </style><style>.ctas .ghost2{background:transparent!important;color:#fff4de!important;border:1px solid rgba(255,244,222,.5)!important}</style></head>
 <body>
 <div class="prog" id="prog"></div>
@@ -371,12 +382,8 @@ html,body{overflow-x:hidden}
 <section class="wins" id="wins">
  <div class="mono reveal" style="color:var(--gold)">01 / Why it matters</div>
  <h2 class="serif reveal">The companies with the best tools win.</h2>
- <p class="sub reveal">The right stack lets a team of 5 move like a team of 50. The wrong one quietly costs you weeks.</p>
- <div class="wgrid">
-  <div class="wcard reveal"><b class="serif">Move faster</b><span>A small team with the right AI tools ships like a team ten times its size.</span></div>
-  <div class="wcard reveal" style="transition-delay:.1s"><b class="serif">Spend less</b><span>The right banking, payroll and finance setup saves weeks of busywork.</span></div>
-  <div class="wcard reveal" style="transition-delay:.2s"><b class="serif">Hire better</b><span>The best founders lock in their stack early, not in year two.</span></div>
- </div>
+ <p class="sub reveal">The greatest minds in history have been saying it for 2,500 years.</p>
+ <div class="qgrid"><figure class="qc reveal" style="transition-delay:0.00s"><div class="frame qf"><img src="a/q_confucius.jpg" alt="Confucius" loading="lazy"></div><blockquote class="serif">“The mechanic, who wishes to do his work well, must first sharpen his tools.”</blockquote><figcaption><b>Confucius</b><span class="mono">c. 500 BC</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.08s"><div class="frame qf"><img src="a/q_archimedes.jpg" alt="Archimedes" loading="lazy"></div><blockquote class="serif">“Give me a place to stand, and I will move the earth.”</blockquote><figcaption><b>Archimedes</b><span class="mono">c. 250 BC</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.16s"><div class="frame qf"><img src="a/q_caesar.jpg" alt="Julius Caesar" loading="lazy"></div><blockquote class="serif">“Veni, vidi, vici. I came, I saw, I conquered.”</blockquote><figcaption><b>Julius Caesar</b><span class="mono">47 BC</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.24s"><div class="frame qf"><img src="a/q_marcus.jpg" alt="Marcus Aurelius" loading="lazy"></div><blockquote class="serif">“If you seek tranquility, do less. Or more accurately, do what's essential.”</blockquote><figcaption><b>Marcus Aurelius</b><span class="mono">c. 170 AD</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.00s"><div class="frame qf"><img src="a/q_davinci.jpg" alt="Leonardo da Vinci" loading="lazy"></div><blockquote class="serif">“Iron rusts from disuse. Even so does inaction sap the vigor of the mind.”</blockquote><figcaption><b>Leonardo da Vinci</b><span class="mono">c. 1500</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.08s"><div class="frame qf"><img src="a/q_jobs.jpg" alt="Steve Jobs" loading="lazy"></div><blockquote class="serif">“The computer is the most remarkable tool we've ever come up with. It's the equivalent of a bicycle for our minds.”</blockquote><figcaption><b>Steve Jobs</b><span class="mono">1990</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.16s"><div class="frame qf"><img src="a/q_gates.jpg" alt="Bill Gates" loading="lazy"></div><blockquote class="serif">“Automation applied to an efficient operation will magnify the efficiency.”</blockquote><figcaption><b>Bill Gates</b><span class="mono">1995</span></figcaption></figure><figure class="qc reveal" style="transition-delay:0.24s"><div class="frame qf"><img src="a/q_huang.jpg" alt="Jensen Huang" loading="lazy"></div><blockquote class="serif">“You're not going to lose your job to an AI, but you're going to lose your job to somebody who uses AI.”</blockquote><figcaption><b>Jensen Huang</b><span class="mono">2025</span></figcaption></figure></div>
 </section>
 <section class="wall2" id="perks">
  <div class="mono reveal" style="color:var(--gold);text-align:center">02 / The problem</div>
