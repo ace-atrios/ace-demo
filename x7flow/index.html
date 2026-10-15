@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Atrios · A world worth sharing</title>
+<title>Atrios · Stop working like a caveman</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
@@ -26,7 +26,7 @@ nav .links .btn{padding:9px 18px;font-size:13px;color:var(--ink)}
 .story{position:relative;height:100vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden}
 .stage .layer{position:absolute;inset:0;background-size:cover;background-position:60% 50%;will-change:transform,opacity}
-#paint{background-image:url(../x7land/a/still.jpg?v=7)}
+#paint{background-image:url(a/caveman.jpg?v=1);background-position:70% 50%}
 .stage canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
 .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,42,34,.94) 0%,rgba(11,42,34,.72) 34%,rgba(11,42,34,.08) 62%,rgba(11,42,34,0) 100%),linear-gradient(0deg,rgba(11,42,34,.7),rgba(11,42,34,0) 30%)}
 .copy{position:absolute;left:5vw;top:50%;transform:translateY(-50%);max-width:560px;transition:opacity .5s,transform .5s}
@@ -328,6 +328,26 @@ html,body{overflow-x:hidden}
  .why{padding:10vh 6vw}
  .copy h1{font-size:36px!important}
 }
+
+/* 10/15 caveman homepage (Taylor) */
+.copy .lede{margin:22px 0 0;color:var(--muted);font-size:clamp(16px,1.3vw,19px);max-width:470px;line-height:1.5}
+.wins,.free{padding:16vh 5vw;text-align:center}
+.wins h2,.free h2{font-size:clamp(36px,4.6vw,68px);line-height:1.02;margin-top:14px}
+.wins h2 em,.free h2 em{font-style:normal;color:var(--muted)}
+.wins .sub,.free .sub{color:var(--muted);max-width:640px;margin:20px auto 0;font-size:17px}
+.wgrid,.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1100px;margin:56px auto 0}
+.pgrid{grid-template-columns:repeat(4,1fr)}
+.wcard,.pcard{border:1px solid rgba(201,169,110,.3);border-radius:18px;padding:30px 24px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));text-align:left}
+.wcard b{display:block;font-size:38px;line-height:1;color:var(--gold2)}.wcard span{display:block;margin-top:12px;color:var(--muted);font-size:15px}
+.pcard .mono{color:var(--gold)}.pcard b{display:block;font-size:40px;line-height:1.05;margin-top:16px}.pcard small{display:block;color:var(--muted);font-size:14.5px;margin-top:6px}
+.wins .note,.free .note{margin-top:18px;color:rgba(243,236,220,.35);font-size:12px}
+.free.alt{background:linear-gradient(180deg,rgba(201,169,110,.06),rgba(201,169,110,0));text-align:left}
+.fin{display:grid;grid-template-columns:1fr 1.1fr;gap:6vw;max-width:1150px;margin:0 auto;align-items:center}
+.fsteps{display:flex;flex-direction:column;gap:22px}
+.fs{display:flex;gap:18px;align-items:flex-start;border-top:1px solid rgba(201,169,110,.25);padding-top:20px}
+.fs .n{font-size:34px;line-height:1;color:var(--gold2);min-width:30px}.fs b{font-size:17px;font-weight:500}.fs p{color:var(--muted);margin-top:6px;font-size:15px}
+@media(max-width:900px){.wgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr 1fr}.fin{grid-template-columns:1fr}.wins,.free{padding:11vh 6vw}}
+@media(max-width:520px){.pgrid{grid-template-columns:1fr}}
 </style><style>.ctas .ghost2{background:transparent!important;color:#fff4de!important;border:1px solid rgba(255,244,222,.5)!important}</style></head>
 <body>
 <div class="prog" id="prog"></div>
@@ -340,7 +360,7 @@ html,body{overflow-x:hidden}
   <canvas id="ascii"></canvas>
   <div class="shade" id="shade"></div>
   <div class="copy" id="c1">
-   <h1 class="serif">Perks so good you'll want to share them with friends</h1><p class="aside serif">(After you get them for yourself first...)</p>
+   <h1 class="serif">Stop working like a caveman.</h1><p class="lede">New AI tools come out every day, and keeping up is impossible. Atrios finds the best ones for your company, and gets you perks to try them.</p>
       <div class="ctas"><a class="btn" href="app.html#/discover">Get your perks</a><a class="btn ghost2" href="sms:+15303064813&body=Hi%20Ace%2C%20show%20me%20some%20perks">Or text Ace</a></div></div>
   <div class="foot mono"><span></span><span class="pulse">Scroll ↓</span></div>
  </div>
@@ -348,29 +368,32 @@ html,body{overflow-x:hidden}
 
 
 
+<section class="wins" id="wins">
+ <div class="mono reveal" style="color:var(--gold)">01 / Why it matters</div>
+ <h2 class="serif reveal">The companies with the best tools win.</h2>
+ <p class="sub reveal">The right stack lets a team of 5 move like a team of 50. The wrong one quietly costs you weeks.</p>
+ <div class="wgrid">
+  <div class="wcard reveal"><b class="serif">Move faster</b><span>A small team with the right AI tools ships like a team ten times its size.</span></div>
+  <div class="wcard reveal" style="transition-delay:.1s"><b class="serif">Spend less</b><span>The right banking, payroll and finance setup saves weeks of busywork.</span></div>
+  <div class="wcard reveal" style="transition-delay:.2s"><b class="serif">Hire better</b><span>The best founders lock in their stack early, not in year two.</span></div>
+ </div>
+</section>
 <section class="wall2" id="perks">
- <h2 class="serif reveal">Keeping up with the newest AI tools is a full time job.</h2>
- <p class="sub reveal">Atrios does the work for you, and shares the best perks.</p>
+ <div class="mono reveal" style="color:var(--gold);text-align:center">02 / The problem</div>
+ <h2 class="serif reveal">New tools come out every day.<br><em>Finding the right ones is a full-time job.</em></h2>
+ <p class="sub reveal">Everyone has an opinion. Nobody has time to test them all.</p>
  <div class="salon3" id="salon"><div class="pt" data-n="1"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w1f.jpg" alt=""><img class="t" src="../x7land/a/w1.jpg" alt=""></div></div></div><div class="pt" data-n="2"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w2f.jpg" alt=""><img class="t" src="../x7land/a/w2.jpg" alt=""></div></div></div><div class="pt" data-n="3"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w3f.jpg" alt=""><img class="t" src="../x7land/a/w3.jpg" alt=""></div></div></div><div class="pt" data-n="4"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w4f.jpg" alt=""><img class="t" src="../x7land/a/w4.jpg" alt=""></div></div></div><div class="pt" data-n="5"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w5f.jpg" alt=""><img class="t" src="../x7land/a/w5.jpg" alt=""></div></div></div><div class="pt" data-n="6"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w6f.jpg" alt=""><img class="t" src="../x7land/a/w6.jpg" alt=""></div></div></div><div class="pt" data-n="7"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w7f.jpg" alt=""><img class="t" src="../x7land/a/w7.jpg" alt=""></div></div></div><div class="pt" data-n="8"><div class="frame"><div class="face"><img class="f" src="../x7land/a/w8f.jpg" alt=""><img class="t" src="../x7land/a/w8.jpg" alt=""></div></div></div><div class="bub" id="bub"><div class="trk"><i></i>Atrios tracks.</div><div class="btxt" id="btxt"></div></div></div></div>
  </div>
  </div>
 </section>
 
 
-<section class="why" id="why">
- <h2 class="serif reveal">Why Atrios Exists</h2>
- <div class="wg">
-  <div class="wc reveal"><div class="frame"><img src="../x7land/a/why1.jpg" alt=""></div><span class="n">01</span><p>It's impossible for you to review all the new AI tools.</p></div>
-  <div class="wc reveal" style="transition-delay:.12s"><div class="frame"><img src="../x7land/a/why2.jpg" alt=""></div><span class="n">02</span><p>People know what's best for your business. We aggregate all that data.</p></div>
-  <div class="wc reveal" style="transition-delay:.24s"><div class="frame"><img src="../x7land/a/why3.jpg?v=4" alt=""></div><span class="n">03</span><p>Instead of companies spending money on spamming you, we ask them for perks we can share with you instead.</p></div>
- </div>
-</section>
 <section class="agg" id="agg">
  <div class="aggin">
   <div class="aggl">
-   <div class="mono reveal" style="color:var(--gold)">Atrios aggregates it all</div>
-   <h2 class="serif reveal">Every recommendation, ranked.<br><em>So you only hear about the best.</em></h2>
-   <p class="reveal">Atrios listens to what founders, investors and operators actually recommend to each other, then tells you which tools are worth it, why, and the perk you get through a friend.</p>
+   <div class="mono reveal" style="color:var(--gold)">03 / The solution</div>
+   <h2 class="serif reveal">Atrios takes in every signal.<br><em>And keeps finding the best tools for you.</em></h2>
+   <p class="reveal">Reviews, funding, hiring, what founders like you actually buy, and honest feedback from thousands of intro calls. Atrios ranks it all and tells you what's worth it for your company, and why.</p>
   </div>
   <div class="board reveal">
    <div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><small>Atrios AI</small><b id="ctr2">0</b><span>signals today</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.0s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:0.3s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.6s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:1.2s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:1.5s"></i>Texting founders asking their opinion</span></div><div class="srow s2"><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span><span class="sp"><i style="animation-delay:0.0s"></i>Seeing what people are saying on X</span><span class="sp"><i style="animation-delay:0.3s"></i>Checking LinkedIn</span><span class="sp"><i style="animation-delay:0.6s"></i>Texting founders asking their opinion</span><span class="sp"><i style="animation-delay:0.8999999999999999s"></i>Reading founder group chats</span><span class="sp"><i style="animation-delay:1.2s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:1.5s"></i>Checking Product Hunt</span></div></div></div><div class="bh"><span class="mono">This week's most recommended</span><span class="live">● live</span></div>
@@ -381,20 +404,35 @@ html,body{overflow-x:hidden}
  </div>
  <p class="note">Illustrative</p>
 </section>
-
-
-<section class="how" id="how">
- <div class="mono eb reveal">How it works</div>
- 
- <div class="hcards">
-  <div class="hc reveal"><img src="../x7land/a/h_box.jpg" alt=""><div class="tag mono">01 · For you</div><div class="tx"><h3>Find perks for yourself</h3><p>Free months, waived fees and real discounts on the products you need.</p><div class="rev">Browse the collection, pick a perk, book a 20-min intro.</div></div></div>
-  <div class="hc reveal" style="transition-delay:.12s"><img src="../x7land/a/h_women.jpg" alt=""><div class="tag mono">02 · For your friends</div><div class="tx"><h3>Share with friends</h3><p>Text it, post it, or drop it in your newsletter. Friends get the perks through your link.</p><div class="rev">Or just text Ace a friend's name, and Ace handles the rest.</div></div></div>
-  <div class="hc reveal" style="transition-delay:.24s"><img src="../x7land/a/h_coins.jpg" alt=""><div class="tag mono">03 · When they take the call</div><div class="tx"><h3>Earn rewards</h3><p>When a friend takes a call through your link, you earn rewards.</p><div class="rev">Rewarded after the meeting. Some perks reward you again when they sign up.</div></div></div>
+<section class="free" id="credits">
+ <div class="mono reveal" style="color:var(--gold)">04 / The perks</div>
+ <h2 class="serif reveal">Plus free credits, trials<br><em>and huge discounts.</em></h2>
+ <p class="sub reveal">Every tool Atrios recommends comes with a perk you can't get by signing up on your own.</p>
+ <div class="pgrid">
+  <div class="pcard reveal"><span class="mono">Rho · Banking</span><b class="serif">$875</b><small>welcome bonus</small></div>
+  <div class="pcard reveal" style="transition-delay:.08s"><span class="mono">Deel · Payroll</span><b class="serif">$1,500</b><small>in credits + $250 bonus</small></div>
+  <div class="pcard reveal" style="transition-delay:.16s"><span class="mono">Superposition · Hiring</span><b class="serif">1 month free</b><small>+ 20% off your first hire</small></div>
+  <div class="pcard reveal" style="transition-delay:.24s"><span class="mono">Veroa · Global talent</span><b class="serif">Up to 40% off</b><small>+ first month free</small></div>
+ </div>
+</section>
+<section class="free alt" id="free">
+ <div class="fin">
+  <div>
+   <div class="mono reveal" style="color:var(--gold)">05 / Always free</div>
+   <h2 class="serif reveal">Atrios is always free for you.<br><em>Here's why.</em></h2>
+  </div>
+  <div class="fsteps">
+   <div class="fs reveal"><span class="n serif">1</span><div><b>Great companies want to meet you</b><p>Vendors pay Atrios to get in front of founders who actually fit what they sell. You never pay a cent.</p></div></div>
+   <div class="fs reveal" style="transition-delay:.1s"><span class="n serif">2</span><div><b>That's why the perks are so good</b><p>Instead of spending on ads, they give the budget to you: bonuses, credits, free months, real discounts.</p></div></div>
+   <div class="fs reveal" style="transition-delay:.2s"><span class="n serif">3</span><div><b>You only hear about what fits</b><p>Atrios only recommends tools that match your company. No spam, no cold calls, no sales pitches you didn't ask for.</p></div></div>
+  </div>
  </div>
 </section>
 
+
+
 <section class="inside" id="inside">
- <div class="mono reveal" style="color:var(--gold)">05 / Inside Atrios</div>
+ <div class="mono reveal" style="color:var(--gold)">06 / Meet Ace</div>
  <h2 class="serif reveal" style="margin-top:18px">Just text Ace.<br><em style="color:var(--muted);font-style:normal;font-size:.6em;line-height:1.2;display:block;margin-top:10px;max-width:900px">You'll instantly get tailored recommendations and perks you can't get anywhere else.</em></h2>
  <div class="phones">
   <div class="pcol reveal"><div class="plabel"><span class="mono">Recommendations and perks for you</span><p>Ask Ace what to use. Get picks based on your company, what similar startups use, and the perks you qualify for.</p></div>
@@ -428,15 +466,6 @@ html,body{overflow-x:hidden}
  </div>
 </section>
 
-<section class="place">
- <div class="mono reveal" style="color:#8a6d3b">06 / Find your place</div>
- <h2 class="serif reveal" style="margin-top:18px">Your story starts here.</h2>
- <div class="cards">
-  <div class="card3 reveal"><div class="img"><img src="../x7land/a/art1.jpg" alt=""><span class="num mono">01</span></div><h3>Create your account</h3><p>Google or email.</p></div>
-  <div class="card3 reveal" style="transition-delay:.12s"><div class="img"><img src="../x7land/a/art2.jpg" alt=""><span class="num mono">02</span></div><h3>Tell us about you</h3><p>Find relevant perks.</p></div>
-  <div class="card3 reveal" style="transition-delay:.24s"><div class="img"><img src="../x7land/a/art3.jpg" alt=""><span class="num mono">03</span></div><h3>Share with friends</h3><p>Sync your network. Optional.</p></div>
- </div>
-</section>
 
 <section class="voices" id="voices">
  <div class="mono reveal" style="color:var(--gold)">The portrait gallery</div>
@@ -454,7 +483,7 @@ html,body{overflow-x:hidden}
 const $=s=>document.querySelector(s);
 const story=$('#story'),paint=$('#paint'),cv=$('#ascii'),hot=$('#hot');
 const c1=$('#c1');
-const img=new Image(); img.src='a/still.jpg?v=7';
+const img=new Image(); img.src='a/caveman.jpg?v=1';
 const RAMP=' .:-=+*%#@';
 let cells=[],cw=0,ch=0,ctx=cv.getContext('2d');
 function prep(){
