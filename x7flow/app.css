@@ -525,3 +525,23 @@ body.mobileview .phonewrap{display:flex}
 .rm b{font-size:11.5px;padding:5px 8px 0;line-height:1.2}.rm i{font-size:10.5px;padding:2px 8px 6px}
 .rnote{grid-column:1/-1;font-size:11.5px;color:var(--muted);margin-top:2px}
 .shr .rbal .rnext{font-size:12.5px}
+
+/* 10/15 13:40 compact Ace bar on desktop + ACE avatar + curated-by (Taylor) */
+.av.ace{font:700 10px/1 Inter,sans-serif!important;letter-spacing:.06em;display:grid;place-items:center}
+@media(min-width:821px){
+ .acebar{padding:14px 18px;margin:4px 0 18px;border-radius:16px}
+ .ab-top{margin-bottom:6px}.ab-top .av{width:30px;height:30px}.ab-top b{font-size:18px}.ab-top span{font-size:12px}
+ .acebar .feed{grid-template-columns:44px 1fr;gap:10px;margin:6px 0 8px}
+ .acebar .core2{width:44px;height:44px}.acebar .cin2 b{font-size:10px}.acebar .cin2 span{display:none}
+ .acebar .sp{font-size:11.5px;padding:4px 10px}
+ .acebar .bigask{min-height:0}.acebar .bigask input{font-size:15px;padding:10px 4px}
+ .acebar .bigask .pillbtn{padding:8px 16px;font-size:13.5px}
+ .acebar .chips button,.acebar .qchips button,.acebar .prompts button{font-size:12.5px;padding:6px 12px}
+}
+.curby{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:14px 18px;border:1px solid rgba(201,169,110,.35);border-radius:16px;background:rgba(201,169,110,.06);margin:4px 0 14px}
+.curby .ph{width:52px;height:52px;border-radius:50%;overflow:hidden;border:2px solid var(--gold)}.curby .ph img{width:100%;height:100%;object-fit:cover}
+.curby .eyebrow{margin:0}.curby b{display:block;font:400 20px/1.2 var(--serif);color:var(--ink)}.curby span{font-size:12.5px;color:var(--muted)}
+.cbdays{text-align:center}.cbdays b{font:400 30px/1 var(--serif);color:var(--gold2)}.cbdays span{display:block;font-size:11px;color:var(--muted);max-width:90px}
+.tabs .tabl{color:var(--muted);font-size:15px;padding:0 0 10px;text-decoration:none}
+@media(max-width:640px){.curby{grid-template-columns:auto 1fr}.cbdays{display:none}}
+@media(min-width:821px){.acebar .bigask{padding:5px 5px 5px 18px!important}.acebar .bigask input{height:auto!important}}

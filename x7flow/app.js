@@ -25,7 +25,7 @@ function meta(v){return v.rating?`<span class="stars">★ ${v.rating}</span><spa
 function card(v,o={}){
   const variant=o.variant||S.variant,b=o.base||'#/discover/';
   const claim=`<a class="pillbtn gold grow" href="${b}${v.id}/claim">Claim Perk</a>`;
-  const acts=o.why?claim:claim+`<button class="pillbtn" data-open="${v.id}">Learn More</button>`;
+  const acts=claim+`<button class="pillbtn" data-open="${v.id}">Learn More</button>`;
   return `<article class="card" data-open="${v.id}">
     <div class="hd"><div class="mark">${v.name[0]}</div><div><h3>${v.name}</h3><div class="cat">${v.sub}</div></div></div>
     <span class="perk">${ic.gift}${v.perk}</span>
@@ -35,13 +35,14 @@ function card(v,o={}){
   </article>`;
 }
 
+function aceBar(){return `<form class="acebar" data-askform><div class="ab-top"><span class="av ace">ACE</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><b class="sigctr">48,213</b><span>signals</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:0.3s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:0.6s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.9s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:1.5s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.6s"></i>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.9s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:1.2s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:1.5s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.0s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:0.6s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.9s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:1.5s"></i>Mapping founder stacks</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?"><span class="l">What tools can help my business?</span><span class="s">Tools for me</span></button><button type="button" data-prompt="Best tools to get more revenue"><span class="l">Best tools to get more revenue</span><span class="s">More revenue</span></button><button type="button" data-prompt="What perks am I missing out on?"><span class="l">What perks am I missing out on?</span><span class="s">Perks I'm missing</span></button></div><div class="ichat" id="ichat"></div></form>`}
 function vDiscover(){
   const list=V.filter(v=>S.tab==='All'||(S.tab==='Recommended'?PICKS.includes(v.id):v.cat===S.tab));
   const vn={A:'Variant A: separate Claim and Share buttons on every card.',B:'Variant B: one Claim button per card. Sharing lives in the perk panel and on the "you\'re booked" screen.',R:'Recommended: Variant B plus a quiet share icon in the card corner.'}[S.variant];
   return `<div class="wrap">
     <div class="dhead"><div><div class="eyebrow">My Perks</div><h1>Perks for your startup</h1></div><span class="sp"></span>
       </div>
-    <form class="acebar" data-askform><div class="ab-top"><span class="av">A</span><div><b>Talk to Ace</b><span>Ace tracks every signal (reviews, funding, hiring, what founders like you actually buy) and recommends the companies that will help you most.</span></div></div><div class="feed"><div class="core2"><div class="ring2"></div><div class="ring2 b"></div><div class="cin2"><b class="sigctr">48,213</b><span>signals</span></div></div><div class="streams"><div class="srow s1"><span class="sp"><i style="animation-delay:0.0s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:0.3s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:0.6s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.9s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:1.5s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.0s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:0.6s"></i>Mapping founder stacks</span><span class="sp"><i style="animation-delay:0.9s"></i>Scanning Product Hunt</span><span class="sp"><i style="animation-delay:1.2s"></i>Interviewing founders</span><span class="sp"><i style="animation-delay:1.5s"></i>Talking to VCs</span><span class="sp"><i style="animation-delay:0.0s"></i>Checking with operators</span><span class="sp"><i style="animation-delay:0.3s"></i>Reading reviews</span><span class="sp"><i style="animation-delay:0.6s"></i>Tracking funding rounds</span><span class="sp"><i style="animation-delay:0.9s"></i>Watching who\'s hiring</span><span class="sp"><i style="animation-delay:1.2s"></i>Reading Buy-or-Why feedback</span><span class="sp"><i style="animation-delay:1.5s"></i>Mapping founder stacks</span></div></div></div><div class="bigask"><input placeholder="Ask Ace anything about your business…" aria-label="Talk to Ace"><button type="submit">${ic.arrow}<span>Talk to Ace</span></button></div><div class="prompts"><button type="button" data-prompt="What tools can help my business?"><span class="l">What tools can help my business?</span><span class="s">Tools for me</span></button><button type="button" data-prompt="Best tools to get more revenue"><span class="l">Best tools to get more revenue</span><span class="s">More revenue</span></button><button type="button" data-prompt="What perks am I missing out on?"><span class="l">What perks am I missing out on?</span><span class="s">Perks I'm missing</span></button></div><div class="ichat" id="ichat"></div></form>
+    ${aceBar()}
     <div class="tabs">${['All','Recommended'].map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}<span class="div"></span>${CATS.map(t=>`<button class="${S.tab===t?'on':''}" data-tab="${t}">${t}</button>`).join('')}</div>
     <div class="grid">${list.map(v=>card(v)).join('')}</div>
   </div>`;
@@ -216,21 +217,15 @@ function vVariants(){
 }
 function vCollection(){
   const picks=pageIds().map(id=>BY[id]);
-  return `<div class="cpage">
-   <div class="cbar"><a href="index.html"><img src="wordmark.svg" alt="Atrios"></a><span class="sp"></span><a class="pillbtn" href="#/discover">Explore all perks</a><a class="pillbtn gold" href="../stack/build.html">Make your own</a></div>
-   <section class="owner">
-     <div class="ph"><img src="taylor.jpg" alt=""></div>
-     <div><div class="eyebrow">Curated by</div><h1>Taylor Offer's <em>perks</em></h1><div class="role">CEO, Atrios · Tools I'd vouch for, with perks you get through me</div><span class="badge">★ Exclusive to Taylor's network</span></div>
-     <div class="ostats"><div><b>${picks.length}</b><span>Picks</span></div><div><b>$1,500+</b><span>Top perk</span></div></div>
-   </section>
-   <div class="grid">${picks.map(v=>card(v,{why:1,owner:'Taylor',base:'#/c/taylor/'})).join('')}</div>
-   <div class="explore">
-     <div><h3>Looking for something else?</h3><p>Browse every perk on Atrios, sorted by what fits your startup.</p><a class="pillbtn" href="#/discover">Explore all perks →</a></div>
-     <div><h3>Share perks like Taylor</h3><p>Build your own page in 60 seconds and earn rewards when friends claim.</p><a class="pillbtn gold" href="../stack/build.html">Build your collection</a></div>
-   </div>
-   <div class="note" style="margin-top:26px"><b>This is what a copied collection link opens</b> (atrios.com/c/taylor). Visitors never land in Taylor's inbox. Each perk opens the same panel as My Perks, and the rest of Atrios is one click away.</div>
+  return `<div class="wrap">
+    <div class="dhead"><div><div class="eyebrow">My Perks</div><h1>Perks for your startup</h1></div><span class="sp"></span></div>
+    <section class="curby"><div class="ph"><img src="taylor.jpg" alt=""></div><div class="cbt"><div class="eyebrow">Curated by Taylor Offer</div><b>Taylor picked these for you</b><span>CEO, Atrios · Tools Taylor vouches for, with perks you get through Taylor's network</span></div><div class="cbdays"><b>30</b><span>days of Taylor's picks</span></div></section>
+    ${aceBar()}
+    <div class="tabs"><button class="on">Taylor's picks</button><span class="div"></span><a class="tabl" href="#/discover">All perks</a></div>
+    <div class="grid">${picks.map(v=>card(v,{why:1,owner:'Taylor',base:'#/c/taylor/'})).join('')}</div>
   </div>`;
 }
+
 
 function panelHTML(v,step){
   const b=base();
@@ -317,17 +312,17 @@ function route(){
   $('#modal').classList.remove('on');
   const parts=(location.hash||'#/discover').slice(2).split('/');const r=parts[0]||'discover';
   document.querySelectorAll('.demobar a[data-r]').forEach(a=>a.classList.remove('on'));
-  const standalone=r==='c';
+  const standalone=false;
   $('#shell').style.display=standalone?'none':'';
   $('#standalone').hidden=!standalone;
-  document.querySelectorAll('.rail a').forEach(a=>a.classList.toggle('on',a.dataset.nav===r));
+  document.querySelectorAll('.rail a').forEach(a=>a.classList.toggle('on',a.dataset.nav===(r==='c'?'discover':r)));
   let id,step;
   if(r==='discover'){
     if($('#view').dataset.r!=='discover'){$('#view').innerHTML=vDiscover();$('#view').dataset.r='discover'}
     S.back='#/discover';id=parts[1];step=parts[2];
     document.querySelector(`.demobar a[data-r="${step==='claim'?'book':id?'perk':'discover'}"]`)?.classList.add('on');
   }else if(r==='c'){
-    if(!$('#standalone').innerHTML)$('#standalone').innerHTML=vCollection();
+    $('#view').innerHTML=vCollection();$('#view').dataset.r='c';
     S.back='#/c/taylor';id=parts[2];step=parts[3];
     document.querySelector('.demobar a[data-r="c"]').classList.add('on');
   }else{
