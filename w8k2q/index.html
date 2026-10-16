@@ -134,7 +134,7 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1792163032';
+const BUILD='1792163244';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
 const PULLED='2026-10-16T08:32:48-04:00';let lastSync=null;
@@ -170,9 +170,9 @@ function render(){let L=list();const nk=r=>r.new?((S.seen||[]).includes(r.id)?1:
  const el=document.getElementById('list');const sh=document.getElementById('showing');if(F.size||Q){const tot=(tab==='top'?S.stars.filter(id=>byId[id]&&!(S.hidden||[]).includes(id)).length:D.filter(r=>!(S.hidden||[]).includes(r.id)).length);sh.style.display='flex';sh.innerHTML=`<span style='flex:1'>Showing ${L.length} of ${tot} · ${[...(Q?['“'+Q+'”']:[]),...[...F].map(i=>FILTERS[i][0])].join(', ')}</span><button class='lnk' id='shclr' style='font-size:12px'>Clear</button>`;document.getElementById('shclr').onclick=()=>{F.clear();Q='';document.getElementById('q').value='';render()}}else sh.style.display='none';el.innerHTML=L.length?L.map(card).join(''):'<div class="empty">No favorites yet. Tap ☆ on a listing.</div>';
  document.getElementById('hint').innerHTML=sort==='mine'?'Hold a card to drag it. To delete, hold it, then tap the red ✕. Syncs for both of you.'+' <button class="lnk" id="rs">Reset</button>':'Sorted view. Choose Default in Sort to drag.';
  const rs=document.getElementById('rs');if(rs)rs.onclick=()=>{if(!confirm('Reset this list order for both of you?'))return;if(tab==='top')S.stars=defStars();else {delete S.orders.all;delete S.orders.pool;delete S.orders.nopool;}push();render()};
- const markSeen=id=>{S.seen=S.seen||[];if(byId[id]&&byId[id].new&&!S.seen.includes(id)){S.seen.push(id);clearTimeout(pending);pending=null;
+ const markSeen=id=>{S.seen=S.seen||[];const u=byId[id]&&byId[id].url;const sib=u?D.filter(x=>x.url===u&&x.new&&!S.seen.includes(x.id)).map(x=>x.id):[];if(byId[id]&&byId[id].new&&!S.seen.includes(id)||sib.length){[id,...sib].forEach(x=>{if(!S.seen.includes(x))S.seen.push(x)});clearTimeout(pending);pending=null;
   fetch(SB+'?key=eq.'+ROW,{method:'PATCH',keepalive:true,headers:{...H,Prefer:'return=representation'},body:JSON.stringify({data:S,updated_at:new Date().toISOString()})}).then(r=>r.json()).then(j=>{ver=j[0]&&j[0].updated_at}).catch(()=>{});
-  const c=el.querySelector(`.card[data-id="${id}"] .tag.nw`);if(c)c.remove();}};
+  [id,...sib].forEach(x=>{const c=el.querySelector(`.card[data-id="${x}"] .tag.nw`);if(c)c.remove()});}};
  el.querySelectorAll('[data-go]').forEach(a=>{a.addEventListener('click',()=>markSeen(+a.dataset.go))});
  el.querySelectorAll('[data-cmt]').forEach(b=>b.onclick=e=>{e.stopPropagation();openC(+b.dataset.cmt)});
  el.querySelectorAll('[data-star]').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=+b.dataset.star;S.stars=S.stars.includes(id)?S.stars.filter(x=>x!==id):[...S.stars,id];push();render()});
