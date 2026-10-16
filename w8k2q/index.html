@@ -128,7 +128,7 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1792162812';
+const BUILD='1792162818';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
 const PULLED='2026-10-16T08:32:48-04:00';let lastSync=null;
@@ -166,8 +166,7 @@ function render(){let L=list();const nk=r=>r.new?((S.seen||[]).includes(r.id)?1:
  const markSeen=id=>{S.seen=S.seen||[];if(byId[id]&&byId[id].new&&!S.seen.includes(id)){S.seen.push(id);clearTimeout(pending);pending=null;
   fetch(SB+'?key=eq.'+ROW,{method:'PATCH',keepalive:true,headers:{...H,Prefer:'return=representation'},body:JSON.stringify({data:S,updated_at:new Date().toISOString()})}).then(r=>r.json()).then(j=>{ver=j[0]&&j[0].updated_at}).catch(()=>{});
   const c=el.querySelector(`.card[data-id="${id}"] .tag.nw`);if(c)c.remove();}};
- el.querySelectorAll('[data-go]').forEach(a=>{a.addEventListener('pointerdown',()=>markSeen(+a.dataset.go));a.addEventListener('click',()=>markSeen(+a.dataset.go))});
- el.querySelectorAll('[data-ph]').forEach(b=>b.addEventListener('click',()=>markSeen(+b.dataset.ph)));
+ el.querySelectorAll('[data-go]').forEach(a=>{a.addEventListener('click',()=>markSeen(+a.dataset.go))});
  el.querySelectorAll('[data-star]').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=+b.dataset.star;S.stars=S.stars.includes(id)?S.stars.filter(x=>x!==id):[...S.stars,id];push();render()});
  el.querySelectorAll('[data-ph]').forEach(b=>{const id=+b.dataset.ph,s=document.getElementById('s'+id),r=byId[id];
   const fill=()=>{if(!s.childElementCount)s.innerHTML=r.ph.map((u,i)=>`<img loading="lazy" src="${sm(u)}" data-i="${i}">`).join('');s.querySelectorAll('img').forEach(im=>im.onclick=()=>lbOpen(id,+im.dataset.i))};
