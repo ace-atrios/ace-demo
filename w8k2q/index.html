@@ -134,7 +134,7 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1792163575';
+const BUILD='1792163717';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
 const PULLED='2026-10-16T08:32:48-04:00';let lastSync=null;
@@ -264,7 +264,7 @@ document.getElementById('undo').onclick=()=>{if(!lastDel)return;const {id,wasSta
   setTimeout(()=>{document.body.classList.remove('dragging-on');dragging=false;
    const ids=d.cards.map(c=>+c.dataset.id);const [m]=ids.splice(d.from,1);ids.splice(d.to,0,m);
    if(d.to!==d.from){if(tab==='top'){const rest=S.stars.filter(x=>!ids.includes(x));S.stars=[...ids,...rest]}else{const base=fullOrder();const set=new Set(ids);let k=0;S.orders.all=base.map(x=>set.has(x)?ids[k++]:x)}push();}
-   render();const c=LST.querySelector(`.card[data-id="${m}"]`);clearSel();},210);}
+   render();const c=LST.querySelector(`.card[data-id="${m}"]`);if(d.to===d.from){const c=LST.querySelector(`.card[data-id="${m}"]`);if(c)selectCard(c)}else clearSel();},210);}
  function down(e){if(drag)return;const card=e.target.closest('.card');if(!card||e.target.closest('a,button,.strip,.del,.tour'))return;const p=pt(e);st={x:p.clientX,y:p.clientY,card};clearTimeout(tm);
   tm=setTimeout(()=>{tm=null;if(!st)return;if(window.canDrag)begin(st.card,st.x,st.y);else selectCard(st.card)},340)}
  function move(e){const p=pt(e);if(drag){e.preventDefault();drag.lastY=p.clientY;return}if(tm&&st&&(Math.abs(p.clientX-st.x)>8||Math.abs(p.clientY-st.y)>8)){clearTimeout(tm);tm=null;st=null}}
