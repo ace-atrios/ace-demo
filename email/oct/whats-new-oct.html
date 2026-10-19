@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.cdnfonts.com/css/aspekta" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<meta name="supported-color-schemes" content="light" />
+<title>What's new with Atrios?</title>
+<style>
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+  img { -ms-interpolation-mode:bicubic; border:0; display:block; }
+  body { margin:0; padding:0; background-color:#FCF7E9; font-family:'Aspekta','Helvetica Neue',Helvetica,Arial,sans-serif; }
+  a { color:#05483A; text-decoration:none; }
+  .outer { width:100%; background-color:#FCF7E9; padding:44px 0 56px 0; }
+  .card { max-width:580px; margin:0 auto; background-color:#ffffff; border-radius:4px; overflow:hidden; border:1px solid #E8DFC8; box-shadow:0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04); }
+  .hero { background-color:#05483A; padding:34px 48px 36px 48px; }
+  .hero .eyebrow { font-size:11px; font-weight:600; letter-spacing:2.2px; text-transform:uppercase; color:#C9A96E; margin:26px 0 14px 0; }
+  .hero h1 { font-family:'Nanum Myeongjo',Georgia,serif; font-size:34px; line-height:1.15; font-weight:700; color:#FCF7E9; margin:0 0 14px 0; }
+  .hero .earn { font-size:15px; line-height:1.5; color:#FFF4DE; margin:0; }
+  .strip { background-color:#0E2723; padding:18px 48px; }
+  .strip p { font-size:13px; line-height:1.6; color:#C9A96E; margin:0; letter-spacing:0.3px; }
+  .section { padding:30px 48px 0 48px; }
+  .label { font-size:10.5px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#05483A; margin:0 0 14px 0; }
+  .copy { font-size:15.5px; line-height:1.7; color:#5C5C5C; margin:0 0 16px 0; }
+  .copy strong { color:#0E2723; font-weight:600; }
+  .vendor { margin:0 48px; padding:28px 0 30px 0; border-top:1px solid #E8DFC8; }
+  .vhead { border-collapse:collapse; margin:0 0 12px 0; }
+  .logo-cell { width:64px; padding-right:14px; vertical-align:middle; }
+  .logo-tile { width:48px; height:48px; background-color:#FCF7E9; border:1px solid #E8DFC8; border-radius:12px; padding:3px; }
+  .logo-tile img { width:48px; height:48px; border-radius:10px; }
+  .vendor h2 { font-family:'Nanum Myeongjo',Georgia,serif; font-size:24px; line-height:1.2; font-weight:700; color:#0E2723; margin:0; }
+  .bio { font-size:14.5px; line-height:1.65; color:#5C5C5C; margin:0 0 16px 0; }
+  .perk-box { width:100%; border-collapse:separate; border-spacing:0; background-color:#C9A96E; border-radius:10px; margin:0 0 12px 0; }
+  .perk-box td { padding:18px 22px 20px 22px; text-align:center; }
+  .perk-box .k { font-size:11px; font-weight:700; letter-spacing:2.6px; text-transform:uppercase; color:#0E2723; margin:0 0 8px 0; opacity:0.85; }
+  .perk-box .v { font-family:'Nanum Myeongjo',Georgia,serif; font-size:20px; line-height:1.3; font-weight:700; color:#0E2723; margin:0; }
+  .tiles { width:100%; border-collapse:separate; border-spacing:0; margin:0 0 14px 0; }
+  .tiles td { width:50%; vertical-align:top; padding:14px 18px; background-color:#FCF7E9; border:1px solid #E8DFC8; }
+  .tiles td.l { border-right:0; border-radius:6px 0 0 6px; }
+  .tiles td.r { border-radius:0 6px 6px 0; }
+  .tiles td.one { border-radius:6px; width:100%; }
+  .tiles .k { font-size:10px; font-weight:600; letter-spacing:1.6px; text-transform:uppercase; color:#A8A8A8; margin:0 0 6px 0; }
+  .tiles .v { font-family:'Nanum Myeongjo',Georgia,serif; font-size:22px; line-height:1.1; font-weight:700; color:#05483A; margin:0; }
+  .who { font-size:13.5px; line-height:1.6; color:#5C5C5C; margin:0 0 18px 0; }
+  .who b { color:#0E2723; font-weight:600; }
+  .btns { border-collapse:collapse; }
+  .btns td { padding:0 10px 0 0; vertical-align:middle; }
+  .btn-ace { display:inline-block; background-color:#FCF7E9; color:#05483A !important; border:1px solid #05483A; font-size:14px; font-weight:600; padding:11px 20px; border-radius:6px; }
+  .btn-sm { display:inline-block; background-color:#05483A; color:#FFF4DE !important; font-size:14px; font-weight:600; padding:12px 22px; border-radius:6px; }
+  .cta { padding:30px 48px 8px 48px; text-align:center; border-top:1px solid #E8DFC8; margin:0; }
+  .btn { display:inline-block; background-color:#05483A; color:#FFF4DE !important; font-size:15px; font-weight:600; padding:15px 30px; border-radius:6px; }
+  .steps { font-size:13.5px; line-height:1.6; color:#5C5C5C; margin:16px 0 0 0; }
+  .contacts { width:100%; border-collapse:separate; border-spacing:0; background-color:#FCF7E9; border:1px solid #E8DFC8; border-radius:6px; }
+  .contacts td { padding:16px 18px; vertical-align:top; width:50%; font-size:14px; line-height:1.5; color:#5C5C5C; }
+  .contacts td.l { border-right:1px solid #E8DFC8; }
+  .headshot { width:64px; height:64px; margin:0 0 10px 0; }
+  .contacts strong { display:block; font-family:'Nanum Myeongjo',Georgia,serif; font-size:15px; color:#0E2723; margin-bottom:2px; }
+  .contacts a { color:#05483A; font-weight:500; }
+  .footer { padding:32px 48px; text-align:center; background-color:#FCF7E9; border-top:1px solid #E8DFC8; margin-top:32px; }
+  .footer-logo { width:180px; margin:0 auto 14px auto; }
+  .footer-text { font-size:12px; line-height:1.6; color:#A8A8A8; }
+  .footer-text p { margin:0 0 4px 0; }
+  .muted { color:#A8A8A8 !important; text-decoration:underline !important; }
+  .sec-head { padding:34px 48px 4px 48px; }
+  .sec-num { font-size:11px; font-weight:700; letter-spacing:2.4px; color:#C9A96E; margin:0 0 6px 0; }
+  .sec-h { font-family:'Nanum Myeongjo',Georgia,serif; font-size:28px; line-height:1.2; font-weight:700; color:#0E2723; margin:0 0 12px 0; }
+  .sec-h.light { color:#FCF7E9; }
+  .sec-list { font-size:13px; line-height:1.6; color:#05483A; font-weight:600; margin:0 0 16px 0; }
+  .ace { background-color:#0E2723; margin:26px 0 0 0; padding:32px 48px 34px 48px; text-align:center; }
+  .ace-h { font-family:'Nanum Myeongjo',Georgia,serif; font-size:26px; line-height:1.2; font-weight:700; color:#FCF7E9; margin:0 0 12px 0; }
+  .ace-copy { font-size:15px; line-height:1.65; color:#C9C2AC; margin:0 0 20px 0; }
+  .phone { width:300px; max-width:100%; height:auto; margin:0 auto 22px auto; }
+  .btn-gold { display:inline-block; background-color:#C9A96E; color:#0E2723 !important; font-size:15px; font-weight:700; padding:14px 28px; border-radius:6px; }
+  .ace-try { font-size:13.5px; line-height:1.6; color:#C9C2AC; margin:14px 0 0 0; font-style:italic; }
+  @media only screen and (max-width:620px) {
+    .outer { padding:0 !important; }
+    .card { border-radius:0 !important; border-left:0 !important; border-right:0 !important; }
+    .hero { padding:26px 24px 28px 24px !important; }
+    .hero h1 { font-size:27px !important; }
+    .strip { padding:16px 24px !important; }
+    .section { padding:26px 24px 0 24px !important; }
+    .vendor { margin:0 24px !important; }
+    .vendor h2 { font-size:21px !important; }
+    .perk-box .v { font-size:18px !important; }
+    .tiles, .tiles tbody, .tiles tr, .tiles td { display:block !important; width:100% !important; box-sizing:border-box !important; }
+    .tiles td.l { border-right:1px solid #E8DFC8 !important; border-bottom:0 !important; border-radius:6px 6px 0 0 !important; }
+    .tiles td.r { border-radius:0 0 6px 6px !important; }
+    .ace { padding:28px 24px 30px 24px !important; }
+    .sec-head { padding:30px 24px 4px 24px !important; }
+    .sec-h { font-size:25px !important; }
+    .ace-h { font-size:23px !important; }
+    .btns, .btns tbody, .btns tr, .btns td { display:block !important; width:100% !important; box-sizing:border-box !important; }
+    .btns td.b1 { padding:0 0 10px 0 !important; }
+    .btns td.b2 { padding:0 !important; }
+    .btn-sm, .btn, .btn-gold, .btn-ace { display:block !important; text-align:center !important; }
+    .cta { padding:26px 24px 8px 24px !important; }
+    .contacts td { display:block !important; width:auto !important; border-right:0 !important; }
+    .contacts td.l { border-bottom:1px solid #E8DFC8 !important; }
+    .footer { padding:24px !important; }
+  }
+</style>
+</head>
+<body>
+<div class="preheader" style="display:none !important; visibility:hidden; opacity:0; color:transparent; height:0; width:0; max-height:0; max-width:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px;">Meet Ace, plus seven new vendors: Monaco, Hammock, Rockwell, Superposition, Veroa, Ignition Benefits and Automat.</div>
+<div class="outer">
+<div class="card">
+
+  <div class="hero">
+    <img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M3Z6RNAX46F1M4QHJYEEDCHV.png" alt="Atrios" width="72" style="display:block;" />
+    <p class="eyebrow">October update</p>
+    <h1>What's new with Atrios?</h1>
+    <p class="earn">Two things this month: meet Ace, and seven new vendors with perks for your network.</p>
+  </div>
+
+  <div class="section">
+    <p class="copy">Hi there,</p>
+    <p class="copy">Here's what's new. First, Ace, the easiest way to share perks with the people you know. Then the seven vendors that joined over the last few weeks.</p>
+  </div>
+
+  <div class="ace">
+    <p class="sec-num" style="color:#C9A96E;">01</p>
+    <p class="sec-h light">Meet Ace</p>
+    <p class="ace-copy">Ace is our AI agent. Text Ace a friend's name and what they're working on, and Ace finds the perks that fit, checks they qualify and books the call. No app needed.</p>
+    <img src="https://ace-atrios.github.io/ace-demo/email/phone.png" width="300" alt="Texting Ace: perks for a friend, booked in minutes" class="phone" />
+    <a class="btn-gold" href="sms:+15303064813?&body=What%20perks%20can%20I%20get%20for%20my%20friend%20">Text Ace: (530) 306-4813</a>
+    <p class="ace-try">Try: &ldquo;What perks can I get for my friend [name]?&rdquo;</p>
+  </div>
+
+  <div class="sec-head">
+    <p class="sec-num">02</p>
+    <p class="sec-h">New vendors on Atrios</p>
+    <p class="sec-list">Monaco &middot; Hammock &middot; Rockwell &middot; Superposition &middot; Veroa &middot; Ignition Benefits &middot; Automat</p>
+    <p class="copy">Every one of them is offering something real to founders in your network: free months, welcome bonuses, a free benefits or savings analysis. If someone you know is hiring, sorting out health insurance or rethinking their sales stack, you can hand them one of these.</p>
+    <p class="copy" style="margin-bottom:0;">Add the ones that fit to a collection and share it. Your friends claim the perk by booking a meeting, and you earn the standard incentives below.</p>
+  </div>
+
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://ace-atrios.github.io/ace-demo/email/oct/monaco.png" alt="Monaco" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Monaco</h2></td>
+    </tr></table>
+    <p class="bio">The AI-native revenue platform that replaces a legacy CRM and the pile of sales tools around it.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">$2,000 welcome bonus + 1:1 GTM Teardown</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="one"><p class="k">If they sign up</p><p class="v">$5,000</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> B2B companies in the US that have raised $500K+</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=d8d1a157-915d-4d0c-abab-8b054507d699">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Monaco%20perk%20with%20my%20friend%20">Text Ace about Monaco</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://ace-atrios.github.io/ace-demo/email/oct/hammock.png" alt="Hammock" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Hammock</h2></td>
+    </tr></table>
+    <p class="bio">Health insurance for startups. Set a budget from the first hire and employees pick their own plan, no broker or PEO. Backed by a16z speedrun.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">3 months free</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="l"><p class="k">Per qualified meeting</p><p class="v">$230</p></td><td class="r"><p class="k">If they sign up</p><p class="v">20% of year one</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> VC-backed teams under 50 people with no PEO and 5+ US W2 employees</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=25bd6665-71d9-4f4f-ab98-33422ad6231a">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Hammock%20perk%20with%20my%20friend%20">Text Ace about Hammock</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M49WWC8V87TX27H5CT2Z9HF4.png" alt="Rockwell" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Rockwell</h2></td>
+    </tr></table>
+    <p class="bio">A modern benefits brokerage for mid-sized employers: better cost containment and year-round support for employees.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">Free upfront savings analysis + $1,750 welcome bonus</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="l"><p class="k">Per qualified meeting</p><p class="v">$300</p></td><td class="r"><p class="k">If they sign up</p><p class="v">$1,750</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> Companies with 30+ W2 employees on a benefits broker, not a PEO</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=ed83de2a-3870-4509-8eb9-df9ad1955d14">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Rockwell%20perk%20with%20my%20friend%20">Text Ace about Rockwell</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M49WWDXM6H0TRHWHNA0RX2TV.png" alt="Superposition" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Superposition</h2></td>
+    </tr></table>
+    <p class="bio">An AI headhunter for startups.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">1 month free + 20% off first placement + $1,050 welcome bonus</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="l"><p class="k">Per qualified meeting</p><p class="v">$300</p></td><td class="r"><p class="k">If they sign up</p><p class="v">$1,050</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> Companies at $1M+ revenue or $500K+ raised, actively hiring full-time in the US or Canada</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=6992cb30-79a9-4263-ac3d-ef776091fd45">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Superposition%20perk%20with%20my%20friend%20">Text Ace about Superposition</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M49WWEXXGCKH4AK3KTXAB54T.png" alt="Veroa" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Veroa</h2></td>
+    </tr></table>
+    <p class="bio">AI-native offshore talent across finance, engineering, support and operations, so teams scale quickly and affordably.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">1 month free + 40% off + $1,225 welcome bonus</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="l"><p class="k">Per qualified meeting</p><p class="v">$200</p></td><td class="r"><p class="k">If they sign up</p><p class="v">$1,225</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> Hiring decision makers at companies with $1M+ in revenue or $1M+ raised</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=e8aacab7-ea88-478d-b672-32b6ba782e64">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Veroa%20perk%20with%20my%20friend%20">Text Ace about Veroa</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://ace-atrios.github.io/ace-demo/email/oct/ignition-benefits.png" alt="Ignition Benefits" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Ignition Benefits</h2></td>
+    </tr></table>
+    <p class="bio">An AI-native, data-driven benefits brokerage for small and mid-sized businesses.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">Free benefits cost analysis</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="one"><p class="k">Per qualified meeting</p><p class="v">$250</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> US companies with 24 to 350 full-time employees on a traditional broker or Gusto</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=b915ac53-2b3b-4143-859e-fe981efa9316">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Ignition%20Benefits%20perk%20with%20my%20friend%20">Text Ace about Ignition Benefits</a></td>
+    </tr></table>
+  </div>
+  <div class="vendor">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="vhead"><tr>
+      <td class="logo-cell"><div class="logo-tile"><img src="https://ace-atrios.github.io/ace-demo/email/oct/automat.jpeg" alt="Automat" width="48" height="48" /></div></td>
+      <td style="vertical-align:middle;"><h2>Automat</h2></td>
+    </tr></table>
+    <p class="bio">Agentic process automation: an AI employee that works in your existing tools, or automation their team builds and runs for you.</p>
+    <table class="perk-box" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td><p class="k">Perk for your network</p><p class="v">1 month free</p></td></tr></table>
+    <table class="tiles" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="l"><p class="k">Per qualified meeting</p><p class="v">$50</p></td><td class="r"><p class="k">If they sign up</p><p class="v">5% of year one</p></td></tr></table>
+    <p class="who"><b>Who they want to meet:</b> Companies that have raised $1M+ or are at $2M+ ARR</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="btns"><tr>
+      <td class="b1"><a class="btn-sm" href="https://www.atrios.com/tastemaker/collections?company=2eb2f585-5935-4875-9497-627e7376e67f">Add to a collection</a></td>
+      <td class="b2"><a class="btn-ace" href="sms:+15303064813?&body=Hi%20Ace%2C%20I%20want%20to%20share%20the%20Automat%20perk%20with%20my%20friend%20">Text Ace about Automat</a></td>
+    </tr></table>
+  </div>
+
+  <div class="cta">
+    <a class="btn" href="https://www.atrios.com/tastemaker/collections">See all seven on Atrios</a>
+    <p class="steps"><b>Select</b> the companies, add them to a collection, hit <b>Share</b>, and send it to the people who fit.</p>
+  </div>
+
+  <div class="section">
+    <p class="label">Questions? Reach out to Jordan or me</p>
+    <table class="contacts" role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td class="l"><img src="https://ace-atrios.github.io/ace-demo/email/oct/allan-lvov.png" width="64" height="64" alt="Allan Lvov" class="headshot" /><strong>Allan Lvov</strong>Head of GTM<br><a href="mailto:allan@atrios.com">allan@atrios.com</a><br><a href="https://www.linkedin.com/in/allan--/" style="display:inline-block;margin-top:8px;"><img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M3ZBM60WPWKT9SRK4GP7JTS1.png" width="16" height="16" alt="" style="display:inline-block;vertical-align:-3px;margin-right:6px;border-radius:3px;" />LinkedIn</a></td>
+      <td><img src="https://ace-atrios.github.io/ace-demo/email/oct/jordan-deasy.png" width="64" height="64" alt="Jordan Deasy" class="headshot" /><strong>Jordan Deasy</strong>Tastemaker Community Manager<br><a href="mailto:jordan@atrios.com">jordan@atrios.com</a><br><a href="https://www.linkedin.com/in/jdeasy/" style="display:inline-block;margin-top:8px;"><img src="https://userimg-assets.customeriomail.com/images/client-env-199591/01M3ZBM60WPWKT9SRK4GP7JTS1.png" width="16" height="16" alt="" style="display:inline-block;vertical-align:-3px;margin-right:6px;border-radius:3px;" />LinkedIn</a></td>
+    </tr></table>
+  </div>
+
+  <div class="section copy" style="padding-top:28px;">
+    <p style="margin-bottom:4px;">Thanks for opening doors for your network!</p>
+    <p style="margin:0;"><span style="font-family:'Nanum Myeongjo',Georgia,serif;font-weight:700;color:#0E2723;">Allan Lvov</span><br><span style="color:#A8A8A8;font-size:14px;">Head of GTM @ Atrios</span></p>
+  </div>
+
+  <div class="footer">
+    <img src="https://atrios-email-assets.s3.us-west-1.amazonaws.com/dark-logo-transparent.png" alt="" class="footer-logo" width="180" />
+    <div class="footer-text">
+      <div style="margin-bottom:12px;"><a href="https://www.atrios.com">atrios.com</a> <span style="color:#E8DFC8;">&middot;</span> <a href="https://www.linkedin.com/company/getatrios/">LinkedIn</a></div>
+      <p>You're receiving this because you refer meetings through Atrios.</p>
+      <p><a href="{% unsubscribe_url %}" class="muted">Unsubscribe</a> &middot; <a href="{% manage_subscription_preferences_url %}" class="muted">Email preferences</a></p>
+    </div>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
