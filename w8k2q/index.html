@@ -136,10 +136,10 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1792758777';
+const BUILD='1792845108';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
-const PULLED='2026-10-23T08:32:57-04:00';let lastSync=null;
+const PULLED='2026-10-24T08:31:48-04:00';let lastSync=null;
 function fmtT(d){return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}).replace(' ','').toLowerCase()}
 function ago(d){const m=Math.round((Date.now()-d)/60000);if(m<1)return 'just now';if(m<60)return m+'m ago';const h=Math.round(m/60);return h<24?h+'h ago':fmtT(d)}
 function dayLbl(d){const n=new Date(),y=new Date(n);y.setDate(n.getDate()-1);if(d.toDateString()===n.toDateString())return 'today';if(d.toDateString()===y.toDateString())return 'yesterday';return d.toLocaleDateString([],{month:'short',day:'numeric'})}
