@@ -53,6 +53,33 @@ h1{font:600 28px/1.1 -apple-system,Inter,sans-serif;margin:4px 0 10px;letter-spa
 .em .eb{white-space:pre-wrap;word-wrap:break-word;font-size:14.5px;line-height:1.45}
 .em.me{background:#eef3ff}
 .chtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.12);color:var(--muted);margin-left:4px}
+
+#thread.imv,#thread.imv .msgs{background:#000}
+#thread.imv .msgs{padding-left:10px;padding-right:10px}
+.ts{text-align:center;font-size:12px;color:#8e8e93;margin:16px 0 8px}.ts b{font-weight:600}
+.im{display:flex;flex-direction:column;margin-top:2px;max-width:78%}
+.im.first{margin-top:8px}.im.me{align-self:flex-end;align-items:flex-end}.im.them{align-self:flex-start}
+.imn{font-size:12px;color:#8e8e93;margin:0 0 2px 46px}
+.imrow{display:flex;align-items:flex-end;gap:8px}
+.ima{width:30px;height:30px;border-radius:50%;flex:none;background:#3a3a8c;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.ima:empty{background:none}
+.imb{position:relative;padding:8px 13px;border-radius:19px;font-size:16px;line-height:1.32;white-space:pre-wrap;word-wrap:break-word;background:#262628;color:#fff}
+.im.me .imb{background:#0a84ff}
+.im.them.last .imb::before{content:"";position:absolute;bottom:0;left:-6px;width:16px;height:18px;background:#262628;border-bottom-right-radius:14px}
+.im.them.last .imb::after{content:"";position:absolute;bottom:0;left:-10px;width:10px;height:18px;background:#000;border-bottom-right-radius:10px}
+.im.me.last .imb::before{content:"";position:absolute;bottom:0;right:-6px;width:16px;height:18px;background:#0a84ff;border-bottom-left-radius:14px}
+.im.me.last .imb::after{content:"";position:absolute;bottom:0;right:-10px;width:10px;height:18px;background:#000;border-bottom-left-radius:10px}
+.imb{z-index:0}.imb::before{z-index:-1}.imb::after{z-index:-1}
+.dlv{align-self:flex-end;font-size:11.5px;color:#8e8e93;margin:3px 4px 0}
+#thread.emv,#thread.emv .msgs{background:#262626}
+#thread.emv .msgs{padding:0}
+.shs{font-size:20px;font-weight:600;color:#f2f2f2;padding:14px 18px 6px;line-height:1.3}
+.sh{padding:16px 18px 18px;border-bottom:1px solid #3a3a3a;color:#ececec}
+#thread.imv .sh{background:#1c1c1e;border:1px solid #333;border-radius:14px;margin:10px 0;align-self:stretch}
+.shr{display:flex;justify-content:space-between;align-items:baseline}.shr b{font-size:16px;font-weight:600;color:#fff}.shr span{font-size:13px;color:#9a9a9a}
+.sht{font-size:13.5px;color:#9a9a9a;margin-top:3px}
+.shb{margin-top:12px;font-size:15.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+#thread.imv header{background:#0b0b0b;border-color:#222}#thread.emv header{background:#1e1e1e;border-color:#333}
 .empty{padding:40px;text-align:center;color:var(--muted)}
 #gate{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg);z-index:9;padding:24px}
 #gate img{width:72px;height:72px;border-radius:18px}#gate input{font-size:28px;letter-spacing:.4em;text-align:center;width:220px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink)}
@@ -84,12 +111,24 @@ const emParts=x=>{const r=x.match(EMRE);if(!r)return{to:'Email',body:x};const ta
 const STAFF_FULL=['Allan Lvov','Taylor Offer','Will Kostrzewsky','Jordan Deasy','Shay Phillips'];const isMe=w=>w=='Ace'||STAFF.includes(w)||STAFF_FULL.includes(w);
 const chLbl=t=>{const e=t.msgs.some(m=>isEm(t,m)),x=t.ch!='email'&&t.msgs.some(m=>!EMRE.test(m.x));return e&&x?'Text + Email':e?'Email':'Text'};
 function openT(k,push=true){const t=D.find(x=>x.k==k);if(!t)return;cur=k;
- document.getElementById('tt').innerHTML=`<b>${esc(t.name)}</b><span>${esc(t.type||'')}${t.co?' · '+esc(t.co):''}${' · '+chLbl(t)}</span>`;
+ document.getElementById('tt').innerHTML=`<b>${esc(t.name)}</b><span>${t.type&&t.type!='Email'?esc(t.type)+' · ':''}${t.co?esc(t.co)+' · ':''}${chLbl(t)}</span>`;
  document.getElementById('meta').innerHTML=`<span class="pill ${ST(t)}">${ST(t)}</span>${t.by?' Intro by '+esc(t.by):''}${t.mark?' · '+esc(t.mark):''}${t.next?` · <span class="nx">Next follow-up ${esc(t.next)}</span>`:''}`;
- let day='',h='';for(const m of t.msgs){const d=dt(m.t).toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});if(d!=day){day=d;h+=`<div class="day">${d}</div>`}
-  const tm=dt(m.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});const me=isMe(m.w);
-  if(isEm(t,m)){const e=emParts(m.x);h+=`<div class="em${me?' me':''}"><div class="eh"><div class="ea">${ini(m.w)}</div><div class="en"><b>${esc(m.w)}</b><div>${esc(e.to)}</div></div><div class="et">${tm}</div></div><div class="eb">${hl(e.body)}</div></div>`}
-  else{const c=m.w=='Ace'?'ace':(isMe(m.w)?'staff':'');h+=`<div class="m ${c}"><div class="who">${esc(m.w)} · ${tm}</div><div class="b">${hl(m.x.replace(/^\[Text\]\s*/,''))}</div></div>`}}
+ const EV=t.ch=='email'||(t.msgs.length&&t.msgs.every(m=>isEm(t,m)));const others=[...new Set(t.msgs.filter(m=>m.w!='Ace').map(m=>m.w))];const GRP=!EV&&(others.length>1||(t.ppl||[]).length>1);
+ document.getElementById('thread').classList.toggle('emv',EV);document.getElementById('thread').classList.toggle('imv',!EV);
+ const subj=t.subj||(t.msgs.find(m=>m.subj)||{}).subj||'';
+ let h=EV&&subj?`<div class="shs">${esc(subj)}</div>`:'';let prev=null;const L=t.msgs;
+ const sep=d=>{const n=new Date(),y=new Date(n-864e5);const tm=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});const lab=d.toDateString()==n.toDateString()?'Today':d.toDateString()==y.toDateString()?'Yesterday':d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return `<div class="ts"><b>${lab}</b> ${tm}</div>`};
+ const unwrap=x=>x.split('\n').reduce((o,l,i,A)=>{const p=A[i-1];if(i&&p&&p.length>=55&&!/[.!?:)"”]\s*$/.test(p)&&l.trim()&&!/^\s*([*\-•>]|\d+[.)])\s/.test(l)&&!/[:]$/.test(p.trim()))return o+' '+l.trim();return o+(i?'\n':'')+l},'');
+ const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' & '+a[a.length-1];
+ L.forEach((m,i)=>{const d=dt(m.t);const em=isEm(t,m);
+  if(em){const e=emParts(m.x);let to='';if(m.to||m.cc){to='to '+list([...(m.to||[]),...(m.cc||[])])}else if(e.to&&e.to!='Email'){to=e.to=='Reply all'?'reply all':e.to}
+   const when=d.toLocaleDateString([],{month:'short',day:'numeric'})+', '+d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+   h+=`<div class="sh"><div class="shr"><b>${esc(m.w)}</b><span>${when}</span></div>${to?`<div class="sht">${esc(to)}</div>`:''}<div class="shb">${hl(unwrap(e.body))}</div></div>`;prev=null;return}
+  const gap=!prev||(d-dt(prev.t))>36e5;if(gap)h+=sep(d);
+  const nx=L[i+1];const same=p=>p&&!isEm(t,p)&&p.w==m.w;const first=gap||!same(prev);const last=!same(nx)||(nx&&dt(nx.t)-d>36e5);const me=m.w=='Ace';
+  h+=`<div class="im ${me?'me':'them'}${first?' first':''}${last?' last':''}">`+(GRP&&!me&&first?`<div class="imn">${esc(m.w)}</div>`:'')+`<div class="imrow">${GRP&&!me?`<div class="ima">${last?ini(m.w):''}</div>`:''}<div class="imb" title="${d.toLocaleString()}">${hl(m.x.replace(/^\[Text\]\s*/,''))}</div></div></div>`;
+  prev=m});
+ if(L.length&&L[L.length-1].w=='Ace'&&!isEm(t,L[L.length-1]))h+='<div class="dlv">Delivered</div>';
  const el=document.getElementById('msgs');el.innerHTML=h;document.body.classList.add('open');requestAnimationFrame(()=>{el.scrollTop=el.scrollHeight});
  if(push)history.pushState({t:k},'')}
 function closeT(){document.body.classList.remove('open');cur=null}
