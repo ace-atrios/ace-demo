@@ -37,6 +37,27 @@ mark{background:#ffe58a;padding:0 1px;border-radius:2px}
 .it{padding:6px 0;border-top:1px solid #f0ebe1}.it:first-of-type{border-top:0}.it b{font-weight:600}.q{color:#6b665c;font-style:italic;font-size:12.5px;margin-top:2px}.lv{display:inline-block;font:700 10px/1 Inter;padding:3px 6px;border-radius:4px;margin-left:6px}.lv.on{background:#d7efdd;color:#1f6b3a}.lv.off{background:#efe6f7;color:#57307a}.snt{font-size:11px;margin-left:6px}.snt.negative{color:#b42318}.snt.positive{color:#1f6b3a}.fu{color:#b45309;font-weight:600}
 .kpi{display:flex;gap:8px;padding:8px 10px;border-bottom:1px solid #e9e4da;background:#fff}.kpi div{flex:1;min-width:0;text-align:center;border:1px solid #eee8dc;border-radius:10px;padding:6px 4px}.kpi b{display:block;font:700 18px/1.1 Georgia,serif;color:#0e3b2e}.kpi span{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a857a}
 .sb.BAD{background:#9b2c1f;color:#fff}
+
+/* 10/27 Allan: email vs text visual split (ported from aceapp) */
+.msgs.emv{background:#fff;padding:0}.msgs.imv{background:#fff}
+.shs{font-size:20px;font-weight:600;color:#1d1d1f;padding:18px 24px 8px;line-height:1.3;border-bottom:1px solid #eee}
+.sh{padding:16px 24px 18px;border-bottom:1px solid #e8e8e8;color:#222;max-width:820px}
+.msgs.imv .sh{background:#f7f7f5;border:1px solid #e3e3e0;border-radius:12px;margin:10px 0;max-width:680px}
+.shr{display:flex;justify-content:space-between;align-items:baseline;gap:12px}.shr b{font-size:15px;font-weight:600;color:#111}.shr span{font-size:12.5px;color:#888;white-space:nowrap}
+.sht{font-size:13px;color:#888;margin-top:2px}.shk{font:700 9.5px/1 Inter,Helvetica,Arial;letter-spacing:.06em;color:#234b7a;background:#e3ecf7;border-radius:4px;padding:3px 6px;margin-right:6px;vertical-align:1px}
+.shb{margin-top:10px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+.ts{text-align:center;font-size:12px;color:#8e8e93;margin:16px 0 8px}.ts b{font-weight:600}
+.im{display:flex;flex-direction:column;max-width:70%;margin-top:2px}.im.first{margin-top:8px}
+.im.me{align-self:flex-end;align-items:flex-end;margin-left:auto}.im.them{align-self:flex-start;align-items:flex-start}
+.imn{font-size:11.5px;color:#8e8e93;margin:0 0 2px 40px}.imrow{display:flex;align-items:flex-end;gap:6px}
+.ima{width:28px;height:28px;border-radius:50%;background:#c7c7cc;color:#fff;font:600 11px/28px Inter,Helvetica,Arial;text-align:center;flex:none}.ima:empty{background:none}
+.imb{padding:8px 13px;border-radius:18px;white-space:pre-wrap;word-wrap:break-word;font-size:14.5px;line-height:1.4}
+.im.me .imb{background:#0a84ff;color:#fff}.im.them .imb{background:#e9e9eb;color:#111}
+.im.me.last .imb{border-bottom-right-radius:5px}.im.them.last .imb{border-bottom-left-radius:5px}
+.msgs.imv{display:flex;flex-direction:column}
+.dlv{align-self:flex-end;font-size:11px;color:#8e8e93;margin:3px 4px 0}
+.ch.mix{background:#fdf0dc;color:#8a5a12}
+.chs.em{color:#234b7a}.chs.tx{color:#22603a}.chs.mx{color:#8a5a12}
 </style></head><body><div id="gate" style="position:fixed;inset:0;background:#0e3b2e;display:flex;align-items:center;justify-content:center;z-index:9"><form id="gf" style="text-align:center;color:#f5efe2"><div style="font:600 22px Georgia,serif;margin-bottom:12px">Ace Inbox</div><input id="pc" type="password" inputmode="numeric" placeholder="Passcode" autocomplete="off" maxlength="6" style="padding:10px 14px;border-radius:10px;border:0;font-size:16px;width:180px;text-align:center"><br><button type="submit" style="margin-top:10px;padding:9px 22px;border-radius:10px;border:0;background:#f5efe2;color:#0e3b2e;font:600 15px system-ui">Open</button><div id="ge" style="margin-top:8px;font-size:12px;opacity:.8"></div></form></div>
 <header><h1>Ace Inbox</h1><span class="sub">Launched Oct 8, 2026 · <span id="upd"></span></span><div class="vt"><button id="vT" class="on">Threads</button><button id="vI">Intent Signals</button></div></header>
 <div class="wrap" id="wrap">
@@ -63,16 +84,33 @@ function match(t){if(!G.every(([,k])=>okBy(t,k,FS[k])))return false;if(!q)return
 const STF=['allan','will','jordan','taylor','gabe','kira','eliot','shay','osman','ace'];
 function kpi(L){const nm=t=>(t.name||'').trim().toLowerCase();const P=new Set(L.map(nm).filter(Boolean));const PB=new Set();let B=0;L.forEach(t=>{if(ST(t)=='VENDOR'){PB.add(nm(t));B+=t.vendor?t.vendor.split(/,|\+|&/).filter(v=>v.trim()).length:1}});
 document.getElementById('kpi').innerHTML=`<div><b>${P.size}</b><span>Unique people</span></div><div><b>${L.length}</b><span>Threads</span></div><div><b>${PB.size}</b><span>People booked</span></div><div><b>${B}</b><span>Total bookings</span></div>`}
+const EMRE=/^(?:\[Email([^\]]*)\]|\(email\)|Email((?: reply-all)?(?: \([^)]*\))?):)\s*/i;const isEm=(t,m)=>t.ch=='email'||EMRE.test(m.x);
+const emParts=x=>{const r=x.match(EMRE);if(!r)return{to:'',body:x};const tag=((r[1]||'')+(r[2]||'')).replace(/^[,\s]+/,'').trim();let to='';if(/reply-all/i.test(tag))to='reply all';else if(/^(to|cc) /i.test(tag))to=tag;else if(/^\+/.test(tag))to=tag;return{to,body:x.slice(r[0].length)}};
+const chLbl=t=>{const e=t.msgs.some(m=>isEm(t,m)),x=t.ch!='email'&&t.msgs.some(m=>!EMRE.test(m.x));return e&&x?'Text + Email':e?'Email':'Text'};
+const ini=n=>(n||'?').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('');
 function render(){const L=D.filter(match);kpi(L);const el=document.getElementById('list');
  if(!L.length){el.innerHTML='<div class="empty">No matches</div>';return}
  el.innerHTML=L.map(t=>{const last=t.msgs[t.msgs.length-1];let pv=last;if(q){const h=t.msgs.find(m=>m.x.toLowerCase().includes(q.toLowerCase()));if(h)pv=h}
   return `<div class="row ${sel==t.k?'sel':''} s-${ST(t)}" data-k="${t.k}"><div class="top"><span class="nm">${t.by?`<span class="by">${esc(t.by)}</span><span class="ar">→</span>`:''}${hl(t.name)}</span><span class="tm">${fmt(last.t)}</span></div>
-  <div class="co">${t.bad&&ST(t)!='REJECTED'?`<span class="sb BAD" title="${esc(t.bad)}">⚠ BAD ACCOUNT</span>`:''}<span class="sb ${ST(t)}">${pl(t)}${(ST(t)=='VENDOR'||ST(t)=='ALLAN')&&t.mark?' · '+esc(t.mark.replace(/^.*(BOOKED|CALL SET) · /,'')):''}</span>${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}<span class="cx">${hl(t.co||'')}</span><span class="chs">${t.ch=='email'?'Email':'Text'}</span></div><div class="pv"><b>${esc(pv.w)}:</b> ${hl(pv.x.slice(0,140))}</div></div>`}).join('')}
+  <div class="co">${t.bad&&ST(t)!='REJECTED'?`<span class="sb BAD" title="${esc(t.bad)}">⚠ BAD ACCOUNT</span>`:''}<span class="sb ${ST(t)}">${pl(t)}${(ST(t)=='VENDOR'||ST(t)=='ALLAN')&&t.mark?' · '+esc(t.mark.replace(/^.*(BOOKED|CALL SET) · /,'')):''}</span>${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}<span class="cx">${hl(t.co||'')}</span><span class="chs ${chLbl(t)=='Email'?'em':chLbl(t)=='Text'?'tx':'mx'}">${chLbl(t)=='Email'?'✉ Email':chLbl(t)=='Text'?'💬 Text':'💬✉ Text + Email'}</span></div><div class="pv"><b>${esc(pv.w)}:</b> ${hl(pv.x.slice(0,140))}</div></div>`}).join('')}
 document.getElementById('list').onclick=e=>{const r=e.target.closest('.row');if(!r)return;if(r.dataset.s!==undefined)sigOpen(+r.dataset.s);else openT(r.dataset.k)};
 function openT(k){sel=k;const t=D.find(x=>x.k==k);render();document.getElementById('wrap').classList.add('open');
- document.getElementById('mh').innerHTML=`<span class="back" onclick="document.getElementById('wrap').classList.remove('open')">‹ Back</span>${t.ch=='email'?'<span class="ch email">EMAIL</span>':'<span class="ch text">TEXT</span>'}<h2 style="display:inline">${esc(t.name)}</h2>${(t.ppl||[]).length?`<div class="ppl">${t.ppl.map(([n,u])=>u?`<a href="${esc(u)}" target="_blank" rel="noopener"><span class="lib">in</span>${esc(n)}</a>`:`<span class="nol">${esc(n)} <i>(no LinkedIn found)</i></span>`).join("")}</div>`:""}<div class="meta">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${esc(t.co||'')}${' · '}<span class="sb ${ST(t)}">${pl(t)}</span>${t.by?'Intro by '+esc(t.by)+' → to '+esc(t.name):''}${t.stage?' · '+esc(t.stage):''} · ${t.msgs.length} messages${t.next?` · <b style="color:#b45309">Next follow-up: ${esc(t.next)}</b>`:''}</div>`;
- let day='',h='';for(const m of t.msgs){const d=dt(m.t).toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});if(d!=day){day=d;h+=`<div class="day">${d}</div>`}
-  const cls=m.w=='Ace'?'ace':(STAFF.includes(m.w)?'staff':'');h+=`<div class="m ${cls}"><div class="who">${esc(m.w)} · ${dt(m.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</div><div class="b">${hl(m.x)}</div></div>`}
+ document.getElementById('mh').innerHTML=`<span class="back" onclick="document.getElementById('wrap').classList.remove('open')">‹ Back</span>${chLbl(t)=='Email'?'<span class="ch email">EMAIL</span>':chLbl(t)=='Text'?'<span class="ch text">TEXT</span>':'<span class="ch mix">TEXT + EMAIL</span>'}<h2 style="display:inline">${esc(t.name)}</h2>${(t.ppl||[]).length?`<div class="ppl">${t.ppl.map(([n,u])=>u?`<a href="${esc(u)}" target="_blank" rel="noopener"><span class="lib">in</span>${esc(n)}</a>`:`<span class="nol">${esc(n)} <i>(no LinkedIn found)</i></span>`).join("")}</div>`:""}<div class="meta">${t.type?`<span class="tag ${t.type}">${t.type}</span>`:''}${esc(t.co||'')}${' · '}<span class="sb ${ST(t)}">${pl(t)}</span>${t.by?'Intro by '+esc(t.by)+' → to '+esc(t.name):''}${t.stage?' · '+esc(t.stage):''} · ${t.msgs.length} messages${t.next?` · <b style="color:#b45309">Next follow-up: ${esc(t.next)}</b>`:''}</div>`;
+ const EV=t.ch=='email'||(t.msgs.length&&t.msgs.every(m=>isEm(t,m)));const others=[...new Set(t.msgs.filter(m=>m.w!='Ace').map(m=>m.w))];const GRP=!EV&&(others.length>1||(t.ppl||[]).length>1);
+ const MS=document.getElementById('msgs');MS.classList.toggle('emv',EV);MS.classList.toggle('imv',!EV);
+ const subj=t.subj||(t.msgs.find(m=>m.subj)||{}).subj||'';let h=EV&&subj?`<div class="shs">${esc(subj)}</div>`:'';let prev=null;const L=t.msgs;
+ const sep=d=>{const n=new Date(),y=new Date(n-864e5);const tm=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});const lab=d.toDateString()==n.toDateString()?'Today':d.toDateString()==y.toDateString()?'Yesterday':d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return `<div class="ts"><b>${lab}</b> ${tm}</div>`};
+ const unwrap=x=>x.split('\n').reduce((o,l,i,A)=>{const p=A[i-1];if(i&&p&&p.length>=55&&!/[.!?:)"”]\s*$/.test(p)&&l.trim()&&!/^\s*([*\-•>]|\d+[.)])\s/.test(l)&&!/[:]$/.test(p.trim()))return o+' '+l.trim();return o+(i?'\n':'')+l},'');
+ const lst=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' & '+a[a.length-1];
+ L.forEach((m,i)=>{const d=dt(m.t);
+  if(isEm(t,m)){const e=emParts(m.x);let to='';if(m.to||m.cc){to='to '+lst([...(m.to||[]),...(m.cc||[])])}else if(e.to){to=e.to}
+   const when=d.toLocaleDateString([],{month:'short',day:'numeric'})+', '+d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+   h+=`<div class="sh"><div class="shr"><b>${EV?'':'<span class="shk">EMAIL</span>'}${esc(m.w)}</b><span>${when}</span></div>${to?`<div class="sht">${esc(to)}</div>`:''}<div class="shb">${hl(unwrap(e.body))}</div></div>`;prev=null;return}
+  const gap=!prev||(d-dt(prev.t))>36e5;if(gap)h+=sep(d);
+  const nx=L[i+1];const same=p=>p&&!isEm(t,p)&&p.w==m.w;const first=gap||!same(prev);const last=!same(nx)||(nx&&dt(nx.t)-d>36e5);const me=m.w=='Ace';
+  h+=`<div class="im ${me?'me':'them'}${first?' first':''}${last?' last':''}">`+(!me&&first?`<div class="imn" style="${GRP?'':'margin-left:4px'}">${esc(m.w)}</div>`:'')+`<div class="imrow">${GRP&&!me?`<div class="ima">${last?ini(m.w):''}</div>`:''}<div class="imb" title="${d.toLocaleString()}">${hl(m.x.replace(/^\[Text\]\s*/,''))}</div></div></div>`;
+  prev=m});
+ if(L.length&&L[L.length-1].w=='Ace'&&!isEm(t,L[L.length-1]))h+='<div class="dlv">Delivered</div>';
  const el=document.getElementById('msgs');el.innerHTML=h;
  const mk=el.querySelector('mark');if(mk)mk.scrollIntoView({block:'center'});else el.scrollTop=el.scrollHeight}
 document.getElementById('q').oninput=e=>{q=e.target.value.trim();if(V=='I'){sigList();return}render();if(sel)openT(sel)};
@@ -85,7 +123,7 @@ function sigF(){const cats=['All',...[...new Set(SIG.flatMap(catsOf))].sort()];c
  F.innerHTML=g.map(([lab,k,opts])=>`<label class="fd ${fi[k]!='All'?'on':''}"><span>${lab}${fi[k]!='All'?': '+fi[k]:''}</span><select data-s="${k}">${opts.map(o=>`<option ${fi[k]==o?'selected':''}>${o}</option>`).join('')}</select><span class="cv">▾</span></label>`).join('')}
 function sigList(){const L=SIG.filter(sigMatch).sort((a,b)=>(b.priority-a.priority)||((fuOf(a)||'9')<(fuOf(b)||'9')?-1:1));const el=document.getElementById('list');
  el.innerHTML=L.length?L.map((p,i)=>`<div class="row ${sel=='s'+SIG.indexOf(p)?'sel':''}" data-s="${SIG.indexOf(p)}"><div class="top"><span class="nm"><span class="pr p${p.priority}">P${p.priority}</span>${hl(p.name)}</span><span class="tm">${p.source=='call'?'Call':'Text'} · ${esc(p.date.slice(5))}</span></div><div class="co"><span class="cx">${hl(p.company||'')}${p.vendor?' · w/ '+esc(p.vendor):''}</span></div><div class="pv">${fuOf(p)?`<span class="fu">Follow up by ${esc(fuOf(p))} · </span>`:''}${hl((p.next_action||p.summary||'').slice(0,140))}</div></div>`).join(''):'<div class="empty">No signals</div>'}
-function sigOpen(i){sel='s'+i;const p=SIG[i];sigList();document.getElementById('wrap').classList.add('open');
+function sigOpen(i){sel='s'+i;document.getElementById('msgs').classList.remove('emv','imv');const p=SIG[i];sigList();document.getElementById('wrap').classList.add('open');
  document.getElementById('mh').innerHTML=`<span class="back" onclick="document.getElementById('wrap').classList.remove('open')">‹ Back</span><span class="pr p${p.priority}">P${p.priority}</span><h2 style="display:inline">${esc(p.name)}</h2><div class="meta">${esc(p.company||'')}${p.role?' · '+esc(p.role):''} · from ${p.source=='call'?'call with '+esc(p.vendor||'vendor'):'Ace thread'} on ${esc(p.date)}${p.tm?' · tastemaker '+esc(p.tm):''}${p.inbox_key?` · <a href="#" onclick="V='T';setV();openT('${p.inbox_key}');return false">open thread</a>`:''}</div>`;
  const sec=(t,a,f)=>a&&a.length?`<div class="sec"><h3>${t}</h3>${a.map(x=>`<div class="it">${f(x)}${x.quote?`<div class="q">“${esc(x.quote)}”</div>`:''}</div>`).join('')}</div>`:'';
  document.getElementById('msgs').innerHTML=`<div class="sec"><h3>Summary</h3>${esc(p.summary||'')}${p.next_action?`<div style="margin-top:8px"><b>Next:</b> ${esc(p.next_action)}</div>`:''}</div>`+
@@ -95,7 +133,7 @@ function sigOpen(i){sel='s'+i;const p=SIG[i];sigList();document.getElementById('
   sec('Current stack',p.stack,s=>`<b>${esc(s.tool)}</b> <span style="color:#8a857a">(${esc(s.category||'')})</span>${s.sentiment?`<span class="snt ${s.sentiment}">${s.sentiment}</span>`:''}`)+
   sec('Peer / sentiment signals',p.peer_signals,s=>`<b>${esc(s.tool)}</b>: ${esc(s.opinion||'')}`);
  document.getElementById('msgs').scrollTop=0}
-function setV(){document.getElementById('kpi').style.display=V=='I'?'none':'flex';document.getElementById('vT').classList.toggle('on',V=='T');document.getElementById('vI').classList.toggle('on',V=='I');sel=null;document.getElementById('mh').innerHTML='<h2>'+(V=='I'?'Select a lead':'Select a conversation')+'</h2>';document.getElementById('msgs').innerHTML='<div class="empty">'+(V=='I'?'Pick a lead on the left to see their intent profile.':'Click a thread on the left to read it.')+'</div>';if(V=='I'){sigF();sigList()}else{buildF();render()}}
+function setV(){document.getElementById('msgs').classList.remove('emv','imv');document.getElementById('kpi').style.display=V=='I'?'none':'flex';document.getElementById('vT').classList.toggle('on',V=='T');document.getElementById('vI').classList.toggle('on',V=='I');sel=null;document.getElementById('mh').innerHTML='<h2>'+(V=='I'?'Select a lead':'Select a conversation')+'</h2>';document.getElementById('msgs').innerHTML='<div class="empty">'+(V=='I'?'Pick a lead on the left to see their intent profile.':'Click a thread on the left to read it.')+'</div>';if(V=='I'){sigF();sigList()}else{buildF();render()}}
 document.getElementById('vT').onclick=()=>{V='T';setV()};document.getElementById('vI').onclick=()=>{V='I';setV()};
 F.addEventListener('change',e=>{const k=e.target.dataset.s;if(!k)return;fi[k]=e.target.value;sigF();sigList()});
 
