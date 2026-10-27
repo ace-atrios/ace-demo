@@ -42,6 +42,17 @@ h1{font:600 28px/1.1 -apple-system,Inter,sans-serif;margin:4px 0 10px;letter-spa
 .m .b{padding:9px 13px;border-radius:18px;background:var(--card);white-space:pre-wrap;word-wrap:break-word;font-size:15px;line-height:1.38}
 .m.ace{align-self:flex-end}.m.ace .who{text-align:right}.m.ace .b{background:var(--gold);color:#06140f}
 .m.staff .b{background:#20463d;border:1px solid rgba(201,169,110,.25)}
+.m .b{padding:8px 13px;border-radius:18px;background:#2a2f2d;white-space:pre-wrap;word-wrap:break-word;font-size:15px;line-height:1.36}
+.m.ace .b,.m.staff .b{background:#2f6bf0;color:#fff;border:0}
+.m.ace,.m.staff{align-self:flex-end}.m.ace .who,.m.staff .who{text-align:right}
+.em{align-self:stretch;max-width:100%;margin:6px 0;background:#f7f7f5;color:#1d1d1f;border-radius:12px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.em .eh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.em .ea{width:32px;height:32px;border-radius:50%;background:#c9a96e;color:#06140f;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.em .en{flex:1;min-width:0}.em .en b{font-size:14.5px}.em .en div{font-size:12px;color:#6b6b70;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.em .et{font-size:12px;color:#6b6b70;flex:none}
+.em .eb{white-space:pre-wrap;word-wrap:break-word;font-size:14.5px;line-height:1.45}
+.em.me{background:#eef3ff}
+.chtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.12);color:var(--muted);margin-left:4px}
 .empty{padding:40px;text-align:center;color:var(--muted)}
 #gate{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg);z-index:9;padding:24px}
 #gate img{width:72px;height:72px;border-radius:18px}#gate input{font-size:28px;letter-spacing:.4em;text-align:center;width:220px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink)}
@@ -60,7 +71,7 @@ const dt=t=>new Date(t+':00-04:00');
 const fmt=t=>{const d=dt(t),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString([],{month:'short',day:'numeric'})};
 const ST=t=>{const g=(t.stage||'').toLowerCase();if(t.status&&t.status!='OPEN')return t.status;if(g.includes('book')||g.includes('call w/')||g.includes('call set'))return 'BOOKED';if(g.includes('declin')||g.includes('closed')||g.includes('reject'))return 'REJECTED';const last=t.msgs.length?dt(t.msgs[t.msgs.length-1].t):new Date();if(Date.now()-last>2*864e5)return 'GHOSTED';return 'OPEN'};
 const G=[['Status','fs',['All','OPEN','BOOKED','REJECTED','GHOSTED']],['Channel','fc',['All','Text','Email']],['Type','fty',['All','Vendor','Lead','Tastemaker','Partner']]];const FS={fs:'All',fc:'All',fty:'All'};const chOf=x=>x.ch=='email'?'Email':'Text';
-const okBy=(t,k,v)=>v=='All'||(k=='fs'?ST(t)==v:k=='fc'?chOf(t)==v:t.type==v);
+const okBy=(t,k,v)=>v=='All'||(k=='fs'?ST(t)==v:k=='fc'?chLbl(t).includes(v):t.type==v);
 const ini=n=>String(n||'?').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'•';
 function ok(t){if(!G.every(([,k])=>okBy(t,k,FS[k])))return false;
  if(!q)return true;const s=q.toLowerCase();return (t.name+' '+(t.co||'')+' '+(t.by||'')).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
@@ -68,11 +79,17 @@ function chips(){document.getElementById('chips').innerHTML=G.map(([lab,k,opts])
 function render(){const L=D.filter(ok);const el=document.getElementById('list');
  if(!L.length){el.innerHTML='<div class="empty">No conversations</div>';return}
  el.innerHTML=L.map(t=>{const m=t.msgs[t.msgs.length-1]||{w:'',x:'',t:''};const s=ST(t);return `<div class="row" data-k="${esc(t.k)}"><div class="av">${ini(t.name)}</div><div class="rt"><div class="r1"><b>${hl(t.name)}</b><span>${m.t?fmt(m.t):''}</span></div><div class="r2"><span class="pill ${s}">${s}</span>${t.type?`<span>${esc(t.type)}</span>`:''}${t.co?`<span>· ${hl(t.co)}</span>`:''}${t.by?`<span>· via ${esc(t.by)}</span>`:''}</div><div class="r3"><b>${esc(m.w)}:</b> ${hl(m.x)}</div></div></div>`}).join('')}
+const EMRE=/^(?:\[Email([^\]]*)\]|\(email\)|Email((?: reply-all)?(?: \([^)]*\))?):)\s*/i;const isEm=(t,m)=>t.ch=='email'||EMRE.test(m.x);
+const emParts=x=>{const r=x.match(EMRE);if(!r)return{to:'Email',body:x};const tag=((r[1]||'')+(r[2]||'')).replace(/^[,\s]+/,'').trim();let to='Email';if(/reply-all/i.test(tag))to='Reply all';else if(/^(to|cc) /i.test(tag))to=tag;else if(/^\+/.test(tag))to='Email '+tag;return{to,body:x.slice(r[0].length)}};
+const STAFF_FULL=['Allan Lvov','Taylor Offer','Will Kostrzewsky','Jordan Deasy','Shay Phillips'];const isMe=w=>w=='Ace'||STAFF.includes(w)||STAFF_FULL.includes(w);
+const chLbl=t=>{const e=t.msgs.some(m=>isEm(t,m)),x=t.ch!='email'&&t.msgs.some(m=>!EMRE.test(m.x));return e&&x?'Text + Email':e?'Email':'Text'};
 function openT(k,push=true){const t=D.find(x=>x.k==k);if(!t)return;cur=k;
- document.getElementById('tt').innerHTML=`<b>${esc(t.name)}</b><span>${esc(t.type||'')}${t.co?' · '+esc(t.co):''}${t.ch=='email'?' · Email':' · Text'}</span>`;
+ document.getElementById('tt').innerHTML=`<b>${esc(t.name)}</b><span>${esc(t.type||'')}${t.co?' · '+esc(t.co):''}${' · '+chLbl(t)}</span>`;
  document.getElementById('meta').innerHTML=`<span class="pill ${ST(t)}">${ST(t)}</span>${t.by?' Intro by '+esc(t.by):''}${t.mark?' · '+esc(t.mark):''}${t.next?` · <span class="nx">Next follow-up ${esc(t.next)}</span>`:''}`;
  let day='',h='';for(const m of t.msgs){const d=dt(m.t).toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});if(d!=day){day=d;h+=`<div class="day">${d}</div>`}
-  const c=m.w=='Ace'?'ace':(STAFF.includes(m.w)?'staff':'');h+=`<div class="m ${c}"><div class="who">${esc(m.w)} · ${dt(m.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</div><div class="b">${hl(m.x)}</div></div>`}
+  const tm=dt(m.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});const me=isMe(m.w);
+  if(isEm(t,m)){const e=emParts(m.x);h+=`<div class="em${me?' me':''}"><div class="eh"><div class="ea">${ini(m.w)}</div><div class="en"><b>${esc(m.w)}</b><div>${esc(e.to)}</div></div><div class="et">${tm}</div></div><div class="eb">${hl(e.body)}</div></div>`}
+  else{const c=m.w=='Ace'?'ace':(isMe(m.w)?'staff':'');h+=`<div class="m ${c}"><div class="who">${esc(m.w)} · ${tm}</div><div class="b">${hl(m.x.replace(/^\[Text\]\s*/,''))}</div></div>`}}
  const el=document.getElementById('msgs');el.innerHTML=h;document.body.classList.add('open');requestAnimationFrame(()=>{el.scrollTop=el.scrollHeight});
  if(push)history.pushState({t:k},'')}
 function closeT(){document.body.classList.remove('open');cur=null}
