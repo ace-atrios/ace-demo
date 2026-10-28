@@ -59,7 +59,7 @@ mark{background:#ffe58a;padding:0 1px;border-radius:2px}
 .ch.mix{background:#fdf0dc;color:#8a5a12}
 .chs.em{color:#234b7a}.chs.tx{color:#22603a}.chs.mx{color:#8a5a12}
 </style></head><body><div id="gate" style="position:fixed;inset:0;background:#0e3b2e;display:flex;align-items:center;justify-content:center;z-index:9"><form id="gf" style="text-align:center;color:#f5efe2"><div style="font:600 22px Georgia,serif;margin-bottom:12px">Ace Inbox</div><input id="pc" type="password" inputmode="numeric" placeholder="Passcode" autocomplete="off" maxlength="6" style="padding:10px 14px;border-radius:10px;border:0;font-size:16px;width:180px;text-align:center"><br><button type="submit" style="margin-top:10px;padding:9px 22px;border-radius:10px;border:0;background:#f5efe2;color:#0e3b2e;font:600 15px system-ui">Open</button><div id="ge" style="margin-top:8px;font-size:12px;opacity:.8"></div></form></div>
-<header><h1>Ace Inbox</h1><span class="sub">Launched Oct 8, 2026 · <span id="upd"></span></span><div class="vt"><button id="vT" class="on">Threads</button><button id="vI">Intent Signals</button></div></header>
+<header><h1>Ace Inbox</h1><span class="sub">Launched Oct 8, 2026 · <span id="upd"></span> <button id="rfb" style="margin-left:8px;border:1px solid #ddd;background:#fff;border-radius:8px;padding:3px 10px;font-size:12px;cursor:pointer">↻ Refresh</button></span><div class="vt"><button id="vT" class="on">Threads</button><button id="vI">Intent Signals</button></div></header>
 <div class="wrap" id="wrap">
 <div class="side"><div class="search"><input id="q" placeholder="Search names, companies, messages…" autofocus></div>
 <div class="filters" id="f"></div><div class="kpi" id="kpi"></div><div class="list" id="list"></div></div>
@@ -147,4 +147,8 @@ document.getElementById('gf').onsubmit=async e=>{e.preventDefault();CODE=documen
 document.getElementById('pc').addEventListener('input',e=>{if(e.target.value.trim().length==6)document.getElementById('gf').requestSubmit()});
 if(CODE)load(true);
 setInterval(()=>CODE&&load(false),60000);
+
+document.getElementById('rfb').onclick=async()=>{const b=document.getElementById('rfb');b.textContent='Syncing…';b.disabled=true;
+try{await fetch('https://pxvzxachxtbgckluilzd.supabase.co/rest/v1/ace_refresh_requests',{method:'POST',headers:{apikey:'sb_publishable_Mg-H89tDDnZrT6LgZiepjA_z5YwefdV',Authorization:'Bearer sb_publishable_Mg-H89tDDnZrT6LgZiepjA_z5YwefdV','Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({src:'inbox'})})}catch(e){}
+await load(true);let n=0;const t=setInterval(async()=>{n++;await load(false);if(n>=12){clearInterval(t);b.textContent='↻ Refresh';b.disabled=false}},15000);setTimeout(()=>{b.textContent='↻ Refresh (syncing in background)'},2000)};
 </script></body></html>
