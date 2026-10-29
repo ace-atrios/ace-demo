@@ -157,7 +157,7 @@ iframe{width:100%;height:calc(100vh - 170px);border:0;border-radius:22px;backgro
 .pbi{display:flex;flex-direction:column;align-items:center}.pbi:before{content:'';width:2px;height:10px;background:#c9c3b7;margin-top:-14px;margin-bottom:4px}
 .pif{border:1px solid #c9c3b7;border-radius:16px;padding:3px 11px;background:#fff;font-size:12px;color:#444;max-width:290px;text-align:center}.pif b{color:#A27B3A}
 .cvmain{overflow-x:auto}
-</style></head><body>
+.nid{background:#1d1b18;color:#fff;border-radius:6px;padding:2px 6px;margin-right:7px;letter-spacing:.04em}</style></head><body>
 <div id="gate"><form id="gf"><img src="logo-dark.svg" style="height:26px"><h3>Ace HQ</h3><div class="sub" style="margin:6px auto">Same passcode as the Ace Inbox.</div><input id="pc" inputmode="numeric" maxlength="6" autocomplete="off"><button>Open</button><div id="ge" style="color:var(--red);margin-top:8px"></div></form></div>
 <div class="app"><aside class="rail" id="rail"></aside><div class="page"><div class="top"><span class="chip" id="upd"></span><button class="btn ghost" id="dlall">⬇ Download all</button><button class="btn ghost" id="refresh">↻ Refresh</button><button class="btn ghost" id="lock">🔒 Lock</button></div><div class="wrapc" id="main"></div></div></div>
 <button id="cfab"><span class="fs a">✦</span><span class="fs b">✦</span><span class="fs c">✦</span>✦ Chat with Ace</button>
@@ -265,7 +265,7 @@ function curCat(){if(VIEW.startsWith('fn-'))return fname(VIEW.slice(3));return (
 <script>
 let CVSEL=null,CVOPEN={},CVMODE='play';
 const PBLAB={say:'Ace says',ask:'Ace asks',do:'Ace does',end:'Stop'};
-function pbNode(n){return `<div class="pvl"></div><div class="pnode p${n.k}"><div class="plab">${PBLAB[n.k]}</div><div class="ptx">${esc(n.t)}</div></div>${n.b&&n.b.length?pbBr(n.b):''}`}
+function pbNode(n){return `<div class="pvl"></div><div class="pnode p${n.k}"><div class="plab">${n.id?`<span class="nid">${n.id}</span>`:''}${PBLAB[n.k]}</div><div class="ptx">${esc(n.t)}</div></div>${n.b&&n.b.length?pbBr(n.b):''}`}
 function pbBr(B){return `<div class="pvl"></div><div class="pbr">${B.map(b=>`<div class="pbi"><div class="pif">If <b>${esc(b.if)}</b></div>${(b.n||[]).map(pbNode).join('')}</div>`).join('')}</div>`}
 function cvPlay(c){const f=(D.flows||[]).find(x=>x.id===c.id);if(!f)return '<div class="meta">No playbook for this cohort yet.</div>';
  return `<div class="pwrap"><div class="pzoom"><a onclick="PBZ=Math.max(.3,(PBZ||pbFit())-.1);pbApply()">−</a><a onclick="PBZ=0;pbApply()">Fit</a><a onclick="PBZ=Math.min(1.2,(PBZ||pbFit())+.1);pbApply()">+</a><a onclick="this.closest('.pwrap').classList.toggle('pfull');PBZ=0;pbApply()">⤢ Full screen</a></div><div class="pflow">${f.steps.map((s,i)=>{const si=c.stages.findIndex(x=>x.name===s.stage);const st=si>=0?c.stages[si]:null;return `<div class="pstep">${i?'<div class="pvl" style="height:26px"></div>':''}<span class="ppill" ${si>=0?`onclick="cvPick('${c.id}',${si})" title="See the people at this step"`:''}>STEP ${i+1} · ${esc(s.step.toUpperCase())}</span>${st?`<div class="pstat" onclick="cvPick('${c.id}',${si})"><b>${st.reached}</b> reached · <b class="r">${st.stopped||0}</b> stopped here${st.droppct!=null?` (${st.droppct}%)`:''} →</div>`:''}<div class="pchain">${s.nodes.map(pbNode).join('')}</div></div>`}).join('')}</div></div>`}
