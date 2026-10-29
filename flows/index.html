@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Ace messaging flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EDEBE6;--ink:#1d1b18;--mut:#6b6760;--line:#c9c3b7;--gold:#A27B3A;--say:#FBF3E4;--sayb:#C9A86A;--ask:#EAF0F7;--askb:#8EA9C9;--do:#E8F0EA;--dob:#8DB39A;--end:#F5E9E6;--endb:#D49A8A;--green:#1F3A2E}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,system-ui,sans-serif;color:var(--ink)}
+#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);z-index:9}#gate form{background:#fff;border-radius:18px;padding:34px;width:340px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.08)}#gate input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;background:#F2F0EB;font-size:15px;margin:14px 0}#gate button{background:var(--green);color:#fff;border:0;border-radius:20px;padding:9px 22px;font-weight:600;cursor:pointer}
+header{padding:28px 40px 6px;max-width:1500px;margin:0 auto}h1{font:600 40px/1.1 'Cormorant Garamond',serif;margin:0}h1 em{color:var(--gold);font-style:normal}.sub{color:var(--mut);max-width:820px;margin-top:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 6px}.tabs a{padding:8px 16px;border-radius:20px;background:#fff;cursor:pointer;font-weight:500;color:#444}.tabs a.on{background:var(--green);color:#fff}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin:10px 0}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+main{max-width:1500px;margin:0 auto;padding:0 40px 80px;overflow-x:auto}
+.ctitle{font:600 28px/1.2 'Cormorant Garamond',serif;margin:18px 0 2px}.cdesc{color:var(--mut);margin-bottom:10px}
+.flow{display:flex;flex-direction:column;align-items:center;min-width:min-content;padding:10px 0}
+.step{display:flex;flex-direction:column;align-items:center;width:100%;margin-top:6px}
+.pill{border:1px solid var(--line);border-radius:20px;padding:5px 14px;font:600 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:#5d5952;background:#F7F5F0;white-space:nowrap}
+.stat{font-size:11.5px;color:#9a5a45;margin-top:5px}.stat b{color:var(--green)}
+.vl{width:2px;height:16px;background:var(--line);flex:none}
+.chain{display:flex;flex-direction:column;align-items:center}
+.node{border-radius:12px;padding:11px 15px;width:340px;max-width:340px;border:1.5px solid}
+.node .lab{font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.node .tx{white-space:pre-wrap}
+.say{background:var(--say);border-color:var(--sayb)}.say .lab{color:var(--gold)}.say .tx,.ask .tx{font:500 16.5px/1.32 'Cormorant Garamond',serif}
+.ask{background:var(--ask);border-color:var(--askb)}.ask .lab{color:#4f6f95}
+.do{background:var(--do);border-color:var(--dob);border-style:dashed}.do .lab{color:#3f7553}
+.end{background:var(--end);border-color:var(--endb)}.end .lab{color:#9a5a45}
+.branches{display:flex;gap:18px;align-items:flex-start;position:relative;padding-top:16px}
+.branches:before{content:'';position:absolute;top:0;left:var(--l,0);right:var(--r,0);height:2px;background:var(--line)}
+.br{display:flex;flex-direction:column;align-items:center;position:relative}.br:before{content:'';width:2px;height:12px;background:var(--line);margin-top:-16px;margin-bottom:4px}
+.if{border:1px solid var(--line);border-radius:16px;padding:4px 12px;background:#fff;font-size:12.5px;color:#444;max-width:320px;text-align:center}.if b{color:var(--gold)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.upd{font-size:12px;color:var(--mut);white-space:nowrap}
+</style></head><body>
+<div id="gate"><form id="gf"><div style="font:600 26px 'Cormorant Garamond',serif">Ace messaging flows</div><div class="sub">Same passcode as the Ace Inbox.</div><input id="pc" type="password" autocomplete="current-password"><div id="ge" style="color:#b0553f;font-size:13px"></div><button>Open</button></form></div>
+<header><div class="top"><div><h1>Ace messaging flows, <em>by cohort.</em></h1><div class="sub">What Ace says at each step, and what it says next depending on how they reply. Built from the live playbook. The red line under each step = how many people actually stopped there, across every Ace conversation so far.</div></div><div class="upd" id="upd"></div></div>
+<div class="tabs" id="tabs"></div>
+<div class="legend"><span><i style="background:var(--say);border:1.5px solid var(--sayb)"></i>Ace says</span><span><i style="background:var(--ask);border:1.5px solid var(--askb)"></i>Ace asks</span><span><i style="background:var(--do);border:1.5px dashed var(--dob)"></i>Ace does (behind the scenes)</span><span><i style="background:var(--end);border:1.5px solid var(--endb)"></i>Stop / hand off</span></div></header>
+<main id="main"></main>
+<script>
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function dec(B,code){try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(code),"PBKDF2",false,["deriveKey"]);const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(B.s),iterations:200000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(B.i)},key,b64(B.c))))}catch(e){return null}}
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let D=null,CUR=(location.hash||'#lead').slice(1),CODE=localStorage.getItem('aceinbox_pc');
+const LAB={say:'Ace says',ask:'Ace asks',do:'Ace does',end:'Stop'};
+function node(n){return `<div class="vl"></div><div class="node ${n.k}"><div class="lab">${LAB[n.k]}</div><div class="tx">${esc(n.t)}</div></div>${n.b&&n.b.length?branches(n.b):''}`}
+function branches(B){return `<div class="vl"></div><div class="branches">${B.map(b=>`<div class="br"><div class="if">If <b>${esc(b.if)}</b></div>${(b.n||[]).map(node).join('')}</div>`).join('')}</div>`}
+function render(){const f=D.flows.find(x=>x.id===CUR)||D.flows[0];
+document.getElementById('tabs').innerHTML=D.flows.map(x=>`<a class="${x.id===f.id?'on':''}" onclick="CUR='${x.id}';location.hash='${x.id}';render()">${esc(x.name)}${x.total?` <span style="opacity:.6">(${x.total})</span>`:''}</a>`).join('');
+document.getElementById('main').innerHTML=`<div class="ctitle">${esc(f.name)}</div><div class="cdesc">${esc(f.desc)}</div><div class="flow">${f.steps.map((s,i)=>`<div class="step">${i?'<div class="vl" style="height:26px"></div>':''}<span class="pill">STEP ${i+1} · ${esc(s.step.toUpperCase())}</span>${s.stat?`<div class="stat"><b>${s.stat.reached}</b> reached · <b style="color:#9a5a45">${s.stat.stopped}</b> stopped here (${s.stat.droppct}%)${s.stat.conv!=null?` · ${s.stat.conv}% moved on`:''}</div>`:''}<div class="chain">${s.nodes.map(node).join('')}</div></div>`).join('')}</div>`;
+requestAnimationFrame(fixLines)}
+function fixLines(){document.querySelectorAll('.branches').forEach(el=>{const k=[...el.children];if(k.length<2){el.style.setProperty('--l','50%');el.style.setProperty('--r','50%');return}const r=el.getBoundingClientRect(),a=k[0].getBoundingClientRect(),z=k[k.length-1].getBoundingClientRect();el.style.setProperty('--l',(a.left+a.width/2-r.left)+'px');el.style.setProperty('--r',(r.right-(z.left+z.width/2))+'px')})}
+async function load(){const B=await (await fetch('data.json?v='+Date.now(),{cache:'no-store'})).json();const d=await dec(B,CODE||'');if(!d){document.getElementById('gate').style.display='flex';return false}D=d;document.getElementById('gate').style.display='none';document.getElementById('upd').textContent='Updated '+new Date(d.gen).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});render();return true}
+document.getElementById('gf').onsubmit=async e=>{e.preventDefault();CODE=document.getElementById('pc').value.trim();if(await load())localStorage.setItem('aceinbox_pc',CODE);else document.getElementById('ge').textContent='Wrong passcode'};
+window.addEventListener('resize',()=>D&&fixLines());load();
+</script></body></html>
