@@ -335,7 +335,7 @@ nd.append('circle').attr('r',d=>d.r).attr('fill',d=>d.t==='root'?'#0E2723':d.c).
 nd.filter(d=>['root','fn','rg','v'].includes(d.t)).append('text').text(d=>d.id).attr('x',d=>d.r+5).attr('y',4).attr('font-size',d=>d.t==='fn'||d.t==='root'?14:10.5).attr('fill','#0E2723').attr('font-family',d=>d.t==='fn'||d.t==='root'?'Newsreader,Georgia,serif':'Aspekta,sans-serif');
 sim.on('tick',()=>{ln.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);nd.attr('transform',d=>`translate(${d.x},${d.y})`)})}
 if(CODE)load();else document.getElementById('gate').style.display='flex';
-setInterval(()=>{if(D&&VIEW!=='search')load()},300000);
+window.__lastAct=Date.now();['mousemove','keydown','wheel','touchstart','click'].forEach(e=>addEventListener(e,()=>{window.__lastAct=Date.now()},{passive:true}));setInterval(()=>{if(!D||VIEW==='search')return;if(document.querySelector('.pfull,.modal.open,.ov.open,dialog[open]'))return;if(Date.now()-window.__lastAct<240000)return;load()},300000);
 
 const _rPB=render;render=function(){_rPB.apply(this,arguments);requestAnimationFrame(pbFix)};window.addEventListener('resize',()=>requestAnimationFrame(pbFix));
 </script></body></html>
