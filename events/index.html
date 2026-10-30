@@ -131,13 +131,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
   <div class="step"><div class="n">3</div><h5>On the list, or host approval</h5><p>Open events confirm instantly. Curated dinners go to the host's approve/waitlist queue with Ace's fit score.</p></div>
   <div class="step"><div class="n">4</div><h5>Before + after the event</h5><p>Calendar invite, day-of reminder, "who's coming" for opted-in guests. After: 1-2 perks that match what they told Ace, booked by text.</p></div>
  </div>
- <h2>What we get that Luma doesn't</h2>
- <div class="steps" style="grid-template-columns:repeat(3,1fr)">
-  <div class="step"><h5>Every guest is a conversation</h5><p>Today a Luma RSVP is a form fill we never hear from again. Here, every guest has an open thread with Ace, so the post-event follow-up is a reply, not a cold message.</p></div>
-  <div class="step"><h5>Intent before they walk in</h5><p>Needs captured at RSVP ("hiring 2 engineers", "renewing benefits in Jan") feed the matcher. Vendor sponsors see a pre-qualified room.</p></div>
-  <div class="step"><h5>Tastemaker credit built in</h5><p>"Who invited you?" is part of the convo, so community hosts and tastemakers get credit for the guests they bring and any meetings that follow.</p></div>
- </div>
-</section>
+ </section>
 
 <footer>Prototype · RSVP flow built on Ace (text) · events data from Atrios' Luma calendar</footer>
 </div>
@@ -151,7 +145,7 @@ const E=[
  {id:'masterworks',code:'MASTERWORKS',name:'Deel x Atrios: After Hours at Masterworks',when:'Thu, Nov 12 · 6:30pm',where:'Masterworks, 30 E 74th St',cov:'https://images.lumacdn.com/uploads/7z/6df72dfb-92a3-417c-a958-c63181f7b90d.png',type:'Host approval',spots:'18 spots left',host:'Atrios + Deel',desc:'An evening with founders and operators at Masterworks, with art, drinks and the people building NYC\'s next companies.'},
  {id:'rockwell',code:'ROCKWELL',name:'Rockwell x Atrios: Growth Stage People Leaders Dinner',when:'Tue, Nov 10 · 7:00pm',where:'Nudibranch, East Village',cov:'https://images.lumacdn.com/uploads/3f/aee06ced-59ab-42d5-93f8-2d81dbb97b33.png',type:'Host approval',spots:'Intimate · 14 seats',host:'Atrios + Rockwell',desc:'A private dinner for heads of people and HR at growth-stage companies. Benefits, hiring and building teams that stay.'},
  {id:'speedrun',code:'SPEEDRUN',name:'Speedrun Alumni Founders Dinner by Atrios',when:'Wed, Nov 18 · 7:30pm',where:'NYC · address on approval',cov:'https://images.lumacdn.com/uploads/to/8641c86c-9f84-4188-8848-eea50ec49ba6.png',type:'Host approval',spots:'Founders only',host:'Atrios',desc:'Dinner for a16z speedrun alumni founders. Small table, real conversations, no pitches.'},
- {id:'tf',code:'TF',name:'Tastemaker Fridays: Getting Started with Atrios',when:'Fri, Nov 6 · 12:30pm',where:'Online',cov:'https://images.lumacdn.com/uploads/3s/7ff0eb24-af59-46b3-9fe7-90866de621bc.png',type:'Open',spots:'Open to all',host:'Jordan · Atrios',desc:'A 30-minute session on how tastemakers share the best tools with their network and get rewarded for it.'}
+ {id:'tf',rec:'Weekly · Fridays',code:'TF',name:'Tastemaker Fridays: Getting Started with Atrios',when:'Fri, Nov 6 · 12:30pm',where:'Online',cov:'https://images.lumacdn.com/uploads/3s/7ff0eb24-af59-46b3-9fe7-90866de621bc.png',type:'Open',spots:'Open to all',host:'Jordan · Atrios',desc:'A 30-minute session on how tastemakers share the best tools with their network and get rewarded for it.'}
 ];
 const convo=ev=>[
  ['me',`RSVP ${ev.code}`],
@@ -167,13 +161,13 @@ const convo=ev=>[
  ['me','Superposition yes'],
  ['ace','Done. They have Tue 11/10 at 2pm or 4pm ET. Which works?']
 ];
-function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><button class="shr" title="Share" onclick="event.stopPropagation();share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
+function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><button class="shr" title="Share" onclick="event.stopPropagation();share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when} ${e.rec?'<span class="pill" style="margin-left:6px;font-size:11px;padding:2px 9px;text-transform:none;letter-spacing:0">↻ Recurring · '+e.rec+'</span>':''}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
 document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
 function smsLink(e){return `sms:${ACE}&body=${encodeURIComponent('RSVP '+e.code)}`}
 let timer=[];
 function open_(id){const e=E.find(x=>x.id===id);
  document.getElementById('detail').innerHTML=`<div class="dwrap"><button class="shr" title="Share" onclick="share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="dcov" style="background-image:url(${e.cov});aspect-ratio:16/10"></div><div style="margin-top:22px" id="ph"></div></div>
- <div>${localStorage.getItem('atr_host')?`<div class="mgr"><span>✦ You have manage access for this event.</span><a href="host/?e=${e.id}">Manage ↗</a></div>`:''}<div class="when">${e.when}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
+ <div>${localStorage.getItem('atr_host')?`<div class="mgr"><span>✦ You have manage access for this event.</span><a href="host/?e=${e.id}">Manage ↗</a></div>`:''}<div class="when">${e.when} ${e.rec?'<span class="pill" style="margin-left:6px;font-size:11px;padding:2px 9px;text-transform:none;letter-spacing:0">↻ Recurring · '+e.rec+'</span>':''}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
  <div class="facts"><div class="fact"><div class="ic">📍</div><div><b>${e.where}</b><span class="meta">${e.type==='Open'?'Link sent on RSVP':'Exact address sent once you\'re approved'}</span></div></div>
  <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
  <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
