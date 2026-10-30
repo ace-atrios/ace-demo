@@ -100,7 +100,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
 </section>
 
 <!-- DETAIL -->
-<section class="view" id="v-detail"><span class="back" onclick="go('events')">← All events</span><div class="detail" id="detail"></div></section>
+<section class="view" id="v-detail"><span class="back" onclick="history.replaceState(null,'',location.pathname);go('events')">← All events</span><div class="detail" id="detail"></div></section>
 
 <!-- FLOW -->
 <section class="view" id="v-flow">
@@ -169,11 +169,11 @@ function open_(id){const e=E.find(x=>x.id===id);
  <div><div class="when">${e.when}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
  <div class="facts"><div class="fact"><div class="ic">📍</div><div><b>${e.where}</b><span class="meta">${e.type==='Open'?'Link sent on RSVP':'Exact address sent once you\'re approved'}</span></div></div>
  <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
- <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
+ <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button> <button class="btn lt" id="shb" onclick="share('${e.id}')">↗ Share</button></div>
  <img class="qr" alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&color=0E2723&data=${encodeURIComponent('SMSTO:'+ACE+':RSVP '+e.code)}"></div>
  <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div>
  </div>`;
- go('detail',true);play(id)}
+ go('detail',true);if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);play(id)}
 function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer=[];
  document.getElementById('ph').innerHTML=`<div class="phone"><div class="scr"><div class="ph"><div class="av">A</div><div style="font-weight:600;font-size:13px">Ace · Atrios</div><small>iMessage</small></div><div class="msgs" id="msgs"></div><div class="inp"><div>iMessage</div></div></div></div>`;
  const box=document.getElementById('msgs');let t=400;
@@ -182,7 +182,9 @@ function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer
   timer.push(setTimeout(()=>{const ty=document.getElementById('ty');ty&&ty.remove();const d=document.createElement('div');d.className='m '+(w==='me'?'me':w==='card'?'ace card':'ace');d.textContent=x;box.appendChild(d);box.scrollTop=1e5},t));t+=w==='me'?1100:700});
  document.getElementById('ph').scrollIntoView({behavior:'smooth',block:'nearest'})}
 document.getElementById('guests').innerHTML='<div class="lr h"><span>Guest</span><span>Invited by</span><span>Told Ace</span><span>Next step</span><span>Fit</span><span>Status</span></div>'+G.map(g=>`<div class="lr"><span><b>${g[0]}</b><div class="meta">${g[1]}</div></span><span>${g[3]}</span><span>${g[2]}</span><span class="meta">${g[6]}</span><span class="sc">${g[4]}</span><span>${g[5]==='Pending'?'<button class="btn sm">Approve</button>':`<span class="pill ${g[5]==='Approved'?'g':''}">${g[5]}</span>`}</span></div>`).join('');
+function share(id){const u=location.origin+'/ace-demo/events/'+id+'/';(navigator.share?navigator.share({url:u}).catch(()=>{}):navigator.clipboard.writeText(u).then(()=>{const b=document.getElementById('shb');if(b){b.textContent='✓ Link copied';setTimeout(()=>b.textContent='↗ Share',1800)}}))}
 function go(v,keep){document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname);go(b.dataset.v)});
+(()=>{const h=(window.EVENT_ID||location.hash.slice(1));if(h&&E.find(x=>x.id===h))open_(h)})();
 </script>
 </body></html>
