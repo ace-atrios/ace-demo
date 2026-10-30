@@ -191,7 +191,7 @@ function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer
 function share(id){const e=E.find(x=>x.id===id),u=location.origin+'/ace-demo/events/'+id+'/';if(navigator.share&&matchMedia('(pointer:coarse)').matches){navigator.share({title:e.name,url:u}).catch(()=>{})}else{navigator.clipboard.writeText(u).then(()=>toast('Link copied'))}}
 function toast(t){let d=document.getElementById('toast');if(!d){d=document.createElement('div');d.id='toast';d.className='toast';document.body.appendChild(d)}d.textContent=t;d.classList.add('on');setTimeout(()=>d.classList.remove('on'),1600)}
 function go(v,keep){if(v==='host'){const f=document.getElementById('hostframe');if(!f.src)f.src='host/?embed=1'}document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname);go(b.dataset.v)});
-(()=>{const h=(window.EVENT_ID||location.hash.slice(1));if(h&&E.find(x=>x.id===h))open_(h)})();
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname+(b.dataset.v==='events'?'':'#'+b.dataset.v));go(b.dataset.v)});
+(()=>{const h=(window.EVENT_ID||location.hash.slice(1));if(h&&E.find(x=>x.id===h))open_(h);else if(h==='flow')go('flow');else if(h==='host'&&localStorage.getItem('atr_host'))go('host')})();
 </script>
 </body></html>
