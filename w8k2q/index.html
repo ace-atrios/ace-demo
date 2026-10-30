@@ -93,6 +93,7 @@ h1{font-size:20px;font-weight:750;letter-spacing:-.6px;background:linear-gradien
 .chip.p{background:rgba(59,130,246,.16);border-color:rgba(96,165,250,.45);color:#93c5fd}
 .chip.g{background:rgba(34,197,94,.14);border-color:rgba(74,222,128,.45);color:#86efac}
 .chip.y{background:rgba(250,204,21,.13);border-color:rgba(250,204,21,.45);color:#fde68a}
+.chips{gap:6px}.chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:4px 10px;color:#d6dae6;font-size:11.5px;font-weight:500}.chip.more{color:#8a91a5;background:transparent}
 .meta{color:#6b7289;font-size:11px}
 ul.n{color:#c9cede}
 .go{background:var(--g);color:#fff;border-radius:12px;padding:9px;box-shadow:0 6px 20px rgba(91,140,255,0.24)}
@@ -136,7 +137,7 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1793191320';
+const BUILD='1793385484';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
 const PULLED='2026-10-28T08:42:00-04:00';let lastSync=null;
@@ -153,7 +154,7 @@ function tourBtn(r){const tr=(S.tours||{})[r.id];const nm=r.listing[0].split(','
  const body=encodeURIComponent(`Tour request: ${nm} (${r.rent}) ${r.url||''}\nTimes that work: `);
  return tr?`<a class="tour req" data-tour="${r.id}" href="sms:+15303064813&body=${body}">Tour requested ${new Date(tr).toLocaleDateString(undefined,{month:'short',day:'numeric'})} · ask again</a>`:`<a class="tour" data-tour="${r.id}" href="sms:+15303064813&body=${body}">Request tour</a>`}
 function card(r,i){const take=r.type.some(t=>/takeover/i.test(t));const on=S.stars.includes(r.id);
- const chips=r.notes.filter(n=>n.length<40).map(n=>`<span class="chip ${/pool/i.test(n)?'p':/gym|fitness/i.test(n)?'g':/roof/i.test(n)?'y':''}">${esc(n.replace(/^Swimming pool/,'Pool').replace(/^Heated indoor pool/,'Heated indoor pool'))}</span>`).join('');
+ const chips=(()=>{const L=r.notes.filter(n=>n.length<40).map(n=>{let t=n.replace(/\(.*?\)/g,'').replace(/^Swimming pool/i,'Pool').replace(/^Heated indoor pool/i,'Pool').replace(/cats and dogs allowed|cats? (ok|allowed)|pets? (ok|allowed)/i,'Cats OK').replace(/^outdoor space$/i,'Outdoor space').trim();t=t.charAt(0).toUpperCase()+t.slice(1);return t}).filter((t,i,a)=>t&&a.indexOf(t)===i);const P=['Pool','Gym','Doorman','Roof','Cats OK','Sauna','Parking','Outdoor space'];L.sort((a,b)=>{const x=P.findIndex(p=>a.startsWith(p)),y=P.findIndex(p=>b.startsWith(p));return (x<0?99:x)-(y<0?99:y)});const top=L.slice(0,5),more=L.length-top.length;return top.map(t=>`<span class="chip">${esc(t)}</span>`).join('')+(more>0?`<span class="chip more">+${more}</span>`:'')})();
  const m=r.rent.match(/^\$[\d,]+/);const main=m?m[0]:r.rent;const free=(r.rent.match(/[\d.]+ mo free/)||[''])[0];const net=(r.rent.match(/net \$[\d,]+/)||[''])[0];
  const sqft=(r.size.match(/\d+ sf/)||[''])[0];const bd=r.size.split(' ')[0];
  const bldg=(r.listing[1]||'').split(',')[0];const how=s=>esc(s.replace(/^\d+ min ?/,''));
