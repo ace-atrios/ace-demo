@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios Events · RSVP with Ace</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#1A4D36;--deep:#0E2723;--gold:#B08A4E;--gold2:#C9A96E;--bg:#EEECE8;--tint:#FAF4E8;--em:#609D77;--body:#3F3F3F;--muted:#8A8784;--card:#fff;--line:#E6E2DA;--serif:Newsreader,Georgia,serif;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{font-family:var(--serif);font-size:26px;color:var(--deep);letter-spacing:-.3px}
+.logo em{color:var(--gold);font-style:italic}
+.tabs{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs button{border:0;background:none;font:500 13px var(--sans);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--deep);color:#fff}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1.02;color:var(--deep);letter-spacing:-1px}
+h1 em,h2 em{color:var(--gold);font-style:normal}
+h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);letter-spacing:-.5px;line-height:1.1}
+.sub{color:var(--muted);font-size:16px;max-width:560px;margin-top:14px}
+.hero{padding:40px 0 34px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:60px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.ev:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(14,39,35,.35)}
+.ev .cov{aspect-ratio:16/10;background:#ddd center/cover}
+.ev .b{padding:18px 20px 20px}
+.when{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase}
+.ev h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--deep);line-height:1.15;margin:6px 0 8px}
+.meta{font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--tint);color:var(--deep);border:1px solid #F0E3C8}
+.pill.g{background:#E8F1EB;border-color:#D3E6D9;color:var(--forest)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--deep);color:#fff;border:0;font:500 14px var(--sans);padding:12px 20px;border-radius:999px;cursor:pointer}
+.btn.lt{background:#fff;color:var(--deep);border:1px solid var(--line)}
+.btn.sm{padding:8px 14px;font-size:13px}
+/* detail */
+.detail{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:10px 0 70px;align-items:start}
+.dcov{border-radius:26px;aspect-ratio:1/1;background:#ddd center/cover;border:1px solid var(--line)}
+.facts{margin:22px 0;display:grid;gap:12px}
+.fact{display:flex;gap:14px;align-items:center}
+.fact .ic{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+.fact b{display:block;color:var(--deep);font-weight:500}
+.rsvp{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin-top:6px}
+.rsvp h4{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--deep)}
+.rsvp p{color:var(--muted);font-size:14px;margin:6px 0 16px}
+.rsvpgrid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.qr{width:112px;height:112px;border-radius:14px;border:1px solid var(--line);background:#fff;padding:8px}
+.why{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.back{font-size:13px;color:var(--muted);cursor:pointer;display:inline-block;margin:6px 0 18px}
+/* phone */
+.phone{width:360px;max-width:100%;margin:0 auto;background:#0b0b0c;border-radius:48px;padding:12px;box-shadow:0 40px 80px -30px rgba(14,39,35,.5)}
+.scr{background:#fff;border-radius:38px;height:680px;overflow:hidden;display:flex;flex-direction:column}
+.ph{padding:16px 16px 10px;text-align:center;border-bottom:1px solid #eee}
+.av{width:44px;height:44px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;margin:0 auto 4px;font-family:var(--serif);font-size:20px}
+.ph small{font-size:11px;color:#888}
+.msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:6px;scroll-behavior:smooth}
+.m{max-width:78%;padding:8px 12px;border-radius:18px;font-size:14px;line-height:1.35;white-space:pre-wrap;opacity:0;transform:translateY(6px);animation:in .3s forwards}
+.m.me{align-self:flex-end;background:#0A84FF;color:#fff;border-bottom-right-radius:5px}
+.m.ace{align-self:flex-start;background:#E9E9EB;color:#111;border-bottom-left-radius:5px}
+.m.card{background:var(--tint);border:1px solid #F0E3C8;color:var(--deep)}
+.typing{align-self:flex-start;background:#E9E9EB;border-radius:18px;padding:10px 14px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#999;animation:b 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes in{to{opacity:1;transform:none}}@keyframes b{0%,100%{opacity:.3}50%{opacity:1}}
+.inp{border-top:1px solid #eee;padding:10px 12px;display:flex;gap:8px}
+.inp div{flex:1;border:1px solid #ddd;border-radius:999px;padding:8px 14px;color:#aaa;font-size:14px}
+/* admin */
+.list{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:60px}
+.lr{display:grid;grid-template-columns:1.3fr 1.2fr 1.6fr 1.2fr 70px 120px;gap:12px;padding:14px 20px;border-top:1px solid var(--line);align-items:center;font-size:14px}
+.lr.h{border-top:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:#FBFAF8}
+.lr b{color:var(--deep);font-weight:500}
+.sc{font-family:var(--serif);font-size:20px;color:var(--forest)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.kpi b{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);display:block}
+.kpi span{font-size:12px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 60px}
+.step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}
+.step .n{font-family:var(--serif);font-size:30px;color:var(--gold)}
+.step h5{font-size:15px;color:var(--deep);font-weight:600;margin:6px 0}
+.step p{font-size:13px;color:var(--muted)}
+.view{display:none}.view.on{display:block}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
+@media(max-width:900px){.grid,.steps,.kpis{grid-template-columns:1fr}.detail{grid-template-columns:1fr}.lr{grid-template-columns:1fr 1fr;}.lr.h{display:none}}
+</style></head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#" onclick="go('events');return false">Atrios <em>Events</em></a>
+<div class="tabs"><button data-v="events" class="on">Events</button><button data-v="flow">How RSVP works</button><button data-v="admin">Host view</button></div></nav>
+
+<!-- EVENTS -->
+<section class="view on" id="v-events">
+ <div class="hero"><div class="eyebrow">New York · Founders, operators, investors</div>
+ <h1>Rooms worth <em>being in.</em></h1>
+ <p class="sub">Dinners, salons and sessions for people building companies. Every RSVP goes through Ace, so the room is curated and you walk in knowing who's there.</p></div>
+ <div class="grid" id="grid"></div>
+</section>
+
+<!-- DETAIL -->
+<section class="view" id="v-detail"><span class="back" onclick="go('events')">← All events</span><div class="detail" id="detail"></div></section>
+
+<!-- FLOW -->
+<section class="view" id="v-flow">
+ <div class="hero"><div class="eyebrow">How RSVP works</div><h1>No forms. <em>Just text Ace.</em></h1>
+ <p class="sub">The RSVP is a two-minute conversation. Guests get on the list, and every one of them becomes a real Ace conversation with intent we can act on.</p></div>
+ <div class="steps">
+  <div class="step"><div class="n">1</div><h5>Tap "RSVP with Ace"</h5><p>Opens iMessage with the event code pre-filled (QR on desktop). Because they text first, links and calendar invites land clean.</p></div>
+  <div class="step"><div class="n">2</div><h5>Ace asks 3 things</h5><p>Name + company, what they're building, and one thing on their plate this quarter (hiring, raising, benefits, sales…).</p></div>
+  <div class="step"><div class="n">3</div><h5>On the list, or host approval</h5><p>Open events confirm instantly. Curated dinners go to the host's approve/waitlist queue with Ace's fit score.</p></div>
+  <div class="step"><div class="n">4</div><h5>Before + after the event</h5><p>Calendar invite, day-of reminder, "who's coming" for opted-in guests. After: 1-2 perks that match what they told Ace, booked by text.</p></div>
+ </div>
+ <h2>What we get that Luma doesn't</h2>
+ <div class="steps" style="grid-template-columns:repeat(3,1fr)">
+  <div class="step"><h5>Every guest is a conversation</h5><p>Today a Luma RSVP is a form fill we never hear from again. Here, every guest has an open thread with Ace, so the post-event follow-up is a reply, not a cold message.</p></div>
+  <div class="step"><h5>Intent before they walk in</h5><p>Needs captured at RSVP ("hiring 2 engineers", "renewing benefits in Jan") feed the matcher. Vendor sponsors see a pre-qualified room.</p></div>
+  <div class="step"><h5>Tastemaker credit built in</h5><p>"Who invited you?" is part of the convo, so community hosts and tastemakers get credit for the guests they bring and any meetings that follow.</p></div>
+ </div>
+</section>
+
+<!-- ADMIN -->
+<section class="view" id="v-admin">
+ <div class="hero" style="padding-bottom:0"><div class="eyebrow">Host view · Deel x Atrios: After Hours at Masterworks</div><h1>Guest <em>list.</em></h1>
+ <p class="sub">Everyone here RSVP'd through Ace. Approve or waitlist in one tap. Approved guests can sync to Luma for check-in.</p></div>
+ <div class="kpis"><div class="kpi"><b>64</b><span>RSVP conversations</span></div><div class="kpi"><b>41</b><span>Approved</span></div><div class="kpi"><b>23</b><span>Shared a live need</span></div><div class="kpi"><b>9</b><span>Meetings booked pre-event</span></div></div>
+ <div class="list" id="guests"></div>
+</section>
+<footer>Prototype · RSVP flow built on Ace (text) · events data from Atrios' Luma calendar</footer>
+</div>
+
+<script>
+const ACE='+15303064813';
+const E=[
+ {id:'masterworks',code:'MASTERWORKS',name:'Deel x Atrios: After Hours at Masterworks',when:'Thu, Nov 12 · 6:30pm',where:'Masterworks, 30 E 74th St',cov:'https://images.lumacdn.com/uploads/7z/6df72dfb-92a3-417c-a958-c63181f7b90d.png',type:'Host approval',spots:'18 spots left',host:'Atrios + Deel',desc:'An evening with founders and operators at Masterworks, with art, drinks and the people building NYC\'s next companies.'},
+ {id:'rockwell',code:'ROCKWELL',name:'Rockwell x Atrios: Growth Stage People Leaders Dinner',when:'Tue, Nov 10 · 7:00pm',where:'Nudibranch, East Village',cov:'https://images.lumacdn.com/uploads/3f/aee06ced-59ab-42d5-93f8-2d81dbb97b33.png',type:'Host approval',spots:'Intimate · 14 seats',host:'Atrios + Rockwell',desc:'A private dinner for heads of people and HR at growth-stage companies. Benefits, hiring and building teams that stay.'},
+ {id:'speedrun',code:'SPEEDRUN',name:'Speedrun Alumni Founders Dinner by Atrios',when:'Wed, Nov 18 · 7:30pm',where:'NYC · address on approval',cov:'https://images.lumacdn.com/uploads/to/8641c86c-9f84-4188-8848-eea50ec49ba6.png',type:'Host approval',spots:'Founders only',host:'Atrios',desc:'Dinner for a16z speedrun alumni founders. Small table, real conversations, no pitches.'},
+ {id:'tf',code:'TF',name:'Tastemaker Fridays: Getting Started with Atrios',when:'Fri, Nov 6 · 12:30pm',where:'Online',cov:'https://images.lumacdn.com/uploads/3s/7ff0eb24-af59-46b3-9fe7-90866de621bc.png',type:'Open',spots:'Open to all',host:'Jordan · Atrios',desc:'A 30-minute session on how tastemakers share the best tools with their network and get rewarded for it.'}
+];
+const convo=ev=>[
+ ['me',`RSVP ${ev.code}`],
+ ['ace',`Hey! I'm Ace from Atrios. Excited you want to come to ${ev.name.split(':')[0].replace(' by Atrios','')} 🎉 What's your name and company?`],
+ ['me','Maya Chen, cofounder at Loop (we do AP automation)'],
+ ['ace','Nice to meet you Maya! Who invited you, or how\'d you hear about it?'],
+ ['me','Skyler from Uncharted'],
+ ['ace','Love Skyler. Last one: what\'s the biggest thing on your plate this quarter? Hiring, raising, benefits, sales, something else?'],
+ ['me','Hiring our first 2 engineers + figuring out health insurance before Jan'],
+ ['ace',ev.type==='Open'?`You're on the list ✅ ${ev.when}. Calendar invite coming next.`:`Got it, sending you to the host now. Most people hear back within a day, and I'll text you the second you're in.`],
+ ['card',`📅 ${ev.name}\n${ev.when} · ${ev.where}`],
+ ['ace','Since you\'re hiring + sorting benefits, two founders in this room use Superposition (AI recruiter, 1 month free) and Hammock (ICHRA health benefits). Want me to set up a quick call with either before the event?'],
+ ['me','Superposition yes'],
+ ['ace','Done. They have Tue 11/10 at 2pm or 4pm ET. Which works?']
+];
+const G=[
+ ['Maya Chen','Loop · Cofounder','Hiring 2 engineers, benefits before Jan','Skyler Healy',92,'Approved','Superposition booked'],
+ ['Daniel Ortiz','Fieldwire Labs · CEO','Raising seed in Q1','Jordan Deasy',88,'Approved','Arceus intro sent'],
+ ['Priya Nair','Northstack · Head of People','Renewing benefits Dec 1','Rockwell',85,'Approved','Corridor booked'],
+ ['Sam Lee','Quill · Founder','Moving off spreadsheets for accounting','Taylor Offer',81,'Approved','Rillet'],
+ ['Alex Kim','Stealth · Founder','Just raised, setting up banking','Allan Lvov',78,'Pending','Brex (speedrun)'],
+ ['Jordan Price','Freelance designer','Just here to network','Website',34,'Waitlist','—']
+];
+function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
+document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
+function smsLink(e){return `sms:${ACE}&body=${encodeURIComponent('RSVP '+e.code)}`}
+let timer=[];
+function open_(id){const e=E.find(x=>x.id===id);
+ document.getElementById('detail').innerHTML=`<div><div class="dcov" style="background-image:url(${e.cov})"></div></div>
+ <div><div class="when">${e.when}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
+ <div class="facts"><div class="fact"><div class="ic">📍</div><div><b>${e.where}</b><span class="meta">${e.type==='Open'?'Link sent on RSVP':'Exact address sent once you\'re approved'}</span></div></div>
+ <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
+ <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
+ <img class="qr" alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&color=0E2723&data=${encodeURIComponent('SMSTO:'+ACE+':RSVP '+e.code)}"></div>
+ <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div>
+ <div style="margin-top:26px" id="ph"></div></div>`;
+ go('detail',true);play(id)}
+function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer=[];
+ document.getElementById('ph').innerHTML=`<div class="phone"><div class="scr"><div class="ph"><div class="av">A</div><div style="font-weight:600;font-size:13px">Ace · Atrios</div><small>iMessage</small></div><div class="msgs" id="msgs"></div><div class="inp"><div>iMessage</div></div></div></div>`;
+ const box=document.getElementById('msgs');let t=400;
+ convo(e).forEach(([w,x])=>{
+  if(w!=='me'){timer.push(setTimeout(()=>{const ty=document.createElement('div');ty.className='typing';ty.id='ty';ty.innerHTML='<i></i><i></i><i></i>';box.appendChild(ty);box.scrollTop=1e5},t));t+=900}
+  timer.push(setTimeout(()=>{const ty=document.getElementById('ty');ty&&ty.remove();const d=document.createElement('div');d.className='m '+(w==='me'?'me':w==='card'?'ace card':'ace');d.textContent=x;box.appendChild(d);box.scrollTop=1e5},t));t+=w==='me'?1100:700});
+ document.getElementById('ph').scrollIntoView({behavior:'smooth',block:'nearest'})}
+document.getElementById('guests').innerHTML='<div class="lr h"><span>Guest</span><span>Invited by</span><span>Told Ace</span><span>Next step</span><span>Fit</span><span>Status</span></div>'+G.map(g=>`<div class="lr"><span><b>${g[0]}</b><div class="meta">${g[1]}</div></span><span>${g[3]}</span><span>${g[2]}</span><span class="meta">${g[6]}</span><span class="sc">${g[4]}</span><span>${g[5]==='Pending'?'<button class="btn sm">Approve</button>':`<span class="pill ${g[5]==='Approved'?'g':''}">${g[5]}</span>`}</span></div>`).join('');
+function go(v,keep){document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+</script>
+</body></html>
