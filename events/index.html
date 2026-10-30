@@ -165,14 +165,14 @@ document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
 function smsLink(e){return `sms:${ACE}&body=${encodeURIComponent('RSVP '+e.code)}`}
 let timer=[];
 function open_(id){const e=E.find(x=>x.id===id);
- document.getElementById('detail').innerHTML=`<div><div class="dcov" style="background-image:url(${e.cov})"></div></div>
+ document.getElementById('detail').innerHTML=`<div><div class="dcov" style="background-image:url(${e.cov});aspect-ratio:16/10"></div><div style="margin-top:22px" id="ph"></div></div>
  <div><div class="when">${e.when}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
  <div class="facts"><div class="fact"><div class="ic">📍</div><div><b>${e.where}</b><span class="meta">${e.type==='Open'?'Link sent on RSVP':'Exact address sent once you\'re approved'}</span></div></div>
  <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
  <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
  <img class="qr" alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&color=0E2723&data=${encodeURIComponent('SMSTO:'+ACE+':RSVP '+e.code)}"></div>
  <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div>
- <div style="margin-top:26px" id="ph"></div></div>`;
+ </div>`;
  go('detail',true);play(id)}
 function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer=[];
  document.getElementById('ph').innerHTML=`<div class="phone"><div class="scr"><div class="ph"><div class="av">A</div><div style="font-weight:600;font-size:13px">Ace · Atrios</div><small>iMessage</small></div><div class="msgs" id="msgs"></div><div class="inp"><div>iMessage</div></div></div></div>`;
