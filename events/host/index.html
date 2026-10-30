@@ -116,8 +116,9 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}.chips button{border:1px solid var(--line);background:var(--bg);color:var(--deep);border-radius:999px;padding:6px 12px;font:13px var(--sans);cursor:pointer}
 .ar{display:grid;grid-template-columns:28px 1.3fr 1.4fr 1.2fr;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}.ar b{color:var(--deep);font-weight:500}
 .srcs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.brand{display:flex;align-items:center;gap:12px}.brand img{height:26px;width:auto;display:block}.brand .sep{width:1px;height:22px;background:var(--line)}.brand em{font-family:var(--serif);font-size:24px;color:var(--gold);font-style:italic;line-height:1}[data-theme=dark] .brand img{filter:brightness(0) invert(94%) sepia(10%) saturate(280%)}
 </style></head><body><div class="wrap">
-<nav><span class="logo">Atrios <em>Events</em> · Host</span><div style="display:flex;align-items:center"><a class="btn lt sm" href="../">Public page ↗</a><button class="mode" id="mode">☾</button></div></nav>
+<nav><a class="brand" href="../"><img src="../logo.svg" alt="Atrios"><span class="sep"></span><em>Events · Host</em></a><div style="display:flex;align-items:center"><a class="btn lt sm" href="../">Public page ↗</a><button class="mode" id="mode">☾</button></div></nav>
 <div id="app"><div class="gate"><div class="eyebrow">Atrios team only</div><h2>Host view</h2><p class="sub" style="margin:8px auto 0">Enter the team passcode (same as the Ace Inbox).</p><input id="pc" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••"><div class="err" id="err"></div><button class="btn" id="go">Unlock</button></div></div>
 <footer>Guest data is encrypted. Without the team passcode this page shows nothing.</footer></div>
 <script>
