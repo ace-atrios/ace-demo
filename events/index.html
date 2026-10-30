@@ -83,19 +83,33 @@ h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);let
 .step h5{font-size:15px;color:var(--deep);font-weight:600;margin:6px 0}
 .step p{font-size:13px;color:var(--muted)}
 .view{display:none}.view.on{display:block}
+
+[data-theme=dark]{--forest:#7FBF97;--deep:#F2EEE6;--gold:#D4B47A;--bg:#0D1412;--tint:#1C2420;--em:#7FBF97;--body:#C9C4BA;--muted:#8E948F;--card:#141C19;--line:#25302B}
+[data-theme=dark] .btn{background:#F2EEE6;color:#0D1412}
+[data-theme=dark] .btn.lt{background:var(--card);color:var(--deep);border-color:var(--line)}
+[data-theme=dark] .tabs{background:var(--card);border-color:var(--line)}
+[data-theme=dark] .tabs button.on{background:#F2EEE6;color:#0D1412}
+[data-theme=dark] .pill{border-color:#3A3326;background:#221E16;color:#E9D8B4}
+[data-theme=dark] .pill.g{background:#15261D;border-color:#24402F;color:#9ED2B0}
+[data-theme=dark] .lr.h{background:#111816}
+[data-theme=dark] .fact .ic{background:var(--card);border-color:var(--line)}
+[data-theme=dark] .ev:hover{box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+[data-theme=dark] .qr{background:#F2EEE6}
+.mode{border:1px solid var(--line);background:var(--card);color:var(--deep);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;margin-left:10px}
+body{transition:background .25s,color .25s}
 footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
 @media(max-width:900px){.grid,.steps,.kpis{grid-template-columns:1fr}.detail{grid-template-columns:1fr}.lr{grid-template-columns:1fr 1fr;}.lr.h{display:none}}
 </style></head>
 <body>
 <div class="wrap">
 <nav><a class="logo" href="#" onclick="go('events');return false">Atrios <em>Events</em></a>
-<div class="tabs"><button data-v="events" class="on">Events</button><button data-v="flow">How RSVP works</button><button data-v="admin">Host view</button></div></nav>
+<div style="display:flex;align-items:center"><div class="tabs"><button data-v="events" class="on">Events</button><button data-v="flow">How RSVP works</button></div><button class="mode" id="mode" title="Dark mode">☾</button></div></nav>
 
 <!-- EVENTS -->
 <section class="view on" id="v-events">
  <div class="hero"><div class="eyebrow">New York · Founders, operators, investors</div>
  <h1>Rooms worth <em>being in.</em></h1>
- <p class="sub">Dinners, salons and sessions for people building companies. Every RSVP goes through Ace, so the room is curated and you walk in knowing who's there.</p></div>
+ <p class="sub">Dinners, experiences and sessions for people building companies. Every RSVP goes through Ace, so the room is curated and you walk in knowing who's there.</p></div>
  <div class="grid" id="grid"></div>
 </section>
 
@@ -120,17 +134,11 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
  </div>
 </section>
 
-<!-- ADMIN -->
-<section class="view" id="v-admin">
- <div class="hero" style="padding-bottom:0"><div class="eyebrow">Host view · Deel x Atrios: After Hours at Masterworks</div><h1>Guest <em>list.</em></h1>
- <p class="sub">Everyone here RSVP'd through Ace. Approve or waitlist in one tap. Approved guests can sync to Luma for check-in.</p></div>
- <div class="kpis"><div class="kpi"><b>64</b><span>RSVP conversations</span></div><div class="kpi"><b>41</b><span>Approved</span></div><div class="kpi"><b>23</b><span>Shared a live need</span></div><div class="kpi"><b>9</b><span>Meetings booked pre-event</span></div></div>
- <div class="list" id="guests"></div>
-</section>
 <footer>Prototype · RSVP flow built on Ace (text) · events data from Atrios' Luma calendar</footer>
 </div>
 
 <script>
+(()=>{const r=document.documentElement,set=t=>{r.dataset.theme=t;localStorage.setItem('atr_theme',t);const b=document.getElementById('mode');b&&(b.textContent=t==='dark'?'☀':'☾')};set(localStorage.getItem('atr_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));document.addEventListener('click',e=>{if(e.target.id==='mode')set(r.dataset.theme==='dark'?'light':'dark')})})();
 const ACE='+15303064813';
 const E=[
  {id:'masterworks',code:'MASTERWORKS',name:'Deel x Atrios: After Hours at Masterworks',when:'Thu, Nov 12 · 6:30pm',where:'Masterworks, 30 E 74th St',cov:'https://images.lumacdn.com/uploads/7z/6df72dfb-92a3-417c-a958-c63181f7b90d.png',type:'Host approval',spots:'18 spots left',host:'Atrios + Deel',desc:'An evening with founders and operators at Masterworks, with art, drinks and the people building NYC\'s next companies.'},
@@ -151,14 +159,6 @@ const convo=ev=>[
  ['ace','Since you\'re hiring + sorting benefits, two founders in this room use Superposition (AI recruiter, 1 month free) and Hammock (ICHRA health benefits). Want me to set up a quick call with either before the event?'],
  ['me','Superposition yes'],
  ['ace','Done. They have Tue 11/10 at 2pm or 4pm ET. Which works?']
-];
-const G=[
- ['Maya Chen','Loop · Cofounder','Hiring 2 engineers, benefits before Jan','Skyler Healy',92,'Approved','Superposition booked'],
- ['Daniel Ortiz','Fieldwire Labs · CEO','Raising seed in Q1','Jordan Deasy',88,'Approved','Arceus intro sent'],
- ['Priya Nair','Northstack · Head of People','Renewing benefits Dec 1','Rockwell',85,'Approved','Corridor booked'],
- ['Sam Lee','Quill · Founder','Moving off spreadsheets for accounting','Taylor Offer',81,'Approved','Rillet'],
- ['Alex Kim','Stealth · Founder','Just raised, setting up banking','Allan Lvov',78,'Pending','Brex (speedrun)'],
- ['Jordan Price','Freelance designer','Just here to network','Website',34,'Waitlist','—']
 ];
 function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
 document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
@@ -181,7 +181,6 @@ function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer
   if(w!=='me'){timer.push(setTimeout(()=>{const ty=document.createElement('div');ty.className='typing';ty.id='ty';ty.innerHTML='<i></i><i></i><i></i>';box.appendChild(ty);box.scrollTop=1e5},t));t+=900}
   timer.push(setTimeout(()=>{const ty=document.getElementById('ty');ty&&ty.remove();const d=document.createElement('div');d.className='m '+(w==='me'?'me':w==='card'?'ace card':'ace');d.textContent=x;box.appendChild(d);box.scrollTop=1e5},t));t+=w==='me'?1100:700});
  document.getElementById('ph').scrollIntoView({behavior:'smooth',block:'nearest'})}
-document.getElementById('guests').innerHTML='<div class="lr h"><span>Guest</span><span>Invited by</span><span>Told Ace</span><span>Next step</span><span>Fit</span><span>Status</span></div>'+G.map(g=>`<div class="lr"><span><b>${g[0]}</b><div class="meta">${g[1]}</div></span><span>${g[3]}</span><span>${g[2]}</span><span class="meta">${g[6]}</span><span class="sc">${g[4]}</span><span>${g[5]==='Pending'?'<button class="btn sm">Approve</button>':`<span class="pill ${g[5]==='Approved'?'g':''}">${g[5]}</span>`}</span></div>`).join('');
 function share(id){const u=location.origin+'/ace-demo/events/'+id+'/';(navigator.share?navigator.share({url:u}).catch(()=>{}):navigator.clipboard.writeText(u).then(()=>{const b=document.getElementById('shb');if(b){b.textContent='✓ Link copied';setTimeout(()=>b.textContent='↗ Share',1800)}}))}
 function go(v,keep){document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname);go(b.dataset.v)});

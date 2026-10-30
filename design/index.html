@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios Design System</title><meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#1A4D36;--deep:#0E2723;--gold:#B08A4E;--bg:#EEECE8;--tint:#FAF4E8;--em:#609D77;--body:#3F3F3F;--muted:#8A8784;--card:#fff;--line:#E6E2DA;--red:#A43D20;--serif:Newsreader,Georgia,serif;--sans:Inter,system-ui,sans-serif;--btn:#0E2723;--btnt:#fff;--pill:#FAF4E8;--pillb:#F0E3C8;--pillt:#0E2723;--pg:#E8F1EB;--pgb:#D3E6D9;--pgt:#1A4D36}
+[data-theme=dark]{--forest:#7FBF97;--deep:#F2EEE6;--gold:#D4B47A;--bg:#0D1412;--tint:#1C2420;--em:#7FBF97;--body:#C9C4BA;--muted:#8E948F;--card:#141C19;--line:#25302B;--red:#E07A5F;--btn:#F2EEE6;--btnt:#0D1412;--pill:#221E16;--pillb:#3A3326;--pillt:#E9D8B4;--pg:#15261D;--pgb:#24402F;--pgt:#9ED2B0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--body);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 70px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-family:var(--serif);font-size:24px;color:var(--deep)}.logo em{color:var(--gold)}
+.mode{border:1px solid var(--line);background:var(--card);color:var(--deep);height:38px;padding:0 14px;border-radius:999px;cursor:pointer;font:500 13px var(--sans)}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-weight:400;font-size:64px;line-height:1.02;color:var(--deep);letter-spacing:-1px}
+h1 em,h2 em{color:var(--gold);font-style:normal}
+h2{font-family:var(--serif);font-weight:400;font-size:30px;color:var(--deep);margin:54px 0 16px}
+.sub{color:var(--muted);font-size:16px;max-width:600px;margin-top:12px}
+.g{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.sw{height:74px;border-radius:14px;border:1px solid var(--line);margin-bottom:10px}
+.k{font-size:13px;color:var(--deep);font-weight:500}.v{font-size:12px;color:var(--muted);font-family:ui-monospace,monospace}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--btn);color:var(--btnt);border:0;font:500 14px var(--sans);padding:12px 20px;border-radius:999px;cursor:pointer}
+.btn.lt{background:var(--card);color:var(--deep);border:1px solid var(--line)}.btn.sm{padding:8px 14px;font-size:13px}
+.pill{display:inline-flex;font-size:12px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--pill);border:1px solid var(--pillb);color:var(--pillt)}
+.pill.g{background:var(--pg);border-color:var(--pgb);color:var(--pgt)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.type div{padding:14px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;align-items:baseline;gap:20px}
+.kpi b{font-family:var(--serif);font-weight:400;font-size:36px;color:var(--deep);display:block}.kpi span{font-size:12px;color:var(--muted)}
+.ev{padding:0;overflow:hidden}.ev .c{aspect-ratio:16/9;background:linear-gradient(135deg,var(--tint),var(--line))}.ev .b{padding:18px}
+.when{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase}
+.ev h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--deep);margin:6px 0}
+.inp{width:100%;border:1px solid var(--line);background:var(--card);color:var(--deep);border-radius:14px;padding:12px 14px;font:14px var(--sans)}
+.bub{max-width:80%;padding:9px 13px;border-radius:18px;font-size:14px;margin:4px 0}.bub.a{background:var(--tint);color:var(--deep);border-bottom-left-radius:5px}.bub.m{background:#0A84FF;color:#fff;margin-left:auto;border-bottom-right-radius:5px}
+.rules li{margin:6px 0 6px 18px;color:var(--body)}
+@media(max-width:860px){.g4,.g3,.g2{grid-template-columns:1fr}h1{font-size:44px}}
+</style></head><body><div class="wrap">
+<nav><div class="logo">Atrios <em>Design</em></div><button class="mode" id="mode">☾ Dark mode</button></nav>
+<div class="eyebrow">Design system · v2 (Oct 2026)</div>
+<h1>Quiet, warm, <em>confident.</em></h1>
+<p class="sub">Cream paper, deep forest ink, one gold accent. Serif for voice, sans for work. Every surface ships in light and dark. Used in Ace HQ, Events and the perks pages.</p>
+
+<h2>Color</h2>
+<div class="g g4" id="sw"></div>
+
+<h2>Type</h2>
+<div class="card type">
+<div><span class="v">Display · Newsreader 400</span><span style="font-family:var(--serif);font-size:56px;color:var(--deep);line-height:1">Rooms worth <span style="color:var(--gold)">being in.</span></span></div>
+<div><span class="v">H2 · Newsreader 30</span><span style="font-family:var(--serif);font-size:30px;color:var(--deep)">Guest list</span></div>
+<div><span class="v">Card title · Newsreader 22</span><span style="font-family:var(--serif);font-size:22px;color:var(--deep)">Speedrun Alumni Founders Dinner</span></div>
+<div><span class="v">Eyebrow · Inter 11 caps</span><span class="eyebrow" style="margin:0">New York · Founders, operators</span></div>
+<div><span class="v">Body · Inter 15</span><span>Every RSVP goes through Ace, so the room is curated and you walk in knowing who's there.</span></div>
+<div><span class="v">Meta · Inter 13 muted</span><span style="font-size:13px;color:var(--muted)">Masterworks, 30 E 74th St</span></div>
+</div>
+
+<h2>Buttons + chips</h2>
+<div class="card"><div class="row"><button class="btn">RSVP with Ace</button><button class="btn lt">See how it works</button><button class="btn sm">Claim perk</button><span class="pill">✦ Host approval</span><span class="pill g">● Open</span></div></div>
+
+<h2>Cards</h2>
+<div class="g g3">
+<div class="card ev"><div class="c"></div><div class="b"><div class="when">Thu, Nov 12 · 6:30pm</div><h3>After Hours at Masterworks</h3><div style="font-size:13px;color:var(--muted)">30 E 74th St</div><div class="row" style="justify-content:space-between;margin-top:12px"><span class="pill">✦ Host approval</span><span class="btn sm">RSVP with Ace</span></div></div></div>
+<div class="card kpi"><b>64</b><span>RSVP conversations</span><div style="height:18px"></div><b>41</b><span>Approved</span></div>
+<div class="card"><div class="bub a">What's the biggest thing on your plate this quarter?</div><div class="bub m">Hiring 2 engineers</div><div class="bub a">Superposition: 1 month free. Want a call Tue 2pm?</div></div>
+</div>
+
+<h2>Inputs</h2>
+<div class="card g g2"><input class="inp" placeholder="Ask Ace anything…"><input class="inp" value="Maya Chen, Loop"></div>
+
+<h2>Rules</h2>
+<div class="card"><ul class="rules">
+<li>One accent: gold, only for the emphasized word in a headline, dates and small highlights. Never gold buttons.</li>
+<li>Headlines are serif, sentence case, end with a period; the last phrase is the gold accent.</li>
+<li>Primary button = solid deep ink (inverts in dark mode). Secondary = card with hairline border. Pills for status.</li>
+<li>Radius: 20-26px cards, 999px buttons/pills, 14px inputs. Hairline borders (--line), soft shadow only on hover.</li>
+<li>Generous whitespace, max 3 columns, no gradients on UI chrome, no emoji in headings.</li>
+<li>Dark mode: same tokens, swapped values (ink ↔ paper). Respect the OS setting, remember the toggle.</li>
+</ul></div>
+</div>
+<script>
+const T=[['Paper','--bg'],['Card','--card'],['Ink','--deep'],['Forest','--forest'],['Gold','--gold'],['Tint','--tint'],['Body','--body'],['Muted','--muted'],['Line','--line'],['Accent green','--em'],['Alert','--red']];
+function paint(){const cs=getComputedStyle(document.documentElement);document.getElementById('sw').innerHTML=T.map(([n,v])=>`<div class="card" style="padding:12px"><div class="sw" style="background:var(${v})"></div><div class="k">${n}</div><div class="v">${v} · ${cs.getPropertyValue(v).trim()}</div></div>`).join('')}
+const r=document.documentElement,set=t=>{r.dataset.theme=t;localStorage.setItem('atr_theme',t);document.getElementById('mode').textContent=t==='dark'?'☀ Light mode':'☾ Dark mode';paint()};
+set(localStorage.getItem('atr_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+document.getElementById('mode').onclick=()=>set(r.dataset.theme==='dark'?'light':'dark');
+</script></body></html>
