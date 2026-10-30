@@ -105,7 +105,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
 <body>
 <div class="wrap">
 <nav><a class="brand" href="#" onclick="go('events');return false"><img src="logo.svg" alt="Atrios"><span class="sep"></span><em>Events</em></a>
-<div style="display:flex;align-items:center"><div class="tabs"><button data-v="events" class="on">Events</button><button data-v="flow">How RSVP works</button></div><button class="mode" id="mode" title="Dark mode">☾</button></div></nav>
+<div style="display:flex;align-items:center"><div class="tabs"><button data-v="events" class="on">Events</button><button data-v="flow">How RSVP works</button><a id="hosttab" href="host/" style="display:none;font:500 13px var(--sans);color:var(--muted);padding:8px 16px;border-radius:999px">Host ✦</a></div><button class="mode" id="mode" title="Dark mode">☾</button></div></nav>
 
 <!-- EVENTS -->
 <section class="view on" id="v-events">
@@ -142,6 +142,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
 <script>
 (()=>{const r=document.documentElement,set=t=>{r.dataset.theme=t;localStorage.setItem('atr_theme',t);const b=document.getElementById('mode');b&&(b.textContent=t==='dark'?'☀':'☾')};set(localStorage.getItem('atr_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));document.addEventListener('click',e=>{if(e.target.id==='mode')set(r.dataset.theme==='dark'?'light':'dark')})})();
 const ACE='+15303064813';
+if(localStorage.getItem('atr_host')){const h=document.getElementById('hosttab');if(h)h.style.display='inline-block'}
 const E=[
  {id:'masterworks',code:'MASTERWORKS',name:'Deel x Atrios: After Hours at Masterworks',when:'Thu, Nov 12 · 6:30pm',where:'Masterworks, 30 E 74th St',cov:'https://images.lumacdn.com/uploads/7z/6df72dfb-92a3-417c-a958-c63181f7b90d.png',type:'Host approval',spots:'18 spots left',host:'Atrios + Deel',desc:'An evening with founders and operators at Masterworks, with art, drinks and the people building NYC\'s next companies.'},
  {id:'rockwell',code:'ROCKWELL',name:'Rockwell x Atrios: Growth Stage People Leaders Dinner',when:'Tue, Nov 10 · 7:00pm',where:'Nudibranch, East Village',cov:'https://images.lumacdn.com/uploads/3f/aee06ced-59ab-42d5-93f8-2d81dbb97b33.png',type:'Host approval',spots:'Intimate · 14 seats',host:'Atrios + Rockwell',desc:'A private dinner for heads of people and HR at growth-stage companies. Benefits, hiring and building teams that stay.'},
