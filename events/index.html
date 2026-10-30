@@ -26,6 +26,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);let
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:60px}
 .ev{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .ev:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(14,39,35,.35)}
+.ev{position:relative}.shr{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#0E2723;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 14px -6px rgba(0,0,0,.35);z-index:2;transition:transform .15s}.shr:hover{transform:scale(1.08)}.shr svg{width:16px;height:16px}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}.toast.on{opacity:1}.dwrap{position:relative}
 .ev .cov{aspect-ratio:16/10;background:#ddd center/cover}
 .ev .b{padding:18px 20px 20px}
 .when{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase}
@@ -84,14 +85,14 @@ h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);let
 .step p{font-size:13px;color:var(--muted)}
 .view{display:none}.view.on{display:block}
 
-[data-theme=dark]{--forest:#7FBF97;--deep:#F2EEE6;--gold:#D4B47A;--bg:#0D1412;--tint:#1C2420;--em:#7FBF97;--body:#C9C4BA;--muted:#8E948F;--card:#141C19;--line:#25302B}
-[data-theme=dark] .btn{background:#F2EEE6;color:#0D1412}
+[data-theme=dark]{--forest:#8CC4A2;--deep:#F4EEDF;--gold:#C9A96E;--bg:#0E2723;--tint:#173A33;--em:#8CC4A2;--body:#D6D0C2;--muted:#9DB0A8;--card:#13312B;--line:#244A41}
+[data-theme=dark] .btn{background:#F4EEDF;color:#0E2723}
 [data-theme=dark] .btn.lt{background:var(--card);color:var(--deep);border-color:var(--line)}
 [data-theme=dark] .tabs{background:var(--card);border-color:var(--line)}
-[data-theme=dark] .tabs button.on{background:#F2EEE6;color:#0D1412}
-[data-theme=dark] .pill{border-color:#3A3326;background:#221E16;color:#E9D8B4}
-[data-theme=dark] .pill.g{background:#15261D;border-color:#24402F;color:#9ED2B0}
-[data-theme=dark] .lr.h{background:#111816}
+[data-theme=dark] .tabs button.on{background:#F4EEDF;color:#0E2723}
+[data-theme=dark] .pill{border-color:#3E5240;background:#2A3A2C;color:#EAD9B0}
+[data-theme=dark] .pill.g{background:#1B4136;border-color:#2B5A4B;color:#B5DEC4}
+[data-theme=dark] .lr.h{background:#102C26}
 [data-theme=dark] .fact .ic{background:var(--card);border-color:var(--line)}
 [data-theme=dark] .ev:hover{box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
 [data-theme=dark] .qr{background:#F2EEE6}
@@ -160,16 +161,16 @@ const convo=ev=>[
  ['me','Superposition yes'],
  ['ace','Done. They have Tue 11/10 at 2pm or 4pm ET. Which works?']
 ];
-function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
+function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><button class="shr" title="Share" onclick="event.stopPropagation();share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
 document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
 function smsLink(e){return `sms:${ACE}&body=${encodeURIComponent('RSVP '+e.code)}`}
 let timer=[];
 function open_(id){const e=E.find(x=>x.id===id);
- document.getElementById('detail').innerHTML=`<div><div class="dcov" style="background-image:url(${e.cov});aspect-ratio:16/10"></div><div style="margin-top:22px" id="ph"></div></div>
+ document.getElementById('detail').innerHTML=`<div class="dwrap"><button class="shr" title="Share" onclick="share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="dcov" style="background-image:url(${e.cov});aspect-ratio:16/10"></div><div style="margin-top:22px" id="ph"></div></div>
  <div><div class="when">${e.when}</div><h1 style="font-size:46px;margin:8px 0 10px">${e.name}</h1><p class="sub" style="margin-top:0">${e.desc}</p>
  <div class="facts"><div class="fact"><div class="ic">📍</div><div><b>${e.where}</b><span class="meta">${e.type==='Open'?'Link sent on RSVP':'Exact address sent once you\'re approved'}</span></div></div>
  <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
- <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button> <button class="btn lt" id="shb" onclick="share('${e.id}')">↗ Share</button></div>
+ <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
  <img class="qr" alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&color=0E2723&data=${encodeURIComponent('SMSTO:'+ACE+':RSVP '+e.code)}"></div>
  <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div>
  </div>`;
@@ -181,7 +182,8 @@ function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer
   if(w!=='me'){timer.push(setTimeout(()=>{const ty=document.createElement('div');ty.className='typing';ty.id='ty';ty.innerHTML='<i></i><i></i><i></i>';box.appendChild(ty);box.scrollTop=1e5},t));t+=900}
   timer.push(setTimeout(()=>{const ty=document.getElementById('ty');ty&&ty.remove();const d=document.createElement('div');d.className='m '+(w==='me'?'me':w==='card'?'ace card':'ace');d.textContent=x;box.appendChild(d);box.scrollTop=1e5},t));t+=w==='me'?1100:700});
  document.getElementById('ph').scrollIntoView({behavior:'smooth',block:'nearest'})}
-function share(id){const u=location.origin+'/ace-demo/events/'+id+'/';(navigator.share?navigator.share({url:u}).catch(()=>{}):navigator.clipboard.writeText(u).then(()=>{const b=document.getElementById('shb');if(b){b.textContent='✓ Link copied';setTimeout(()=>b.textContent='↗ Share',1800)}}))}
+function share(id){const e=E.find(x=>x.id===id),u=location.origin+'/ace-demo/events/'+id+'/';if(navigator.share&&matchMedia('(pointer:coarse)').matches){navigator.share({title:e.name,url:u}).catch(()=>{})}else{navigator.clipboard.writeText(u).then(()=>toast('Link copied'))}}
+function toast(t){let d=document.getElementById('toast');if(!d){d=document.createElement('div');d.id='toast';d.className='toast';document.body.appendChild(d)}d.textContent=t;d.classList.add('on');setTimeout(()=>d.classList.remove('on'),1600)}
 function go(v,keep){document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname);go(b.dataset.v)});
 (()=>{const h=(window.EVENT_ID||location.hash.slice(1));if(h&&E.find(x=>x.id===h))open_(h)})();
