@@ -23,6 +23,7 @@ h1 em,h2 em{color:var(--gold);font-style:normal}
 h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);letter-spacing:-.5px;line-height:1.1}
 .sub{color:var(--muted);font-size:16px;max-width:560px;margin-top:14px}
 .hero{padding:40px 0 34px}
+.pastwrap{margin:0 0 60px}.pastwrap summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--deep);padding:10px 18px;border:1px solid var(--line);border-radius:999px;background:var(--card)}.pastwrap summary::-webkit-details-marker{display:none}.pastwrap summary .car{transition:transform .2s}.pastwrap[open] summary .car{transform:rotate(180deg)}.pastwrap .grid{margin-top:18px;padding-bottom:0}.ev.past{opacity:.5;filter:grayscale(.6);cursor:default;pointer-events:none}.ev.past:hover{transform:none;box-shadow:none}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:60px}
 .ev{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .ev:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(14,39,35,.35)}
@@ -113,6 +114,7 @@ footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
  <h1>Rooms worth <em>being in.</em></h1>
  <p class="sub">Dinners, experiences and sessions for people building companies. Every RSVP goes through Ace, so the room is curated and you walk in knowing who's there.</p></div>
  <div class="grid" id="grid"></div>
+ <details class="pastwrap" id="pastwrap"><summary>Past events <span class="car">▾</span></summary><div class="grid" id="pastgrid"></div></details>
 </section>
 
 <!-- DETAIL -->
@@ -163,6 +165,10 @@ const convo=ev=>[
 ];
 function cardHTML(e){return `<div class="ev" onclick="open_('${e.id}')"><button class="shr" title="Share" onclick="event.stopPropagation();share('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg></button><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when} ${e.rec?'<span class="pill" style="margin-left:6px;font-size:11px;padding:2px 9px;text-transform:none;letter-spacing:0">↻ Recurring · '+e.rec+'</span>':''}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill ${e.type==='Open'?'g':''}">${e.type==='Open'?'● Open':'✦ '+e.type}</span><span class="btn sm">RSVP with Ace</span></div></div></div>`}
 document.getElementById('grid').innerHTML=E.map(cardHTML).join('');
+const P=[{"name": "Speedrun Founders Dinner by Atrios", "when": "Tue, Oct 27 · 7:00pm", "where": "New York", "cov": "https://images.lumacdn.com/uploads/mc/0d19c38e-f7f4-46ab-b4b6-d8acd4beee5b.png"}, {"name": "Tastemaker Fridays: Getting Started with Atrios", "when": "Fri, Oct 23 · 12:30pm", "where": "Online", "cov": "https://images.lumacdn.com/uploads/mf/91233a2d-6ba8-4a55-8c54-180bd124c405.png"}, {"name": "Tastemaker Fridays: Getting Started with Atrios", "when": "Fri, Oct 16 · 12:30pm", "where": "Online", "cov": "https://images.lumacdn.com/uploads/y6/d80c7dcc-9d55-4aba-bc15-973f8b276259.png"}, {"name": "Masterworks x Atrios: Community After Hours", "when": "Tue, Oct 13 · 6:30pm", "where": "New York", "cov": "https://images.lumacdn.com/uploads/mz/91f146f3-a425-41c5-8f59-4b2e29489ad1.png"}, {"name": "Tastemaker Fridays: Getting Started with Atrios", "when": "Fri, Oct 9 · 1:00pm", "where": "Online", "cov": "https://images.lumacdn.com/uploads/2w/76aa4396-13fc-4650-ba42-56b0b7622959.png"}];
+function pastHTML(e){return `<div class="ev past" aria-disabled="true"><div class="cov" style="background-image:url(${e.cov})"></div><div class="b"><div class="when">${e.when}</div><h3>${e.name}</h3><div class="meta">${e.where}</div><div class="row"><span class="pill">Past event</span></div></div></div>`}
+document.getElementById('pastgrid').innerHTML=P.map(pastHTML).join('');if(!P.length)document.getElementById('pastwrap').style.display='none';
+
 function smsLink(e){return `sms:${ACE}&body=${encodeURIComponent('RSVP '+e.code)}`}
 let timer=[];
 function open_(id){const e=E.find(x=>x.id===id);
