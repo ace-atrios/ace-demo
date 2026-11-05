@@ -1,110 +1,180 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Atrios for Vendors</title>
 <style>
 @font-face{font-family:Aspekta;src:url(AspektaVF.woff2) format('woff2');font-weight:100 900}
-:root{--g:#05483A;--gd:#0E2723;--gold:#C9A96E;--cream:#FCF7E9;--tx:#4A4A4A;--mu:#848182;--w:#FEFEFE}
+:root{--g:#05483A;--gd:#0E2723;--gold:#C9A96E;--cream:#FCF7E9;--tx:#2b2b2b;--mu:#7d7a76;--w:#FEFEFE;--line:#e6dfcc}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#111;font-family:Aspekta,Inter,sans-serif;-webkit-font-smoothing:antialiased}
 .deck{display:flex;flex-direction:column;align-items:center;gap:32px;padding:32px 0}
 .s{width:1600px;height:900px;position:relative;overflow:hidden;background:var(--cream);color:var(--tx);flex:none}
 .dark{background:var(--g);color:var(--cream)}
-.pad{position:absolute;inset:100px 130px}
-.kick{font-size:19px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--gold)}
-h1{font-size:96px;line-height:1.04;font-weight:650;letter-spacing:-.035em;color:var(--g)}
-h2{font-size:68px;line-height:1.06;font-weight:650;letter-spacing:-.03em;color:var(--g);margin-top:18px}
+.pad{position:absolute;inset:110px 140px}
+.kick{font-size:18px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+h1{font-size:112px;line-height:1.0;font-weight:650;letter-spacing:-.04em;color:var(--g)}
+h2{font-size:76px;line-height:1.04;font-weight:650;letter-spacing:-.035em;color:var(--g);margin-top:22px;max-width:1250px}
 .dark h1,.dark h2{color:var(--cream)}
-.sub{font-size:30px;line-height:1.45;color:var(--mu);max-width:980px;margin-top:28px}
+.sub{font-size:32px;line-height:1.45;color:var(--mu);max-width:1000px;margin-top:30px}
 .dark .sub{color:#b9c9c2}
-.foot{position:absolute;left:130px;right:130px;bottom:36px;display:flex;justify-content:space-between;align-items:center;font-size:16px;color:var(--mu);letter-spacing:.04em}
-.dark .foot{color:#7fa596}.foot img{height:24px}
-.cover{background:var(--g) url(globe-watermark-forest.jpg) right center/auto 100% no-repeat}
-.cover .logo{height:60px}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:52px}
-.card{background:var(--w);border-radius:28px;padding:48px 44px;box-shadow:0 20px 60px -30px rgba(5,72,58,.35)}
-.card .ic{font-size:18px;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
-.card h3{font-size:38px;font-weight:650;color:var(--g);letter-spacing:-.01em;line-height:1.15}
-.card p{font-size:24px;line-height:1.45;color:var(--mu);margin-top:14px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:110px}
-.step{border-top:3px solid var(--gold);padding-top:28px}
-.step .n{font-size:20px;font-weight:650;color:var(--gold);margin-bottom:16px}
-.step h3{font-size:38px;font-weight:650;color:var(--cream);line-height:1.15}
-.step p{font-size:23px;color:#b9c9c2;margin-top:12px;line-height:1.42}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
-.tile{background:var(--w);border-radius:24px;padding:30px 28px;min-height:200px;box-shadow:0 14px 40px -26px rgba(5,72,58,.4)}
-.tile h3{font-size:29px;font-weight:650;color:var(--g);line-height:1.18}
-.tile p{font-size:21px;color:var(--mu);margin-top:10px;line-height:1.4}
-.list{margin-top:70px;display:grid;grid-template-columns:1fr 1fr;gap:34px 70px}
-.li{display:flex;gap:22px;align-items:flex-start}
-.li .dot{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--g);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;flex:none;margin-top:2px}
-.li h3{font-size:32px;font-weight:650;color:var(--cream);line-height:1.2}
-.li p{font-size:23px;color:#b9c9c2;margin-top:6px;line-height:1.4}
-.logos{display:flex;gap:56px;align-items:center;margin-top:70px;flex-wrap:wrap}
-.logos img{height:40px;opacity:.9}
-.cta{display:flex;gap:44px;align-items:center;margin-top:90px}
-.cta img{width:150px;height:150px;border-radius:50%;object-fit:cover}
-.cta .nm{font-size:40px;font-weight:650;color:var(--g)}.cta .rl{font-size:24px;color:var(--mu);margin-top:6px}
-@media print{html,body{background:none}.deck{gap:0;padding:0;display:block}.s{page-break-after:always;break-after:page}.s:last-child{page-break-after:auto;break-after:auto}}
+em{font-style:normal;color:var(--gold)}
+.foot{position:absolute;left:140px;right:140px;bottom:44px;display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--mu);letter-spacing:.06em}
+.dark .foot{color:#7fa596}.foot img{height:22px}
+/* cover */
+.cover .logo{height:54px}
+.cover h1{position:absolute;left:140px;bottom:200px;max-width:1150px;color:var(--cream)}
+.cover .meta{position:absolute;left:140px;bottom:110px;font-size:22px;color:#9fbcb1;letter-spacing:.04em}
+.cover .rule{position:absolute;left:140px;right:140px;bottom:160px;height:1px;background:rgba(252,247,233,.18)}
+/* compare */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:70px;border-top:1px solid var(--line)}
+.vs>div{padding:40px 50px 0 0}
+.vs>div+div{padding-left:50px;border-left:1px solid var(--line)}
+.vs .lab{font-size:18px;letter-spacing:.18em;text-transform:uppercase;font-weight:650;color:var(--mu);margin-bottom:26px}
+.vs .new .lab{color:var(--g)}
+.vs li{list-style:none;font-size:32px;line-height:1.3;padding:16px 0;color:#9a958d}
+.vs .new li{color:var(--g);font-weight:550}
+/* big statement */
+.statement{position:absolute;left:140px;right:140px;top:50%;transform:translateY(-50%)}
+.statement p{font-size:84px;line-height:1.08;font-weight:650;letter-spacing:-.035em;color:var(--cream);max-width:1250px}
+/* gifts */
+.gifts{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;margin-top:80px}
+.gift{border-top:3px solid var(--g);padding-top:28px}
+.gift .n{font-size:18px;font-weight:650;color:var(--gold);letter-spacing:.1em}
+.gift h3{font-size:36px;font-weight:650;color:var(--g);line-height:1.12;margin-top:16px;letter-spacing:-.01em}
+.gift p{font-size:23px;color:var(--mu);margin-top:14px;line-height:1.42}
+/* product */
+.split{display:grid;grid-template-columns:1.05fr 1fr;gap:70px;align-items:center;height:100%}
+.phone{width:410px;height:680px;border-radius:54px;background:#0b1d1a;padding:13px;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);margin-left:auto}
+.screen{height:100%;border-radius:42px;background:#f4f1ea;padding:50px 18px 18px;display:flex;flex-direction:column;gap:10px;font-size:18px;line-height:1.35}
+.who{text-align:center;font-size:14px;color:#888;margin-bottom:6px}
+.b{max-width:82%;padding:11px 15px;border-radius:21px}
+.b.in{background:#e3e1db;color:#222;align-self:flex-start;border-bottom-left-radius:6px}
+.b.out{background:var(--g);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.slack{background:#fff;border-radius:22px;padding:30px 34px;box-shadow:0 30px 70px -30px rgba(5,72,58,.45);font-size:21px;color:#1d1c1d;width:600px;margin-left:auto}
+.slack .hd{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.slack .av{width:44px;height:44px;border-radius:10px;background:var(--g) url(logo-light.svg) center/70% no-repeat}
+.slack .nm{font-weight:700}.slack .app{font-size:12px;background:#eee;padding:2px 6px;border-radius:4px;color:#666;margin-left:6px}
+.slack .row{display:flex;gap:10px;margin:9px 0;line-height:1.35}.slack .k{color:#888;min-width:140px}
+.slack .btns{display:flex;gap:10px;margin-top:18px}.slack .btn{border:1px solid #ccc;border-radius:8px;padding:8px 16px;font-size:17px;font-weight:600}
+.checks{margin-top:44px}
+.checks li{list-style:none;font-size:28px;line-height:1.35;padding:13px 0 13px 46px;position:relative;color:var(--tx);border-bottom:1px solid var(--line)}
+.checks li:before{content:"";position:absolute;left:0;top:22px;width:22px;height:12px;border-left:3px solid var(--gold);border-bottom:3px solid var(--gold);transform:rotate(-45deg)}
+/* included */
+.inc{display:grid;grid-template-columns:repeat(2,1fr);gap:0 80px;margin-top:40px}
+.inc>div{display:flex;gap:26px;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(252,247,233,.14)}
+.inc .n{font-size:18px;color:var(--gold);font-weight:650;width:30px;flex:none}
+.inc h3{font-size:28px;font-weight:600;color:var(--cream)}
+.inc p{font-size:19px;color:#9fbcb1;margin-top:4px}
+/* logos + next */
+.logos{display:flex;gap:64px;align-items:center;margin-top:60px;flex-wrap:wrap}
+.logos img{height:40px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:70px}
+.steps3>div{background:var(--w);border-radius:24px;padding:40px 38px;box-shadow:0 14px 40px -26px rgba(5,72,58,.4)}
+.steps3 .n{font-size:18px;color:var(--gold);font-weight:650;letter-spacing:.1em}
+.steps3 h3{font-size:34px;color:var(--g);font-weight:650;margin-top:14px}
+.steps3 p{font-size:22px;color:var(--mu);margin-top:10px;line-height:1.4}
+.contact{display:flex;gap:28px;align-items:center;position:absolute;left:140px;bottom:120px}
+.contact img{width:96px;height:96px;border-radius:50%;object-fit:cover}
+.contact .nm{font-size:30px;font-weight:650;color:var(--g)}.contact .rl{font-size:21px;color:var(--mu);margin-top:4px}
+@media print{html,body{background:none}.deck{gap:0;padding:0;display:block}.s{break-after:page}.s:last-child{break-after:auto}}
 @page{size:1600px 900px;margin:0}
 </style></head><body><div class="deck">
 
-<section class="s cover dark"><div class="pad">
-<img class="logo" src="logo-light.svg" alt="Atrios">
-<h1 style="margin-top:150px;max-width:1000px">Get recommended at the exact moment founders need you.</h1>
-<p class="sub">Atrios for vendors</p>
-</div></section>
+<!-- 1 cover: typographic only -->
+<section class="s cover dark">
+<div class="pad"><img class="logo" src="logo-light.svg" alt="Atrios"></div>
+<h1>Be the tool founders hear about from people they trust.</h1>
+<div class="rule"></div>
+<div class="meta">Atrios for vendors</div>
+</section>
 
+<!-- 2 the shift -->
 <section class="s"><div class="pad">
-<div class="kick">How founders choose tools</div>
-<h2>Founders buy what people they trust recommend.</h2>
-<p class="sub">Atrios makes your product that recommendation, from three places founders already listen to.</p>
-<div class="three">
-<div class="card"><div class="ic">01</div><h3>Our AI agent</h3><p>Founders text Atrios every day for the tools they need. It recommends you by name and books the call.</p></div>
-<div class="card"><div class="ic">02</div><h3>Tastemakers</h3><p>3,000+ community leaders, investors and operators share you with the founders they advise.</p></div>
-<div class="card"><div class="ic">03</div><h3>Communities and events</h3><p>Perks pages, founder communities and NYC events put you in the room.</p></div>
+<div class="kick">What changed</div>
+<h2>Founders stopped answering cold outreach. Now they ask.</h2>
+<p class="sub">Before a founder picks a bank, a payroll provider or an insurance broker, they ask their investors, their founder group chats and AI. By the time they talk to sales, the shortlist is already made.</p>
+</div><div class="foot"><img src="logo-dark.svg"><span>atrios.com</span></div></section>
+
+<!-- 3 old game vs new game -->
+<section class="s"><div class="pad">
+<div class="kick">The new game</div>
+<h2>The winners get recommended. Everyone else gets ignored.</h2>
+<div class="vs">
+<div class="old"><div class="lab">Old way</div><ul><li>Cold email and LinkedIn sequences</li><li>Paid ads to people who aren't buying yet</li><li>SDRs guessing at timing</li></ul></div>
+<div class="new"><div class="lab">New way</div><ul><li>A trusted recommendation</li><li>At the moment they need you</li><li>A meeting already on your calendar</li></ul></div>
 </div>
 </div><div class="foot"><img src="logo-dark.svg"><span>atrios.com</span></div></section>
 
+<!-- 4 promised land -->
+<section class="s dark">
+<div class="statement"><div class="kick" style="margin-bottom:34px">What Atrios makes possible</div>
+<p>The week a founder raises, hires or renews, <em>your name</em> is the one they hear, and the meeting is already booked.</p></div>
+<div class="foot"><img src="logo-light.svg"><span>atrios.com</span></div></section>
+
+<!-- 5 how we get you there -->
+<section class="s"><div class="pad">
+<div class="kick">How we get you there</div>
+<h2>Four ways Atrios puts you in front of buyers.</h2>
+<div class="gifts">
+<div class="gift"><div class="n">01</div><h3>Our AI agent</h3><p>Founders text Atrios for the tools they need. It recommends you by name and books the call.</p></div>
+<div class="gift"><div class="n">02</div><h3>3,000+ tastemakers</h3><p>Investors, community leaders and operators share you with the founders they advise.</p></div>
+<div class="gift"><div class="n">03</div><h3>Buying triggers</h3><p>We train our agent on the moments your customers buy and watch for them: raises, first hires, renewals.</p></div>
+<div class="gift"><div class="n">04</div><h3>Community and events</h3><p>Founder perks pages, communities and quarterly NYC events with buyers in the room.</p></div>
+</div>
+</div><div class="foot"><img src="logo-dark.svg"><span>atrios.com</span></div></section>
+
+<!-- 6 product: founder side -->
+<section class="s"><div class="pad"><div class="split">
+<div><div class="kick">What it looks like</div><h2 style="font-size:66px">A founder asks. You're the answer.</h2>
+<p class="sub" style="font-size:28px">Our agent explains why you fit, shares your perk, and books the meeting on your AE's calendar.</p></div>
+<div class="phone"><div class="screen"><div class="who">Atrios</div>
+<div class="b in">Just closed our seed and hiring our first 5. Who should we use for benefits?</div>
+<div class="b out">Congrats! For a team your size I'd look at [your company]. They set up first-time benefits for seed startups.</div>
+<div class="b out">You'd get a free benefits benchmark too. Want 30 min with their team this week?</div>
+<div class="b in">Yes, Thursday afternoon works</div>
+<div class="b out">Done. Thursday 2pm ET, invite is in your inbox.</div>
+</div></div>
+</div></div></section>
+
+<!-- 7 product: vendor side + control -->
+<section class="s"><div class="pad"><div class="split">
+<div><div class="kick">You stay in control</div><h2 style="font-size:66px">Only buyers who fit. On your terms.</h2>
+<ul class="checks"><li>You set your price, criteria and perk</li><li>Every lead is screened before booking</li><li>Cancel any meeting for free before it happens</li><li>24 hours to dispute after the call</li></ul></div>
+<div class="slack"><div class="hd"><div class="av"></div><div><span class="nm">Atrios Agent</span><span class="app">APP</span></div></div>
+<div style="font-weight:700;margin-bottom:10px">📅 Meeting booked</div>
+<div class="row"><span class="k">Lead</span><span>Jordan Lee, CEO</span></div>
+<div class="row"><span class="k">Company</span><span>Seed-stage SaaS, 18 people, NYC</span></div>
+<div class="row"><span class="k">Trigger</span><span>Raised $4M seed last month</span></div>
+<div class="row"><span class="k">When</span><span>Thu 2:00pm ET</span></div>
+<div class="btns"><span class="btn">View details</span><span class="btn">Cancel</span></div>
+</div>
+</div></div></section>
+
+<!-- 8 included -->
 <section class="s dark"><div class="pad">
-<div class="kick">How it works</div>
-<h2>Right person. Right moment. On your calendar.</h2>
-<div class="steps">
-<div class="step"><div class="n">01</div><h3>Tell us who you want</h3><p>Your ideal customer and the moments they buy: a new raise, a first hire, a renewal.</p></div>
-<div class="step"><div class="n">02</div><h3>We watch for the moment</h3><p>Funding filings, hiring, and what founders tell us every day.</p></div>
-<div class="step"><div class="n">03</div><h3>You get recommended</h3><p>By our agent and by tastemakers, with your perk attached.</p></div>
-<div class="step"><div class="n">04</div><h3>Meetings land on your calendar</h3><p>Only leads who fit your criteria. Cancel any for free before the call.</p></div>
+<div class="kick">Included all year</div>
+<h2>Your go-to-market partner, not a lead list.</h2>
+<div class="inc">
+<div><span class="n">01</span><div><h3>Recommended by our agent</h3><p>By name, to every founder who fits</p></div></div>
+<div><span class="n">02</span><div><h3>Trained on your buying triggers</h3><p>Recommended at the right moment</p></div></div>
+<div><span class="n">03</span><div><h3>3,000+ tastemakers</h3><p>Sharing you with their founders</p></div></div>
+<div><span class="n">04</span><div><h3>A guaranteed call every month</h3><p>With a lead or tastemaker who fits</p></div></div>
+<div><span class="n">05</span><div><h3>Quarterly NYC events</h3><p>Sponsor a room full of your buyers</p></div></div>
+<div><span class="n">06</span><div><h3>Market intelligence</h3><p>What your buyers are saying right now</p></div></div>
+<div><span class="n">07</span><div><h3>Weekly reporting</h3><p>Views, meetings and customers</p></div></div>
+<div><span class="n">08</span><div><h3>Strategy with our CEO</h3><p>A go-to-market session with Taylor Offer</p></div></div>
 </div>
 </div><div class="foot"><img src="logo-light.svg"><span>atrios.com</span></div></section>
 
+<!-- 9 proof + next -->
 <section class="s"><div class="pad">
-<div class="kick">What you get</div>
-<h2>Your go-to-market partner, all year.</h2>
-<div class="grid">
-<div class="tile"><h3>Recommended by our agent</h3><p>By name, to every founder who fits, at the right time.</p></div>
-<div class="tile"><h3>3,000+ tastemakers</h3><p>Sharing you with the founders they advise.</p></div>
-<div class="tile"><h3>A guaranteed call every month</h3><p>With a lead or tastemaker who fits.</p></div>
-<div class="tile"><h3>Quarterly NYC events</h3><p>Sponsor a room full of your buyers.</p></div>
-<div class="tile"><h3>Market intelligence</h3><p>What your buyers are saying, and signals you can't get elsewhere.</p></div>
-<div class="tile"><h3>Your own partner community</h3><p>Manage your tastemakers and partners in one place.</p></div>
-<div class="tile"><h3>Weekly reporting</h3><p>Views, meetings and customers, every week.</p></div>
-<div class="tile"><h3>Strategy with our CEO</h3><p>A go-to-market session with Taylor Offer.</p></div>
+<div class="kick">Next steps</div>
+<h2>Live in a week.</h2>
+<div class="steps3">
+<div><div class="n">01</div><h3>Set your terms</h3><p>Your ideal customer, buying triggers, price and perk.</p></div>
+<div><div class="n">02</div><h3>We go to work</h3><p>Our agent and tastemakers start recommending you.</p></div>
+<div><div class="n">03</div><h3>Meetings land</h3><p>Qualified buyers on your AE's calendar.</p></div>
 </div>
-</div><div class="foot"><img src="logo-dark.svg"><span>atrios.com</span></div></section>
-
-<section class="s dark"><div class="pad">
-<div class="kick">You stay in control</div>
-<h2>You set the terms. We tune them with you.</h2>
-<div class="list">
-<div class="li"><div class="dot">1</div><div><h3>You choose the price</h3><p>Per meeting, plus a bonus only when a deal closes.</p></div></div>
-<div class="li"><div class="dot">2</div><div><h3>Only fits are booked</h3><p>Every lead is screened first. Screened-out leads are never billed.</p></div></div>
-<div class="li"><div class="dot">3</div><div><h3>Cancel or dispute</h3><p>Free cancel before any call, 24 hours to dispute after.</p></div></div>
-<div class="li"><div class="dot">4</div><div><h3>Change anything, anytime</h3><p>Criteria, price or perk, by message in your channel.</p></div></div>
+<div style="display:flex;align-items:center;gap:30px;margin-top:70px"><span style="font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);font-weight:650">Trusted by</span>
+<div class="logos" style="margin-top:0;gap:52px"><img src="logos/rho.png"><img src="logos/deel.png"><img src="logos/corridor.png"><img src="logos/superposition.png"><img src="logos/rillet.png"><img src="logos/oyster.png"></div></div>
 </div>
-</div><div class="foot"><img src="logo-light.svg"><span>atrios.com</span></div></section>
-
-<section class="s"><div class="pad">
-<div class="kick">Vendors</div>
-<h2>Join the companies founders already hear about through Atrios.</h2>
-<div class="logos"><img src="logos/rho.png"><img src="logos/deel.png"><img src="logos/corridor.png"><img src="logos/superposition.png"><img src="logos/rillet.png"><img src="logos/oyster.png"></div>
-<div class="cta"><img src="allan.jpg" alt="Allan Lvov"><div><div class="nm">Allan Lvov</div><div class="rl">Head of GTM · allan@atrios.com</div></div></div>
-</div><div class="foot"><img src="logo-dark.svg"><span>atrios.com</span></div></section>
+<div class="foot"><span style="display:flex;align-items:center;gap:16px"><img src="allan.jpg" style="height:44px;width:44px;border-radius:50%;object-fit:cover"><span style="font-size:18px;color:var(--g);font-weight:600;letter-spacing:0">Allan Lvov · allan@atrios.com</span></span><span>atrios.com</span></div></section>
 
 </div></body></html>
