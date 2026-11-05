@@ -178,9 +178,9 @@ function open_(id){const e=E.find(x=>x.id===id);
  <div class="fact"><div class="ic">✦</div><div><b>Hosted by ${e.host}</b><span class="meta">${e.spots}</span></div></div></div>
  <div class="rsvp"><div class="rsvpgrid"><div><h4>RSVP with Ace</h4><p>Text Ace to save your spot. Takes two minutes, no forms.</p><a class="btn" href="${smsLink(e)}">💬 Text "RSVP ${e.code}"</a> <button class="btn lt" onclick="play('${e.id}')">See how it works</button></div>
  <img class="qr" alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&color=0E2723&data=${encodeURIComponent('SMSTO:'+ACE+':RSVP '+e.code)}"></div>
- <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div>${localStorage.getItem('atr_host')?'':`<a class="hostlink" href="host/?e=${e.id}"><span><b>Hosting this event?</b> See the guest list and manage RSVPs (team password).</span><span class="go">Manage →</span></a>`}
+ <div class="why"><span class="pill g">Know who's coming</span><span class="pill">Perks matched to you</span><span class="pill">Host-curated room</span></div></div><div id="who"></div>${localStorage.getItem('atr_host')?'':`<a class="hostlink" href="host/?e=${e.id}"><span><b>Hosting this event?</b> See the guest list and manage RSVPs (team password).</span><span class="go">Manage →</span></a>`}
  </div>`;
- go('detail',true);if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);play(id)}
+ go('detail',true);if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);play(id);showWho(id)}
 function play(id){const e=E.find(x=>x.id===id);timer.forEach(clearTimeout);timer=[];
  document.getElementById('ph').innerHTML=`<div class="phone"><div class="scr"><div class="ph"><div class="av">A</div><div style="font-weight:600;font-size:13px">Ace · Atrios</div><small>iMessage</small></div><div class="msgs" id="msgs"></div><div class="inp"><div>iMessage</div></div></div></div>`;
  const box=document.getElementById('msgs');let t=400;
@@ -193,5 +193,9 @@ function toast(t){let d=document.getElementById('toast');if(!d){d=document.creat
 function go(v,keep){if(v==='host'){const f=document.getElementById('hostframe');if(!f.src)f.src='host/?embed=1'}document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v||(v==='detail'&&b.dataset.v==='events')));if(!keep)timer.forEach(clearTimeout);window.scrollTo(0,0)}
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{history.replaceState(null,'',location.pathname+(b.dataset.v==='events'?'':'#'+b.dataset.v));go(b.dataset.v)});
 (()=>{const h=(window.EVENT_ID||location.hash.slice(1));if(h&&E.find(x=>x.id===h))open_(h);else if(h==='flow')go('flow');else if(h==='host'&&localStorage.getItem('atr_host'))go('host')})();
+
+async function showWho(id){try{const G=await (await fetch('guests.json?v='+Date.now(),{cache:'no-store'})).json();const L=G[id];const w=document.getElementById('who');if(!w||!L||!L.length)return;
+ const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ w.innerHTML=`<div class="whobox" style="margin-top:22px;padding:18px 20px;border:1px solid rgba(14,39,35,.12);border-radius:16px;background:rgba(255,255,255,.6)"><h4 style="margin:0 0 10px">Who's going <span class="meta" style="font-weight:400">· ${L.length}</span></h4><div style="display:grid;gap:8px">${L.map(g=>`<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px"><span><b>${esc(g.n)}</b>${g.c?` <span class="meta">${esc(g.c)}</span>`:''}</span>${g.li?`<a href="${esc(g.li)}" target="_blank" rel="noopener" style="font-size:12px;text-decoration:underline">LinkedIn</a>`:''}</div>`).join('')}</div></div>`}catch(e){}}
 </script>
 </body></html>
