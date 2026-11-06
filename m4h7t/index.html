@@ -228,7 +228,7 @@ function lbOpen(id,i){const r=byId[id];const sc=document.getElementById('lbsc');
  document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden';const n=document.getElementById('lbn');
  const f=()=>{n.textContent=(Math.round(sc.scrollLeft/sc.clientWidth)+1)+' / '+r.ph.length};sc.onscroll=f;requestAnimationFrame(()=>{sc.scrollLeft=i*sc.clientWidth;f()})}
 document.getElementById('lbx').onclick=()=>{document.getElementById('lb').classList.remove('on');document.body.style.overflow=''};
-const sm=u=>u.includes('zillowstatic')?u+'-se_medium_500_250.webp':u, big=u=>u.includes('zillowstatic')?u+'-se_extra_large_1500_800.webp':u;
+const sm=u=>(u.includes('zillowstatic')&&!/\.(webp|jpe?g|png)$/i.test(u))?u+'-se_medium_500_250.webp':u, big=u=>(u.includes('zillowstatic')&&!/\.(webp|jpe?g|png)$/i.test(u))?u+'-se_extra_large_1500_800.webp':u;
 let edit=false,lastDel=null,sel=null;
 function fullOrder(){const ord=S.orders.all||[...(S.orders.pool||[]),...(S.orders.nopool||[])];const pos=Object.fromEntries(ord.map((id,i)=>[id,i]));
  const isN=r=>r.new&&(!(S.seen||[]).includes(r.id)||SESS.has(r.id));let L=[...D.filter(isN),...D.filter(r=>!isN(r))];if(ord.length)L.sort((a,b)=>(pos[a.id]??-1)-(pos[b.id]??-1));return L.map(r=>r.id)}
