@@ -125,7 +125,7 @@ ul.n{color:#c9cede}
 <div class="hint" id="hint"></div><div id="showing" style="display:none;margin:6px 10px 0;padding:6px 10px;border-radius:9px;background:var(--chip);font:600 12px -apple-system,system-ui;color:var(--t)"></div>
 <main id="list"></main><div class="toast" id="toast"><span id="toastt">Deleted</span><button id="undo">Undo</button></div>
 <div class="sheet" id="sheet"><div class="in"><h3>Sort by</h3><div id="opts"></div><div class="dir"><button data-d="1" id="d1">Low → High</button><button data-d="-1" id="d2">High → Low</button></div></div></div>
-<div class="sheet" id="csheet"><div class="in"><h3 id="ctitle">Comments</h3><div id="clist" class="clist"></div><div class="cwho"><span>Posting as</span><button data-w="Amit">Amit</button><button data-w="Her">Her</button></div><div class="cin"><textarea id="ctext" rows="2" placeholder="Add a comment…"></textarea><button id="cpost">Post</button></div></div></div>
+<div class="sheet" id="csheet"><div class="in"><h3 id="ctitle">Comments</h3><div id="clist" class="clist"></div><div class="cwho"><span>Posting as</span><button data-w="Amit">Amit</button><button data-w="Aliya">Aliya</button></div><div class="cin"><textarea id="ctext" rows="2" placeholder="Add a comment…"></textarea><button id="cpost">Post</button></div></div></div>
 <div class="sheet" id="fsheet"><div class="in"><h3>Filters <span style="font-weight:400;color:var(--m);font-size:13px">(must have all selected)</span></h3><div class="fchips" id="fchips"></div><div style="display:flex;gap:8px;margin-top:12px"><button class="opt" id="fclear" style="justify-content:center;border:1px solid var(--line);border-radius:10px">Clear</button><button class="opt" id="fdone" style="justify-content:center;background:linear-gradient(90deg,#3b82f6,#7c3aed);color:#fff;font-weight:600;border:0;border-radius:10px">Show results</button></div></div></div>
 <div class="lb" id="lb"><div class="bar"><span id="lbn"></span><button class="x" id="lbx">✕</button></div><div class="sc" id="lbsc"></div></div>
 <script>
@@ -137,10 +137,10 @@ const H={apikey:KEY,'Content-Type':'application/json'};
 const defStars=()=>D.filter(r=>r.star).sort((a,b)=>(+a.rank||99)-(+b.rank||99)).map(r=>r.id);
 let dir=1;let S={stars:defStars(),orders:{}},ver='',tab='top',sort='mine',dragging=false,pending=null;
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const BUILD='1793997489';
+const BUILD='1793998128';
 async function checkUpdate(){try{const t=await (await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'})).text();const m=t.match(/const BUILD='([^']+)'/);if(m&&m[1]!==BUILD&&!dragging)location.reload()}catch(e){}}
 setInterval(checkUpdate,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});checkUpdate();
-const PULLED='Nov 6, 3:38PM';let lastSync=null;
+const PULLED='Nov 6, 3:48PM';let lastSync=null;
 function fmtT(d){return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}).replace(' ','').toLowerCase()}
 function ago(d){const m=Math.round((Date.now()-d)/60000);if(m<1)return 'just now';if(m<60)return m+'m ago';const h=Math.round(m/60);return h<24?h+'h ago':fmtT(d)}
 function dayLbl(d){const n=new Date(),y=new Date(n);y.setDate(n.getDate()-1);if(d.toDateString()===n.toDateString())return 'today';if(d.toDateString()===y.toDateString())return 'yesterday';return d.toLocaleDateString([],{month:'short',day:'numeric'})}
@@ -162,7 +162,7 @@ function card(r,i){const take=r.type.some(t=>/takeover/i.test(t));const on=S.sta
  const notes=r.mine?`<ul class="n">${r.mine.split(/\.\s+/).map(s=>s.replace(/\.$/,'').trim()).filter(Boolean).map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'';
  return `<div class="card" data-id="${r.id}"><button class="del" data-del="${r.id}">✕</button><div class="r1">${tab==='top'?`<div class="num">${i+1}</div>`:''}<div class="ttl"><div class="name">${esc(r.listing[0].replace(/, 1bd.*$/,''))}${take?'<span class="tag">TAKEOVER</span>':''}${(r.new&&!(S.seen||[]).includes(r.id))?'<span class="tag nw" style="color:#30d158;border-color:#30d158">NEW</span>':''}</div>
  <div class="sub">${esc(bldg)}${bldg?' · ':''}${esc(r.hood)}</div></div><div class="price"><b>${esc(main)}</b><div>${esc(bd)}${sqft?' · '+sqft:''}</div>${free||net?`<div>${esc([free,net].filter(Boolean).join(' · '))}</div>`:''}</div></div>
- <div class="cm">${cmBox(r,'allan','Amit')}${cmBox(r,'eliza','Her')}<div class="c"><span class="l">Train</span><b>${esc((r.train.match(/^\d+/)||['?'])[0])} min</b><div class="h">${how(r.train)}</div></div>${r.sc?cmBox(r,'sc','Grocery'):''}</div>
+ <div class="cm">${cmBox(r,'allan','Amit')}${cmBox(r,'eliza','Aliya')}<div class="c"><span class="l">Train</span><b>${esc((r.train.match(/^\d+/)||['?'])[0])} min</b><div class="h">${how(r.train)}</div></div>${r.sc?cmBox(r,'sc','Grocery'):''}</div>
  <div class="chips">${chips}</div>${lease?`<div class="meta">${lease}</div>`:''}${notes}
  ${r.ph&&r.ph.length?`<div class="strip" id="s${r.id}"></div>`:''}<div class="act">${r.ph&&r.ph.length?`<button class="phb" data-ph="${r.id}">Photos (${r.ph.length}) ▾</button>`:''}${r.url?`<a class="go" data-go="${r.id}" href="${r.url}" target="_blank" rel="noopener">View listing</a>`:''}<button class="st ${on?'on':''}" data-star="${r.id}">${on?'★':'☆'}</button></div>${cmtPrev(r)}<button class="cbtn" data-cmt="${r.id}">💬 ${((S.comments||{})[r.id]||[]).length?((S.comments||{})[r.id]).length+' comment'+(((S.comments||{})[r.id]).length>1?'s':''):'Add comment'}</button>${tourBtn(r)}</div>`}
 function cmtPrev(r){const c=(S.comments||{})[r.id]||[];if(!c.length)return '';return '<div class="cprev">'+c.slice(-2).map(x=>`<div><b>${esc(x.w)}:</b> ${esc(x.t)}</div>`).join('')+'</div>'}
@@ -214,7 +214,7 @@ function cmBox(r,who,label){const m=cmMode(r,who),ms=cmModes(r,who);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-cm]');if(!b)return;e.preventDefault();e.stopPropagation();
  const who=b.dataset.cm,r=byId[b.dataset.id];const ms=cmModes(r,who);if(ms.length<2)return;const cur=cmMode(r,who);CM[who]=ms[(ms.indexOf(cur)+1)%ms.length];
  localStorage.setItem('cmModes',JSON.stringify(CM));if(navigator.vibrate)navigator.vibrate(8);render()},true);
-const SORTS=[['mine','Default'],['newk','New'],['amin','Amit commute'],['emin','Her commute'],['rnum','Rent'],['tmin','Walk to train'],['scmin','Grocery']];
+const SORTS=[['mine','Default'],['newk','New'],['amin','Amit commute'],['emin','Aliya commute'],['rnum','Rent'],['tmin','Walk to train'],['scmin','Grocery']];
 function drawSheet(){document.getElementById('opts').innerHTML=SORTS.map(([k,l])=>`<button class="opt ${k===sort?'on':''}" data-k="${k}">${l}</button>`).join('');
  document.getElementById('d1').textContent=sort==='newk'?'Newest first':'Low → High';document.getElementById('d2').textContent=sort==='newk'?'Oldest first':'High → Low';
  document.querySelectorAll('.dir button').forEach(b=>{b.disabled=sort==='mine';b.classList.toggle('on',sort!=='mine'&&+b.dataset.d===dir)});
