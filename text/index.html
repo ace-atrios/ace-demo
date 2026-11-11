@@ -1,0 +1,7 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Text Ace</title>
+<style>body{margin:0;background:#021714;color:#FCF7E9;font-family:Helvetica,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}a{display:inline-block;margin-top:18px;background:#C9A96E;color:#021714;padding:14px 24px;border-radius:12px;font-weight:700;text-decoration:none}p{color:#B9B3A3}</style>
+<script>
+var q=new URLSearchParams(location.search).get('m');
+var href='sms:+15303064813'+(q?('?&body='+encodeURIComponent(q)):'');
+window.onload=function(){document.getElementById('b').href=href;location.href=href;};
+</script></head><body><div><div style="font-size:26px;font-weight:700">Text Ace</div><p>Opening Messages… If nothing happens, tap below<br>or text <b style="color:#FCF7E9">530-306-4813</b>.</p><a id="b" href="sms:+15303064813">Text Ace</a></div></body></html>
