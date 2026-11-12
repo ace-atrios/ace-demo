@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ace HQ · Atrios</title><link rel="icon" type="image/svg+xml" href="favicon.svg?v=4"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=4">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ace HQ · Atrios</title><link rel="icon" type="image/svg+xml" href="favicon.svg?v=4"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=4"><link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Ace HQ"><meta name="theme-color" content="#F4F1EA">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
@@ -221,9 +221,15 @@ iframe{width:100%;height:calc(100vh - 170px);border:0;border-radius:22px;backgro
 .rev-vrow .am{width:62px;text-align:right;color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums}
 .rev-foot{margin-top:14px;font-size:11px;color:rgba(255,255,255,.45)}
 @media(max-width:900px){.rev-main,.rev-low{grid-template-columns:1fr}.rev-tiles{grid-template-columns:repeat(2,1fr)}.rev-big .num{font-weight:700;font-size:56px}}
+
+#mnav{display:none}
+@media(max-width:800px){#mnav{display:inline-flex;margin-right:auto;font-size:18px}#dlall{display:none}
+body.navopen .rail{display:flex!important;position:fixed;left:10px;top:calc(10px + env(safe-area-inset-top));height:calc(100vh - 20px - env(safe-area-inset-top));z-index:9998;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+body.navopen::after{content:"";position:fixed;inset:0;background:rgba(14,39,35,.25);z-index:9997}
+.top{padding-top:env(safe-area-inset-top)}.top .btn{padding:6px 10px}}
 </style></head><body>
 <div id="gate"><form id="gf"><img src="logo-dark.svg" style="height:26px"><h3>Ace HQ</h3><div class="sub" style="margin:6px auto">Same passcode as the Ace Inbox.</div><input id="pc" inputmode="numeric" maxlength="6" autocomplete="off"><button>Open</button><div id="ge" style="color:var(--red);margin-top:8px"></div></form></div>
-<div class="app"><aside class="rail" id="rail"></aside><div class="page"><div class="top"><span class="chip" id="upd"></span><button class="btn ghost" id="dlall">⬇ Download all</button><button class="btn ghost" id="refresh">↻ Refresh</button><button class="btn ghost" id="lock">🔒 Lock</button></div><div class="wrapc" id="main"></div></div></div>
+<div class="app"><aside class="rail" id="rail"></aside><div class="page"><div class="top"><button class="btn ghost" id="mnav" aria-label="Menu">☰</button><span class="chip" id="upd"></span><button class="btn ghost" id="dlall">⬇ Download all</button><button class="btn ghost" id="refresh">↻ Refresh</button><button class="btn ghost" id="lock">🔒 Lock</button></div><div class="wrapc" id="main"></div></div></div>
 <button id="cfab"><span class="fs a">✦</span><span class="fs b">✦</span><span class="fs c">✦</span>✦ Chat with Ace</button>
 <div id="chat"><div class="hd"><b>Ace</b><span class="ctx" id="cctx">General</span><button class="x" id="cx">✕</button></div><div id="msgs"></div><form id="cf"><textarea id="ci" placeholder="Teach me something, correct me, or ask…"></textarea><button>Send</button></form></div>
 <script>
@@ -508,4 +514,6 @@ if(CODE)load();else document.getElementById('gate').style.display='flex';
 window.__lastAct=Date.now();['mousemove','keydown','wheel','touchstart','click'].forEach(e=>addEventListener(e,()=>{window.__lastAct=Date.now()},{passive:true}));setInterval(()=>{if(!D||VIEW==='search')return;if(document.querySelector('.pfull,.modal.open,.ov.open,dialog[open]'))return;if(Date.now()-window.__lastAct<240000)return;load()},300000);
 
 const _rPB=render;render=function(){_rPB.apply(this,arguments);requestAnimationFrame(pbFix)};window.addEventListener('resize',()=>requestAnimationFrame(pbFix));
+
+(function(){const b=document.getElementById('mnav'),r=document.getElementById('rail');if(b)b.onclick=e=>{e.stopPropagation();document.body.classList.toggle('navopen')};if(r)r.addEventListener('click',e=>{if(e.target.closest('a,button,[onclick]'))setTimeout(()=>document.body.classList.remove('navopen'),50)});document.addEventListener('click',e=>{if(document.body.classList.contains('navopen')&&!e.target.closest('#rail,#mnav'))document.body.classList.remove('navopen')});if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})})();
 </script></body></html>
