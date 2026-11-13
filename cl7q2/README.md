@@ -14,7 +14,7 @@ One standard campaign per category. Start every new campaign from these. Email s
 
 **Day 0 · LinkedIn · Connect request (no pitch)**
 
-> Hi {{recipient.first_name}}, I'm {{sender.first_name}} from Atrios (a16z speedrun). I work with a lot of {{recipient.title}}s on {{topic}}. Would love to connect.
+> Hi {{recipient.first_name}}, I'm {{sender.first_name}} from Atrios (a16z speedrun). I work with a lot of teams like {{recipient.company}} on {{topic}}. Would love to connect.
 
 
 **Day 0 · Email · Email 1: trigger question** · Subject: `{{recipient.company}} x {{vendor}} (${{payout}} for 30 min)`
