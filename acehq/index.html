@@ -464,7 +464,7 @@ ${R.top_vendors.map(v=>`<div class="rev-vrow"><span class="nm">${esc(v[0])}</spa
 function aceConvPanel(){const A=D.an;if(!A||!A.convl)return '';
 const EXC=/^(vendor|partner|investor)$/i;const C=A.convl.filter(x=>!EXC.test(x.ty||''));const B=(A.bookings||[]).filter(x=>x.api);
 const now=new Date(),iso=d=>d.toISOString().slice(0,10),ago=n=>{const d=new Date(now);d.setDate(d.getDate()-n);return iso(d)};
-const W=[['Last 7 days',ago(6)],['Last 30 days',ago(29)],['Since Ace booking API (10/28)','2026-10-28']];
+const W=[['Last 7 days',ago(6)],['Last 14 days',ago(13)],['Since Ace booking API (10/28)','2026-10-28']];
 const col=([l,f])=>{const c=C.filter(x=>x.d>=f).length,b=B.filter(x=>x.b>=f).length,p=c?Math.round(1000*b/c)/10:0;
 return `<div class="acv-c"><div class="acv-l">${l}</div><div class="acv-p">${p}%</div><div class="acv-n"><b>${b}</b> meetings booked by Ace<br><b>${c}</b> Ace conversations</div><div class="acv-bar"><i style="width:${Math.min(p,100)}%"></i></div></div>`};
 return `<div class="acv"><div class="acv-h"><h3>Ace conversion</h3><span class="meta">meetings booked by Ace ÷ Ace conversations started · north star 100%</span></div><div class="acv-g">${W.map(col).join('')}</div><div class="meta acv-f">Conversations = new Ace threads (text + email) with leads and tastemakers, vendors/partners/investors excluded. Meetings = bookings Ace made itself through the booking API (live since 10/28). Not yet counted: meetings people booked through a link after talking to Ace. Refreshed every 5 min (${esc(A.gen||'')}).</div></div>`}
