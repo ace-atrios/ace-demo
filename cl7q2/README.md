@@ -6,10 +6,10 @@ One standard campaign per category. Start every new campaign from these. Email s
 ## Lead acquisition (Paid vendor meeting)
 
 - **Goal:** Book a qualified lead into a paid 30-min call with one vendor.
-- **Who:** The operator who owns the decision (Head of People, Finance or Ops, or the CEO under ~20 people) at companies that pass the vendor's bar.
+- **Who:** The operator who owns the decision (Head of People, Finance or Ops, or the CEO under ~20 people) at companies that pass the vendor's bar. Benefits: People Ops / HR / Finance only, never recruiting or talent acquisition.
 - **Trigger:** Always start from a signal: benefits renewal (Form 5500), new role in the last 90 days, new funding round, or a relevant job posting.
-- **Built from:** Ignition new-leader (email + LinkedIn, 12-20% reply), Corridor renewal (most positive replies), and the 6.6x reply lift from adding LinkedIn.
-- **Fill in:** `{{trigger_line}} {{topic}} {{vendor}} {{vendor_one_liner}} {{payout}} {{deliverable}} {{bar}} {{urgency_line}}`
+- **Built from:** v2 (11/16): Monaco review of 61 replies (timing and 'happy with our broker' were the top no's; nearly all replies came on the first touch) + Skyler's emails (numbered yes/no must-haves, ~34 calls in a week). Plus the 6.6x reply lift from adding LinkedIn.
+- **Fill in:** `{{trigger_line}} {{topic}} {{vendor}} {{vendor_one_liner}} {{payout}} {{deliverable}} {{gates}} {{value_line}} {{urgency_line}}`
 
 
 **Day 0 · LinkedIn · Connect request (no pitch)**
@@ -21,15 +21,18 @@ One standard campaign per category. Start every new campaign from these. Email s
 
 > Hi {{recipient.first_name}},
 >
-> {{trigger_line}} Are you planning to look at options, or sticking with what you have?
+> {{trigger_line}}
 >
-> If you're open to a look: {{vendor}} {{vendor_one_liner}}. Through Atrios you get:
-> - ${{payout}} for a 30-min call, whether or not you switch
+> {{vendor}} {{vendor_one_liner}}. Through Atrios you get:
+> - ${{payout}} for a 30-min call and quick feedback after, whether or not you switch
 > - {{deliverable}}
 >
-> It counts if {{bar}}.
+> Even if you're happy with your current setup, it's a free second opinion.
 >
-> Reply with a couple of times and I'll book it.
+> To make sure the ${{payout}} goes through, does {{recipient.company}}:
+> {{gates}}
+>
+> If so, reply with a few times this week or next (and your time zone) and I'll book it.
 >
 > {{sender.first_name}}
 > Atrios, backed by a16z speedrun
@@ -40,11 +43,11 @@ One standard campaign per category. Start every new campaign from these. Email s
 > Thanks for connecting, {{recipient.first_name}}! Sent you a quick note about {{vendor}}. Short version: ${{payout}} for 30 min, plus {{deliverable}}. Worth a look?
 
 
-**Day 3 · Email · Email 2: bump** · Subject: `Re: {{recipient.company}} x {{vendor}} (${{payout}} for 30 min)`
+**Day 3 · Email · Email 2: value add (not a bump)** · Subject: `Re: {{recipient.company}} x {{vendor}} (${{payout}} for 30 min)`
 
-> Hey {{recipient.first_name}}, quick bump.
+> Hey {{recipient.first_name}}, one more useful detail: {{value_line}}
 >
-> {{urgency_line}} Worst case you walk away with {{deliverable}} and ${{payout}} for your time. Want me to set it up?
+> {{urgency_line}} If that's worth 30 minutes (and ${{payout}}), send a couple of times and I'll set it up.
 >
 > {{sender.first_name}}
 
@@ -61,7 +64,7 @@ One standard campaign per category. Start every new campaign from these. Email s
 - **Goal:** Get a company to list a perk on Atrios and take meetings from our founders.
 - **Who:** Partnerships, startup-program or growth leads (Head/Director) at tools our founders ask for.
 - **Trigger:** Founders keep asking for the tool, a competitor is already on Atrios, or they run a startup program.
-- **Built from:** Community Perks (15.4% reply, 6 positive, 1 meeting) and Startup Vendors (11 positive, 1 meeting). The Rho trigger example is what drew replies.
+- **Built from:** Community Perks + Startup Vendors (7-13% reply, 9 positive, 2 meetings). v2 (11/16): warm replies stalled without a concrete next step, so add a same-day reply with two times.
 - **Fill in:** `{{similar_partner}} {{similar_trigger}}`
 
 
@@ -107,12 +110,19 @@ One standard campaign per category. Start every new campaign from these. Email s
 > {{sender.first_name}}
 
 
+**Day 9 · Email · On a warm reply (same day)** · Subject: `Re: {{recipient.company}} perks for the Atrios community`
+
+> Love it, {{recipient.first_name}}! Easiest next step is a 15-min setup call. Does Tue 2pm or Wed 11am ET work? I'll send the invite and come with a draft perk so it's mostly a yes/no.
+>
+> {{sender.first_name}}
+
+
 ## Community builder activation (Relationship first)
 
 - **Goal:** Start a real relationship with people who run founder communities, then offer a co-branded perks page or an event.
 - **Who:** Community leads, event hosts, newsletter writers, accelerator and program managers.
 - **Trigger:** They run or recently launched a community, event series or newsletter.
-- **Built from:** Jordan's Connect + Coffee: 41.7% reply, 63.9% connection accept. No pitch until they reply.
+- **Built from:** Jordan's Connect + Coffee: 44% reply (16 of 36), 5 positive, 0 meetings yet. No pitch until they reply. v2 (11/16): the after-reply step now names a concrete offer and two days.
 - **Fill in:** `{{shared_context}} (e.g. prev. CoS at NYC Founders Club)`
 
 
@@ -137,7 +147,7 @@ One standard campaign per category. Start every new campaign from these. Email s
 
 **Day 9 · LinkedIn · Message (after they reply)**
 
-> Loved chatting! One idea: we build co-branded perks pages for communities, with exclusive deals on tools your members already use, and you earn when they use them. Want me to put together a first version for {{recipient.company}}?
+> Love it! One idea: we build co-branded perks pages for communities, with exclusive deals on tools your members already use, and you earn when they use them. Want me to put together a first version for {{recipient.company}}? Happy to walk you through it Tue or Wed, whichever is easier.
 
 
 ## Tastemaker activation (Turn a signup into intros)
@@ -178,7 +188,7 @@ One standard campaign per category. Start every new campaign from these. Email s
 - **Who:** Leads with a past positive reply, a held meeting with no next step, or a cancelled booking.
 - **Trigger:** 7+ days of silence after interest or a meeting. Max 3 touches.
 - **Built from:** Superposition quiet-lead email (one-letter reply, answers within the hour) and the max-3 follow-up rule.
-- **Fill in:** `{{vendor}} {{next_vendor}} {{next_payout}}`
+- **Fill in:** `{{vendor}} {{next_vendor}} {{next_payout}} {{signal_opener}}`
 
 
 **Day 0 · Email · Email 1: one-letter reply** · Subject: `Quick question about {{vendor}}`
@@ -201,6 +211,6 @@ One standard campaign per category. Start every new campaign from these. Email s
 
 **Day 5 · Email · Email 2: next best vendor** · Subject: `Re: Quick question about {{vendor}}`
 
-> Hey {{recipient.first_name}}, if {{vendor}} isn't the one, {{next_vendor}} pays ${{next_payout}} for a 30-min call and fits companies like {{recipient.company}}. Want me to book it?
+> Hey {{recipient.first_name}}, {{signal_opener}} Since you met with {{vendor}} a while back, a few others would pay to meet you now, starting with {{next_vendor}} (${{next_payout}} for a 30-min call). Reply with a yes and I'll set it up.
 >
 > {{sender.first_name}}
