@@ -48,6 +48,7 @@ h1{font:700 44px/1.1 AtriosSerif,'Nanum Myeongjo',serif;margin:0;color:var(--cre
 .log div{display:flex;gap:12px;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border)}.log b{font-weight:500;color:var(--muted);min-width:140px}
 #gate{max-width:360px;margin:20vh auto;text-align:center}#gate input{padding:10px 14px;border:1px solid var(--border);border-radius:12px;width:100%;font:inherit;background:#fff}
 .eyebrow{font:500 12px Aspekta;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-text)}
+.capcard{margin-top:18px}.tw{overflow-x:auto}.ct{width:100%;border-collapse:collapse;font-size:14px}.ct th{text-align:left;font:500 11px Aspekta;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}.ct td{padding:12px 10px;border-bottom:1px solid var(--border);vertical-align:middle}.ct tr:last-child td{border-bottom:0}.ct .nm{font-weight:600;color:var(--primary);white-space:nowrap}.ct .num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}.ct .cm{color:var(--muted);font-size:12px;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ct .pb{min-width:150px}.ct .bar{grid-template-columns:minmax(60px,1fr) auto}.ct tfoot td{font-weight:600;color:var(--primary);border-top:1px solid var(--gold-border)}
 </style></head><body>
 <div id="gate"><div class="eyebrow">Campaign Queue</div><p style="color:#757575">Enter the Ace Inbox passcode</p><input id="pc" type="password" autofocus></div>
 <div id="app" hidden>
@@ -58,20 +59,20 @@ h1{font:700 44px/1.1 AtriosSerif,'Nanum Myeongjo',serif;margin:0;color:var(--cre
   <div class="kpi"><div class="l">Senders with room</div><div class="v" id="k3">–</div><div class="s" id="k3s"></div></div>
   <div class="kpi"><div class="l">Sent today</div><div class="v" id="k4">–</div><div class="s" id="k4s">emails + LinkedIn, all senders</div></div>
  </div>
+ <div class="card capcard"><h2>Capacity today <span id="capat"></span></h2><div class="tw"><table class="ct" id="cap"></table></div></div>
  <div class="grid">
   <div class="stack">
-   <div class="card"><h2>Up next <span>drag to reorder</span></h2><div id="q"></div></div>
+   <div class="card"><h2>Campaign queue <span>drag to reorder</span></h2><div id="q"></div></div>
    <div class="card"><h2>Live</h2><div id="live"></div></div>
-   <div class="card"><h2>Done</h2><div id="done"></div></div>
   </div>
   <div class="stack">
-   <div class="card"><h2>Capacity <span id="capat"></span></h2><div class="senders" id="cap"></div></div>
+   <div class="card"><h2>Done</h2><div id="done"></div></div>
    <div class="card"><h2>Activity</h2><div class="log" id="log"></div></div>
   </div>
  </div></div>
 </div>
 <script>
-const B={"s": "OgnDxNLdSw1Cxfz5XPJ2Ew==", "i": "X9bN7nJNNs77X2cx", "c": "Kp1Kh7UywZ2vduzQYgSahw8VS5MyB1AFvC9VCoBfWaV/odLbTM/DnsdXjGayZykXBdJilNjq01bqErc/cXgAFAifyL5nv42vM0DyseGFhO40E9Th5E6wzFtY45pE7GrE8sgGtjO+96TUzAKNk56iY+rg5eoneD5XdZ280aMc+vEAOXoWdnnhd2XYhbj0EE2/gH7VqQ=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
+const B={"s": "uIb+/qXk780koKEF9uVCVQ==", "i": "jgreN9xg6bhPU10J", "c": "TZ+6v1xf30j0to+3BkZ6R/ah85msjwCpZi2nJuiBZ3fQaiTQ2HU850UffoN+Jrar34uxu8prEUPr3BSRZmkUMY4ZatXena50PxR+qW5SSY6aejK7KekwroTLWB9hWfRl0K/1hK854Kr2s2D7tuhg4viCDrMPV9Hsyz1pSsJYZMda/LuziXGpsvaVIaee7ZH0YGUUaQ=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
 async function unlock(p){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
  const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(B.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
  C=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(B.i)},k,d(B.c))));localStorage.cqk=p;
@@ -107,8 +108,12 @@ function render(){const q=DATA.items.filter(x=>x.status=='Queued'||x.status=='Pa
  const cap=DATA.capacity;if(cap){const S=Object.values(cap.senders).sort((a,b)=>(a.name||'').localeCompare(b.name||''));const th=cap.thresh;
   document.getElementById('k3').textContent=S.filter(s=>s.room).length+' / '+S.length;document.getElementById('k3s').textContent=S.filter(s=>s.room).map(s=>(s.name||'').split(' ')[0]).join(', ')||'none right now';
   const se=S.reduce((a,s)=>a+(s.sent_email||0)+(s.sent_li||0),0),le=S.reduce((a,s)=>a+(s.lim_email||0)+(s.lim_li||0),0);document.getElementById('k4').textContent=se+' / '+le;document.getElementById('k4s').textContent=S.reduce((a,s)=>a+s.waiting,0)+' sequences waiting to send';document.getElementById('capat').textContent='room = '+th+' or fewer waiting';
-  document.getElementById('cap').innerHTML=S.map(s=>{const b=!s.lim_email?'<span class="badge b-warn">WARMING</span>':s.waiting<=th?'<span class="badge b-ok">ROOM</span>':s.waiting<=th*10?'<span class="badge b-warn">FILLING</span>':'<span class="badge b-bad">FULL</span>';const cs=s.campaigns||[];
-   return '<div class="sender">'+ring(s.waiting,th)+'<div><div class="sname">'+esc(s.name)+b+'</div><div class="stats"><span><b>'+(s.queued||0)+'</b> queued</span><span><b>'+(s.staged||0)+'</b> staged</span><span><b>'+(s.in_flight||0)+'</b> in flight</span></div>'+bars(s)+spark(s.name)+'<div class="camps" title="'+esc(cs.join(' · '))+'">'+cs.length+' active campaign'+(cs.length==1?'':'s')+(cs.length?': '+esc(cs.join(' · ')):'')+'</div></div></div>'}).join('');ago()}
+  const pb=(v,l)=>!l?'<span class="ln">not sending yet</span>':'<div class="bar"><span class="bg"><i style="width:'+Math.min(100,Math.round(100*(v||0)/l))+'%"></i></span><span class="bt"><b>'+(v||0)+'</b> / '+l+'</span></div>';
+  const badge=s=>!s.lim_email?'<span class="badge b-warn">WARMING</span>':s.waiting<=th?'<span class="badge b-ok">ROOM</span>':s.waiting<=th*10?'<span class="badge b-warn">FILLING</span>':'<span class="badge b-bad">FULL</span>';
+  const T=k=>S.reduce((a,s)=>a+(s[k]||0),0);
+  document.getElementById('cap').innerHTML='<thead><tr><th>Sender</th><th>Status</th><th>Email today / limit</th><th>LinkedIn today / limit</th><th class="num">Queued</th><th class="num">Staged</th><th class="num">In flight</th><th>Active campaigns</th></tr></thead><tbody>'+
+   S.map(s=>{const cs=s.campaigns||[];return '<tr><td class="nm">'+esc(s.name)+'<div class="ln">'+esc(s.lim_note||'')+'</div></td><td>'+badge(s)+'</td><td class="pb">'+pb(s.sent_email,s.lim_email)+'</td><td class="pb">'+pb(s.sent_li,s.lim_li)+'</td><td class="num">'+(s.queued||0)+'</td><td class="num">'+(s.staged||0)+'</td><td class="num">'+(s.in_flight||0)+'</td><td class="cm" title="'+esc(cs.join(' · '))+'">'+cs.length+(cs.length?': '+esc(cs.join(' · ')):'')+'</td></tr>'}).join('')+
+   '</tbody><tfoot><tr><td>Team</td><td></td><td>'+T('sent_email')+' / '+T('lim_email')+'</td><td>'+T('sent_li')+' / '+T('lim_li')+'</td><td class="num">'+T('queued')+'</td><td class="num">'+T('staged')+'</td><td class="num">'+T('in_flight')+'</td><td></td></tr></tfoot>';ago()}
  document.getElementById('log').innerHTML=DATA.log.slice(0,14).map(l=>'<div><b>'+esc(l.at)+'</b><span>'+esc(l.msg)+'</span></div>').join('')||'<div style="color:#757575">No activity yet.</div>';dnd()}
 function dnd(){let src=null;document.querySelectorAll('#q .row[draggable]').forEach(el=>{
  el.ondragstart=e=>{src=el;el.classList.add('drag');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',el.dataset.id)};
