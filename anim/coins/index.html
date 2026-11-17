@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coin stacking · Atrios</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1a15 url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover fixed;font-family:Inter,sans-serif}
+/* ===== drop-in component starts here ===== */
+.atr-earn{--w:min(900px,92vw);width:var(--w);text-align:center}
+.atr-earn .eyebrow{font:500 12px/1 Inter,sans-serif;letter-spacing:.32em;color:#cbb98c;text-transform:uppercase}
+.atr-earn .total{font:600 clamp(48px,8vw,92px)/1.05 'Cormorant Garamond',serif;color:#f1dfae;text-shadow:0 2px 0 rgba(0,0,0,.35),0 0 24px rgba(214,178,98,.25);margin:.15em 0 .35em;font-variant-numeric:lining-nums tabular-nums}
+.atr-earn .frame{position:relative;padding:9.6% 10.2% 10.2% 10.2%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.atr-earn .frame::after{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/img/ren3/frame_gold.png) center/100% 100% no-repeat;pointer-events:none;z-index:3}
+.atr-earn .scene{position:relative;aspect-ratio:3/2;overflow:hidden;background:url(https://ace-atrios.github.io/ace-demo/img/ren2/stilllife_empty.jpg) center/cover;box-shadow:inset 0 0 0 2px #e9dcb6,inset 0 0 40px rgba(0,0,0,.55)}
+.atr-earn .stack{position:absolute;bottom:7%;width:9.6%;transform:translateX(-50%)}
+.atr-earn .stack::before{content:"";position:absolute;left:-12%;right:-12%;bottom:-3%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent);filter:blur(2px)}
+.atr-earn .coin{position:absolute;left:0;width:100%;aspect-ratio:240/232;background:url(https://ace-atrios.github.io/ace-demo/img/ren3/coin_stackable.png) center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
+.atr-earn .hand{position:absolute;width:38%;aspect-ratio:1;background:url(https://ace-atrios.github.io/ace-demo/img/ren3/hand_pinch.png) center/contain no-repeat;pointer-events:none;filter:drop-shadow(0 18px 18px rgba(0,0,0,.45));will-change:transform,opacity}
+.atr-earn .pop{position:absolute;transform:translate(-50%,0);font:600 clamp(16px,2.4vw,24px)/1 'Cormorant Garamond',serif;color:#f6e7bd;text-shadow:0 2px 6px rgba(0,0,0,.8);white-space:nowrap;pointer-events:none}
+.atr-earn .pop small{display:block;font:500 10px/1.6 Inter,sans-serif;letter-spacing:.2em;color:#e3cf9b;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.atr-earn .hand{display:none}}
+/* ===== drop-in component ends here ===== */
+</style></head>
+<body>
+<!-- ===== drop-in markup ===== -->
+<div class="atr-earn" data-total="5151" data-vendors='[["WithCoverage",500],["Rho",330],["Corridor",500],["Deel",100],["Superposition",165],["Chore",165],["Rillet",250],["Automat",175]]'>
+  <div class="eyebrow">Earned evaluating tools</div>
+  <div class="total">$0</div>
+  <div class="frame"><div class="scene"></div></div>
+</div>
+<script>
+/* ===== drop-in script ===== */
+(function(){
+document.querySelectorAll('.atr-earn').forEach(root=>{
+  const scene=root.querySelector('.scene'), totalEl=root.querySelector('.total');
+  const target=+root.dataset.total||5151, vendors=JSON.parse(root.dataset.vendors||'[["Rho",330]]');
+  const X=[37,47,57,67,77], START=[2,4,6,3,1], STEP=0.17; // stack x (% of scene), initial coins, vertical overlap
+  let stacks=[], total=0, i=0, busy=false;
+  const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+  function coinH(){return scene.clientWidth*0.096*232/240}
+  function build(){
+    scene.querySelectorAll('.stack,.hand,.pop').forEach(e=>e.remove()); stacks=[];
+    X.forEach((x,k)=>{const s=document.createElement('div');s.className='stack';s.style.left=x+'%';scene.appendChild(s);stacks.push({el:s,n:0});for(let j=0;j<START[k];j++)addCoin(k,false)});
+    total=0;totalEl.textContent=fmt(0);
+  }
+  function addCoin(k,animate){
+    const st=stacks[k],c=document.createElement('div');c.className='coin';
+    c.style.bottom=(st.n*STEP*100*232/240)+'%';st.n++;
+    st.el.style.height=(100*232/240)+'%'; st.el.style.aspectRatio='240/232';
+    st.el.appendChild(c);
+    if(animate) c.animate([{transform:'translateY(-180%) rotate(-8deg)',opacity:1},{transform:'translateY(6%) rotate(2deg)',offset:.75},{transform:'translateY(-4%)',offset:.88},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.6,.4,1)'});
+    return c;
+  }
+  function tick(from,to){const t0=performance.now(),d=600;(function f(t){const p=Math.min(1,(t-t0)/d);totalEl.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+  function drop(){
+    if(busy) return; busy=true;
+    if(total>=target){setTimeout(()=>{scene.animate([{opacity:1},{opacity:0},{opacity:1}],{duration:900});setTimeout(()=>{build();busy=false},450)},2200);return}
+    const order=[2,1,3,0,4], k=order[i%order.length]; i++;
+    const st=stacks[k], W=scene.clientWidth, H=scene.clientHeight, ch=coinH();
+    const sx=X[k]/100*W, topY=H*0.93 - ch - st.n*STEP*ch; // where the next coin's top sits
+    const hand=document.createElement('div');hand.className='hand';scene.appendChild(hand);
+    const hw=hand.clientWidth||W*0.38, hx=sx-hw*0.30, hy=topY-hw*0.74-ch*0.9;
+    hand.style.left=hx+'px';hand.style.top=hy+'px';
+    const a=hand.animate([{transform:'translate(30%,-70%)',opacity:0},{transform:'translate(0,0)',opacity:1,offset:.55},{transform:'translate(0,0)',opacity:1}],{duration:900,easing:'cubic-bezier(.2,.7,.2,1)',fill:'forwards'});
+    a.onfinish=()=>{
+      addCoin(k,true);
+      hand.animate([{transform:'translate(0,0)',opacity:1},{transform:'translate(25%,-60%)',opacity:0}],{duration:700,easing:'ease-in',fill:'forwards'}).onfinish=()=>hand.remove();
+      const [name,amt]=vendors[(i-1)%vendors.length], add=Math.min(amt,target-total);
+      tick(total,total+add); total+=add;
+      const p=document.createElement('div');p.className='pop';p.innerHTML='+'+fmt(add)+'<small>'+name+'</small>';p.style.left=sx+'px';p.style.top=(topY-ch*0.6)+'px';scene.appendChild(p);
+      p.animate([{transform:'translate(-50%,10px)',opacity:0},{transform:'translate(-50%,-6px)',opacity:1,offset:.25},{transform:'translate(-50%,-40px)',opacity:0}],{duration:1600,easing:'ease-out',fill:'forwards'}).onfinish=()=>p.remove();
+      setTimeout(()=>{busy=false;drop()},700);
+    };
+  }
+  build();
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){drop();io.disconnect()}},{threshold:.35});io.observe(scene);
+  addEventListener('resize',()=>{});
+});
+})();
+</script>
+</body></html>
