@@ -1,0 +1,94 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campaign Queue · Atrios</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0e2723;--cream:#f7f1e3;--gold:#c9a96e;--ink:#1e1814;--mut:#6b6458;--line:#e6dcc4}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);font:15px/1.5 Inter,sans-serif;color:var(--ink)}
+header{background:var(--g);color:#f4ead2;padding:28px 32px}header h1{font:700 36px/1.1 'Cormorant Garamond',serif;margin:4px 0 6px}
+.eyebrow{font:600 11px/1 Inter;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+header p{margin:0;color:#cfc4a8;max-width:860px}
+main{max-width:1180px;margin:0 auto;padding:24px 20px 60px;display:grid;grid-template-columns:1fr 330px;gap:22px}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+h2{font:700 24px/1.2 'Cormorant Garamond',serif;margin:0 0 10px;color:var(--g)}
+.row{display:grid;grid-template-columns:22px 30px 1fr auto;gap:10px;align-items:center;padding:12px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:#fffdf8}
+.row.drag{opacity:.4}.row.over{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,169,110,.35)}
+.handle{cursor:grab;color:#a39a86;font-size:18px;text-align:center;user-select:none}
+.n{font:700 20px 'Cormorant Garamond',serif;color:var(--gold);text-align:center}
+.t{font-weight:600}.m{color:var(--mut);font-size:13px}
+.pill{display:inline-block;font:600 11px/1 Inter;padding:5px 8px;border-radius:999px;letter-spacing:.04em;margin-left:4px}
+.Queued{background:#fdf3dc;color:#7a5824}.Live{background:#e3f1e6;color:#1f6b3a}.Done{background:#ece9e3;color:#6b6458}.Paused{background:#f6e3e3;color:#8a2c2c}
+.acts{display:flex;gap:6px;align-items:center}button,select,input,textarea{font:inherit}
+button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}button.pri{background:var(--g);color:#f4ead2;border-color:var(--g)}
+.err{color:#8a2c2c;font-size:12px}.wait{color:#7a5824;font-size:12px}
+form label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin:10px 0 4px}
+form input,form select,form textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fffdf8}
+.cap div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line)}.ok{color:#1f6b3a;font-weight:600}.full{color:#8a2c2c;font-weight:600}
+.log div{font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.sec{margin-top:18px}.empty{color:var(--mut);padding:18px;text-align:center;border:1px dashed var(--line);border-radius:10px}
+#gate{max-width:360px;margin:18vh auto;text-align:center}#gate input{padding:10px;border:1px solid var(--line);border-radius:8px;width:100%}
+a{color:#1f5f52}
+</style></head><body>
+<div id="gate"><div class="eyebrow">Campaign Queue</div><p>Enter the Ace Inbox passcode</p><input id="pc" type="password" autofocus></div>
+<div id="app" hidden>
+<header><div class="eyebrow">Atrios GTM</div><h1>Campaign Queue</h1>
+<p>Build a campaign in Monaco and leave it <b>paused</b>, then add it here. Adding it = approved. Ace checks Monaco capacity every 2 hours (8am–8pm ET) and launches the top queued campaign as soon as its senders have room. Drag rows (or hit ↑ Top) to change the order.</p></header>
+<main><div>
+ <div class="card"><h2>Up next</h2><div id="q"></div></div>
+ <div class="sec card"><h2>Live</h2><div id="live"></div></div>
+ <div class="sec card"><h2>Done</h2><div id="done"></div></div>
+</div><aside>
+ <div class="card"><h2>Add a campaign</h2><form id="f">
+  <label>Campaign name</label><input name="name" required placeholder="Hammock · VC-backed &lt;50 people">
+  <label>Monaco campaign link (or ID)</label><input name="link" required placeholder="https://app.monaco.com/campaigns/01a1…">
+  <label>Vendor</label><input name="vendor" placeholder="Hammock">
+  <label>Built by (gets the credit)</label><select name="creator"><option>Allan</option><option>Will</option><option>Jordan</option><option>Taylor</option><option>Shay</option><option>Ace</option></select>
+  <label>Audience size</label><input name="size" type="number" min="0" placeholder="25">
+  <label>Notes (why now, signal)</label><textarea name="notes" rows="2"></textarea>
+  <div style="margin-top:12px;display:flex;gap:8px;align-items:center"><button class="pri" type="submit">Add to queue</button><span id="msg" class="m"></span></div>
+ </form></div>
+ <div class="card sec"><h2>Capacity</h2><div class="m" id="capat"></div><div class="cap" id="cap"></div></div>
+ <div class="card sec"><h2>Activity</h2><div class="log" id="log"></div></div>
+</aside></main></div>
+<script>
+const B={"s": "spgNsG6x2VE8D24vo73cHA==", "i": "uNDdhv+slGwpIb5+", "c": "2Co1l3cgvSeTPWSqRcJBkA7l5ZpBoruXtaEmU3YmGijI+9kZwbY7+hCbGfPE6CUhqyIvqSu9P68BWdK3PnoXhsHnuVBrUWo0xSLv3e2/7fE9PY6xSmZTTYXMtOe7ZrbJyXGA6A7h3VUm5ny/4kb/rv9AfQlLjnZvUQ8wbQFRfFAr9GkHyqSPvv5lMHOL3DnEuE8k9A=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
+async function unlock(p){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
+ const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(B.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+ C=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(B.i)},k,d(B.c))));localStorage.cqk=p;
+ document.getElementById('gate').remove();document.getElementById('app').hidden=false;await load();setInterval(load,60000)}
+document.getElementById('pc').addEventListener('keydown',e=>{if(e.key==='Enter')unlock(e.target.value).catch(()=>alert('Wrong passcode'))});
+if(localStorage.cqk)unlock(localStorage.cqk).catch(()=>{});
+const H=()=>({apikey:C.a,Authorization:'Bearer '+C.a,'Content-Type':'application/json'});
+async function load(){const r=await fetch(C.u+'/rest/v1/shared_state?key=eq.'+C.k+'&select=data',{headers:H()});const j=await r.json();DATA=(j[0]&&j[0].data)||{items:[],log:[]};DATA.items=DATA.items||[];DATA.log=DATA.log||[];render()}
+async function save(mut){await load();mut(DATA);const r=await fetch(C.u+'/rest/v1/shared_state?key=eq.'+C.k,{method:'PATCH',headers:Object.assign(H(),{Prefer:'return=minimal'}),body:JSON.stringify({data:DATA,updated_at:new Date().toISOString()})});if(!r.ok)alert('Save failed: '+r.status);render()}
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const now=()=>new Date().toLocaleString('en-US',{timeZone:'America/New_York',weekday:'short',month:'2-digit',day:'2-digit',hour:'numeric',minute:'2-digit'})+' ET';
+function row(it,i,q){const url='https://app.monaco.com/campaigns/'+it.campaign_id;const dr=q&&it.status=='Queued';
+ return '<div class="row" '+(dr?'draggable="true"':'')+' data-id="'+it.id+'"><div class="handle">'+(dr?'⠿':'')+'</div><div class="n">'+(dr?i+1:'')+'</div>'+
+ '<div><div class="t">'+esc(it.name)+' <span class="pill '+it.status+'">'+(it.status=='Paused'?'On hold':it.status)+'</span></div>'+
+ '<div class="m">'+(it.vendor?esc(it.vendor)+' · ':'')+'by '+esc(it.creator)+' · '+(it.size?esc(it.size)+' people · ':'')+'<a href="'+url+'" target="_blank">Monaco</a>'+(it.senders?' · senders: '+esc(it.senders.join(', ')):'')+'</div>'+
+ (it.notes?'<div class="m">'+esc(it.notes)+'</div>':'')+(it.waiting_on?'<div class="wait">Waiting for room on: '+esc(it.waiting_on.join(', '))+'</div>':'')+(it.error?'<div class="err">'+esc(it.error)+'</div>':'')+
+ '<div class="m">'+(it.status=='Live'?'Launched '+esc(it.live_at):it.status=='Done'?'Finished '+esc(it.done_at):'Added '+esc(it.added_at))+'</div></div>'+
+ '<div class="acts">'+(it.status=='Queued'?'<button onclick="top1(\''+it.id+'\')" title="Move to top">↑ Top</button><button onclick="hold(\''+it.id+'\')">Hold</button>':'')+(it.status=='Paused'?'<button onclick="requeue(\''+it.id+'\')">Re-queue</button>':'')+(it.status!='Live'?'<button onclick="del(\''+it.id+'\')" title="Remove">✕</button>':'')+'</div></div>'}
+function render(){const q=DATA.items.filter(x=>x.status=='Queued'||x.status=='Paused');let n=0;
+ document.getElementById('q').innerHTML=q.length?q.map(x=>row(x,x.status=='Queued'?n++:0,true)).join(''):'<div class="empty">Queue is empty. Add a paused Monaco campaign on the right.</div>';
+ const L=DATA.items.filter(x=>x.status=='Live'),D=DATA.items.filter(x=>x.status=='Done');
+ document.getElementById('live').innerHTML=L.length?L.map(x=>row(x,0,false)).join(''):'<div class="empty">Nothing launched from the queue yet.</div>';
+ document.getElementById('done').innerHTML=D.length?D.map(x=>row(x,0,false)).join(''):'<div class="empty">None yet.</div>';
+ const cap=DATA.capacity;document.getElementById('capat').textContent=cap?('Checked '+cap.at+' · "Room" = '+cap.thresh+' or fewer sends waiting'):'First capacity check pending';
+ document.getElementById('cap').innerHTML=cap?Object.values(cap.senders).sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(s=>'<div><span>'+esc(s.name)+'</span><span class="'+(s.room?'ok':'full')+'">'+(s.room?'Room':s.waiting+' waiting')+'</span></div>').join(''):'';
+ document.getElementById('log').innerHTML=DATA.log.slice(0,12).map(l=>'<div><b>'+esc(l.at)+'</b> · '+esc(l.msg)+'</div>').join('')||'<div class="m">No activity yet.</div>';dnd()}
+function dnd(){let src=null;document.querySelectorAll('#q .row[draggable]').forEach(el=>{
+ el.ondragstart=e=>{src=el;el.classList.add('drag');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',el.dataset.id)};
+ el.ondragend=()=>{el.classList.remove('drag');document.querySelectorAll('.over').forEach(x=>x.classList.remove('over'))};
+ el.ondragover=e=>{e.preventDefault();el.classList.add('over')};el.ondragleave=()=>el.classList.remove('over');
+ el.ondrop=e=>{e.preventDefault();if(!src||src===el)return;const a=src.dataset.id,b=el.dataset.id;save(D=>{const i=D.items.findIndex(x=>x.id==a);const m=D.items.splice(i,1)[0];const j=D.items.findIndex(x=>x.id==b);D.items.splice(j,0,m);D.log.unshift({at:now(),msg:'Reordered: '+m.name})})}})}
+function top1(id){save(D=>{const i=D.items.findIndex(x=>x.id==id);const m=D.items.splice(i,1)[0];D.items.unshift(m);D.log.unshift({at:now(),msg:'Moved to top: '+m.name})})}
+function hold(id){save(D=>{const m=D.items.find(x=>x.id==id);m.status='Paused';D.log.unshift({at:now(),msg:'On hold: '+m.name})})}
+function requeue(id){save(D=>{const m=D.items.find(x=>x.id==id);m.status='Queued';D.log.unshift({at:now(),msg:'Re-queued: '+m.name})})}
+function del(id){if(!confirm('Remove from the queue? (Does not touch Monaco)'))return;save(D=>{const m=D.items.find(x=>x.id==id);D.items=D.items.filter(x=>x.id!=id);D.log.unshift({at:now(),msg:'Removed: '+m.name})})}
+document.getElementById('f').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);const m=f.get('link').trim().match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+ if(!m){document.getElementById('msg').textContent='Paste the Monaco campaign link (it needs the campaign ID).';return}
+ const it={id:Date.now().toString(36),name:f.get('name'),campaign_id:m[0],vendor:f.get('vendor'),creator:f.get('creator'),size:f.get('size'),notes:f.get('notes'),status:'Queued',added_at:now()};
+ save(D=>{const k=D.items.findIndex(x=>x.status!='Queued'&&x.status!='Paused');if(k<0)D.items.push(it);else D.items.splice(k,0,it);D.log.unshift({at:now(),msg:'Queued by '+it.creator+': '+it.name})}).then(()=>{e.target.reset();document.getElementById('msg').textContent='Added ✓'})}
+</script></body></html>
