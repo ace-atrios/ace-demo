@@ -41,7 +41,7 @@ h1{font:700 40px/1 'Cormorant Garamond',serif;margin:0;background:linear-gradien
 .acts{display:flex;gap:6px}.acts button{background:transparent;border:1px solid var(--line);color:var(--cream);border-radius:9px;padding:6px 10px;cursor:pointer;font:500 12px Inter}.acts button:hover{border-color:var(--gold);color:var(--gold2)}
 .empty{color:var(--mut);padding:22px;text-align:center;border:1px dashed var(--line);border-radius:14px}
 .log div{display:flex;gap:10px;font-size:12px;padding:8px 0;border-bottom:1px solid rgba(201,169,110,.08)}.log b{font:500 11px 'JetBrains Mono',monospace;color:var(--mut);min-width:150px;font-weight:500}
-.stack{display:grid;gap:18px;align-content:start}
+.stack{display:grid;gap:18px;align-content:start;min-width:0}
 #gate{max-width:360px;margin:20vh auto;text-align:center}#gate input{padding:12px;border:1px solid var(--line);border-radius:12px;width:100%;background:var(--panel);color:var(--cream);font:inherit}
 .eyebrow{font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 </style></head><body>
@@ -67,7 +67,7 @@ h1{font:700 40px/1 'Cormorant Garamond',serif;margin:0;background:linear-gradien
  </div>
 </div>
 <script>
-const B={"s": "ElM+872V86Rp4JmeJL3xrw==", "i": "+MsacjeHAMrKvBVo", "c": "k8Ja1QglljOFH4txoJrlvC5+FVSeTnCCH8UIp/iRG9sJt8iVbvmiZMYmveOrGk4NQrRF21ukXg0oilTFDt3HleBq0tP39Ik5c2P9m+AwwYx9o0Yf0lxBChhIKScm1/2fNY88UOLuk+WyfVAPyabDYfhW3CG1OgzpagjYJ4F/A1UVXl1k3oDGG1ZWnrcFrgm5uBIAuw=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
+const B={"s": "LpXZi0KdbY3fnks3YuuGVA==", "i": "0UML05lWEtXhcQSk", "c": "CPX4kdV21eAo5HO3WOCLvDmqemRiKBZflrn6ogYht5yo3HGiDmyGvP2DnZWCS5uVO1ub7rUxAufHRbK6f9n5RlliJSk2zbrFqFmOiouljD21j69K1tqBEa6AOVXc6xKa3ED/WtNNLPsCFQLkGg7/fE0qj5ox6Ed9JLOyWwM/uI1FiuwoolekIFos+C1taVzv2b8oWQ=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
 async function unlock(p){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
  const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(B.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
  C=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(B.i)},k,d(B.c))));localStorage.cqk=p;
