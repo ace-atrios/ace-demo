@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Atrios · Our story</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Atrios · Our story</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#0a1712}
@@ -96,108 +94,26 @@ body{margin:0;background:#0a1712}
 .atr-story .rule{height:1px;max-width:900px;margin:0 auto;background:linear-gradient(90deg,rgba(217,183,122,0),rgba(217,183,122,.45),rgba(217,183,122,0))}
 @media(max-width:900px){.atr-story{background-attachment:scroll}.atr-story .s-hero .s-in,.atr-story .ch .s-in{grid-template-columns:1fr}.atr-story .ch.flip .art{order:0}.atr-story .flow{grid-template-columns:1fr}.atr-story .farrow{transform:rotate(90deg);text-align:center}.atr-story .three{grid-template-columns:1fr}.atr-story .ch{padding:60px 0}.atr-story .zplq{flex-direction:column}.atr-story .zplq i{text-align:center}}
 /* ===== end CSS ===== */
+
+.atr-story .ch .s-in{align-items:start}
+.atr-story .ch .art{position:sticky;top:calc(var(--nav,72px) + 40px)}
+.atr-story{overflow:visible;overflow-x:clip}
+.atr-story .closing .txt p,.atr-story .ch .txt p{margin:0 0 14px}
+.atr-story .closing .txt .lead,.atr-story .ch .txt .lead{font:400 clamp(21px,1.8vw,25px)/1.45 'Cormorant Garamond',serif;color:#efe2c4;margin-bottom:18px}
+.atr-story .closing .txt .strong,.atr-story .ch .txt .strong{font:600 clamp(22px,1.9vw,27px)/1.3 'Cormorant Garamond',serif;color:var(--gold2);margin:24px 0 18px}
+.atr-story .inline-fig{margin:30px 0 34px;max-width:520px}
+.atr-story .closing .txt .body{font-size:16.5px;line-height:1.75;color:#cfc6b1}
+.atr-story .closing{padding:100px 0 120px;text-align:center}
+.atr-story .closing .txt{max-width:720px;margin:0 auto;text-align:left}
+.atr-story .closing h2{font-size:clamp(44px,4.8vw,70px);margin:18px 0 30px;text-align:center}
+.atr-story .closing .cta,.atr-story .closing .sign{justify-content:center}
+@media(max-width:900px){.atr-story .ch .art{position:relative;top:0}}
 </style></head><body>
-
 <!-- ===== ATRIOS OUR STORY MARKUP ===== -->
-<main class="atr-story">
-
-  <section class="s-hero"><div class="s-in">
-    <div class="rv">
-      <span class="s-k">About Atrios · Founder's story</span>
-      <h1>I started Atrios because I was drowning in <em>FOMO.</em></h1>
-      <p class="lede">Every day, a new tool. Every day, another cold call. There had to be a better way.</p>
-    </div>
-    <div class="portrait rv">
-      
-      <div class="gild"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div>
-      <div class="tag"><b>Taylor Offer</b><small>FOUNDER · ATRIOS</small><i>Portrait with a sealed recommendation, oil on canvas</i></div>
-    </div>
-  </div></section>
-
-  <section class="ch"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_drowning.webp)"></div></div></div>
-    <div class="rv">
-      <span class="plq">I</span>
-      <h2>Drowning</h2>
-      <p class="big">Every morning there was another launch. Another "this changes everything." Another tool I was supposedly already behind on.</p>
-      <p class="body">A new AI agent. A new CRM. New ways to do payroll, banking, sales, hiring and accounting. And I knew it mattered, because a company is only as good as the tools it runs on.</p>
-      <div class="quote">So which ones are actually good?</div>
-      <p class="body">Nobody could tell me. Ads said everything was the best. Review sites felt bought. The "top 10" lists were written by the tools on them. I didn't have time to demo everything, and I was terrified of picking wrong.</p>
-    </div>
-  </div></section>
-
-  <section class="ch flip"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_spam.webp)"></div></div></div>
-    <div class="rv">
-      <span class="plq">II</span>
-      <h2>Then came the spam</h2>
-      <p class="body">The moment I looked like a buyer, the noise got louder. Cold calls during my meetings. Ten-step email sequences. LinkedIn messages that opened with "Hope this finds you well." Calendar invites from people I'd never met.</p>
-      <div class="chips rv"><span>Cold calls</span><span>Spam sequences</span><span>Pushy demos</span><span>"Just bumping this up"</span></div>
-      <p class="body">None of it helped me decide. All of it made me trust vendors less.</p>
-      <p class="kicker">The sales machine was broken, and everyone knew it.</p>
-    </div>
-  </div></section>
-
-  <section class="ch"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_money.webp)"></div></div></div>
-    <div class="rv">
-      <span class="plq">III</span>
-      <h2>Follow the money</h2>
-      <p class="body">Here's the part that made me angry. Companies spend a fortune trying to reach you: SDRs, ads, cold-email tools, conference booths, lead lists. Most of it is spent annoying the exact people they want as customers.</p>
-      <div class="quote">What if that money went to you instead?</div>
-      <p class="body">Not to another ad. Not to another cold call. To you, the person actually deciding which tools your company runs on.</p>
-    </div>
-  </div></section>
-
-  <div class="rule"></div>
-
-  <section class="built"><div class="s-in">
-    <div class="head rv">
-      <span class="plq">IV</span>
-      <h2>So we built <em>Atrios</em></h2>
-      <p class="big" style="font:400 clamp(21px,1.8vw,25px)/1.45 'Cormorant Garamond',serif;color:#efe2c4">Atrios takes the money companies would burn on sales and marketing and gives it to you.</p>
-    </div>
-    <div class="flow rv">
-      <div class="fnode"><b>Company</b><small>Sales &amp; marketing budget</small></div>
-      <div class="farrow">→</div>
-      <div class="fnode x"><b>Cold calls · Spam · Ads</b><small>No more</small></div>
-      <div class="farrow">→</div>
-      <div class="fnode you"><b>You</b><small>Cash · bonuses · perks</small></div>
-    </div>
-    <div class="three">
-      <div class="card rv"><div class="seal"></div><b>Get rewarded to evaluate</b><span>Take a meeting with a tool worth your time and get paid for it.</span></div>
-      <div class="card rv"><div class="seal"></div><b>Sign-up bonuses</b><span>Cash when you switch to something that's actually better.</span></div>
-      <div class="card rv"><div class="seal"></div><b>Perks you can't get anywhere else</b><span>Credits, discounts and gifts, negotiated for you.</span></div>
-    </div>
-    <p class="after rv">And Ace does the hard part. It learns what your company needs, watches what founders and operators like you actually use, and tells you the few tools worth your time. No cold call required.</p>
-  </div></section>
-
-  <div class="rule"></div>
-
-  <section class="zero"><div class="s-in rv">
-    <span class="plq">V</span>
-    <h2>The future of sales <em>doesn't suck</em></h2>
-    <p class="big">We believe sales should be people-first.</p>
-    <p class="body">The best tools shouldn't win because they sent the most emails. They should win because people who use them recommend them. Buyers should be respected, not hunted. And when your time creates value for a company, you should share in it.</p>
-    <div class="zplq"><b id="stZero">0</b><i>cold calls, spam sequences or "quick chats" required.</i></div>
-    <p class="body">That's not a feature. It's a revolution. And it only works if enough of us refuse to go back.</p>
-  </div></section>
-
-  <section class="ch flip" style="padding-bottom:120px"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_join.webp)"></div></div></div>
-    <div class="rv">
-      <span class="plq">VI</span>
-      <h2>Join us</h2>
-      <p class="big">Help us kill the cold call. Kill the spam. Kill the guessing.</p>
-      <p class="body">Every time you choose a tool through someone you trust instead of whoever spammed you hardest, the old machine gets a little weaker. Every perk you claim is money that used to go to an ad you never wanted to see.</p>
-      <p class="kicker">The best tools, picked by people who use them. Let's build that future together.</p>
-      <div class="cta"><a class="btn g" href="sms:+15303064813">Text Ace →</a><a class="btn o" href="#">Become a Tastemaker</a></div>
-      <div class="sign"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt=""><div><b>Taylor Offer</b><small>FOUNDER, ATRIOS</small><i>The best tools, picked by people who use them.</i></div></div>
-    </div>
-  </div></section>
-
-</main>
-
+<main class="atr-story"><section class="s-hero"><div class="s-in"><div class="rv"><span class="s-k">About Atrios · Founder's story</span><h1>I started Atrios because I was drowning in <em>FOMO.</em></h1><p class="lede">Every day, a new tool. Every day, another cold call. I knew there had to be a better way.</p></div>
+<div class="portrait rv"><div class="gild"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div><div class="tag"><b>Taylor Offer</b><small>FOUNDER · ATRIOS</small><i>Portrait with a sealed recommendation, oil on canvas</i></div></div></div></section><section class="ch"><div class="s-in"><div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_drowning.webp)"></div></div></div><div class="txt rv"><span class="plq">I</span><h2>Drowning in FOMO</h2><p class="lead">As a founder, I’ve always had this feeling that I’m falling behind.</p><p class="body">Every morning, I wake up to another company launching something that’s supposedly going to change everything.</p><p class="body">A new AI agent. A better CRM. A smarter way to manage payroll, banking, sales, hiring, or accounting.</p><p class="body">Some products are actually GAMECHANGING. Some really suck.</p><p class="body">I’ve spent my career building companies, and one thing I’ve learned is that the tools you choose can make or break your business.</p><p class="body">The right tool can save you hundreds of hours, replace an entire workflow, or give you an advantage over competitors.</p><p class="body">The wrong one can cost you years.</p><p class="strong">But how do I know which tools are good?</p><p class="body">Every company claims to be the best. Every ad promises to change your life. Review sites feel like fake reviews people are paying for. And nobody has time to sit through 50 demos just to figure out which software to use.</p><p class="body">I certainly didn’t.</p><div class="inline-fig rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_trust.webp)"></div></div></div><p class="body">So I did what I’ve always done.</p><p class="body">I texted my friends. I asked other founders. I called people I respected and asked what they were using.</p><p class="body">And almost every time, the best products I discovered came from those conversations.</p><p class="body">Not from an ad. Not from a cold email. Not from a salesperson.</p><p class="strong">From someone I trusted.</p><p class="body">That stuck with me.</p></div></div></section><section class="ch flip"><div class="s-in"><div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_spam.webp)"></div></div></div><div class="txt rv"><span class="plq">II</span><h2>Then came the spam</h2><p class="lead">The crazy part was that the more I tried to discover better products, the more companies tried to sell me things.</p><p class="body">My inbox was flooded with automated emails.</p><p class="body">My phone wouldn’t stop ringing (I’m always on do not disturb now thanks to sales people calling me every 5 mins).</p><p class="body">LinkedIn became a graveyard of AI slop sales pitches.</p><p class="body">Every company wanted 15 minutes of my time.</p><p class="body">And every salesperson seemed convinced that calling, emailing and texting me 17 times was the best way for me to their product.</p><p class="body">I was spending more time avoiding salespeople than actually discovering products that could help my business.</p><p class="strong">Something was fundamentally broken.</p><p class="body">I wanted to discover the best products in the world.</p><p class="body">Companies wanted to get their products in front of people like me.</p><p class="body">We both wanted the same thing.</p><p class="body">Yet somehow, the entire system designed to connect us was making the experience miserable for everyone.</p><p class="strong">The best product wasn’t winning. The loudest (and often most annoying) sales team was.</p><p class="body">And I couldn’t stop thinking about how backward that was.</p></div></div></section><section class="ch"><div class="s-in"><div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_money.webp)"></div></div></div><div class="txt rv"><span class="plq">III</span><h2>The billion-dollar disconnect</h2><p class="lead">Companies spend billions of dollars on ad platforms to spam me and you.</p><p class="body">Think about how insane that is.</p><p class="body">Billions of dollars flowing to Google, Meta, sales teams, advertising agencies, cold-email software, and platforms designed to fight for our attention.</p><p class="body">All that money being spent trying to convince us to buy something.</p><p class="body">And what do we get?</p><p class="body">More ads. More emails. More interruptions.</p><p class="strong">That’s when I had a realization that changed everything.</p><div class="quote">Instead of spending billions of dollars spamming us, what if they just gave those billions of dollars to us?</div><p class="body">Instead of paying Google to show me another ad, why not pay me to discover a product that could actually help my business?</p><p class="body">Instead of spending thousands trying to convince me to switch software, why not reward me for switching to something better?</p><p class="body">Instead of paying strangers to spam my inbox, why not reward the people I trust for recommending products they genuinely love?</p><p class="body">Suddenly, the whole thing made sense.</p><p class="body">Companies would still acquire customers.</p><p class="body">Customers would discover better products.</p><p class="body">And the people creating real value would finally get rewarded.</p><p class="strong">The money was already there. We just needed to change where it went.</p></div></div></section><section class="ch flip"><div class="s-in"><div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_join.webp)"></div></div></div><div class="txt rv"><span class="plq">IV</span><h2>So I built Atrios</h2><p class="lead">I started Atrios with a simple belief.</p><p class="strong">The best products should win.</p><p class="strong">The most should go to the people, not to spam.</p><p class="body">We’re building a completely different way for companies to find customers and for customers to discover products.</p><p class="body">Instead of companies spending billions interrupting people, we want that money flowing directly to the people they’re trying to reach.</p><p class="body">Imagine getting paid to discover a product that could make your business better.</p><p class="body">Getting rewarded for switching to a tool that saves you time or money.</p><p class="body">Unlocking incredible perks, credits, and discounts just for trying something new.</p><p class="body">Or earning money simply by recommending a product you already love to someone who needs it.</p><p class="body">That’s Atrios.</p><p class="body">But we wanted to go even further.</p><p class="body">Because getting rewarded for discovering products is great. But what if you didn’t have to spend hours figuring out which products were worth discovering?</p><div class="inline-fig rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_ace.webp)"></div></div></div><p class="strong">Meet Ace.</p><p class="body">Ace is your personal AI agent for finding the best tools for your business.</p><p class="body">It learns about your company. It understands what you’re trying to accomplish. It discovers what other founders, operators, and people you trust are actually using.</p><p class="body">It cuts through the noise and brings you the products that are genuinely worth your attention.</p><p class="body">And when there’s a great opportunity, Ace helps you get rewarded for exploring it.</p><p class="body">No endless research. No guessing. No cold calls.</p><p class="body">Think of Ace as your friend who knows everything. Has talked to every business. Reviewed every product. Knows every founder.</p><p class="body">Text Ace whenever you want. Get the answers you are looking for.</p></div></div></section><section class="ch"><div class="s-in"><div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_market.webp)"></div></div></div><div class="txt rv"><span class="plq">V</span><h2>The future of sales doesn’t have to suck.</h2><p class="lead">The more we built Atrios, the more I realized we weren’t just building a better way to discover software.</p><p class="strong">We were building a better way for the world to buy and sell.</p><p class="body">Think about how much of our lives we spend being sold to.</p><p class="body">Every website. Every social feed. Every inbox. Every phone call.</p><p class="body">Everyone is trying to get our attention.</p><p class="body">And somewhere along the way, we accepted that this was just how business worked.</p><p class="body">But it doesn’t have to be.</p><p class="body">I believe we’re entering a world where trust becomes more powerful than advertising.</p><p class="body">Where the best products spread because people genuinely love them.</p><p class="body">Where your relationships, your recommendations, and your attention are recognized as valuable.</p><p class="body">Where companies don’t have to spend fortunes chasing customers, because their happiest customers become their greatest advocates.</p><p class="body">And where buyers aren’t treated like targets.</p><p class="strong">They’re treated like partners.</p><p class="body">Imagine a world where discovering a new product feels like getting a recommendation from your smartest friend.</p><p class="body">Where trying something new comes with a reward instead of a sales pitch.</p><p class="body">Where every great recommendation creates value for the person giving it, the person receiving it, and the company behind the product.</p><p class="body">That’s the world I want to build.</p><p class="strong">A world where the best products win because they’re the best. Not because they have the biggest advertising budgets.</p></div></div></section><div class="rule"></div><section class="closing"><div class="s-in"><div class="rv" style="text-align:center"><span class="plq">VI</span><h2>Let’s change the way the world sells</h2></div><div class="txt rv"><p class="lead">I started Atrios because I was tired of feeling like I was missing out.</p><p class="body">Tired of wondering whether I was using the right tools.</p><p class="body">Tired of being interrupted by people trying to sell me things I didn’t need.</p><p class="body">But what started as a personal frustration has turned into something much bigger.</p><p class="body">Because I don’t think I’m the only one who feels this way.</p><p class="body">There are millions of people who want to discover better products, make smarter decisions, and get rewarded for the value they create.</p><p class="body">There are millions of companies building incredible products that deserve to be discovered.</p><p class="strong">We just need a better way to connect them.</p><p class="body">That’s what we’re building at Atrios.</p><p class="body">We’re taking an industry built around interruption and rebuilding it around trust.</p><p class="body">We’re taking money that used to flow to ads and spam and putting it into the hands of real people.</p><p class="body">We’re making it possible for the best products to rise to the top, not because they shout the loudest, but because people genuinely believe in them.</p><p class="body">And we’re just getting started.</p><p class="body">I know changing how the world sells won’t happen overnight.</p><p class="body">But every great product discovered, every recommendation rewarded, and every cold call replaced with a real connection brings us one step closer.</p><p class="strong">The future of sales doesn’t belong to the companies that spend the most to spam us.</p><p class="strong">It belongs to the companies we trust, the products we love, and the people who bring us together.</p><p class="body">That’s a future worth building.</p><p class="body">And I’d love for you to be part of it.</p>
+<div class="cta"><a class="btn g" href="sms:+15303064813">Meet Ace →</a></div>
+<div class="sign"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt=""><div><b>Taylor Offer</b><small>FOUNDER, ATRIOS</small><i>The best tools, picked by people who use them.</i></div></div></div></div></section></main>
 <script>
 /* ===== ATRIOS OUR STORY JS ===== */
 (function(){
