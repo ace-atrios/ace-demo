@@ -6,12 +6,12 @@
 <style>
 body{margin:0;background:#0d1f19}
 /* ===== ATRIOS NETWORK COMPONENT CSS ===== */
-.atr-net{--gold:#D9B77A;--gold2:#F3D9A0;--ink:#2a1d10;position:relative;overflow:hidden;padding:88px 6vw 96px;color:#efe6d2;font-family:Inter,system-ui,sans-serif;
+.atr-net{--cs:.86;--gold:#D9B77A;--gold2:#F3D9A0;--ink:#2a1d10;position:relative;overflow:hidden;padding:88px 6vw 96px;color:#efe6d2;font-family:Inter,system-ui,sans-serif;
   background:linear-gradient(180deg,rgba(8,20,15,.86),rgba(8,20,15,.78) 40%,rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover}
 .atr-net .an-k{display:block;text-align:center;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
 .atr-net .an-h{text-align:center;font:400 clamp(38px,4.4vw,64px)/1.05 'Cormorant Garamond',serif;margin:18px 0 54px;color:#f5ecd8}
 .atr-net .an-h em{color:var(--gold);font-style:italic}
-.atr-net .an-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:56px;align-items:center;max-width:1280px;margin:0 auto}
+.atr-net .an-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:56px;align-items:center;max-width:1280px;margin:0 auto}
 .atr-net .an-num{font:500 clamp(84px,9vw,132px)/.9 'Cormorant Garamond',serif;letter-spacing:-.01em;font-variant-numeric:lining-nums;
   background:linear-gradient(180deg,#f6e2b0,#c99d55 70%,#9e7838);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
 .atr-net .an-tm{font:400 clamp(30px,2.8vw,40px)/1.1 'Cormorant Garamond',serif;color:#f5ecd8;margin:4px 0 6px}
@@ -26,17 +26,17 @@ body{margin:0;background:#0d1f19}
 .atr-net .an-leg{display:flex;flex-wrap:wrap;gap:6px 18px;font:italic 400 18px 'Cormorant Garamond',serif;color:#e4d8bd}
 .atr-net .an-leg span:before{content:"✦";margin-right:6px;font-style:normal}
 .atr-net .an-leg .f:before{color:#D9B77A}.atr-net .an-leg .i:before{color:#9cc7a6}.atr-net .an-leg .c:before{color:#9fb5d9}.atr-net .an-leg .o:before{color:#d9a3b6}.atr-net .an-leg .l:before{color:#fff4dc;text-shadow:0 0 6px #ffe7b0}
-.atr-net .an-frame{position:relative;padding:12px;border-radius:2px;background:linear-gradient(135deg,#8a6a32,#f3d9a0 18%,#b88c47 38%,#fbe7b8 55%,#9a7436 75%,#e8c88a);box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,240,200,.4)}
-.atr-net .an-frame:after{content:"";position:absolute;inset:12px;box-shadow:inset 0 0 0 2px rgba(60,40,15,.65),inset 0 0 40px rgba(0,0,0,.6);pointer-events:none;z-index:5}
-.atr-net .an-viz{position:relative;height:clamp(420px,42vw,600px);overflow:hidden;
+.atr-net .an-frame{position:relative;width:100%;aspect-ratio:1536/1290;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.atr-net .an-frame:after{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/img/ren4/frame43.webp) center/100% 100% no-repeat;pointer-events:none;z-index:6}
+.atr-net .an-viz{position:absolute;left:13.4%;right:13.4%;top:17%;bottom:17.6%;overflow:hidden;box-shadow:inset 0 0 40px rgba(0,0,0,.7);
   background:radial-gradient(ellipse at 50% 50%,rgba(84,66,30,.5),rgba(10,20,16,0) 55%),radial-gradient(ellipse at 50% 50%,#13261f 0%,#0a1612 70%,#060d0a 100%)}
 .atr-net .an-viz:before{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover;opacity:.28;mix-blend-mode:overlay;pointer-events:none}
 .atr-net .an-world{position:absolute;left:50%;top:50%;transform-origin:center center}
 .atr-net .an-world canvas{position:absolute;inset:0}
-.atr-net .an-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;z-index:3;display:flex;align-items:center;justify-content:center;
+.atr-net .an-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:160px;height:160px;border-radius:50%;z-index:3;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(circle at 34% 28%,#fff1c8 0%,#e8c27a 22%,#b4873f 55%,#6e4d1d 100%);box-shadow:0 0 0 6px rgba(20,14,6,.55),0 0 0 9px #c9a15e,0 0 80px rgba(243,210,140,.55),inset 0 -8px 18px rgba(60,35,8,.55),inset 0 6px 14px rgba(255,248,220,.6)}
 .atr-net .an-hub:before{content:"";position:absolute;inset:14px;border-radius:50%;border:1.5px solid rgba(70,45,12,.55);box-shadow:inset 0 0 0 4px rgba(255,236,190,.25)}
-.atr-net .an-hub b{position:relative;font:600 40px/1 'Cormorant Garamond',serif;color:#3a260c;text-shadow:0 1px 0 rgba(255,240,200,.7),0 -1px 0 rgba(60,35,8,.4)}
+.atr-net .an-hub b{position:relative;text-align:center;max-width:110px;font:600 27px/1 'Cormorant Garamond',serif;color:#3a260c;text-shadow:0 1px 0 rgba(255,240,200,.7),0 -1px 0 rgba(60,35,8,.4)}
 .atr-net .an-card{position:absolute;width:212px;transform:translate(-50%,-50%) scale(.85);opacity:0;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);z-index:2;
   padding:14px 16px 12px;color:var(--ink);border-radius:3px;box-sizing:border-box;
   background:linear-gradient(180deg,rgba(255,250,235,.25),rgba(120,80,30,.12)),url(https://ace-atrios.github.io/ace-demo/img/ren2/parchment.png) center/cover,#e9dbbb;
@@ -49,14 +49,14 @@ body{margin:0;background:#0d1f19}
 .atr-net .an-card .m{margin-top:9px;padding-top:8px;border-top:1px solid rgba(90,60,25,.3);font:500 12.5px/1.3 Inter,sans-serif;color:#4c3a22}
 .atr-net .an-card .n{margin-top:4px;font:600 12.5px Inter,sans-serif;color:#7a5524}
 .atr-net .an-card .n:before{content:"✦ ";color:#a87a35}
-.atr-net .an-cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:italic 400 17px 'Cormorant Garamond',serif;color:#e8d9b6;z-index:4;text-shadow:0 1px 6px #000;pointer-events:none}
+.atr-net .an-cap{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:italic 400 17px 'Cormorant Garamond',serif;color:#e8d9b6;z-index:4;text-shadow:0 1px 6px #000;pointer-events:none}
 @media(max-width:900px){.atr-net .an-grid{grid-template-columns:1fr;gap:36px}.atr-net{padding:64px 20px}.atr-net .an-txt{text-align:center}.atr-net .an-sub{margin-left:auto;margin-right:auto}.atr-net .an-leg{justify-content:center}.atr-net .an-cnt b{transform-origin:center}}
-@media(max-width:600px){.atr-net{--cs:.6}.atr-net .an-hub{width:104px;height:104px}.atr-net .an-hub b{font-size:30px}.atr-net .an-viz{height:480px}.atr-net .an-cap{display:none}}
+@media(max-width:600px){.atr-net{--cs:.6}.atr-net .an-hub{width:104px;height:104px}.atr-net .an-hub b{font-size:30px}.atr-net .an-hub b{font-size:21px;max-width:80px}.atr-net .an-cap{display:none}}
 /* ===== end component CSS ===== */
 </style></head><body>
 
 <!-- ===== ATRIOS NETWORK COMPONENT MARKUP ===== -->
-<section class="atr-net" id="atrNet" data-vendor="Deel">
+<section class="atr-net" id="atrNet" data-vendor="Your Company">
   <span class="an-k">The Atrios Network</span>
   <h2 class="an-h">Get access to <em>every room.</em></h2>
   <div class="an-grid">
@@ -68,7 +68,7 @@ body{margin:0;background:#0d1f19}
       <div class="an-cnt"><b id="anCount">0</b><span>intros to your team <i>● LIVE</i></span></div>
       <div class="an-leg"><span class="f">Founders</span><span class="i">Investors</span><span class="c">Community leaders</span><span class="o">Operators</span><span class="l">Leads in their networks</span></div>
     </div>
-    <div class="an-frame"><div class="an-viz" id="anViz"><div class="an-world"><canvas></canvas><div class="an-hub"><b>Deel</b></div></div><div class="an-cap">Every tastemaker opens a room. Every glow is a new customer.</div></div></div>
+    <div class="an-frame"><div class="an-viz" id="anViz"><div class="an-world"><canvas></canvas><div class="an-hub"><b>Your Company</b></div></div><div class="an-cap">Every tastemaker opens a room. Every glow is a new customer.</div></div></div>
   </div>
 </section>
 
@@ -76,7 +76,7 @@ body{margin:0;background:#0d1f19}
 /* ===== ATRIOS NETWORK COMPONENT JS ===== */
 (function(){
 const root=document.getElementById('atrNet');if(!root)return;
-root.querySelector('.an-hub b').textContent=root.dataset.vendor||'Deel';
+root.querySelector('.an-hub b').textContent=root.dataset.vendor||'Your Company';
 const PEOPLE=[['Priya S.','Founder & CEO','f','YC W24 · SF','2.4k'],['Marcus L.','Partner','i','Seed fund · NYC','5.1k'],['Dana K.','Community lead','c','Founder meetups · Austin','3.8k'],['Ethan R.','Fractional CFO','o','12 startups · Boston','1.9k'],['Sofia M.','Angel investor','i','40+ checks · LA','4.2k'],['Jamal T.','Founder','f','Series A · Chicago','2.7k'],['Lena W.','Accelerator director','c','Demo days · Miami','6.3k'],['Omar H.','VC principal','i','Fintech fund · NYC','3.3k']];
 const COL={f:'#a8782f',i:'#4f7d5c',c:'#4d6a92',o:'#9a5a6e'};
 const box=root.querySelector('#anViz'),world=box.querySelector('.an-world'),cv=world.querySelector('canvas'),ic=root.querySelector('#anCount');
