@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Wax seal side nav</title>
+<style>
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,rgba(8,20,15,.86),rgba(8,20,15,.92)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover;font-family:Inter,sans-serif}
+/* ===== ATRIOS WAX-SEAL SIDE NAV ===== */
+.atr-seals{position:fixed;left:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:50}
+.atr-seals:before{content:"";position:absolute;top:-18px;bottom:-18px;left:50%;width:1px;transform:translateX(-50%);background:linear-gradient(180deg,rgba(217,183,122,0),rgba(217,183,122,.45),rgba(217,183,122,0))}
+.atr-seals a{position:relative;display:block;width:26px;height:26px;background:url(https://ace-atrios.github.io/ace-demo/img/ren6/wax_a.webp) center/contain no-repeat;
+  filter:saturate(.75) brightness(.78) drop-shadow(0 2px 3px rgba(0,0,0,.6));transition:width .3s,height .3s,filter .3s,transform .3s}
+.atr-seals a:hover{filter:saturate(.95) brightness(.95) drop-shadow(0 2px 4px rgba(0,0,0,.6));transform:scale(1.08)}
+.atr-seals a.on{width:42px;height:42px;filter:saturate(1.05) brightness(1.05) drop-shadow(0 3px 6px rgba(0,0,0,.65)) drop-shadow(0 0 12px rgba(214,60,50,.45))}
+@media(max-width:700px){.atr-seals{left:8px;gap:10px}.atr-seals a{width:20px;height:20px}.atr-seals a.on{width:32px;height:32px}}
+/* ===== end ===== */
+</style></head><body>
+<nav class="atr-seals" aria-label="Sections">
+  <a href="#s1" class="on" aria-label="Section 1"></a><a href="#s2" aria-label="Section 2"></a><a href="#s3" aria-label="Section 3"></a><a href="#s4" aria-label="Section 4"></a><a href="#s5" aria-label="Section 5"></a><a href="#s6" aria-label="Section 6"></a><a href="#s7" aria-label="Section 7"></a><a href="#s8" aria-label="Section 8"></a>
+</nav>
+<script>document.querySelectorAll('.atr-seals a').forEach(a=>a.addEventListener('click',e=>{document.querySelectorAll('.atr-seals a').forEach(x=>x.classList.remove('on'));a.classList.add('on')}))</script>
+</body></html>
