@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · Which door is yours? (3 options)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1712;color:#efe6d2;font-family:Inter,system-ui,sans-serif}
+.optbar{position:sticky;top:0;z-index:50;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:12px;background:rgba(8,18,14,.92);border-bottom:1px solid rgba(217,183,122,.25);font:500 12px 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase}
+.optbar a{color:#D9B77A;text-decoration:none;padding:6px 12px;border:1px solid rgba(217,183,122,.35);border-radius:999px}
+.optlabel{text-align:center;padding:28px 0 0;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.3em;color:#9cc7a6;text-transform:uppercase;background:#0b1712}
+.atr-dr{--gold:#D9B77A;position:relative;padding:70px 5vw 90px;box-sizing:border-box;
+  background:radial-gradient(ellipse at 50% 12%,rgba(120,95,45,.32),rgba(0,0,0,0) 55%),linear-gradient(180deg,rgba(8,20,15,.86),rgba(8,20,15,.92)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover}
+.atr-dr .dr-k{display:block;text-align:center;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.atr-dr .dr-h{text-align:center;font:400 clamp(40px,4.8vw,68px)/1.05 'Cormorant Garamond',serif;margin:16px 0 8px;color:#f5ecd8}
+.atr-dr .dr-h em{color:var(--gold);font-style:italic}
+.atr-dr .dr-sub{text-align:center;font-size:17px;color:#cfc6b1;margin:0 0 46px}
+.atr-dr .dr-for{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.atr-dr .dr-t{display:block;font:500 clamp(26px,2.4vw,34px)/1.12 'Cormorant Garamond',serif;color:#f5ecd8;margin-top:8px}
+.atr-dr .dr-d{display:block;font:italic 400 18px/1.35 'Cormorant Garamond',serif;color:#d8cbb0;margin-top:6px}
+.atr-dr .dr-form{position:relative;box-sizing:border-box;padding:22px 22px 18px;border-radius:3px;color:#2a1d10;
+  background:linear-gradient(180deg,rgba(255,250,235,.3),rgba(120,80,30,.12)),url(https://ace-atrios.github.io/ace-demo/img/ren2/parchment.png) center/cover,#e9dbbb;
+  box-shadow:0 14px 30px rgba(0,0,0,.55),inset 0 0 0 1px rgba(110,75,30,.5),inset 0 0 0 5px rgba(233,219,187,.6),inset 0 0 0 6px rgba(140,100,40,.5),inset 0 0 26px rgba(120,80,30,.35)}
+.atr-dr .dr-form h4{margin:0 0 2px;text-align:center;font:600 22px 'Cormorant Garamond',serif;color:#2a1a08}
+.atr-dr .dr-form label{display:block;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#6a4d26;margin:10px 0 5px}
+.atr-dr .dr-form input{width:100%;box-sizing:border-box;padding:10px 11px;border:1px solid rgba(110,75,30,.55);border-radius:2px;background:rgba(255,251,240,.8);font:400 15px Inter,sans-serif;color:#24170a;outline:none}
+.atr-dr .dr-form input:focus{border-color:#a67a33;background:#fffbf0;box-shadow:0 0 0 3px rgba(201,161,94,.3)}
+.atr-dr .dr-fg{display:block;text-align:right;margin-top:6px;font:italic 400 15px 'Cormorant Garamond',serif;color:#6a4d26;text-decoration:none}
+.atr-dr .dr-btn{display:block;width:100%;margin-top:12px;padding:11px 14px;border:0;border-radius:999px;cursor:pointer;font:600 15px Inter,sans-serif;color:#2a1a08;background:linear-gradient(180deg,#f7e2ad,#d9b06a 55%,#b88c47);box-shadow:0 3px 8px rgba(60,35,8,.45),inset 0 1px 0 rgba(255,248,220,.8)}
+.atr-dr .dr-btn:hover{filter:brightness(1.06)}
+.atr-dr .dr-up{display:block;text-align:center;margin-top:12px;padding-top:10px;border-top:1px solid rgba(110,75,30,.3);font:italic 400 16px 'Cormorant Garamond',serif;color:#4c3a22}
+.atr-dr .dr-up a{white-space:nowrap;font:600 14px Inter,sans-serif;color:#7a4f14;text-decoration:underline;text-underline-offset:3px;margin-left:5px}
+.drA .a-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,60px);max-width:1080px;margin:0 auto}
+.drA .a-col{display:flex;flex-direction:column;align-items:center;text-align:center}
+.drA .a-pic{width:100%;aspect-ratio:4/5;background-size:cover;background-position:center 38%;box-shadow:0 0 0 9px #1a120a,0 0 0 11px #b88c47,0 0 0 12px rgba(255,235,190,.45),0 30px 60px rgba(0,0,0,.6);transition:transform .4s,box-shadow .4s}
+.drA .a-col:hover .a-pic,.drA .a-col:focus-within .a-pic{transform:translateY(-4px);box-shadow:0 0 0 9px #1a120a,0 0 0 11px #e2bd78,0 0 0 12px rgba(255,235,190,.6),0 30px 70px rgba(0,0,0,.6),0 0 80px rgba(243,210,140,.25)}
+.drA .a-txt{margin:30px 0 20px;max-width:440px;min-height:150px}
+.drA .dr-form{width:100%;max-width:380px}
+@media(max-width:820px){.drA .a-row{grid-template-columns:1fr;gap:80px}.drA .a-txt{min-height:0}}
+.drB .b-wall{position:relative;max-width:1180px;margin:0 auto;aspect-ratio:3/2;background:url(https://ace-atrios.github.io/ace-demo/img/ren6/wall_two_doors.webp) center/cover;box-shadow:0 0 0 10px #1a120a,0 0 0 12px #b88c47,0 0 0 13px rgba(255,235,190,.45),0 34px 70px rgba(0,0,0,.6)}
+.drB .b-ban{position:absolute;top:6.2%;width:14.2%;height:21%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1%;box-sizing:border-box}
+.drB .b-ban.l{left:22.4%}.drB .b-ban.r{left:63.1%}
+.drB .b-ban small{font:600 clamp(8px,.85vw,11px) 'JetBrains Mono',monospace;letter-spacing:.18em;color:#7a4f14;text-transform:uppercase}
+.drB .b-ban b{font:600 clamp(13px,1.55vw,21px)/1.08 'Cormorant Garamond',serif;color:#2a1a08;margin-top:4px}
+.drB .b-row{display:grid;grid-template-columns:1fr 1fr;max-width:1180px;margin:-70px auto 0;position:relative;z-index:2}
+.drB .b-col{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 3%}
+.drB .dr-form{width:100%;max-width:370px}
+.drB .b-txt{margin-top:22px;max-width:420px}
+@media(max-width:820px){.drB .b-row{grid-template-columns:1fr;gap:50px;margin-top:30px}.drB .b-ban b{font-size:11px}.drB .b-ban small{display:none}}
+.drC .c-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,48px);max-width:980px;margin:0 auto}
+.drC .c-card{display:flex;flex-direction:column;border-radius:3px;overflow:hidden;background:linear-gradient(180deg,#132820,#0c1a15);box-shadow:0 0 0 1px rgba(217,183,122,.45),0 30px 60px rgba(0,0,0,.55);transition:transform .4s,box-shadow .4s}
+.drC .c-card:hover,.drC .c-card:focus-within{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(243,217,160,.75),0 30px 70px rgba(0,0,0,.6),0 0 70px rgba(243,210,140,.2)}
+.drC .c-pic{position:relative;aspect-ratio:16/10;background-size:cover;background-position:center 42%;border-bottom:3px solid #b88c47}
+.drC .c-pic:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(12,26,21,.85))}
+.drC .c-seal{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;z-index:2;display:flex;align-items:center;justify-content:center;font:600 26px 'Cormorant Garamond',serif;color:#fff0d0;
+  background:radial-gradient(circle at 35% 30%,#c0393b,#8e1c1f 60%,#5c0f12);box-shadow:0 4px 10px rgba(0,0,0,.6),inset 0 -3px 6px rgba(0,0,0,.4),inset 0 2px 4px rgba(255,180,170,.35)}
+.drC .c-body{padding:44px 28px 28px;text-align:center}
+.drC .dr-form{margin-top:22px;text-align:left}
+@media(max-width:820px){.drC .c-row{grid-template-columns:1fr}}
+</style></head><body>
+<div class="optbar"><a href="#A">Option A · Open doors</a><a href="#B">Option B · Castle wall</a><a href="#C">Option C · Ledger cards</a></div>
+
+<div class="optlabel" id="A">Option A · Two open doors, the room behind each tells you who it's for</div>
+<section class="atr-dr drA">
+  <span class="dr-k">Welcome to Atrios</span>
+  <h2 class="dr-h">Which door is <em>yours?</em></h2>
+  <p class="dr-sub">Choose how you use Atrios.</p>
+  <div class="a-row">
+    <div class="a-col">
+      <div class="a-pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/img/ren6/door_salon.webp)"></div>
+      <div class="a-txt"><span class="dr-for">Door I · The Salon</span><span class="dr-t">Founders, operators &amp; people with strong networks</span><span class="dr-d">Find the best tools for your company, get rewarded to evaluate them, and earn by recommending what you love.</span></div>
+      <form class="dr-form" onsubmit="return false"><h4>Enter the salon</h4><label>Email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form>
+    </div>
+    <div class="a-col">
+      <div class="a-pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/img/ren6/door_meeting.webp)"></div>
+      <div class="a-txt"><span class="dr-for">Door II · The Meeting Room</span><span class="dr-t">Companies looking to get meetings</span><span class="dr-d">Warm, qualified intros to your next customers, booked straight onto your team's calendar.</span></div>
+      <form class="dr-form" onsubmit="return false"><h4>Enter the meeting room</h4><label>Work email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form>
+    </div>
+  </div>
+</section>
+
+<div class="optlabel" id="B">Option B · One castle wall, a banner over each door</div>
+<section class="atr-dr drB">
+  <span class="dr-k">Welcome to Atrios</span>
+  <h2 class="dr-h">Which door is <em>yours?</em></h2>
+  <p class="dr-sub">Choose how you use Atrios.</p>
+  <div class="b-wall">
+    <div class="b-ban l"><small>Door I</small><b>Founders, operators &amp; connectors</b></div>
+    <div class="b-ban r"><small>Door II</small><b>Companies seeking meetings</b></div>
+  </div>
+  <div class="b-row">
+    <div class="b-col">
+      <form class="dr-form" onsubmit="return false"><h4>Founders &amp; operators</h4><label>Email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form>
+      <div class="b-txt"><span class="dr-d">Find the best tools for your company, get rewarded to evaluate them, and earn by recommending what you love.</span></div>
+    </div>
+    <div class="b-col">
+      <form class="dr-form" onsubmit="return false"><h4>Companies</h4><label>Work email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form>
+      <div class="b-txt"><span class="dr-d">Warm, qualified intros to your next customers, booked straight onto your team's calendar.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="optlabel" id="C">Option C · Two ledger cards, the painting framed on top</div>
+<section class="atr-dr drC">
+  <span class="dr-k">Welcome to Atrios</span>
+  <h2 class="dr-h">Which door is <em>yours?</em></h2>
+  <p class="dr-sub">Choose how you use Atrios.</p>
+  <div class="c-row">
+    <div class="c-card">
+      <div class="c-pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/img/ren6/door_salon.webp)"><div class="c-seal">I</div></div>
+      <div class="c-body"><span class="dr-for">For founders, operators &amp; networks</span><span class="dr-t">Get the best tools, and get rewarded</span><span class="dr-d">Find the best tools for your company, get rewarded to evaluate them, and earn by recommending what you love.</span>
+        <form class="dr-form" onsubmit="return false"><label>Email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form></div>
+    </div>
+    <div class="c-card">
+      <div class="c-pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/img/ren6/door_meeting.webp)"><div class="c-seal">II</div></div>
+      <div class="c-body"><span class="dr-for">For companies looking to get meetings</span><span class="dr-t">Meet your next customers</span><span class="dr-d">Warm, qualified intros to your next customers, booked straight onto your team's calendar.</span>
+        <form class="dr-form" onsubmit="return false"><label>Work email</label><input type="email" placeholder="you@company.com"><label>Password</label><input type="password" placeholder="••••••••"><a class="dr-fg" href="#">Forgot password?</a><button class="dr-btn">Sign in →</button><span class="dr-up">Don't have an account yet?<a href="#">Sign up</a></span></form></div>
+    </div>
+  </div>
+</section>
+</body></html>
