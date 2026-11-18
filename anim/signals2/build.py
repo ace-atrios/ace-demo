@@ -10,16 +10,16 @@ for k,(x,y,r) in N.items():
   mx=(x+CX)/2; my=(y+CY)/2
   # gentle S-curve toward center
   c1=(x+(CX-x)*0.25, y+(CY-y)*0.75); c2=(CX-(CX-x)*0.45, CY-(CY-y)*0.05)
-  paths+=f'<path data-k="{k}" class="sp-thread" d="M{x},{y} C{c1[0]:.0f},{c1[1]:.0f} {c2[0]:.0f},{c2[1]:.0f} {CX},{CY}" pathLength="1"/>'
+  paths+=f'<path data-k="{k}" class="sp-thread" d="M{x},{y} L{x},{y}"/>'
 comp=f'''<!-- Atrios "signals" piece: same design as the original GIF, rebuilt as a smooth 60fps animation (no deps). Scales to its container. -->
 <div class="atr-sp">
  <div class="sp-stage">
   <img class="sp-plate" src="{B}sig_plate.jpg" alt="A cherub circles the signal astrolabe, gathering signals from founders, VCs, operators, Product Hunt, LinkedIn, Reddit, X, WhatsApp and Slack">
   <svg class="sp-svg" viewBox="0 0 {W} {H}" preserveAspectRatio="none"><defs><filter id="spG" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="spC"><stop offset="0" stop-color="#fff3c8" stop-opacity=".95"/><stop offset=".25" stop-color="#ffc35a" stop-opacity=".55"/><stop offset="1" stop-color="#ff9a1f" stop-opacity="0"/></radialGradient></defs>
-   <g filter="url(#spG)">{paths}</g><circle class="sp-core" cx="{CX}" cy="{CY}" r="150" fill="url(#spC)"/></svg>
+   <g filter="url(#spG)">{paths}</g><circle class="sp-core" cx="0" cy="0" r="120" fill="url(#spC)"/></svg>
   {glows}
   <div class="sp-count" style="{pct(KX,KY)}"><b class="sp-num">52,262</b><i>signals today</i></div>
-  <img class="sp-cherub" src="{B}cherub.webp" alt="">
+  <div class="sp-ink"></div><img class="sp-cherub" src="{B}cherub_write.webp" alt="">
   <div class="sp-cap" style="{pct(768,1022)}"><span></span></div>
  </div>
  <img class="sp-frame" src="{B}frame43.webp" alt="">

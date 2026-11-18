@@ -15,3 +15,6 @@
 .atr-sp .sp-cap span{display:block;font:italic 600 3cqw/1.12 'Cormorant Garamond',serif;color:#3a240d;transition:opacity .6s ease,transform .6s ease}
 .atr-sp .sp-cap span.out{opacity:0;transform:translateY(.25em)}
 @media (prefers-reduced-motion:reduce){.atr-sp .sp-cherub{display:none}}
+.atr-sp .sp-thread{stroke-dasharray:none;stroke-dashoffset:0}
+.atr-sp .sp-core{transform-box:view-box}
+.atr-sp .sp-ink{position:absolute;left:0;top:0;width:3.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,240,190,.95),rgba(255,190,80,.5) 40%,transparent 70%);mix-blend-mode:screen;z-index:7;pointer-events:none;opacity:0}
