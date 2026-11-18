@@ -95,7 +95,7 @@ body{margin:0;background:#0b1712}
 .atr-brief .b-msg.new{opacity:0;transform:translateY(12px)}
 .atr-brief .b-msg.new.in{opacity:1;transform:none}
 .atr-brief .b-q{margin-top:9px;padding:10px 0 2px 14px;border-left:3px solid var(--gold)}
-.atr-brief .b-q p{margin:0 0 7px;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
+.atr-brief .b-q p{margin:0 0 7px;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s}
 .atr-brief .b-q p.in{opacity:1;transform:none}
 .atr-brief .b-q b{color:var(--gold2);font-weight:600}
 .atr-brief .b-ft{padding:0 20px 16px}
@@ -213,8 +213,9 @@ const br=document.getElementById('atrBrief');
 onView(br,async done=>{
   const nm=br.querySelector('#bNew'),qs=[...nm.querySelectorAll('.b-q p')],typ=br.querySelector('#bTyp'),qa=[...br.querySelectorAll('.w-qa')];
   nm.classList.remove('in');qs.forEach(p=>p.classList.remove('in'));qa.forEach(q=>q.classList.remove('in'));
-  typ.classList.add('on');await wait(450);typ.classList.remove('on');nm.classList.add('in');qa[0]&&qa[0].classList.add('in');await wait(120);
-  for(let i=0;i<Math.max(qs.length,qa.length);i++){qs[i]&&qs[i].classList.add('in');qa[i+1]&&qa[i+1].classList.add('in');await wait(160)}
+  const slack=(async()=>{typ.classList.add('on');await wait(400);typ.classList.remove('on');nm.classList.add('in');await wait(150);for(const p of qs){p.classList.add('in');await wait(360)}})();
+  const bow=(async()=>{for(const q of qa){q.classList.add('in');await wait(500)}})();
+  await Promise.all([slack,bow]);
   done();
 });
 })();
