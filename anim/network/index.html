@@ -65,7 +65,7 @@ body{margin:0;background:#0d1f19}
       <div class="an-tm">tastemakers.</div>
       <p class="an-reach">with access to <b>10M+ professionals</b></p>
       <p class="an-sub">Each one opens a network of your next customers, people who already trust them.</p>
-      <div class="an-cnt"><b id="anCount">0</b><span>intros to your team <i>● LIVE</i></span></div>
+      <div class="an-cnt"><b id="anCount">0</b><span>intros to your customers</span></div>
       <div class="an-leg"><span class="f">Founders</span><span class="i">Investors</span><span class="c">Community leaders</span><span class="o">Operators</span><span class="l">Leads in their networks</span></div>
     </div>
     <div class="an-frame"><div class="an-viz" id="anViz"><div class="an-world"><canvas></canvas><div class="an-hub"><b>Your Company</b></div></div><div class="an-cap">Every tastemaker opens a room. Every glow is a new customer.</div></div></div>
@@ -89,12 +89,12 @@ function start(){
   cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
   const cx=W/2,cy=H/2,SZ=Math.min(BW/W,BH/H)*1.12,VX=BW/(2*SZ),VY=BH/(2*SZ);
   let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
-  const POS=[[-0.36,-0.31],[0.05,-0.41],[0.37,-0.30],[0.44,0.04],[0.33,0.33],[-0.06,0.40],[-0.35,0.31],[-0.44,-0.03]];
-  const hubs=PEOPLE.map((p,k)=>{const x=cx+POS[k][0]*BW,y=cy+POS[k][1]*BH;return {p,a:Math.atan2(y-cy,x-cx),x,y,kids:[],cands:[]}});
-  const ringR=Math.max(...hubs.map(h=>Math.hypot(h.x-cx,h.y-cy)))+120;
-  const inCard=(x,y,pad)=>hubs.some(o=>x>o.x-110-pad&&x<o.x+110+pad&&y>o.y-62-pad&&y<o.y+62+pad);
+  const RX=BW*0.56,RY=BH*0.5;
+  const hubs=PEOPLE.map((p,k)=>{const an=-Math.PI/2+k*Math.PI*2/PEOPLE.length,x=cx+Math.cos(an)*RX,y=cy+Math.sin(an)*RY;return {p,a:Math.atan2(y-cy,x-cx),x,y,kids:[],cands:[]}});
+  const outRing=(x,y)=>Math.pow((x-cx)/(RX+150),2)+Math.pow((y-cy)/(RY+110),2)>1;
+  const inCard=(x,y,pad)=>hubs.some(o=>x+260>o.x-110-pad&&x-12<o.x+110+pad&&y+12>o.y-66-pad&&y-48<o.y+66+pad);
   hubs.forEach(h=>{for(let n=0;n<110;n++){const a=h.a+(rnd()-.5)*1.7,d=60+Math.pow(rnd(),.8)*Math.min(W,H)*0.5;const x=h.x+Math.cos(a)*d,y=h.y+Math.sin(a)*d;if(x<10||y<10||x>W-10||y>H-10)continue;const node={x,y,r:1.2+rnd()*2.2,ph:rnd()*6,warm:rnd()};h.kids.push(node);
-    if(Math.hypot(x-cx,y-cy)>ringR&&x>cx-VX+24&&x+250<cx+VX-12&&y-48>cy-VY+12&&y<cy+VY-60&&!inCard(x,y,30))h.cands.push(node)}});
+    if(outRing(x,y)&&x>cx-VX+24&&x+250<cx+VX-12&&y-48>cy-VY+12&&y<cy+VY-60&&!inCard(x,y,20)&&Math.hypot(x-cx,y-cy)>230)h.cands.push(node)}});
   hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='an-card';el.style.left=h.x+'px';el.style.top=h.y+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');
     el.innerHTML=`<div class="t"><div class="av" style="background:radial-gradient(circle at 35% 30%,${COL[h.p[2]]}aa,${COL[h.p[2]]})">${ini}</div><div><b>${h.p[0]}</b><span class="r">${h.p[1]}</span></div></div><div class="m">${h.p[3]}</div><div class="n">${h.p[4]} connections</div>`;
     world.appendChild(el);timers.push(setTimeout(()=>el.classList.add('in'),60+k*65))});
