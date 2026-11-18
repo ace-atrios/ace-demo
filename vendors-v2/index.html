@@ -115,15 +115,34 @@ h2 i,h3 i{color:var(--gold2);font-weight:500}
 #rail a.on{background:var(--gold2);box-shadow:0 0 12px rgba(255,210,120,.8);transform:rotate(45deg) scale(1.35)}
 .btn{border-radius:999px!important}
 @media(max-width:900px){.nav .links{display:none}#rail{display:none}}
+
+.ctarow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.marq{position:absolute;left:0;right:0;bottom:26px;z-index:2}
+.mq-cap{text-align:center;font:600 12px/1 'Cormorant Garamond',serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(217,180,104,.85);margin-bottom:14px}
+.mq-win{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-track{display:flex;gap:42px;width:max-content;animation:mq 60s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.vl{display:inline-flex;align-items:center;gap:10px;font:600 20px/1 'Cormorant Garamond',serif;color:#e9dcbc;white-space:nowrap;opacity:.85}
+.vl img{width:26px;height:26px;border-radius:6px;object-fit:cover;filter:grayscale(1) sepia(.5) brightness(1.05);opacity:.9}
+.hero{padding-bottom:150px}
+img.seal{position:absolute;height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.5))}
+.charter img.seal{right:-26px;bottom:-34px;width:108px}
+.letter img.seal{right:8%;bottom:5%;width:92px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:56px}
+.duo .col h3{margin:0;font:500 clamp(28px,3vw,40px)/1.05 'Cormorant Garamond',serif}
+.duo .cp{font:italic 500 20px/1.45 'Cormorant Garamond',serif;color:#e4d6b4;margin:12px 0 22px}
+.duo .letter{margin-top:10px;transform:rotate(.8deg)}
+@media(max-width:900px){.duo{grid-template-columns:1fr}.marq{position:static;margin-top:40px}}
 @media(max-width:900px){.journey{grid-template-columns:repeat(2,1fr)}.net,.qual,.pair,.meet{grid-template-columns:1fr}.charter{transform:none}}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style></head>
 <body>
 <nav class="nav"><a class="logo" href="#">Atrios</a><div class="links"><a href="#">How it works</a><a href="#">Meet Ace</a><a href="#">Perks</a><a href="#">Our story</a><a class="cur" href="#">For vendors</a></div><div class="cta"><a class="pill ghost" href="#">Sign in</a><a class="pill" href="#meet">Get started</a></div></nav>
-<div id="rail"><a href="#top"></a><a href="#how"></a><a href="#network"></a><a href="#qual"></a><a href="#before"></a><a href="#after"></a><a href="#meet"></a></div>
+<div id="rail"><a href="#top"></a><a href="#how"></a><a href="#network"></a><a href="#qual"></a><a href="#before"></a><a href="#meet"></a></div>
 <header class="hero" id="top"><div class="in"><div class="back">For vendors · backed by a16z speedrun</div><h1>Warm intros to<br><i>your next customers.</i></h1><p class="sub">3,500+ tastemakers introduce you to founders and operators who fit your ICP. You only pay for qualified meetings.</p>
 <div class="ask"><span class="typed"></span><span class="go">↑</span></div>
-<div class="ctas"><a class="pill" href="sms:+15303064813">Text Ace now →</a><small>or text +1 (530) 306-4813</small></div></div></header>
+<div class="ctas"><div class="ctarow"><a class="pill" href="sms:+15303064813&body=I%20want%20to%20be%20a%20vendor%20on%20the%20platform.">Text Ace to get started →</a><a class="pill ghost" href="https://atrios.chilipiper.com/me/allan-lvov/vendor-intro" target="_blank">Book a time with our team</a></div><small>or text +1 (530) 306-4813</small></div></div><div class="marq"><div class="mq-cap">Companies meeting their next customers through Atrios</div><div class="mq-win"><div class="mq-track"><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/brex.png" alt=""><b>Brex</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/corridor.png" alt=""><b>Corridor</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/deel.png" alt=""><b>Deel</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rho.png" alt=""><b>Rho</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rillet.png" alt=""><b>Rillet</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rockwell.png" alt=""><b>Rockwell</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/superposition.png" alt=""><b>Superposition</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/numeral.png" alt=""><b>Numeral</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/withcoverage.png" alt=""><b>WithCoverage</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/thera.png" alt=""><b>Thera</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pilot.png" alt=""><b>Pilot</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/finaloop.png" alt=""><b>Finaloop</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/highbeam.png" alt=""><b>Highbeam</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/stanify.png" alt=""><b>Stanify</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/oyster.png" alt=""><b>Oyster</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/doss.png" alt=""><b>DOSS</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pinpoint.png" alt=""><b>Pinpoint</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pylon.png" alt=""><b>Pylon</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/chord.png" alt=""><b>Chord</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/relay.jpg" alt=""><b>Relay</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/onward.png" alt=""><b>Onward</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/testparty.png" alt=""><b>TestParty</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/crstl.png" alt=""><b>Crstl</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/superpowerhealth.png" alt=""><b>Superpower Health</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/brex.png" alt=""><b>Brex</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/corridor.png" alt=""><b>Corridor</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/deel.png" alt=""><b>Deel</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rho.png" alt=""><b>Rho</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rillet.png" alt=""><b>Rillet</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/rockwell.png" alt=""><b>Rockwell</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/superposition.png" alt=""><b>Superposition</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/numeral.png" alt=""><b>Numeral</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/withcoverage.png" alt=""><b>WithCoverage</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/thera.png" alt=""><b>Thera</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pilot.png" alt=""><b>Pilot</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/finaloop.png" alt=""><b>Finaloop</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/highbeam.png" alt=""><b>Highbeam</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/stanify.png" alt=""><b>Stanify</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/oyster.png" alt=""><b>Oyster</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/doss.png" alt=""><b>DOSS</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pinpoint.png" alt=""><b>Pinpoint</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/pylon.png" alt=""><b>Pylon</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/chord.png" alt=""><b>Chord</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/relay.jpg" alt=""><b>Relay</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/onward.png" alt=""><b>Onward</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/testparty.png" alt=""><b>TestParty</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/crstl.png" alt=""><b>Crstl</b></span><span class="vl"><img src="https://ace-atrios.github.io/ace-demo/img/vlogos/superpowerhealth.png" alt=""><b>Superpower Health</b></span></div></div></div></header>
 <div class="vp" id="page">
 
 <section class="act center" id="how">
@@ -158,7 +177,7 @@ h2 i,h3 i{color:var(--gold2);font-weight:500}
   <div class="reveal">
    <div class="charter"><div class="cap">Your ICP · you set this</div><h4>Who we'll send you</h4>
     <dl><dt>Raised</dt><dd>$500k or more</dd><dt>Role</dt><dd>Founder or CEO</dd><dt>HQ</dt><dd>United States</dd><dt>Team</dt><dd>Under 100 people</dd></dl>
-    <div class="note">Amend it anytime. Changes apply to the next intro.</div><div class="seal">A</div></div>
+    <div class="note">Amend it anytime. Changes apply to the next intro.</div><img class="seal" src="https://ace-atrios.github.io/ace-demo/img/ren5/seal_A.webp" alt=""></div>
    <div class="signals">Read for every lead: <b>LinkedIn role, funding rounds, job posts, headcount growth, press, tech stack, web traffic, investors, exec moves, launches, podcasts, GitHub, registrations, partners</b>…</div>
    <div class="engraved"><div><span data-count="4812">4,812</span><small>Signals per lead</small></div><div>94<span style="font-size:.5em">/100</span><small>ICP match · qualified</small></div></div>
   </div>
@@ -180,35 +199,20 @@ h2 i,h3 i{color:var(--gold2);font-weight:500}
 </section>
 
 <section class="act" id="before">
- <div class="center"><span class="plaque reveal" data-anchor>IV</span></div>
- <div class="pair">
-  <div class="side reveal"><span class="eyebrow">Before the call</span><h3>Every meeting arrives <i>with a brief.</i></h3><p>Sealed and delivered to your shared Slack the moment it's booked.</p>
-   <div class="reply"><div class="q">#atrios-brex · from Ace · 9:41 AM</div><div class="a">New meeting: Maya Chen, CEO @ Lumen · Tue 2:00 PM ET · via tastemaker Taylor Offer</div></div></div>
-  <div class="letter reveal"><div class="in-l">
+ <div class="center"><span class="plaque reveal" data-anchor>IV</span><span class="eyebrow reveal">Before and after every call</span><h2 class="reveal">A brief going in. <i>Buy or why coming out.</i></h2></div>
+ <div class="duo">
+  <div class="col reveal"><span class="eyebrow">Before the call</span><h3>Every meeting arrives <i>with a brief.</i></h3><p class="cp">Sealed and delivered to your shared Slack the moment it's booked.</p><div class="reply"><div class="q">#atrios-brex · from Ace · 9:41 AM</div><div class="a">New meeting: Maya Chen, CEO @ Lumen · Tue 2:00 PM ET · via tastemaker Taylor Offer</div></div><div class="letter"><div class="in-l">
    <div class="hd">To the Brex team, regarding Maya Chen of Lumen</div>
    <p><b>Who.</b> Seed-stage AI infra company, 9 people, NYC. Raised $3.2M seed in August, a16z speedrun alum.</p>
    <p><b>Why now.</b> Just closed the round, still on a legacy bank and personal cards, hiring 4 next quarter.</p>
    <p><b>Fit.</b> 94 of 100. Clears every rule you set.</p>
    <p><b>Talk about.</b> Corporate card and spend controls before the team grows, bill pay, up to $15k in founder perks.</p>
-  </div></div>
+  </div></div></div>
+  <div class="col reveal"><span class="eyebrow">After the call</span><h3>Then she tells you <i>buy, or why.</i></h3><p class="cp">Every lead answers four questions after every call, in her own words.</p><div class="reply"><div class="q">Will you move forward?</div><div class="a">"Likely yes. We're on Chase with personal cards and it's already a mess at 9 people. I want this sorted before we hire the next 4."</div></div><div class="reply"><div class="q">What are your hesitations?</div><div class="a">"Moving $3M mid-quarter. If a wire gets stuck while we're running payroll, that's a real problem."</div></div><div class="reply"><div class="q">What would make you sign tomorrow?</div><div class="a">"A named rep for the migration, card limits confirmed in writing, and the $15k in perks applied on day one."</div></div><div class="reply"><div class="q">How was the meeting?</div><div class="a"><span class="stars">★★★★★</span> "She'd clearly read up on us, so we skipped discovery."</div></div></div>
  </div>
 </section>
-
-<section class="act" id="after">
- <div class="center"><span class="plaque reveal" data-anchor>V</span></div>
- <div class="pair">
-  <div class="side reveal"><span class="eyebrow">After the call</span><h3>Then she tells you <i>buy, or why.</i></h3><p>Every lead answers four questions after every call, in her own words.</p></div>
-  <div class="reveal">
-   <div class="reply"><div class="q">Will you move forward?</div><div class="a">"Likely yes. We're on Chase with personal cards and it's already a mess at 9 people. I want this sorted before we hire the next 4."</div></div>
-   <div class="reply"><div class="q">What are your hesitations?</div><div class="a">"Moving $3M mid-quarter. If a wire gets stuck while we're running payroll, that's a real problem."</div></div>
-   <div class="reply"><div class="q">What would make you sign tomorrow?</div><div class="a">"A named rep for the migration, card limits confirmed in writing, and the $15k in perks applied on day one."</div></div>
-   <div class="reply"><div class="q">How was the meeting?</div><div class="a"><span class="stars">★★★★★</span> "She'd clearly read up on us, so we skipped discovery."</div></div>
-  </div>
- </div>
-</section>
-
 <section class="act" id="meet">
- <div class="center"><span class="plaque reveal" data-anchor>VI</span></div>
+ <div class="center"><span class="plaque reveal" data-anchor>V</span></div>
  <div class="meet">
   <div class="portrait reveal"><div class="gilt"><img src="https://ace-atrios.github.io/ace-demo/img/ren5/allan.jpg" alt="Allan Lvov"></div><div class="nameplate"><b>Allan Lvov</b><span>Head of GTM · Atrios</span></div></div>
   <div class="reveal"><span class="eyebrow">Get started</span><h2 style="text-align:left">Meet with Allan, <i>our Head of GTM.</i></h2>
