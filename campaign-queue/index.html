@@ -72,7 +72,7 @@ h1{font:700 44px/1.1 AtriosSerif,'Nanum Myeongjo',serif;margin:0;color:var(--cre
  </div></div>
 </div>
 <script>
-const B={"s": "pH56uxWS5k5RU1b0F+uH+w==", "i": "92QdsDoX5AD3nK86", "c": "upRwSbACiRaqf3HOkQ7ViLT3jPkOQP/26wvn6h+PdEVUI3RD/s/BXIRBKftShCO7XGtYW9m9GZeiNqvjzwQmhxkMkIKgp9SxnGz4sX2uYgCPHMFJf+7UCSF2oaJs7Sn0TJ+hu9n9z3S8ym54EjtqdSDcLRMB5xi67962o2CCRvoLmLJTeEGSKKnuO5yM1ZnciR5iWA=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
+const B={"s": "/mPcphogsLy6Xm8+HRJ2nA==", "i": "x1Tl6UYCSR50X8Jw", "c": "il9almBU7172zeU+m7DAz4YKlvk4T0oeuMLh4sePNaQu5K1V6/Ka4hE0M6oOu4/mAMpTB3lpp8vHNNivFt6EP8OfrsUFbrqYnhchY8bBer0yTa1tqxsJiocnhBrnirfug7cQmJBV5d2j0/SHiKg/UdmdHsH0u0HQNyESKWvdT1hy1H/w8V5jviN2wruIwRZ5ABdJmQ=="};const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));let C,DATA={items:[],log:[]};
 async function unlock(p){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);
  const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(B.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
  C=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(B.i)},k,d(B.c))));localStorage.cqk=p;
