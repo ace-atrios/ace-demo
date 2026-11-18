@@ -7,7 +7,7 @@
 body{margin:0;background:#0a1712}
 /* ===== ATRIOS OUR STORY (scoped .atr-story) ===== */
 .atr-story{--gold:#D9B77A;--gold2:#F3D9A0;--A:https://ace-atrios.github.io/ace-demo/story-ren/a/;position:relative;color:#efe6d2;font-family:Inter,system-ui,sans-serif;overflow:hidden;
-  background:radial-gradient(ellipse at 70% 6%,rgba(120,95,45,.24),rgba(0,0,0,0) 40%),linear-gradient(180deg,rgba(8,20,15,.82),rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center top/100% auto repeat-y,#0a1712}
+  background:radial-gradient(ellipse at 70% 6%,rgba(120,95,45,.24),rgba(0,0,0,0) 40%),linear-gradient(180deg,rgba(8,20,15,.82),rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover fixed,#0a1712}
 .atr-story *{box-sizing:border-box}
 .atr-story .s-in{max-width:1180px;margin:0 auto;padding:0 5vw}
 .atr-story .s-k{display:block;font:500 11.5px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
@@ -21,7 +21,7 @@ body{margin:0;background:#0a1712}
 .atr-story .s-frame{position:relative;width:100%;aspect-ratio:1536/1290;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
 .atr-story .s-frame .pic{position:absolute;left:13.4%;right:13.4%;top:17%;bottom:17.6%;background-size:cover;background-position:center;box-shadow:inset 0 0 40px rgba(0,0,0,.55)}
 .atr-story .s-frame:after{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/frame43.webp) center/100% 100% no-repeat;pointer-events:none}
-.atr-story .s-frame:before{content:"";position:absolute;left:50%;top:-34px;width:46%;height:46px;transform:translateX(-50%);border-top:1.5px solid rgba(201,163,90,.7);border-radius:50% 50% 0 0/100% 100% 0 0;clip-path:polygon(0 100%,50% 0,100% 100%);background:none}
+.atr-story .s-frame:before{display:none;content:"";position:absolute;left:50%;top:-34px;width:46%;height:46px;transform:translateX(-50%);border-top:1.5px solid rgba(201,163,90,.7);border-radius:50% 50% 0 0/100% 100% 0 0;clip-path:polygon(0 100%,50% 0,100% 100%);background:none}
 .atr-story .nail{position:absolute;left:50%;top:-44px;width:12px;height:16px;transform:translateX(-50%);border-radius:3px;background:linear-gradient(90deg,#8a6a2c,#f3d9a0,#8a6a2c);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
 /* plaque numeral */
 .atr-story .plq{display:inline-flex;align-items:center;justify-content:center;min-width:84px;height:46px;padding:0 18px;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/ren2-plaque.webp) center/100% 100%;font:600 22px 'Cormorant Garamond',serif;color:#3a2a10;letter-spacing:.08em;text-shadow:0 1px 0 rgba(255,240,200,.5);filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
@@ -94,7 +94,7 @@ body{margin:0;background:#0a1712}
 .atr-story .sign small{font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--gold)}
 .atr-story .sign i{display:block;font:italic 400 17px 'Cormorant Garamond',serif;color:#d8cbb0;margin-top:2px}
 .atr-story .rule{height:1px;max-width:900px;margin:0 auto;background:linear-gradient(90deg,rgba(217,183,122,0),rgba(217,183,122,.45),rgba(217,183,122,0))}
-@media(max-width:900px){.atr-story .s-hero .s-in,.atr-story .ch .s-in{grid-template-columns:1fr}.atr-story .ch.flip .art{order:0}.atr-story .flow{grid-template-columns:1fr}.atr-story .farrow{transform:rotate(90deg);text-align:center}.atr-story .three{grid-template-columns:1fr}.atr-story .ch{padding:60px 0}.atr-story .zplq{flex-direction:column}.atr-story .zplq i{text-align:center}}
+@media(max-width:900px){.atr-story{background-attachment:scroll}.atr-story .s-hero .s-in,.atr-story .ch .s-in{grid-template-columns:1fr}.atr-story .ch.flip .art{order:0}.atr-story .flow{grid-template-columns:1fr}.atr-story .farrow{transform:rotate(90deg);text-align:center}.atr-story .three{grid-template-columns:1fr}.atr-story .ch{padding:60px 0}.atr-story .zplq{flex-direction:column}.atr-story .zplq i{text-align:center}}
 /* ===== end CSS ===== */
 </style></head><body>
 
@@ -108,14 +108,14 @@ body{margin:0;background:#0a1712}
       <p class="lede">Every day, a new tool. Every day, another cold call. There had to be a better way.</p>
     </div>
     <div class="portrait rv">
-      <div class="nail"></div>
+      
       <div class="gild"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div>
       <div class="tag"><b>Taylor Offer</b><small>FOUNDER · ATRIOS</small><i>Portrait with a sealed recommendation, oil on canvas</i></div>
     </div>
   </div></section>
 
   <section class="ch"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="nail"></div><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_drowning.webp)"></div></div></div>
+    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_drowning.webp)"></div></div></div>
     <div class="rv">
       <span class="plq">I</span>
       <h2>Drowning</h2>
@@ -127,7 +127,7 @@ body{margin:0;background:#0a1712}
   </div></section>
 
   <section class="ch flip"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="nail"></div><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_spam.webp)"></div></div></div>
+    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_spam.webp)"></div></div></div>
     <div class="rv">
       <span class="plq">II</span>
       <h2>Then came the spam</h2>
@@ -139,7 +139,7 @@ body{margin:0;background:#0a1712}
   </div></section>
 
   <section class="ch"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="nail"></div><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_money.webp)"></div></div></div>
+    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_money.webp)"></div></div></div>
     <div class="rv">
       <span class="plq">III</span>
       <h2>Follow the money</h2>
@@ -184,7 +184,7 @@ body{margin:0;background:#0a1712}
   </div></section>
 
   <section class="ch flip" style="padding-bottom:120px"><div class="s-in">
-    <div class="art rv"><div class="s-frame"><div class="nail"></div><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_join.webp)"></div></div></div>
+    <div class="art rv"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_join.webp)"></div></div></div>
     <div class="rv">
       <span class="plq">VI</span>
       <h2>Join us</h2>
