@@ -14,10 +14,10 @@ rp=''.join(f'<path class="kn-t" data-k="{k}" d="M652,330 C730,330 730,{100+i*96}
 import json
 comp=f'''<!-- Atrios "knows which ones": photoreal, smooth 60fps component (no deps). Transparent background, scales to its container. -->
 <div class="atr-kn">
- <svg class="kn-svg" viewBox="0 0 1200 760" preserveAspectRatio="none"><defs><filter id="knG" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-  <path d="M600,410 L600,600" class="kn-base"/>
+ <svg class="kn-svg" viewBox="0 0 1200 900" preserveAspectRatio="none"><defs><filter id="knG" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <path d="M600,410 L600,735" class="kn-base"/>
   <g>{lp.replace('kn-t','kn-base')}{rp.replace('kn-t','kn-base')}</g>
-  <g filter="url(#knG)">{lp}{rp}<path class="kn-t kn-down" d="M600,410 L600,600" pathLength="1"/></g></svg>
+  <g filter="url(#knG)">{lp}{rp}<path class="kn-t kn-down" d="M600,410 L600,735" pathLength="1"/></g></svg>
  <div class="kn-left">{L}</div>
  <div class="kn-coin"><div class="kn-halo"></div><img src="{B}coin_A.webp" alt="Atrios"><div class="kn-sheen"></div></div>
  <div class="kn-right">{R}</div>
