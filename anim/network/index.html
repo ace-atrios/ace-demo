@@ -41,7 +41,7 @@ body{margin:0;background:#0d1f19}
   padding:14px 16px 12px;color:var(--ink);border-radius:3px;box-sizing:border-box;
   background:linear-gradient(180deg,rgba(255,250,235,.25),rgba(120,80,30,.12)),url(https://ace-atrios.github.io/ace-demo/img/ren2/parchment.png) center/cover,#e9dbbb;
   box-shadow:0 10px 26px rgba(0,0,0,.55),inset 0 0 0 1px rgba(110,75,30,.45),inset 0 0 22px rgba(120,80,30,.35)}
-.atr-net .an-card.in{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.atr-net .an-card.in{opacity:1;transform:translate(-50%,-50%) scale(var(--cs,1))}
 .atr-net .an-card .t{display:flex;align-items:center;gap:11px}
 .atr-net .an-card .av{width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font:600 17px 'Cormorant Garamond',serif;color:#fff6e0;box-shadow:0 0 0 2px #b88c47,inset 0 -4px 8px rgba(0,0,0,.35)}
 .atr-net .an-card b{display:block;font:600 21px/1.05 'Cormorant Garamond',serif;color:#24170a}
@@ -51,6 +51,7 @@ body{margin:0;background:#0d1f19}
 .atr-net .an-card .n:before{content:"✦ ";color:#a87a35}
 .atr-net .an-cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:italic 400 17px 'Cormorant Garamond',serif;color:#e8d9b6;z-index:4;text-shadow:0 1px 6px #000;pointer-events:none}
 @media(max-width:900px){.atr-net .an-grid{grid-template-columns:1fr;gap:36px}.atr-net{padding:64px 20px}.atr-net .an-txt{text-align:center}.atr-net .an-sub{margin-left:auto;margin-right:auto}.atr-net .an-leg{justify-content:center}.atr-net .an-cnt b{transform-origin:center}}
+@media(max-width:600px){.atr-net{--cs:.6}.atr-net .an-hub{width:104px;height:104px}.atr-net .an-hub b{font-size:30px}.atr-net .an-viz{height:480px}.atr-net .an-cap{display:none}}
 /* ===== end component CSS ===== */
 </style></head><body>
 
