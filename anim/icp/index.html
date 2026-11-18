@@ -8,7 +8,8 @@ body{margin:0;background:#0b1712}
 /* ===== ATRIOS ICP + BRIEF COMPONENTS CSS (shared .atr-v) ===== */
 .atr-v{--gold:#D9B77A;--gold2:#F3D9A0;--sage:#9cc7a6;--rose:#d98c86;--panel:linear-gradient(180deg,rgba(22,42,33,.92),rgba(11,24,19,.94));
   position:relative;padding:90px 6vw 96px;box-sizing:border-box;color:#efe6d2;font-family:Inter,system-ui,sans-serif;overflow:hidden;
-  background:radial-gradient(ellipse at 70% 20%,rgba(120,95,45,.22),rgba(0,0,0,0) 55%),linear-gradient(180deg,rgba(8,20,15,.86),rgba(8,20,15,.92)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover}
+  background:transparent}
+.atr-vwrap{position:relative;background:radial-gradient(ellipse at 70% 12%,rgba(120,95,45,.2),rgba(0,0,0,0) 45%),radial-gradient(ellipse at 30% 62%,rgba(120,95,45,.14),rgba(0,0,0,0) 45%),linear-gradient(180deg,rgba(8,20,15,.88),rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center top/100% auto repeat-y,#0a1712}
 .atr-v .v-in{max-width:1200px;margin:0 auto}
 .atr-v .v-k{display:block;font:500 11.5px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
 .atr-v .v-h{font:400 clamp(36px,4.2vw,60px)/1.05 'Cormorant Garamond',serif;margin:14px 0 12px;color:#f5ecd8}
@@ -53,7 +54,7 @@ body{margin:0;background:#0b1712}
 .atr-icp .i-icp small{font:italic 400 15px 'Cormorant Garamond',serif;color:#bfb293}
 .atr-icp .i-arrow{font:400 40px 'Cormorant Garamond',serif;color:var(--gold)}
 .atr-icp .i-leads{padding:8px 20px 10px}
-.atr-icp .i-lr{display:grid;grid-template-columns:1.5fr 1fr .9fr .9fr .6fr 1.35fr;align-items:center;gap:8px;padding:14px 4px;border-bottom:1px solid rgba(217,183,122,.13);font:500 14.5px Inter,sans-serif;color:#e8dcc0;transition:opacity .45s,transform .45s}
+.atr-icp .i-lr{display:grid;grid-template-columns:1.5fr 1fr .9fr .9fr .6fr 1.35fr;align-items:center;gap:8px;padding:14px 4px;border-bottom:1px solid rgba(217,183,122,.13);font:500 14.5px Inter,sans-serif;color:#e8dcc0;transition:opacity .25s,transform .25s}
 .atr-icp .i-lr:last-child{border-bottom:0}
 .atr-icp .i-lh{font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:12px 4px}
 .atr-icp .i-lr span b{display:block;font:600 19px/1.1 'Cormorant Garamond',serif;color:#f7eedb}
@@ -74,10 +75,7 @@ body{margin:0;background:#0b1712}
 /* ---------- FLOW BETWEEN SECTIONS ---------- */
 .atr-icp{padding-bottom:40px}
 .atr-brief{padding-top:40px}
-.atr-icp:after,.atr-brief:before{content:"";position:absolute;left:0;right:0;height:120px;pointer-events:none}
-.atr-icp:after{bottom:0;background:linear-gradient(180deg,rgba(9,20,15,0),#09140f)}
-.atr-brief:before{top:0;background:linear-gradient(180deg,#09140f,rgba(9,20,15,0))}
-.atr-v-bridge{display:flex;align-items:center;justify-content:center;gap:18px;background:#09140f;padding:6px 0;color:#D9B77A;font-size:13px}
+.atr-v-bridge{display:flex;align-items:center;justify-content:center;gap:18px;background:transparent;padding:6px 0;color:#D9B77A;font-size:13px}
 .atr-v-bridge span{width:min(28vw,320px);height:1px;background:linear-gradient(90deg,rgba(217,183,122,0),rgba(217,183,122,.55),rgba(217,183,122,0))}
 .atr-v-bridge em{font:italic 400 clamp(18px,1.7vw,22px) 'Cormorant Garamond',serif;color:#e9dcbd;text-align:center;padding:0 6px}
 /* ---------- BRIEF SECTION ---------- */
@@ -121,7 +119,8 @@ body{margin:0;background:#0b1712}
 /* ===== end CSS ===== */
 </style></head><body>
 
-<!-- ===== ICP SECTION ===== -->
+<!-- ===== ICP + BRIEF (paste the whole .atr-vwrap block) ===== -->
+<div class="atr-vwrap">
 <section class="atr-v atr-icp" id="atrIcp"><div class="v-in">
   <span class="v-k">Qualification</span>
   <h2 class="v-h">You set the ICP. <em>We only book matches.</em></h2>
@@ -188,21 +187,22 @@ body{margin:0;background:#0b1712}
     </div>
   </div>
 </div></div></section>
+</div>
 
 <script>
 /* ===== ATRIOS ICP + BRIEF JS ===== */
 (function(){
-const onView=(el,fn,again)=>{if(!el)return;let busy=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!busy){busy=true;fn(()=>{busy=false})}}),{threshold:.15}).observe(el)};
+const onView=(el,fn,again)=>{if(!el)return;let busy=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!busy){busy=true;fn(()=>{busy=false})}}),{threshold:.05,rootMargin:'0px 0px 10% 0px'}).observe(el)};
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 // ICP
 const icp=document.getElementById('atrIcp');
 onView(icp,async done=>{
   const sig=icp.querySelector('#iSig'),sc=icp.querySelector('#iScore'),lis=[...icp.querySelectorAll('.i-icp li')],rows=[...icp.querySelectorAll('.i-lr:not(.i-lh)')];
   lis.forEach(l=>l.classList.remove('on'));rows.forEach(r=>r.classList.add('wait'));
-  const t0=performance.now();await new Promise(res=>{const f=t=>{const k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3);sig.textContent=Math.round(4812*e).toLocaleString();sc.innerHTML=Math.round(94*e)+'<small>/100</small>';k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
-  for(const l of lis){l.classList.add('on');await wait(220)}
-  for(const r of rows){r.classList.remove('wait');if(r.classList.contains('ok')){r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash')}await wait(520)}
-  await wait(400);done();
+  const t0=performance.now();await new Promise(res=>{const f=t=>{const k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);sig.textContent=Math.round(4812*e).toLocaleString();sc.innerHTML=Math.round(94*e)+'<small>/100</small>';k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
+  for(const l of lis){l.classList.add('on');await wait(50)}
+  for(const r of rows){r.classList.remove('wait');if(r.classList.contains('ok')){r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash')}await wait(110)}
+  await wait(200);done();
 });
 // Brief
 const br=document.getElementById('atrBrief');
