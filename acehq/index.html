@@ -229,6 +229,12 @@ iframe{width:100%;height:calc(100vh - 170px);border:0;border-radius:22px;backgro
 body.navopen .rail{display:flex!important;position:fixed;left:10px;top:calc(10px + env(safe-area-inset-top));height:calc(100vh - 20px - env(safe-area-inset-top));z-index:9998;box-shadow:0 10px 40px rgba(0,0,0,.25)}
 body.navopen::after{content:"";position:fixed;inset:0;background:rgba(14,39,35,.25);z-index:9997}
 .top{padding-top:env(safe-area-inset-top)}.top .btn{padding:6px 10px}}
+
+/* Allan 11/18: tier = category (text label w/ metal dot), fee = badge (pill) */
+.tier.t1,.tier.t2,.tier.t3,.tier.t4{background:none!important;box-shadow:none!important;padding:0!important;border-radius:0;font:700 10.5px/1 Inter,sans-serif;letter-spacing:.09em;text-transform:uppercase;display:inline-flex;align-items:center;gap:5px}
+.tier.t1{color:#8a6a1a}.tier.t2{color:#5f656c}.tier.t3{color:#8f5a27}.tier.t4{color:#9a6b4a}
+.tier.t1::before,.tier.t2::before,.tier.t3::before,.tier.t4::before{content:'';width:9px;height:9px;border-radius:50%;display:inline-block}
+.tier.t1::before{background:linear-gradient(135deg,#E9C766,#C9A23A)}.tier.t2::before{background:linear-gradient(135deg,#E8EAED,#9aa0a6)}.tier.t3::before{background:linear-gradient(135deg,#E3A877,#B87333)}.tier.t4::before{background:#E9C9A9}
 </style></head><body>
 <div id="gate"><form id="gf"><img src="logo-dark.svg" style="height:26px"><h3>Ace HQ</h3><div class="sub" style="margin:6px auto">Same passcode as the Ace Inbox.</div><input id="pc" inputmode="numeric" maxlength="6" autocomplete="off"><button>Open</button><div id="ge" style="color:var(--red);margin-top:8px"></div></form></div>
 <div class="app"><aside class="rail" id="rail"></aside><div class="page"><div class="top"><button class="btn ghost" id="mnav" aria-label="Menu">☰</button><span class="chip" id="upd"></span><button class="btn ghost" id="dlall">⬇ Download all</button><button class="btn ghost" id="refresh">↻ Refresh</button><button class="btn ghost" id="lock">🔒 Lock</button></div><div class="wrapc" id="main"></div></div></div>
