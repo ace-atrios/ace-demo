@@ -74,16 +74,23 @@ body{margin:0;background:#0f1a14}
 .atr-mi .line input:disabled{cursor:not-allowed}
 .atr-mi .line:before{content:"✗";position:absolute;left:4px;bottom:10px;font-size:20px;color:var(--ink2)}
 .atr-mi .cap{font-family:'IM Fell English SC',serif;letter-spacing:.2em;font-size:12px;color:var(--ink2);margin:6px 0 18px}
-.atr-mi .btn{display:inline-flex;align-items:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:16px;color:#1a1206;padding:14px 28px;border-radius:999px;border:0;cursor:pointer;position:relative;z-index:3;
- background:linear-gradient(180deg,#f3d98e,#c9a24a 55%,#a9822f);box-shadow:0 6px 16px rgba(60,35,5,.35),inset 0 1px 0 rgba(255,250,220,.7);transition:transform .2s,box-shadow .2s,filter .2s}
-.atr-mi .btn:hover:not(:disabled){transform:translateY(-1px)}
-.atr-mi .btn:disabled{filter:grayscale(.7) brightness(.85);cursor:not-allowed}
-.atr-mi .done{display:none;align-items:center;justify-content:center;gap:18px;margin-top:6px}
+.atr-mi .stamp{display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;position:relative;z-index:3;font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:12px;color:#6b1d12}
+.atr-mi .stamp .wax{width:clamp(96px,13vw,124px);aspect-ratio:1;background:url(https://ace-atrios.github.io/ace-demo/img/ren7/seal_red.webp) center/contain no-repeat;
+ filter:drop-shadow(0 10px 10px rgba(60,10,5,.45)) drop-shadow(0 2px 2px rgba(40,5,0,.5));transition:transform .25s cubic-bezier(.3,1.4,.5,1),filter .3s}
+.atr-mi .stamp:hover:not(:disabled) .wax{transform:translateY(-4px) rotate(-3deg) scale(1.04);filter:drop-shadow(0 16px 14px rgba(60,10,5,.4)) drop-shadow(0 3px 3px rgba(40,5,0,.45))}
+.atr-mi .stamp:disabled{cursor:not-allowed}
+.atr-mi .stamp.press .wax{opacity:1}
+.atr-mi .stamp:disabled:not(.press) .wax{filter:grayscale(.85) brightness(.9) drop-shadow(0 6px 6px rgba(60,40,10,.3));opacity:.55}
+.atr-mi .stamp:focus-visible{outline:2px solid #6b1d12;outline-offset:6px;border-radius:50%}
+.atr-mi .stamp.press .wax{animation:atrMiStamp .9s cubic-bezier(.5,0,.3,1) forwards}
+@keyframes atrMiStamp{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-34px) scale(1.18) rotate(-6deg);filter:drop-shadow(0 34px 22px rgba(40,10,5,.3))}
+ 62%{transform:translateY(2px) scale(.9) rotate(-8deg);filter:drop-shadow(0 2px 2px rgba(40,5,0,.6))}78%{transform:scale(1.03) rotate(-8deg)}100%{transform:scale(1) rotate(-8deg);filter:drop-shadow(0 4px 3px rgba(50,8,3,.55)) drop-shadow(0 1px 1px rgba(30,5,0,.6))}}
+.atr-mi .stamp.press:after{content:"";position:absolute;top:calc(clamp(96px,13vw,124px)/2);left:50%;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 rgba(107,29,18,.35);animation:atrMiRing .7s .55s ease-out}
+@keyframes atrMiRing{to{box-shadow:0 0 0 46px rgba(107,29,18,0)}}
+.atr-mi .done{display:none;justify-content:center;margin:2px 0 4px}
 .atr-mi .done.show{display:flex}
-.atr-mi .done .sig{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(54px,9vw,82px);color:#1d140a;line-height:1;transform:rotate(-4deg);clip-path:inset(-30% 100% -30% 0);transition:clip-path 1.8s cubic-bezier(.6,.05,.3,1)}
+.atr-mi .done .sig{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(54px,9vw,82px);color:#1d140a;line-height:1;transform:rotate(-4deg);clip-path:inset(-30% 100% -30% 0);transition:clip-path 1.8s cubic-bezier(.6,.05,.3,1);mix-blend-mode:multiply}
 .atr-mi .done.show .sig{clip-path:inset(-30% -5% -30% 0)}
-.atr-mi .done .seal{width:84px;height:84px;background:url(https://ace-atrios.github.io/ace-demo/img/ren6/wax_a.webp) center/contain no-repeat;transform:scale(2.2) rotate(-20deg);opacity:0;transition:transform .45s 1.7s cubic-bezier(.3,1.6,.5,1),opacity .2s 1.7s;filter:drop-shadow(0 6px 6px rgba(60,10,5,.45))}
-.atr-mi .done.show .seal{transform:scale(1) rotate(-8deg);opacity:1}
 .atr-mi .dated{font-style:italic;color:#6b1d12;font-size:16px;margin-top:8px;min-height:22px}
 @media(max-width:820px){.atr-mi .steps{grid-template-columns:1fr}.atr-mi .steps:before{display:none}.atr-mi .hero{grid-template-columns:1fr;justify-items:start}.atr-mi .hang{order:-1;margin:0 auto}}
 @media(max-width:560px){.atr-mi{padding:36px 14px 72px}.atr-mi .sc-body{padding:14px 12% 8px}.atr-mi .vow{grid-template-columns:34px 1fr;gap:10px}.atr-mi .box{width:28px;height:28px}}
@@ -145,8 +152,8 @@ body{margin:0;background:#0f1a14}
    <div class="signbox locked" id="atrMiSign">
     <div class="line"><input id="atrMiName" type="text" maxlength="40" placeholder="Your name" autocomplete="name" aria-label="Your name" disabled></div>
     <div class="cap ink">Signature</div>
-    <button class="btn" id="atrMiBtn" disabled>Sign the Code</button>
-    <div class="done" id="atrMiDone"><span class="sig" id="atrMiSig"></span><span class="seal"></span></div>
+    <div class="done" id="atrMiDone"><span class="sig" id="atrMiSig"></span></div>
+    <button class="stamp" id="atrMiBtn" disabled aria-label="Press the seal to sign the Code"><span class="wax"></span><span class="lbl" id="atrMiLbl">Check all 4 pledges to seal</span></button>
     <div class="dated ink" id="atrMiDated"></div>
    </div>
   </div>
@@ -160,13 +167,13 @@ const vows=[...r.querySelectorAll('.vow')],cnt=document.getElementById('atrMiCou
  sig=document.getElementById('atrMiSig'),dated=document.getElementById('atrMiDated');
 const all=()=>vows.every(v=>v.classList.contains('on'));
 const upd=()=>{const n=vows.filter(v=>v.classList.contains('on')).length;cnt.textContent=n===4?'All pledges checked. Now sign below.':`${n} of 4 pledges checked`;
- const ok=n===4;box.classList.toggle('locked',!ok);inp.disabled=!ok;btn.disabled=!ok||!inp.value.trim();};
+ const ok=n===4;box.classList.toggle('locked',!ok);inp.disabled=!ok;btn.disabled=!ok||!inp.value.trim();document.getElementById('atrMiLbl').textContent=!ok?'Check all 4 pledges to seal':(!inp.value.trim()?'Sign your name, then press the seal':'Press the seal to sign');};
 vows.forEach(v=>{const t=()=>{if(done.classList.contains('show'))return;v.classList.toggle('on');v.setAttribute('aria-checked',v.classList.contains('on'));upd();};
  v.addEventListener('click',t);v.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();t();}});});
 inp.addEventListener('input',upd);
 btn.addEventListener('click',()=>{const n=inp.value.trim();if(!all()||!n)return;
- sig.textContent=n;inp.parentElement.style.display='none';btn.style.display='none';r.querySelector('.cap').textContent='Signed';
- requestAnimationFrame(()=>requestAnimationFrame(()=>done.classList.add('show')));
+ btn.classList.add('press');btn.disabled=true;btn.style.cursor='default';document.getElementById('atrMiLbl').textContent='';
+ setTimeout(()=>{sig.textContent=n;inp.parentElement.style.display='none';r.querySelector('.signbox .cap').style.display='none';done.classList.add('show');},600);
  dated.textContent=`Signed by ${n}, ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`;
  r.dispatchEvent(new CustomEvent('atrios:code-signed',{detail:{name:n},bubbles:true}));});
 upd();})();
