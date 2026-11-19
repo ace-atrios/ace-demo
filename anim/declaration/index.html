@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Atrios · The Declaration</title>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Mrs+Saint+Delafield&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Mrs+Saint+Delafield&family=Inter:wght@500;600&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#0f1a14}
 /* ===== ATRIOS DECLARATION (scoped .atr-decl) ===== */
@@ -13,13 +13,13 @@ body{margin:0;background:#0f1a14}
 .atr-decl .sc-top{aspect-ratio:984/160;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_top.webp) center/100% 100% no-repeat;margin-bottom:-2px}
 .atr-decl .sc-bot{aspect-ratio:984/216;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_bot.webp) center/100% 100% no-repeat;margin-top:-2px}
 .atr-decl .sc-body{background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;padding:clamp(18px,4vw,40px) clamp(30px,9%,92px) clamp(10px,3vw,24px)}
-.atr-decl .kick{font-family:'UnifrakturMaguntia',serif;text-align:center;font-size:clamp(20px,3.4vw,30px);color:var(--ink2);margin:0 0 6px;letter-spacing:.5px}
+.atr-decl .kick{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(17px,2.4vw,22px);color:var(--ink2);margin:0 0 4px;letter-spacing:.16em}
 .atr-decl .sub{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(12px,1.6vw,14px);letter-spacing:.24em;color:var(--ink2);margin:0 0 18px}
-.atr-decl h2{font-family:'UnifrakturMaguntia',serif;font-weight:400;text-align:center;font-size:clamp(34px,6.4vw,62px);line-height:1.04;margin:0 0 26px;color:var(--ink);text-wrap:balance}
+.atr-decl h2{font-family:'IM Fell English',Georgia,serif;font-weight:400;letter-spacing:-.005em;text-align:center;font-size:clamp(36px,6.2vw,60px);line-height:1.08;margin:0 0 26px;color:var(--ink);text-wrap:balance}
 .atr-decl .orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:0 auto 26px;color:var(--ink2);width:70%}
 .atr-decl .orn:before,.atr-decl .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
-.atr-decl .txt p{font-size:clamp(17px,2.15vw,21px);line-height:1.62;margin:0 0 16px;text-align:justify;hyphens:auto}
-.atr-decl .txt p.lead:first-letter{font-family:'UnifrakturMaguntia',serif;float:left;font-size:3.4em;line-height:.82;padding:6px 10px 0 0;color:#6b1d12}
+.atr-decl .txt p{font-size:clamp(18px,2.2vw,21.5px);line-height:1.62;color:#24180a;margin:0 0 16px;text-align:justify;hyphens:auto}
+.atr-decl .txt p.lead:first-letter{font-family:'IM Fell English',serif;float:left;font-size:3.3em;line-height:.8;padding:6px 10px 0 0;color:#6b1d12}
 .atr-decl .txt p.strong{hyphens:manual;font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
 .atr-decl .txt p.last{text-align:center;font-size:clamp(19px,2.4vw,23px);margin-top:24px}
 /* founder block */
@@ -48,6 +48,17 @@ body{margin:0;background:#0f1a14}
   background:linear-gradient(180deg,#f3d98e,#c9a24a 55%,#a9822f);box-shadow:0 6px 16px rgba(60,35,5,.35),inset 0 1px 0 rgba(255,250,220,.7);transition:transform .2s,box-shadow .2s}
 .atr-decl .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(60,35,5,.42),inset 0 1px 0 rgba(255,250,220,.7)}
 .atr-decl .signed{font-style:italic;color:#6b1d12;min-height:22px;margin-top:10px;font-size:16px}
+
+/* photoreal ink + lighting */
+.atr-decl .sc-body{position:relative}
+.atr-decl .sc-body>*{position:relative;z-index:1}
+.atr-decl .sc-body .kick,.atr-decl .sc-body .sub,.atr-decl .sc-body h2,.atr-decl .sc-body .txt,.atr-decl .sc-body .who,.atr-decl .sc-body .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap,.atr-decl .hancock,.atr-decl .flour,.atr-decl .signed{mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55),0 .4px .9px rgba(70,40,10,.25)}
+.atr-decl .sc-body:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:multiply;
+ background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(110,70,25,.22) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
+.atr-decl .sc-body:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+ background:radial-gradient(60% 40% at 35% 25%,rgba(255,248,225,.55),transparent 70%)}
+.atr-decl .line input{position:relative;z-index:3}
+.atr-decl .btn{position:relative;z-index:3}
 @media(max-width:560px){.atr-decl{padding:40px 8px 64px}.atr-decl .sc-body{padding:14px 13% 8px}.atr-decl .sub{letter-spacing:.14em}.atr-decl .txt p{hyphens:manual}.atr-decl .txt p.lead:first-letter{font-size:2.9em}.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
 </style></head><body>
 <!-- ===== ATRIOS DECLARATION MARKUP ===== -->
