@@ -18,7 +18,7 @@ body{margin:0;background:#0f1a14}
 .atr-decl h2{font-family:'IM Fell English',Georgia,serif;font-weight:400;letter-spacing:-.005em;text-align:center;font-size:clamp(36px,6.2vw,60px);line-height:1.08;margin:0 0 26px;color:var(--ink);text-wrap:balance}
 .atr-decl .orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:0 auto 26px;color:var(--ink2);width:70%}
 .atr-decl .orn:before,.atr-decl .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
-.atr-decl .txt p{font-size:clamp(18px,2.2vw,21.5px);line-height:1.62;color:#24180a;margin:0 0 16px;text-align:justify;hyphens:auto}
+.atr-decl .txt p{font-size:clamp(18px,2.2vw,21.5px);line-height:1.62;color:#24180a;margin:0 0 16px;text-align:left;hyphens:manual}
 .atr-decl .txt p.lead:first-letter{font-family:'IM Fell English',serif;float:left;font-size:3.3em;line-height:.8;padding:6px 10px 0 0;color:#6b1d12}
 .atr-decl .txt p.strong{hyphens:manual;font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
 .atr-decl .txt p.last{text-align:center;font-size:clamp(19px,2.4vw,23px);margin-top:24px}
@@ -53,9 +53,9 @@ body{margin:0;background:#0f1a14}
 .atr-decl .sc-body{position:relative}
 .atr-decl .sc-body>*{position:relative;z-index:1}
 .atr-decl .sc-body .kick,.atr-decl .sc-body .sub,.atr-decl .sc-body h2,.atr-decl .sc-body .txt,.atr-decl .sc-body .who,.atr-decl .sc-body .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap,.atr-decl .hancock,.atr-decl .flour,.atr-decl .signed{mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55),0 .4px .9px rgba(70,40,10,.25)}
-.atr-decl .sc-body:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:multiply;
+.atr-decl .sc-body:after{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:multiply;
  background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(110,70,25,.22) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
-.atr-decl .sc-body:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+.atr-decl .sc-body:before{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
  background:radial-gradient(60% 40% at 35% 25%,rgba(255,248,225,.55),transparent 70%)}
 .atr-decl .line input{position:relative;z-index:3}
 .atr-decl .btn{position:relative;z-index:3}
