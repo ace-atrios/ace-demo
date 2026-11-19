@@ -6,30 +6,30 @@
 body{margin:0;background:#0f1a14}
 /* ===== ATRIOS "MAKE AN INTRO" (scoped .atr-mi) ===== */
 .atr-mi{--ink:#2e1f0e;--ink2:#5a4126;--gold:#c9a24a;--cream:#f4ead2;--mut:rgba(244,234,210,.62);
- color:var(--cream);font-family:Inter,system-ui,sans-serif;padding:64px 24px 110px;max-width:1040px;margin:0 auto}
+ color:var(--cream);font-family:Inter,system-ui,sans-serif;padding:22px 24px 110px;max-width:1040px;margin:0 auto}
 .atr-mi *{box-sizing:border-box}
 /* hero */
-.atr-mi .hero{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;margin-bottom:56px}
+.atr-mi .hero{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:26px}
 .atr-mi .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(201,162,74,.85);margin:0 0 10px}
-.atr-mi h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(44px,6.4vw,74px);line-height:1.02;margin:0;letter-spacing:-.01em}
+.atr-mi h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(42px,5.6vw,66px);line-height:1.02;margin:0;letter-spacing:-.01em}
 .atr-mi h1 i{color:var(--gold);font-style:normal}
-.atr-mi .lede{color:var(--mut);font-size:16px;line-height:1.6;max-width:480px;margin:16px 0 0}
-.atr-mi .hang{position:relative;padding-top:58px;width:clamp(170px,22vw,230px)}
-.atr-mi .hang svg{position:absolute;top:0;left:0;width:100%;height:64px;overflow:visible}
-.atr-mi .frame{position:relative;aspect-ratio:4/5;padding:13px;border-radius:3px;
+.atr-mi .lede{color:var(--mut);font-size:15px;line-height:1.55;max-width:480px;margin:10px 0 0}
+.atr-mi .hang{position:relative;padding-top:34px;width:clamp(120px,13vw,150px)}
+.atr-mi .hang svg{position:absolute;top:0;left:0;width:100%;height:38px;overflow:visible}
+.atr-mi .frame{position:relative;aspect-ratio:388/546;padding:11px;border-radius:3px;
  background:linear-gradient(135deg,#f7e2a1 0%,#a57a25 18%,#f2d68a 32%,#7a5716 50%,#e9c977 66%,#8d6420 82%,#f5dd98 100%);
  box-shadow:0 26px 40px rgba(0,0,0,.55),0 4px 10px rgba(0,0,0,.4),inset 0 0 0 2px rgba(70,45,8,.6),inset 0 0 0 5px rgba(255,236,170,.35)}
 .atr-mi .frame:before{content:"";position:absolute;inset:6px;border:1.5px solid rgba(60,38,6,.55);border-radius:2px;pointer-events:none}
 .atr-mi .frame img{width:100%;height:100%;object-fit:cover;display:block;box-shadow:inset 0 0 18px rgba(0,0,0,.6);border:2px solid #3a2808}
 /* steps */
-.atr-mi .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);position:relative;margin-bottom:64px}
+.atr-mi .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);position:relative;margin-bottom:26px}
 .atr-mi .steps:before{content:"";position:absolute;top:8px;left:8px;right:0;height:1px;background:linear-gradient(90deg,rgba(201,162,74,.5),rgba(201,162,74,.15))}
-.atr-mi .st .dia{width:14px;height:14px;transform:rotate(45deg);border:1.5px solid var(--gold);background:#0f1a14;position:relative;margin-bottom:22px;margin-left:1px}
-.atr-mi .st .num{font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums}
-.atr-mi .st h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;line-height:1.15;margin:10px 0 10px}
-.atr-mi .st p{color:var(--mut);font-size:14.5px;line-height:1.6;margin:0}
-.atr-mi .ways{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
-.atr-mi .ways li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--cream);background:rgba(201,162,74,.07);border:1px solid rgba(201,162,74,.28);border-radius:10px;padding:9px 12px}
+.atr-mi .st .dia{width:14px;height:14px;transform:rotate(45deg);border:1.5px solid var(--gold);background:#0f1a14;position:relative;margin-bottom:12px;margin-left:1px}
+.atr-mi .st .num{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums}
+.atr-mi .st h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;line-height:1.15;margin:4px 0 6px}
+.atr-mi .st p{color:var(--mut);font-size:14px;line-height:1.5;margin:0}
+.atr-mi .ways{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:5px}
+.atr-mi .ways li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--cream);background:rgba(201,162,74,.07);border:1px solid rgba(201,162,74,.28);border-radius:9px;padding:6px 11px}
 .atr-mi .ways b{font-weight:600}
 .atr-mi .ways .ic{color:var(--gold);flex:none;width:16px;text-align:center}
 .atr-mi .ways a{color:var(--gold)}
@@ -100,7 +100,7 @@ body{margin:0;background:#0f1a14}
   </div>
   <div class="hang">
    <svg viewBox="0 0 100 64" preserveAspectRatio="none"><path d="M18 64 L50 10 L82 64" fill="none" stroke="#a88337" stroke-width="1.2"/><circle cx="50" cy="9" r="4.5" fill="#c9a24a" stroke="#6d5016"/></svg>
-   <div class="frame"><img src="https://ace-atrios.github.io/ace-demo/img/ren7/whisper.webp" alt="Two noblewomen sharing a secret, one holding a sealed letter"></div>
+   <div class="frame"><img src="https://ace-atrios.github.io/ace-demo/img/ren7/whisper2.webp" alt="Two women sharing a secret over a sealed letter"></div>
   </div>
  </div>
 
@@ -118,13 +118,12 @@ body{margin:0;background:#0f1a14}
     <li><span class="ic">✉</span><span><b>Email an intro</b> and cc <a href="mailto:ace@atrios.com">ace@atrios.com</a></span></li>
     <li><span class="ic">❦</span><span><b>Share your perks page</b> so they can pick</span></li>
    </ul>
-   <p style="margin-top:10px">Ace handles the rest and books the call.</p>
+   <p style="margin-top:6px">Ace handles the rest and books the call.</p>
   </div>
   <div class="st">
    <div class="dia"></div><div class="num">III</div>
    <h3>You both get rewarded</h3>
    <p>Once the call is held, you and your friend each get paid within 14 days. Some companies add a bonus if they sign.</p>
-   <div class="both"><span><b>You</b>get paid</span><span><b>Your friend</b>gets paid</span></div>
   </div>
  </div>
 
