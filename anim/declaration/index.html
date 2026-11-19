@@ -20,14 +20,14 @@ body{margin:0;background:#0f1a14}
 .atr-decl .orn:before,.atr-decl .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
 .atr-decl .txt p{font-size:clamp(17px,2.15vw,21px);line-height:1.62;margin:0 0 16px;text-align:justify;hyphens:auto}
 .atr-decl .txt p.lead:first-letter{font-family:'UnifrakturMaguntia',serif;float:left;font-size:3.4em;line-height:.82;padding:6px 10px 0 0;color:#6b1d12}
-.atr-decl .txt p.strong{font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
+.atr-decl .txt p.strong{hyphens:manual;font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
 .atr-decl .txt p.last{text-align:center;font-size:clamp(19px,2.4vw,23px);margin-top:24px}
 /* founder block */
 .atr-decl .fd{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,36px);align-items:center;margin:34px 0 8px}
 .atr-decl .pt{width:clamp(130px,22vw,200px);aspect-ratio:4/5;border-radius:50%/42%;padding:7px;background:linear-gradient(145deg,#f2d991,#9c7424 45%,#f6e3a6 60%,#7c5a17);box-shadow:0 10px 22px rgba(40,25,5,.45),inset 0 0 0 1px rgba(255,240,200,.5)}
 .atr-decl .pt img{width:100%;height:100%;object-fit:cover;border-radius:50%/42%;display:block;filter:sepia(.18) contrast(1.03)}
 .atr-decl .sig{position:relative}
-.atr-decl .hancock{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(70px,13vw,132px);line-height:.9;color:#1d140a;white-space:nowrap;display:inline-block;transform:rotate(-4deg);transform-origin:left;
+.atr-decl .hancock{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(64px,12vw,116px);line-height:.9;color:#1d140a;white-space:nowrap;display:inline-block;transform:rotate(-4deg);transform-origin:left;
   clip-path:inset(-30% 100% -30% 0);transition:clip-path 2.4s cubic-bezier(.6,.05,.3,1)}
 .atr-decl .flour{display:block;width:min(100%,430px);height:44px;margin-top:-14px;overflow:visible}
 .atr-decl .flour path{fill:none;stroke:#1d140a;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.4s 2.1s ease-out}
@@ -48,7 +48,7 @@ body{margin:0;background:#0f1a14}
   background:linear-gradient(180deg,#f3d98e,#c9a24a 55%,#a9822f);box-shadow:0 6px 16px rgba(60,35,5,.35),inset 0 1px 0 rgba(255,250,220,.7);transition:transform .2s,box-shadow .2s}
 .atr-decl .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(60,35,5,.42),inset 0 1px 0 rgba(255,250,220,.7)}
 .atr-decl .signed{font-style:italic;color:#6b1d12;min-height:22px;margin-top:10px;font-size:16px}
-@media(max-width:560px){.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
+@media(max-width:560px){.atr-decl{padding:40px 8px 64px}.atr-decl .sc-body{padding:14px 13% 8px}.atr-decl .sub{letter-spacing:.14em}.atr-decl .txt p{hyphens:manual}.atr-decl .txt p.lead:first-letter{font-size:2.9em}.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
 </style></head><body>
 <!-- ===== ATRIOS DECLARATION MARKUP ===== -->
 <section class="atr-decl" id="atrDecl">
