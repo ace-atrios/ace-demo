@@ -50,11 +50,13 @@ body{margin:0;background:#0f1a14}
 .atr-decl .signed{font-style:italic;color:#6b1d12;min-height:22px;margin-top:10px;font-size:16px}
 
 /* photoreal ink + lighting */
+.atr-decl .kick,.atr-decl .sub,.atr-decl h2,.atr-decl .txt,.atr-decl .who,.atr-decl .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap{filter:url(#atrInk)}
+.atr-decl .sc{filter:drop-shadow(0 34px 34px rgba(0,0,0,.6)) drop-shadow(0 6px 8px rgba(0,0,0,.4))}
 .atr-decl .sc-body{position:relative}
 .atr-decl .sc-body>*{position:relative;z-index:1}
 .atr-decl .sc-body .kick,.atr-decl .sc-body .sub,.atr-decl .sc-body h2,.atr-decl .sc-body .txt,.atr-decl .sc-body .who,.atr-decl .sc-body .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap,.atr-decl .hancock,.atr-decl .flour,.atr-decl .signed{mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55),0 .4px .9px rgba(70,40,10,.25)}
 .atr-decl .sc-body:after{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:multiply;
- background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(110,70,25,.22) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
+ background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(95,55,15,.34) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
 .atr-decl .sc-body:before{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
  background:radial-gradient(60% 40% at 35% 25%,rgba(255,248,225,.55),transparent 70%)}
 .atr-decl .line input{position:relative;z-index:3}
@@ -62,7 +64,7 @@ body{margin:0;background:#0f1a14}
 @media(max-width:560px){.atr-decl{padding:40px 8px 64px}.atr-decl .sc-body{padding:14px 13% 8px}.atr-decl .sub{letter-spacing:.14em}.atr-decl .txt p{hyphens:manual}.atr-decl .txt p.lead:first-letter{font-size:2.9em}.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
 </style></head><body>
 <!-- ===== ATRIOS DECLARATION MARKUP ===== -->
-<section class="atr-decl" id="atrDecl">
+<section class="atr-decl" id="atrDecl"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="atrInk" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg>
  <div class="sc">
   <div class="sc-top"></div>
   <div class="sc-body">
