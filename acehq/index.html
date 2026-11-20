@@ -266,6 +266,15 @@ body.navopen::after{content:"";position:fixed;inset:0;background:rgba(14,39,35,.
 .srch:focus-within,.askbar:focus-within{box-shadow:0 0 0 2px var(--deep,#1a4d36)}
 .kpi,td,.num,.pstat{font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* polish-1120: align HQ to Atrios design system */
+:root{--forest:#05483A;--deep:#0E2723;--gold:#A07842;--gold2:#C9A96E;--bg:#FAF8F5;--tint:#FFF4DE;--body:#221D1B;--muted:#757575;--card:#FFFFFF;--line:#E8DFC8;--red:#981B1B;--serif:'Nanum Myeongjo',Georgia,serif}
+body{background:var(--bg);color:var(--body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:var(--serif);letter-spacing:-.01em;text-wrap:balance}
+.card,.kpi,.vc,.wf,.pstat{border:1px solid var(--line)!important;border-radius:12px!important;box-shadow:0 1px 2px rgba(0,0,0,.05)!important;transition:box-shadow .15s ease,transform .15s ease,border-color .15s ease}
+.card:hover,.kpi:hover,.vc:hover,.wf:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.08)!important;border-color:#D9CBA8!important}
+.srch{border:1px solid var(--line)!important;border-radius:12px!important;background:#fff!important}
+p,li{line-height:1.55}
 </style></head><body>
 <div id="gate"><form id="gf"><img src="logo-dark.svg" alt="Atrios" height="26" style="height:26px"><h3>Ace HQ</h3><div class="sub" style="margin:6px auto">Same passcode as the Ace Inbox.</div><input id="pc" inputmode="numeric" maxlength="6" autocomplete="off"><button>Open</button><div id="ge" style="color:var(--red);margin-top:8px"></div></form></div>
 <div class="app"><aside class="rail" id="rail"></aside><div class="page"><div class="top"><button class="btn ghost" id="mnav" aria-label="Menu">☰</button><span class="chip" id="upd"></span><button class="btn ghost" id="dlall">⬇ Download all</button><button class="btn ghost" id="refresh">↻ Refresh</button><button class="btn ghost" id="lock">🔒 Lock</button></div><div class="wrapc" id="main"></div></div></div>
