@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your briefing: Rho · Atrios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IM+Fell+English:ital@0;1&family=Mrs+Saint+Delafield&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a1d10;--gold:#c9a24a;--gold2:#e8cf8a;--cream:#f4ead2;--red:#8e1f17}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:#0b1712 url(../a/bg_impasto.jpg) center/cover;color:var(--cream);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(13,28,22,.3),rgba(6,12,9,.88) 78%);pointer-events:none}
+.app{position:relative;height:100vh;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(10px,2.2vh,22px) clamp(12px,3vw,32px)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font:600 clamp(18px,2.4vh,24px)/1 "Cormorant Garamond";letter-spacing:.02em}
+.brand i{width:34px;height:34px;background:url(../a/wax_a.webp) center/contain no-repeat;display:inline-block}
+.reward{font:500 13px/1.2 Inter;color:var(--gold2);border:1px solid rgba(201,162,74,.5);border-radius:999px;padding:8px 14px;background:rgba(201,162,74,.1);font-variant-numeric:lining-nums;display:flex;gap:8px;align-items:center}
+.reward b{font:600 13px Inter;color:var(--gold2)}
+.stage{position:relative;overflow:hidden;margin:clamp(8px,1.6vh,16px) 0}
+.track{display:flex;height:100%;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.slide{flex:0 0 100%;height:100%;display:grid;place-items:center;padding:0 clamp(0px,1vw,8px)}
+.card{position:relative;width:min(1100px,100%);height:100%;max-height:760px;color:var(--ink);background:url(../a/scroll_mid.webp) center/100% 100% no-repeat;padding:clamp(30px,5.5vh,56px) clamp(24px,6%,72px);display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.card:before,.card:after{content:"";position:absolute;left:-1%;right:-1%;height:clamp(22px,4vh,40px);background:center/100% 100% no-repeat;z-index:2}
+.card:before{top:0;background-image:url(../a/scroll_top.webp)}
+.card:after{bottom:0;background-image:url(../a/scroll_bot.webp)}
+.num{font:600 clamp(11px,1.4vh,13px)/1 Inter;letter-spacing:.28em;color:var(--red);text-transform:uppercase}
+h1,h2{font-family:"Cormorant Garamond",serif;font-weight:600;margin:0;font-variant-numeric:lining-nums;color:#22160a}
+h1{font-size:clamp(30px,5.6vh,58px);line-height:1.04}
+h2{font-size:clamp(26px,4.4vh,44px);line-height:1.08;margin:8px 0 clamp(10px,2vh,18px)}
+h1 em,h2 em{font-style:italic;color:#8a5a14}
+p,li{font:400 clamp(14px,2vh,18px)/1.5 "IM Fell English",serif;color:#3a2a17;margin:0}
+p+p{margin-top:10px}
+b{font-family:"Cormorant Garamond";font-weight:700;font-size:1.1em;color:#22160a}
+ul{list-style:none;padding:0;margin:0}
+li{position:relative;padding:clamp(6px,1.2vh,11px) 0 clamp(6px,1.2vh,11px) 28px;border-top:1px solid rgba(90,60,25,.18)}
+li:first-child{border-top:0}
+li:before{content:"✦";position:absolute;left:2px;top:clamp(7px,1.3vh,12px);color:#a8741f;font-size:14px}
+.split{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(18px,4vw,48px);align-items:center}
+.frame{position:relative;width:100%;max-width:290px;aspect-ratio:4/5;max-height:52vh;margin:0 auto;border:solid transparent;border-width:clamp(18px,3.2vh,34px);border-image:url(../a/frame43.webp) 222 212 232 212 stretch;background:#1a120a;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.who{text-align:center;margin-top:10px}
+.who .nm{font:700 clamp(20px,2.8vh,26px)/1.1 "Cormorant Garamond";color:#22160a}
+.who .rl{font:italic clamp(13px,1.8vh,15px)/1.35 "IM Fell English";color:#5a4222}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(12px,2.4vh,22px)}
+.pill{border:1px solid rgba(138,90,20,.45);border-radius:999px;padding:8px 14px;font:500 clamp(12px,1.6vh,14px)/1 Inter;color:#3a2a17;background:rgba(255,248,228,.5);font-variant-numeric:lining-nums}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:clamp(12px,2.4vh,22px)}
+.how>div,.stat{border:1px solid rgba(138,90,20,.35);border-radius:4px;padding:clamp(10px,1.8vh,16px);background:rgba(255,248,228,.35)}
+.how .k{font:700 clamp(22px,3.4vh,30px)/1 "Cormorant Garamond";color:#6b3f0c}
+.how .t,.stat .l{font:italic clamp(13px,1.8vh,15px)/1.35 "IM Fell English";color:#4a3519;margin-top:5px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 clamp(12px,2.2vh,20px)}
+.stat .v{font:700 clamp(26px,4.4vh,40px)/1 "Cormorant Garamond";color:#6b3f0c;font-variant-numeric:lining-nums}
+.logos{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.logos span{font:600 clamp(13px,1.8vh,15px)/1 Inter;color:#3a2a17;border:1px solid rgba(138,90,20,.4);border-radius:999px;padding:9px 14px;background:rgba(255,248,228,.5)}
+.logos .more{font:italic 400 clamp(13px,1.8vh,15px)/1 "IM Fell English"}
+.callout{margin-top:clamp(10px,2vh,16px);padding:10px 14px;border-left:3px solid var(--red);background:rgba(142,31,23,.06);font:italic clamp(14px,1.9vh,16px)/1.45 "IM Fell English";color:#3a2316}
+.src{font:11px/1.4 Inter;color:#7a6142;margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,40px)}
+.sign{text-align:center;align-items:center}
+.checks{display:flex;flex-direction:column;gap:6px;text-align:left;margin:4px auto 0}
+.checks label{font:clamp(14px,1.9vh,16px)/1.4 "IM Fell English";color:#3a2a17;display:flex;gap:10px;cursor:pointer}
+.checks input{width:18px;height:18px;margin-top:2px;accent-color:#8e1f17}
+.sign input[type=text]{margin-top:clamp(10px,2vh,16px);width:min(340px,100%);padding:11px 14px;border-radius:6px;border:1px solid rgba(90,61,26,.5);background:rgba(255,250,236,.85);font:500 15px Inter;color:#22160a;text-align:center}
+.line{position:relative;width:min(480px,100%);margin:clamp(6px,1.4vh,12px) auto 4px;height:clamp(52px,8.5vh,74px);border-bottom:1.5px solid #5a3d1a}
+.sig{position:absolute;left:0;right:0;bottom:4px;font:400 clamp(40px,7vh,60px)/1 "Mrs Saint Delafield",cursive;color:#1f2c5a;clip-path:inset(0 100% 0 0);transition:clip-path 1.4s ease}
+.sig.on{clip-path:inset(0 0 0 0)}
+.under{display:flex;justify-content:space-between;width:min(480px,100%);margin:0 auto;font:italic 13px/1.4 "IM Fell English";color:#5a4222}
+.sealed{display:none;margin-top:10px;align-items:center;justify-content:center;gap:12px;font:italic clamp(15px,2.2vh,19px)/1.4 "IM Fell English";color:#3a2316}
+.sealed.on{display:flex}
+.sealed i{width:58px;height:58px;background:url(../a/wax_a.webp) center/contain no-repeat;display:inline-block;animation:stamp .5s ease-out}
+@keyframes stamp{from{transform:scale(1.8) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+.lockmsg{font:italic 14px "IM Fell English";color:#8e1f17;margin-top:8px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dots{display:flex;gap:clamp(4px,1vw,10px);flex-wrap:wrap;justify-content:center;flex:1}
+.dot{display:flex;align-items:center;gap:7px;border:1px solid rgba(201,162,74,.35);border-radius:999px;padding:7px 12px;background:rgba(10,20,15,.55);color:#cdbb92;font:500 12px/1 Inter;cursor:pointer;transition:all .3s}
+.dot b{font:600 12px Inter;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:rgba(201,162,74,.18);color:var(--gold2)}
+.dot.seen b{background:var(--gold);color:#1b1206}
+.dot.on{border-color:var(--gold);color:var(--gold2);background:rgba(201,162,74,.16)}
+.dot.locked{opacity:.45;cursor:not-allowed}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:12px 22px;font:600 14px/1 Inter;color:#1b1206;background:linear-gradient(180deg,#f3dc93,#c9a24a 55%,#a9822f);box-shadow:0 6px 18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.6);white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--gold2);border:1px solid rgba(201,162,74,.5);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+@media (max-width:760px){
+ .split,.two{grid-template-columns:1fr}.frame{max-width:140px}.dot .lbl{display:none}
+ .card{max-height:none;overflow:auto;justify-content:flex-start}
+ .how>div,.stat{padding:8px}.how .t,.stat .l{font-size:12px}.reward span:last-child{font-size:12px}
+}
+</style></head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand"><i></i>Atrios</div>
+    <div class="reward" id="reward"><span>🔒</span><span><b>$330</b> unlocks when you read all 5 and sign</span></div>
+  </div>
+  <div class="stage"><div class="track" id="track">
+    <section class="slide"><div class="card">
+      <div class="num">1 of 5 · Welcome</div>
+      <h1 style="margin-top:8px">Erik, you're meeting <em>Rho</em> on Monday.</h1>
+      <p style="margin-top:clamp(10px,2vh,16px);max-width:780px"><b>What is Atrios?</b> Atrios matches founders and operators with companies that fit what they're building, and pays you for your time to take a 30-minute call with them. No obligation to buy. Just an honest conversation and honest feedback.</p>
+      <div class="how">
+        <div><div class="k">I</div><div class="t">We matched SubBase with Rho based on your stage and needs</div></div>
+        <div><div class="k">II</div><div class="t">Read this 2-minute briefing and sign at the end</div></div>
+        <div><div class="k">III</div><div class="t">Take the call, share feedback, get your $330</div></div>
+      </div>
+      <div class="pills"><span class="pill">Mon, Nov 23 · 4:30 PM ET</span><span class="pill">30 min · Google Meet</span><span class="pill">with Dylan Johnson</span></div>
+    </div></section>
+    <section class="slide"><div class="card"><div class="split">
+      <div><div class="frame"><img src="../a/ae_portrait.webp" alt="Dylan Johnson"></div>
+        <div class="who"><div class="nm">Dylan Johnson</div><div class="rl">Senior Advisor, Startup Banking · Rho, New York</div></div></div>
+      <div>
+        <div class="num">2 of 5 · Who you're meeting</div>
+        <h2>What you and <em>Dylan</em> share</h2>
+        <ul>
+          <li><b>Both of you started at venture-backed startups.</b> You helped Route raise $250M+ across Series A–C; Dylan started in sales at Axion Ray.</li>
+          <li><b>Both of you build on the side.</b> You host a podcast; Dylan runs DJ Squared Entertainment and invests in hospitality.</li>
+          <li><b>Both of you are data and automation people.</b> You built Route's forecasting in SQL and Tableau; Dylan writes about using AI to find opportunities in past deals.</li>
+        </ul>
+      </div>
+    </div></div></section>
+    <section class="slide"><div class="card">
+      <div class="num">3 of 5 · Why Rho, for SubBase</div>
+      <h2>Why it's worth <em>your</em> thirty minutes</h2>
+      <div class="two">
+        <div>
+          <p>SubBase just closed a <b>$7M Series A</b> (FINTOP, Fika Ventures, June 2026) and is hiring across product, engineering, sales and success, with a team across the US, Brazil and Canada. That's the moment a finance lead rethinks where the cash sits and how money moves.</p>
+          <div class="callout">You own finance and ops. The question for the call: can one platform run banking, treasury, cards and bill pay without adding work?</div>
+        </div>
+        <ul>
+          <li><b>Put the raise to work.</b> Treasury earns yield on idle cash, in the same place you bank.</li>
+          <li><b>Cards for a distributed team.</b> Per-person limits and receipts captured automatically.</li>
+          <li><b>Bill pay and invoicing built in.</b> Synced to your accounting system.</li>
+          <li><b>Perks you'd buy anyway.</b> 50+ in Rho's AI Stack: Anthropic, ElevenLabs, Supabase, Notion, AWS.</li>
+        </ul>
+      </div>
+    </div></section>
+    <section class="slide"><div class="card">
+      <div class="num">4 of 5 · The company behind the call</div>
+      <h2>Who backs Rho, and who <em>banks</em> there</h2>
+      <div class="stats">
+        <div class="stat"><div class="v">$75M</div><div class="l">Series B, led by Dragoneer and DFJ Growth</div></div>
+        <div class="stat"><div class="v">$205M+</div><div class="l">raised in equity and debt</div></div>
+        <div class="stat"><div class="v">NYC</div><div class="l">founded by Everett Cook &amp; Alex Wheldon</div></div>
+      </div>
+      <p>Earlier investors include <b>M13</b> (led the Series A), <b>Inspired Capital</b> and <b>Torch Capital</b>. Rho's sweet spot is teams of 30 to 500, where banking, cards and AP start to sprawl.</p>
+      <div class="logos"><span>Perplexity</span><span>Cal.com</span><span class="more">and thousands of startups</span></div>
+      <p class="src">Sources: TechCrunch (Dec 2021), M13, DFJ Growth.</p>
+    </div></section>
+    <section class="slide"><div class="card sign">
+      <div class="num">5 of 5 · Your seal</div>
+      <h2>Sign to unlock your <em>$330</em></h2>
+      <div class="checks">
+        <label><input type="checkbox" class="ck"> I know who I'm meeting and why</label>
+        <label><input type="checkbox" class="ck"> I'll join on time, camera on</label>
+        <label><input type="checkbox" class="ck"> I'll give Dylan honest feedback and next steps</label>
+      </div>
+      <input type="text" id="nm" placeholder="Type your full name" autocomplete="name">
+      <div class="line"><div class="sig" id="sig"></div></div>
+      <div class="under"><span>Signature</span><span id="dt"></span></div>
+      <div style="margin-top:12px"><button class="btn" id="go" disabled>Sign &amp; seal</button></div>
+      <div class="lockmsg" id="lockmsg">Read slides 1–4 first to sign.</div>
+      <div class="sealed" id="sealed"><i></i><span>Sealed. Your $330 is locked in for Monday's call.</span></div>
+    </div></section>
+  </div></div>
+  <div class="nav">
+    <button class="btn ghost" id="prev">← Back</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn" id="next">Next →</button>
+  </div>
+</div>
+<script>
+const names=['Welcome','Who','Why Rho','Backers','Sign'];
+const track=document.getElementById('track'),dotsEl=document.getElementById('dots'),prev=document.getElementById('prev'),next=document.getElementById('next');
+let i=0;const seen=new Set([0]);
+names.forEach((n,k)=>{const d=document.createElement('div');d.className='dot';d.innerHTML='<b>'+(k+1)+'</b><span class="lbl">'+n+'</span>';d.onclick=()=>{if(k===4&&!readAll())return;go(k)};dotsEl.appendChild(d)});
+function readAll(){return [0,1,2,3].every(k=>seen.has(k))}
+function go(k){i=Math.max(0,Math.min(4,k));seen.add(i);track.style.transform='translateX(-'+(i*100)+'%)';render()}
+function render(){[...dotsEl.children].forEach((d,k)=>{d.classList.toggle('on',k===i);d.classList.toggle('seen',seen.has(k)&&k!==i);d.classList.toggle('locked',k===4&&!readAll())});
+ prev.disabled=i===0;next.style.visibility=i===4?'hidden':'visible';next.textContent=i===3?'Sign →':'Next →';
+ document.getElementById('lockmsg').style.display=readAll()?'none':'block';upd()}
+prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+let sx=null;track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});track.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(i+(dx<0?1:-1));sx=null});
+const nm=document.getElementById('nm'),gobtn=document.getElementById('go'),sig=document.getElementById('sig'),cks=[...document.querySelectorAll('.ck')];
+document.getElementById('dt').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+function upd(){gobtn.disabled=!(readAll()&&nm.value.trim().length>2&&cks.every(c=>c.checked))}
+nm.addEventListener('input',upd);cks.forEach(c=>c.addEventListener('change',upd));
+gobtn.onclick=()=>{sig.textContent=nm.value.trim();sig.classList.add('on');setTimeout(()=>{document.getElementById('sealed').classList.add('on');gobtn.style.display='none';nm.disabled=true;cks.forEach(c=>c.disabled=true);
+ document.getElementById('reward').innerHTML='<span>✅</span><span><b>$330</b> locked in. See you Monday.</span>';
+ document.dispatchEvent(new CustomEvent('atrios:briefing-signed',{detail:{name:nm.value.trim()}}))},1300)};
+render();
+</script>
+</body></html>
