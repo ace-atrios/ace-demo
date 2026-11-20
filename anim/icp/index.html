@@ -203,7 +203,7 @@ const icp=document.getElementById('atrIcp');
 onView(icp,async done=>{
   const sig=icp.querySelector('#iSig'),sc=icp.querySelector('#iScore'),lis=[...icp.querySelectorAll('.i-icp li')],rows=[...icp.querySelectorAll('.i-lr:not(.i-lh)')];
   lis.forEach(l=>l.classList.remove('on'));rows.forEach(r=>r.classList.add('wait'));
-  const t0=performance.now();await new Promise(res=>{const f=t=>{const k=Math.max(0,Math.min(1,(t-t0)/500)),e=1-Math.pow(1-k,3);sig.textContent=Math.round(4812*e).toLocaleString();sc.innerHTML=Math.round(94*e)+'<small>/100</small>';k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
+  const t0=performance.now();await new Promise(res=>{const f=t=>{const k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);sig.textContent=Math.round(4812*e).toLocaleString();sc.innerHTML=Math.round(94*e)+'<small>/100</small>';k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
   for(const l of lis){l.classList.add('on');await wait(50)}
   for(const r of rows){r.classList.remove('wait');if(r.classList.contains('ok')){r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash')}await wait(110)}
   await wait(200);done();

@@ -103,7 +103,7 @@ function start(){
   const tag=(x,y,a)=>{if(a<=0)return;tctx.save();tctx.globalAlpha=a;tctx.font='italic 600 26px "Cormorant Garamond",serif';const lb='✓ New customer',tw=tctx.measureText(lb).width,bx=x+14,by=y-40,bw=tw+26,bh=34;
     const g=tctx.createLinearGradient(bx,by,bx,by+bh);g.addColorStop(0,'#f4e8cc');g.addColorStop(1,'#dcc79c');tctx.fillStyle=g;tctx.shadowColor='rgba(0,0,0,.55)';tctx.shadowBlur=10;tctx.shadowOffsetY=3;tctx.fillRect(bx,by,bw,bh);
     tctx.shadowBlur=0;tctx.shadowOffsetY=0;tctx.strokeStyle='rgba(120,80,30,.6)';tctx.lineWidth=1.2;tctx.strokeRect(bx+.5,by+.5,bw-1,bh-1);tctx.fillStyle='#3a260c';tctx.fillText(lb,bx+13,by+24);tctx.restore()};
-  const draw=t=>{const e=Math.max(0,(t-t0)/1000);ctx.clearRect(0,0,W,H);tctx.clearRect(0,0,W,H);
+  const draw=t=>{const e=(t-t0)/1000;ctx.clearRect(0,0,W,H);tctx.clearRect(0,0,W,H);
     hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.06-k*0.065)/0.15));if(f<=0)return;
       ctx.strokeStyle='rgba(217,183,122,'+(0.55*f)+')';ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
       const pp=((e*1.2+k*0.13)%1);ctx.fillStyle='rgba(243,217,160,.95)';ctx.beginPath();ctx.arc(cx+(h.x-cx)*pp,cy+(h.y-cy)*pp,3,0,7);ctx.fill();

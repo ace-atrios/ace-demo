@@ -49,7 +49,7 @@ document.querySelectorAll('.atr-earn').forEach(root=>{
     if(animate) c.animate([{transform:'translateY(-160%) rotate(-8deg)'},{transform:'translateY(5%) rotate(2deg)',offset:.75},{transform:'translateY(-3%)',offset:.88},{transform:'none'}],{duration:520,easing:'cubic-bezier(.3,.6,.4,1)'});
     return c;
   }
-  function tick(from,to){const t0=performance.now(),d=600;(function f(t){const p=Math.max(0,Math.min(1,(t-t0)/d));totalEl.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+  function tick(from,to){const t0=performance.now(),d=600;(function f(t){const p=Math.min(1,(t-t0)/d);totalEl.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
   function drop(){
     if(busy) return; busy=true;
     if(total>=target){setTimeout(()=>{scene.animate([{opacity:1},{opacity:0},{opacity:1}],{duration:900});setTimeout(()=>{build();busy=false},450)},2200);return}
