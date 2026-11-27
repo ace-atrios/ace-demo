@@ -1,0 +1,153 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ace Inbox"><meta name="theme-color" content="#0E2723">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-180.png">
+<title>Ace Inbox</title>
+<style>
+:root{--bg:#0b1f1b;--card:#12302a;--line:rgba(255,255,255,.08);--ink:#fff4de;--body:rgba(255,244,222,.82);--muted:rgba(255,244,222,.55);--gold:#c9a96e;--gold2:#e2c48b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:var(--apph,100%);background:var(--bg);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;overscroll-behavior:none}
+.view{position:fixed;top:0;left:0;right:0;height:var(--apph,100%);display:flex;flex-direction:column;transition:transform .28s ease}
+#thread{transform:translateX(100%);background:var(--bg)}
+body.open #thread{transform:none}body.open #home{transform:translateX(-25%)}
+header{padding:calc(env(safe-area-inset-top) + 10px) 16px 10px;background:rgba(11,31,27,.96);border-bottom:1px solid var(--line);flex:none}
+h1{font:600 28px/1.1 -apple-system,Inter,sans-serif;margin:4px 0 10px;letter-spacing:-.02em}
+.upd{font-size:11.5px;color:var(--muted)}
+.search{width:100%;padding:10px 12px;border-radius:12px;border:0;background:rgba(255,255,255,.08);color:var(--ink);font-size:16px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);font-size:13px}
+.chip{position:relative}.chip select{position:absolute;inset:0;opacity:0;width:100%;font-size:16px}.cnt{flex:none;align-self:center;font-size:12px;color:var(--muted);padding-left:4px}
+.chip.on{background:var(--gold);color:#06140f;border-color:var(--gold);font-weight:600}
+.list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:env(safe-area-inset-bottom)}
+.row{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.row:active{background:rgba(255,255,255,.05)}
+.av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:#1c4a40;color:var(--gold2);font-weight:600;font-size:15px}
+.rt{flex:1;min-width:0}
+.r1{display:flex;justify-content:space-between;gap:8px}.r1 b{font-weight:600;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.r1 span{font-size:12.5px;color:var(--muted);flex:none}
+.r2{display:flex;gap:6px;align-items:center;margin:3px 0 2px;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden}
+.pill{padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:600;letter-spacing:.03em}
+.OPEN{background:rgba(124,196,154,.18);color:#9fdcb8}.BOOKED{background:rgba(201,169,110,.25);color:var(--gold2)}.GHOSTED{background:rgba(255,255,255,.1);color:var(--muted)}.REJECTED,.UNRESPONSIVE{background:rgba(220,90,90,.2);color:#f0a0a0}
+.r3{font-size:13.5px;color:var(--body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.th{display:flex;align-items:center;gap:10px}
+.back{font-size:17px;color:var(--gold2);background:none;border:0;padding:4px 6px 4px 0}
+.tt{flex:1;min-width:0}.tt b{display:block;font-size:16.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tt span{font-size:12px;color:var(--muted)}
+.meta{font-size:12px;color:var(--muted);margin-top:6px}.meta .nx{color:#f2b56b;font-weight:600}
+.msgs{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(env(safe-area-inset-bottom) + 20px);display:flex;flex-direction:column}
+.day{text-align:center;font-size:11.5px;color:var(--muted);margin:14px 0 8px}
+.m{display:flex;flex-direction:column;margin:4px 0;max-width:82%;align-self:flex-start}
+.m .who{font-size:11px;color:var(--muted);margin:0 10px 2px}
+.m .b{padding:9px 13px;border-radius:18px;background:var(--card);white-space:pre-wrap;word-wrap:break-word;font-size:15px;line-height:1.38}
+.m.ace{align-self:flex-end}.m.ace .who{text-align:right}.m.ace .b{background:var(--gold);color:#06140f}
+.m.staff .b{background:#20463d;border:1px solid rgba(201,169,110,.25)}
+.m .b{padding:8px 13px;border-radius:18px;background:#2a2f2d;white-space:pre-wrap;word-wrap:break-word;font-size:15px;line-height:1.36}
+.m.ace .b,.m.staff .b{background:#2f6bf0;color:#fff;border:0}
+.m.ace,.m.staff{align-self:flex-end}.m.ace .who,.m.staff .who{text-align:right}
+.em{align-self:stretch;max-width:100%;margin:6px 0;background:#f7f7f5;color:#1d1d1f;border-radius:12px;padding:12px 14px;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.em .eh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.em .ea{width:32px;height:32px;border-radius:50%;background:#c9a96e;color:#06140f;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.em .en{flex:1;min-width:0}.em .en b{font-size:14.5px}.em .en div{font-size:12px;color:#6b6b70;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.em .et{font-size:12px;color:#6b6b70;flex:none}
+.em .eb{white-space:pre-wrap;word-wrap:break-word;font-size:14.5px;line-height:1.45}
+.em.me{background:#eef3ff}
+.chtag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.12);color:var(--muted);margin-left:4px}
+
+#thread.imv,#thread.imv .msgs{background:#000}
+#thread.imv .msgs{padding-left:10px;padding-right:10px}
+.ts{text-align:center;font-size:12px;color:#8e8e93;margin:16px 0 8px}.ts b{font-weight:600}
+.im{display:flex;flex-direction:column;margin-top:2px;max-width:78%}
+.im.first{margin-top:8px}.im.me{align-self:flex-end;align-items:flex-end}.im.them{align-self:flex-start}
+.imn{font-size:12px;color:#8e8e93;margin:0 0 2px 46px}
+.imrow{display:flex;align-items:flex-end;gap:8px}
+.ima{width:30px;height:30px;border-radius:50%;flex:none;background:#3a3a8c;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.ima:empty{background:none}
+.imb{position:relative;padding:8px 13px;border-radius:19px;font-size:16px;line-height:1.32;white-space:pre-wrap;word-wrap:break-word;background:#262628;color:#fff}
+.im.me .imb{background:#0a84ff}
+.im.them.last .imb::before{content:"";position:absolute;bottom:0;left:-6px;width:16px;height:18px;background:#262628;border-bottom-right-radius:14px}
+.im.them.last .imb::after{content:"";position:absolute;bottom:0;left:-10px;width:10px;height:18px;background:#000;border-bottom-right-radius:10px}
+.im.me.last .imb::before{content:"";position:absolute;bottom:0;right:-6px;width:16px;height:18px;background:#0a84ff;border-bottom-left-radius:14px}
+.im.me.last .imb::after{content:"";position:absolute;bottom:0;right:-10px;width:10px;height:18px;background:#000;border-bottom-left-radius:10px}
+.imb{z-index:0}.imb::before{z-index:-1}.imb::after{z-index:-1}
+.dlv{align-self:flex-end;font-size:11.5px;color:#8e8e93;margin:3px 4px 0}
+#thread.emv,#thread.emv .msgs{background:#262626}
+#thread.emv .msgs{padding:0}
+.shs{font-size:20px;font-weight:600;color:#f2f2f2;padding:14px 18px 6px;line-height:1.3}
+.sh{padding:16px 18px 18px;border-bottom:1px solid #3a3a3a;color:#ececec}
+#thread.imv .sh{background:#1c1c1e;border:1px solid #333;border-radius:14px;margin:10px 0;align-self:stretch}
+.shr{display:flex;justify-content:space-between;align-items:baseline}.shr b{font-size:16px;font-weight:600;color:#fff}.shr span{font-size:13px;color:#9a9a9a}
+.sht{font-size:13.5px;color:#9a9a9a;margin-top:3px}
+.shb{margin-top:12px;font-size:15.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+#thread.imv header{background:#0b0b0b;border-color:#222}#thread.emv header{background:#1e1e1e;border-color:#333}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+#gate{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg);z-index:9;padding:24px}
+#gate img{width:72px;height:72px;border-radius:18px}#gate input{font-size:28px;letter-spacing:.4em;text-align:center;width:220px;padding:12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink)}
+#ge{color:#f0a0a0;font-size:13px;min-height:18px}
+mark{background:var(--gold2);color:#06140f;border-radius:3px}
+</style><script>(function(){var s=navigator.standalone||matchMedia('(display-mode: standalone)').matches;function f(){var p=innerHeight>=innerWidth;var h=s?(p?Math.max(screen.height,screen.width):Math.min(screen.height,screen.width)):innerHeight;document.documentElement.style.setProperty('--apph',Math.max(h,innerHeight)+'px')}f();addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)})})();</script></head><body>
+<div id="gate"><img src="icon-180.png" alt=""><b style="font-size:20px">Ace Inbox</b><form id="gf"><input id="pc" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></form><div id="ge"></div></div>
+<section class="view" id="home"><header><div class="upd" id="upd"></div><h1>Ace Inbox</h1><input class="search" id="q" placeholder="Search people, companies, messages" type="search"><div class="chips" id="chips"></div></header><div class="list" id="list"></div></section>
+<section class="view" id="thread"><header><div class="th"><button class="back" id="back">‹ Inbox</button><div class="tt" id="tt"></div></div><div class="meta" id="meta"></div></header><div class="msgs" id="msgs"></div></section>
+<script>
+const DATA='../x7inbox/data.json';const STAFF=['Taylor','Allan','Will','Jordan','Shay'];
+let D=[],q='',fil='All',CODE=localStorage.getItem('aceapp_pc'),VER='',cur=null;
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const hl=s=>{s=esc(s);if(!q)return s;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');return s.replace(re,'<mark>$1</mark>')};
+const dt=t=>new Date(t+':00-04:00');
+const fmt=t=>{const d=dt(t),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}):d.toLocaleDateString([],{month:'short',day:'numeric'})};
+const ST=t=>{const g=(t.stage||'').toLowerCase();if(t.status&&t.status!='OPEN')return t.status;if(g.includes('book')||g.includes('call w/')||g.includes('call set'))return 'BOOKED';if(g.includes('declin')||g.includes('closed')||g.includes('reject'))return 'REJECTED';const last=t.msgs.length?dt(t.msgs[t.msgs.length-1].t):new Date();if(Date.now()-last>2*864e5)return 'GHOSTED';return 'OPEN'};
+const G=[['Status','fs',['All','OPEN','BOOKED','REJECTED','GHOSTED']],['Channel','fc',['All','Text','Email']],['Type','fty',['All','Vendor','Lead','Tastemaker','Partner']]];const FS={fs:'All',fc:'All',fty:'All'};const chOf=x=>x.ch=='email'?'Email':'Text';
+const okBy=(t,k,v)=>v=='All'||(k=='fs'?ST(t)==v:k=='fc'?chLbl(t).includes(v):t.type==v);
+const ini=n=>String(n||'?').replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'•';
+function ok(t){if(!G.every(([,k])=>okBy(t,k,FS[k])))return false;
+ if(!q)return true;const s=q.toLowerCase();return (t.name+' '+(t.co||'')+' '+(t.by||'')).toLowerCase().includes(s)||t.msgs.some(m=>(m.w+' '+m.x).toLowerCase().includes(s))}
+function chips(){document.getElementById('chips').innerHTML=G.map(([lab,k,opts])=>`<label class="chip ${FS[k]!='All'?'on':''}">${lab}${FS[k]!='All'?': '+FS[k]:''} ▾<select data-k="${k}">${opts.map(o=>`<option value="${o}" ${FS[k]==o?'selected':''}>${o=='All'?'All '+lab.toLowerCase():o} (${D.filter(x=>okBy(x,k,o)&&G.every(([,k2])=>k2==k||okBy(x,k2,FS[k2]))).length})</option>`).join('')}</select></label>`).join('')+`<span class="cnt">${D.filter(ok).length} of ${D.length}</span>`}
+function render(){const L=D.filter(ok);const el=document.getElementById('list');
+ if(!L.length){el.innerHTML='<div class="empty">No conversations</div>';return}
+ el.innerHTML=L.map(t=>{const m=t.msgs[t.msgs.length-1]||{w:'',x:'',t:''};const s=ST(t);return `<div class="row" data-k="${esc(t.k)}"><div class="av">${ini(t.name)}</div><div class="rt"><div class="r1"><b>${hl(t.name)}</b><span>${m.t?fmt(m.t):''}</span></div><div class="r2"><span class="pill ${s}">${s}</span>${t.type?`<span>${esc(t.type)}</span>`:''}${t.co?`<span>· ${hl(t.co)}</span>`:''}${t.by?`<span>· via ${esc(t.by)}</span>`:''}</div><div class="r3"><b>${esc(m.w)}:</b> ${hl(m.x)}</div></div></div>`}).join('')}
+const EMRE=/^(?:\[Email([^\]]*)\]|\(email\)|Email((?: reply-all)?(?: \([^)]*\))?):)\s*/i;const isEm=(t,m)=>t.ch=='email'||EMRE.test(m.x);
+const emParts=x=>{const r=x.match(EMRE);if(!r)return{to:'Email',body:x};const tag=((r[1]||'')+(r[2]||'')).replace(/^[,\s]+/,'').trim();let to='Email';if(/reply-all/i.test(tag))to='Reply all';else if(/^(to|cc) /i.test(tag))to=tag;else if(/^\+/.test(tag))to='Email '+tag;return{to,body:x.slice(r[0].length)}};
+const STAFF_FULL=['Allan Lvov','Taylor Offer','Will Kostrzewsky','Jordan Deasy','Shay Phillips'];const isMe=w=>w=='Ace'||STAFF.includes(w)||STAFF_FULL.includes(w);
+const chLbl=t=>{const e=t.msgs.some(m=>isEm(t,m)),x=t.ch!='email'&&t.msgs.some(m=>!EMRE.test(m.x));return e&&x?'Text + Email':e?'Email':'Text'};
+function openT(k,push=true){const t=D.find(x=>x.k==k);if(!t)return;cur=k;
+ document.getElementById('tt').innerHTML=`<b>${esc(t.name)}</b><span>${t.type&&t.type!='Email'?esc(t.type)+' · ':''}${t.co?esc(t.co)+' · ':''}${chLbl(t)}</span>`;
+ document.getElementById('meta').innerHTML=`<span class="pill ${ST(t)}">${ST(t)}</span>${t.by?' Intro by '+esc(t.by):''}${t.mark?' · '+esc(t.mark):''}${t.next?` · <span class="nx">Next follow-up ${esc(t.next)}</span>`:''}`;
+ const EV=t.ch=='email'||(t.msgs.length&&t.msgs.every(m=>isEm(t,m)));const others=[...new Set(t.msgs.filter(m=>m.w!='Ace').map(m=>m.w))];const GRP=!EV&&(others.length>1||(t.ppl||[]).length>1);
+ document.getElementById('thread').classList.toggle('emv',EV);document.getElementById('thread').classList.toggle('imv',!EV);
+ const subj=t.subj||(t.msgs.find(m=>m.subj)||{}).subj||'';
+ let h=EV&&subj?`<div class="shs">${esc(subj)}</div>`:'';let prev=null;const L=t.msgs;
+ const sep=d=>{const n=new Date(),y=new Date(n-864e5);const tm=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});const lab=d.toDateString()==n.toDateString()?'Today':d.toDateString()==y.toDateString()?'Yesterday':d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return `<div class="ts"><b>${lab}</b> ${tm}</div>`};
+ const unwrap=x=>x.split('\n').reduce((o,l,i,A)=>{const p=A[i-1];if(i&&p&&p.length>=55&&!/[.!?:)"”]\s*$/.test(p)&&l.trim()&&!/^\s*([*\-•>]|\d+[.)])\s/.test(l)&&!/[:]$/.test(p.trim()))return o+' '+l.trim();return o+(i?'\n':'')+l},'');
+ const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' & '+a[a.length-1];
+ L.forEach((m,i)=>{const d=dt(m.t);const em=isEm(t,m);
+  if(em){const e=emParts(m.x);let to='';if(m.to||m.cc){to='to '+list([...(m.to||[]),...(m.cc||[])])}else if(e.to&&e.to!='Email'){to=e.to=='Reply all'?'reply all':e.to}
+   const when=d.toLocaleDateString([],{month:'short',day:'numeric'})+', '+d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
+   h+=`<div class="sh"><div class="shr"><b>${esc(m.w)}</b><span>${when}</span></div>${to?`<div class="sht">${esc(to)}</div>`:''}<div class="shb">${hl(unwrap(e.body))}</div></div>`;prev=null;return}
+  const gap=!prev||(d-dt(prev.t))>36e5;if(gap)h+=sep(d);
+  const nx=L[i+1];const same=p=>p&&!isEm(t,p)&&p.w==m.w;const first=gap||!same(prev);const last=!same(nx)||(nx&&dt(nx.t)-d>36e5);const me=m.w=='Ace';
+  h+=`<div class="im ${me?'me':'them'}${first?' first':''}${last?' last':''}">`+(GRP&&!me&&first?`<div class="imn">${esc(m.w)}</div>`:'')+`<div class="imrow">${GRP&&!me?`<div class="ima">${last?ini(m.w):''}</div>`:''}<div class="imb" title="${d.toLocaleString()}">${hl(m.x.replace(/^\[Text\]\s*/,''))}</div></div></div>`;
+  prev=m});
+ if(L.length&&L[L.length-1].w=='Ace'&&!isEm(t,L[L.length-1]))h+='<div class="dlv">Delivered</div>';
+ const el=document.getElementById('msgs');el.innerHTML=h;document.body.classList.add('open');requestAnimationFrame(()=>{el.scrollTop=el.scrollHeight});
+ if(push)history.pushState({t:k},'')}
+function closeT(){document.body.classList.remove('open');cur=null}
+document.getElementById('list').onclick=e=>{const r=e.target.closest('.row');if(r)openT(r.dataset.k)};
+document.getElementById('chips').onchange=e=>{const t=e.target;if(!t.dataset.k)return;FS[t.dataset.k]=t.value;chips();render()};
+document.getElementById('back').onclick=()=>history.back();
+window.onpopstate=()=>closeT();
+document.getElementById('q').oninput=e=>{q=e.target.value.trim();chips();render()};
+let sx=0;const TH=document.getElementById('thread');TH.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+TH.addEventListener('touchend',e=>{if(sx<40&&e.changedTouches[0].clientX-sx>80)history.back()},{passive:true});
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function dec(B,code){try{const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(code),"PBKDF2",false,["deriveKey"]);const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(B.s),iterations:200000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(B.i)},key,b64(B.c))))}catch(e){return null}}
+async function load(first){try{const r=await fetch(DATA+'?v='+Date.now(),{cache:'no-store'});const B=await r.json();if(B.v===VER&&!first)return;const d=await dec(B,CODE);
+ if(!d){if(first){localStorage.removeItem('aceapp_pc');document.getElementById('gate').style.display='flex'}return}
+ VER=B.v;D=d.threads;document.getElementById('upd').textContent='Updated '+new Date(d.gen).toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+ document.getElementById('gate').style.display='none';chips();render();if(cur)openT(cur,false)}catch(e){}}
+document.getElementById('gf').onsubmit=async e=>{e.preventDefault();CODE=document.getElementById('pc').value.trim();const r=await fetch(DATA+'?v='+Date.now());const d=await dec(await r.json(),CODE);if(!d){document.getElementById('ge').textContent='Wrong passcode';document.getElementById('pc').value='';return}localStorage.setItem('aceapp_pc',CODE);load(true)};
+document.getElementById('pc').addEventListener('input',e=>{if(e.target.value.trim().length==6)document.getElementById('gf').requestSubmit()});
+if(CODE)load(true);else document.getElementById('gate').style.display='flex';
+setInterval(()=>CODE&&load(false),60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&CODE)load(false)});
+</script></body></html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · ICP + call briefs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1712}
+/* ===== ATRIOS ICP + BRIEF COMPONENTS CSS (shared .atr-v) ===== */
+.atr-v{--gold:#D9B77A;--gold2:#F3D9A0;--sage:#9cc7a6;--rose:#d98c86;--panel:linear-gradient(180deg,rgba(22,42,33,.92),rgba(11,24,19,.94));
+  position:relative;padding:90px 6vw 96px;box-sizing:border-box;color:#efe6d2;font-family:Inter,system-ui,sans-serif;overflow:hidden;
+  background:transparent}
+.atr-vwrap{position:relative;background:radial-gradient(ellipse at 70% 12%,rgba(120,95,45,.2),rgba(0,0,0,0) 45%),radial-gradient(ellipse at 30% 62%,rgba(120,95,45,.14),rgba(0,0,0,0) 45%),linear-gradient(180deg,rgba(8,20,15,.88),rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center top/100% auto repeat-y,#0a1712}
+.atr-v .v-in{max-width:1200px;margin:0 auto}
+.atr-v .v-k{display:block;font:500 11.5px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.atr-v .v-h{font:400 clamp(36px,4.2vw,60px)/1.05 'Cormorant Garamond',serif;margin:14px 0 12px;color:#f5ecd8}
+.atr-v .v-h em{font-style:italic;color:var(--gold)}
+.atr-v .v-sub{font-size:16.5px;line-height:1.6;color:#c9c1ad;max-width:640px;margin:0}
+/* gilded glass panel */
+.atr-v .v-panel{position:relative;background:var(--panel);border-radius:10px;box-shadow:0 0 0 1px rgba(217,183,122,.42),0 0 0 4px rgba(9,18,14,.9),0 0 0 5px rgba(217,183,122,.16),0 26px 60px rgba(0,0,0,.5);backdrop-filter:blur(2px)}
+.atr-v .v-panel:before{content:"";position:absolute;inset:0;border-radius:10px;background:url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover;opacity:.08;mix-blend-mode:overlay;pointer-events:none}
+.atr-v .v-lab{font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+/* ---------- ICP SECTION ---------- */
+.atr-icp .i-sig{display:grid;grid-template-columns:1fr auto auto;gap:34px;align-items:center;margin:48px 0 44px}
+.atr-icp .i-stream{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 82%,transparent)}
+.atr-icp .i-row{display:flex;gap:10px;width:max-content;padding:6px 0;animation:iScroll 26s linear infinite}
+.atr-icp .i-row.r2{animation-duration:32s;animation-direction:reverse}
+@keyframes iScroll{to{transform:translateX(-50%)}}
+.atr-icp .i-row span{flex:none;padding:8px 16px;border-radius:999px;font:500 13.5px Inter,sans-serif;color:#e8dcc0;background:rgba(250,240,215,.04);box-shadow:inset 0 0 0 1px rgba(217,183,122,.32)}
+.atr-icp .i-row span:nth-child(3n){font:italic 500 16px 'Cormorant Garamond',serif;color:var(--gold2)}
+/* astrolabe dial */
+.atr-icp .i-core{position:relative;width:176px;height:176px}
+.atr-icp .i-ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(243,217,160,.0),#e8c27a 20%,rgba(243,217,160,.0) 45%,#9cc7a6 70%,rgba(156,199,166,0) 92%);
+  -webkit-mask:radial-gradient(circle,transparent 76px,#000 77px,#000 82px,transparent 83px);mask:radial-gradient(circle,transparent 76px,#000 77px,#000 82px,transparent 83px);animation:iSpin 6s linear infinite}
+.atr-icp .i-ticks{position:absolute;inset:-6px;border-radius:50%;background:repeating-conic-gradient(rgba(217,183,122,.55) 0 1deg,transparent 1deg 10deg);
+  -webkit-mask:radial-gradient(circle,transparent 86px,#000 87px,#000 93px,transparent 94px);mask:radial-gradient(circle,transparent 86px,#000 87px,#000 93px,transparent 94px);animation:iSpin 40s linear infinite reverse}
+@keyframes iSpin{to{transform:rotate(360deg)}}
+.atr-icp .i-cin{position:absolute;inset:18px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at 40% 30%,#1c3a2c,#0b1813 75%);box-shadow:0 0 0 1px rgba(217,183,122,.5),0 0 50px rgba(232,194,122,.28),inset 0 0 24px rgba(0,0,0,.6)}
+.atr-icp .i-cin small{font:500 10px 'JetBrains Mono',monospace;letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.atr-icp .i-cin b{font:500 40px/1.05 'Cormorant Garamond',serif;color:#f7eedb;font-variant-numeric:lining-nums tabular-nums;margin:4px 0 2px}
+.atr-icp .i-cin span{font:italic 400 14px 'Cormorant Garamond',serif;color:#d8cbb0}
+.atr-icp .i-out{padding:22px 30px;text-align:center;min-width:150px}
+.atr-icp .i-out b{display:block;font:500 54px/1 'Cormorant Garamond',serif;color:var(--gold2);font-variant-numeric:lining-nums;margin:8px 0 6px}
+.atr-icp .i-out b small{font-size:20px;color:#bfa774}
+.atr-icp .i-out i{font:600 13px Inter,sans-serif;font-style:normal;color:var(--sage)}
+.atr-icp .i-grid{display:grid;grid-template-columns:300px auto 1fr;gap:26px;align-items:center}
+.atr-icp .i-icp{padding:24px 24px 18px}
+.atr-icp .i-icp ul{list-style:none;padding:0;margin:16px 0 12px}
+.atr-icp .i-icp li{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(217,183,122,.16);font:400 15px Inter,sans-serif;color:#cfc6b1}
+.atr-icp .i-icp li b{font:500 15px Inter,sans-serif;color:#f7eedb}
+.atr-icp .i-icp li b:after{content:" ✓";color:var(--sage);opacity:0;transition:opacity .3s}
+.atr-icp .i-icp li.on b:after{opacity:1}
+.atr-icp .i-icp small{font:italic 400 15px 'Cormorant Garamond',serif;color:#bfb293}
+.atr-icp .i-arrow{font:400 40px 'Cormorant Garamond',serif;color:var(--gold)}
+.atr-icp .i-leads{padding:8px 20px 10px}
+.atr-icp .i-lr{display:grid;grid-template-columns:1.5fr 1fr .9fr .9fr .6fr 1.35fr;align-items:center;gap:8px;padding:14px 4px;border-bottom:1px solid rgba(217,183,122,.13);font:500 14.5px Inter,sans-serif;color:#e8dcc0;transition:opacity .25s,transform .25s}
+.atr-icp .i-lr:last-child{border-bottom:0}
+.atr-icp .i-lh{font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:12px 4px}
+.atr-icp .i-lr span b{display:block;font:600 19px/1.1 'Cormorant Garamond',serif;color:#f7eedb}
+.atr-icp .i-lr span i{font:italic 400 14.5px 'Cormorant Garamond',serif;color:#bfb293}
+.atr-icp .i-lr .y:before{content:"✓ ";color:var(--sage)}
+.atr-icp .i-lr .n{color:var(--rose)}.atr-icp .i-lr .n:before{content:"✗ "}
+.atr-icp .i-lr .res{font:600 13.5px Inter,sans-serif}
+.atr-icp .i-lr.ok .res{color:var(--gold2)}
+.atr-icp .i-lr.ok .res:before{content:"✓ "}
+.atr-icp .i-lr.no .res{color:#8f9a92}
+.atr-icp .i-lr.no .res:before{content:"✗ "}
+.atr-icp .i-lr.no{opacity:.75}
+.atr-icp .i-lr.wait{opacity:0;transform:translateY(8px)}
+.atr-icp .i-lr.ok.flash{animation:iGlow 1.2s}
+@keyframes iGlow{0%{background:rgba(243,217,160,0)}30%{background:rgba(243,217,160,.12)}100%{background:rgba(243,217,160,0)}}
+@media(max-width:980px){.atr-icp .i-sig{grid-template-columns:1fr;justify-items:center}.atr-icp .i-grid{grid-template-columns:1fr}.atr-icp .i-arrow{transform:rotate(90deg);text-align:center}.atr-icp .i-lr{grid-template-columns:1.4fr 1fr 1fr 1.2fr}.atr-icp .i-lr>:nth-child(4),.atr-icp .i-lr>:nth-child(5){display:none}}
+
+/* ---------- FLOW BETWEEN SECTIONS ---------- */
+.atr-icp{padding-bottom:40px}
+.atr-brief{padding-top:40px}
+.atr-v-bridge{display:flex;align-items:center;justify-content:center;gap:18px;background:transparent;padding:6px 0;color:#D9B77A;font-size:13px}
+.atr-v-bridge span{width:min(28vw,320px);height:1px;background:linear-gradient(90deg,rgba(217,183,122,0),rgba(217,183,122,.55),rgba(217,183,122,0))}
+.atr-v-bridge em{font:italic 400 clamp(18px,1.7vw,22px) 'Cormorant Garamond',serif;color:#e9dcbd;text-align:center;padding:0 6px}
+/* ---------- BRIEF SECTION ---------- */
+.atr-brief .b-two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.atr-brief .b-col .v-h{font-size:clamp(34px,3.4vw,50px)}
+.atr-brief .b-card{margin-top:30px;overflow:hidden}
+.atr-brief .b-hd{display:flex;align-items:baseline;gap:10px;padding:16px 20px;border-bottom:1px solid rgba(217,183,122,.2)}
+.atr-brief .b-hd b{font:600 15px Inter,sans-serif;color:#f7eedb}
+.atr-brief .b-hd span{font:400 12.5px Inter,sans-serif;color:#9fa99f}
+.atr-brief .b-body{padding:16px 20px;min-height:330px;display:flex;flex-direction:column;justify-content:flex-end;gap:12px}
+.atr-brief .b-msg{display:flex;gap:11px;transition:opacity .3s,transform .3s}
+.atr-brief .b-msg.old{opacity:.38}
+.atr-brief .b-msg img,.atr-brief .b-av{width:36px;height:36px;border-radius:7px;flex:none;object-fit:cover;box-shadow:0 0 0 1px rgba(217,183,122,.5)}
+.atr-brief .b-av{display:flex;align-items:center;justify-content:center;background:#4f7d5c;font:600 13px Inter,sans-serif;color:#fff}
+.atr-brief .b-msg .who{font:700 14.5px Inter,sans-serif;color:#f7eedb}.atr-brief .b-msg .who small{font:500 11.5px Inter,sans-serif;color:#8f9a92;margin-left:6px}
+.atr-brief .b-msg p{margin:3px 0 0;font:400 14px/1.5 Inter,sans-serif;color:#d9d0bd}
+.atr-brief .b-msg.new{opacity:0;transform:translateY(12px)}
+.atr-brief .b-msg.new.in{opacity:1;transform:none}
+.atr-brief .b-q{margin-top:9px;padding:10px 0 2px 14px;border-left:3px solid var(--gold)}
+.atr-brief .b-q p{margin:0 0 7px;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s}
+.atr-brief .b-q p.in{opacity:1;transform:none}
+.atr-brief .b-q b{color:var(--gold2);font-weight:600}
+.atr-brief .b-ft{padding:0 20px 16px}
+.atr-brief .b-comp{padding:11px 14px;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(217,183,122,.28);font:400 13.5px Inter,sans-serif;color:#7f8a83}
+.atr-brief .b-typ{height:18px;margin-top:7px;font:400 12px Inter,sans-serif;color:#9fa99f;opacity:0;transition:opacity .3s}
+.atr-brief .b-typ.on{opacity:1}
+.atr-brief .b-typ i{display:inline-block;width:5px;height:5px;margin-right:3px;border-radius:50%;background:var(--gold);animation:bDot 1s infinite}
+.atr-brief .b-typ i:nth-child(2){animation-delay:.15s}.atr-brief .b-typ i:nth-child(3){animation-delay:.3s;margin-right:7px}
+@keyframes bDot{50%{opacity:.25;transform:translateY(-2px)}}
+.atr-brief .w-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:18px 22px;border-bottom:1px solid rgba(217,183,122,.2)}
+.atr-brief .w-hd b{font:600 22px 'Cormorant Garamond',serif;color:#f7eedb}
+.atr-brief .w-hd span{font:italic 400 15px 'Cormorant Garamond',serif;color:#bfb293}
+.atr-brief .w-qa{padding:15px 22px;border-bottom:1px solid rgba(217,183,122,.13);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.atr-brief .w-qa:last-child{border-bottom:0}
+.atr-brief .w-qa.in{opacity:1;transform:none}
+.atr-brief .w-qa i{display:block;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;font-style:normal;color:var(--gold);margin-bottom:7px}
+.atr-brief .w-qa p{margin:0;font:italic 400 17.5px/1.45 'Cormorant Garamond',serif;color:#efe6d2;font-variant-numeric:lining-nums}
+.atr-brief .w-tag{display:inline-block;font:600 11.5px Inter,sans-serif;font-style:normal;padding:3px 10px;border-radius:999px;margin-right:8px;color:#0d1f17;background:var(--sage);vertical-align:2px}
+.atr-brief .w-stars{color:var(--gold2);letter-spacing:2px;font-style:normal;margin-right:6px}
+.atr-brief .b-card{position:relative;margin-top:34px;border:38px solid transparent;border-image:url(https://ace-atrios.github.io/ace-demo/img/ren4/frame43.webp) 222 212 232 212 stretch;border-radius:0;background-clip:padding-box;box-shadow:none;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+.atr-brief .b-card:before{border-radius:0}
+.atr-brief .b-card:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 5px #e4d7b6,inset 0 0 0 6px rgba(120,90,40,.6),inset 0 0 26px rgba(0,0,0,.55);pointer-events:none}
+@media(max-width:980px){.atr-brief .b-two{grid-template-columns:1fr}}
+@media(max-width:600px){.atr-brief .b-card{border-width:24px}}
+/* ===== end CSS ===== */
+</style></head><body>
+
+<!-- ===== ICP + BRIEF (paste the whole .atr-vwrap block) ===== -->
+<div class="atr-vwrap">
+<section class="atr-v atr-icp" id="atrIcp"><div class="v-in">
+  <span class="v-k">Qualification</span>
+  <h2 class="v-h">You set the ICP. <em>We only book matches.</em></h2>
+  <p class="v-sub">Atrios AI pulls in thousands of signals on every lead, then checks them against the ICP you set.</p>
+  <div class="i-sig">
+    <div class="i-stream">
+      <div class="i-row"><span>LinkedIn role</span><span>Funding rounds</span><span>Job posts</span><span>Headcount growth</span><span>Press</span><span>Tech stack</span><span>Web traffic</span><span>Investors</span><span>LinkedIn role</span><span>Funding rounds</span><span>Job posts</span><span>Headcount growth</span><span>Press</span><span>Tech stack</span><span>Web traffic</span><span>Investors</span></div>
+      <div class="i-row r2"><span>HQ location</span><span>Hiring by region</span><span>Exec moves</span><span>Product launches</span><span>Podcasts</span><span>GitHub</span><span>Registrations</span><span>Partners</span><span>HQ location</span><span>Hiring by region</span><span>Exec moves</span><span>Product launches</span><span>Podcasts</span><span>GitHub</span><span>Registrations</span><span>Partners</span></div>
+    </div>
+    <div class="i-core"><div class="i-ticks"></div><div class="i-ring"></div><div class="i-cin"><small>Atrios AI</small><b id="iSig">4,812</b><span>signals per lead</span></div></div>
+    <div class="v-panel i-out"><span class="v-lab">ICP match</span><b id="iScore">94<small>/100</small></b><i>Qualified ✓</i></div>
+  </div>
+  <div class="i-grid">
+    <div class="v-panel i-icp">
+      <span class="v-lab">Your ICP · you set this</span>
+      <ul><li><span>Raised</span><b>$500k+</b></li><li><span>Role</span><b>Founder or CEO</b></li><li><span>HQ</span><b>United States</b></li><li><span>Team</span><b>Under 100 people</b></li></ul>
+      <small>Edit anytime. Changes apply to the next intro.</small>
+    </div>
+    <div class="i-arrow">→</div>
+    <div class="v-panel i-leads">
+      <div class="i-lr i-lh"><span>Lead</span><span>Raised</span><span>Role</span><span>HQ</span><span>Team</span><span>Result</span></div>
+      <div class="i-lr ok"><span><b>Maya Chen</b><i>Lumen</i></span><span class="y">$3.2M</span><span class="y">CEO</span><span class="y">NYC</span><span class="y">9</span><span class="res">Meeting booked</span></div>
+      <div class="i-lr ok"><span><b>Jon Reyes</b><i>Fieldkit</i></span><span class="y">$1.5M</span><span class="y">Founder</span><span class="y">Austin</span><span class="y">14</span><span class="res">Meeting booked</span></div>
+      <div class="i-lr no"><span><b>Dev Patel</b><i>Shopwise</i></span><span class="n">$150k</span><span class="y">Founder</span><span class="y">SF</span><span class="y">3</span><span class="res">Not sent</span></div>
+      <div class="i-lr no"><span><b>Leo Grant</b><i>Northvale</i></span><span class="y">$4M</span><span class="y">CEO</span><span class="n">London</span><span class="y">22</span><span class="res">Not sent</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===== BRIEF SECTION ===== -->
+<div class="atr-v-bridge"><span></span><em>Every match then arrives with context, and leaves with clarity.</em><span></span></div>
+<section class="atr-v atr-brief" id="atrBrief"><div class="v-in"><div class="b-two">
+  <div class="b-col">
+    <span class="v-k">Before the call</span>
+    <h2 class="v-h">Pre-call <em>context.</em></h2>
+    <p class="v-sub">Posted to your shared Slack on every booking.</p>
+    <div class="v-panel b-card">
+      <div class="b-hd"><b># atrios-brex</b><span>Shared with Brex · 6 members</span></div>
+      <div class="b-body">
+        <div class="b-msg old"><img src="https://ace-atrios.github.io/ace-demo/ace.jpg" alt=""><div><div class="who">Ace Trios<small>APP · Tue</small></div><p>📅 New meeting booked: Priya Nair, CEO @ Loomstack · Brex · Wed 3:30 PM ET</p></div></div>
+        <div class="b-msg old"><div class="b-av">RK</div><div><div class="who">Riley (Brex AE)<small>Yesterday</small></div><p>Great call with Priya, she's moving forward 🙌</p></div></div>
+        <div class="b-msg new" id="bNew"><img src="https://ace-atrios.github.io/ace-demo/ace.jpg" alt=""><div><div class="who">Ace Trios<small>APP · 9:41 AM</small></div>
+          <p>📅 <b style="color:#f7eedb">New meeting booked: Maya Chen, CEO @ Lumen</b> · Brex · Tue 2:00 PM ET · via tastemaker Taylor Offer</p>
+          <div class="b-q">
+            <p><b>Who:</b> Seed-stage AI infra company, 9 people, NYC. Raised $3.2M seed (Aug), a16z speedrun alum.</p>
+            <p><b>Why now:</b> Just closed the round, still on a legacy bank and personal cards, hiring 4 in the next quarter.</p>
+            <p><b>Fit score:</b> 94/100. Clears every ICP rule ($500k+ raised, US-based, founder/CEO).</p>
+            <p><b>Talking points:</b> corporate card + spend controls before the team grows, bill pay, up to $15k in founder perks.</p>
+          </div></div></div>
+      </div>
+      <div class="b-ft"><div class="b-comp">Message #atrios-brex</div><div class="b-typ" id="bTyp"><i></i><i></i><i></i><b>Ace Trios</b> is typing…</div></div>
+    </div>
+  </div>
+  <div class="b-col">
+    <span class="v-k">After the call</span>
+    <h2 class="v-h">Post-call <em>clarity.</em></h2>
+    <p class="v-sub">A Buy-or-Why survey after every call.</p>
+    <div class="v-panel b-card" id="bBow">
+      <div class="w-hd"><b>Buy or Why</b><span>Maya Chen · Lumen · after Brex call</span></div>
+      <div class="w-qa"><i>Will you move forward?</i><p><span class="w-tag">Likely</span>"Yes. We're on Chase with personal cards for most spend and it's already a mess at 9 people. I want this sorted before we hire the next 4."</p></div>
+      <div class="w-qa"><i>What are your hesitations?</i><p>"Moving $3M mid-quarter. If a wire gets stuck while we're running payroll, that's a real problem. I also need to know how fast card limits go up as our balance grows."</p></div>
+      <div class="w-qa"><i>What would make you sign up tomorrow?</i><p>"A named rep who walks us through the migration, card limits confirmed in writing, and the $15k in perks applied on day one. Do that and I'll open the account this week."</p></div>
+      <div class="w-qa"><i>How was the meeting?</i><p><span class="w-stars">★★★★★</span>"She'd clearly read up on us. Knew our raise and hiring plan, so we skipped the discovery and went straight to how it'd work for us."</p></div>
+    </div>
+  </div>
+</div></div></section>
+</div>
+
+<script>
+/* ===== ATRIOS ICP + BRIEF JS ===== */
+(function(){
+const onView=(el,fn,again)=>{if(!el)return;let busy=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!busy){busy=true;fn(()=>{busy=false})}}),{threshold:.05,rootMargin:'0px 0px 10% 0px'}).observe(el)};
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+// ICP
+const icp=document.getElementById('atrIcp');
+onView(icp,async done=>{
+  const sig=icp.querySelector('#iSig'),sc=icp.querySelector('#iScore'),lis=[...icp.querySelectorAll('.i-icp li')],rows=[...icp.querySelectorAll('.i-lr:not(.i-lh)')];
+  lis.forEach(l=>l.classList.remove('on'));rows.forEach(r=>r.classList.add('wait'));
+  const t0=performance.now();await new Promise(res=>{const f=t=>{const k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);sig.textContent=Math.round(4812*e).toLocaleString();sc.innerHTML=Math.round(94*e)+'<small>/100</small>';k<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
+  for(const l of lis){l.classList.add('on');await wait(50)}
+  for(const r of rows){r.classList.remove('wait');if(r.classList.contains('ok')){r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash')}await wait(110)}
+  await wait(200);done();
+});
+// Brief
+const br=document.getElementById('atrBrief');
+onView(br,async done=>{
+  const nm=br.querySelector('#bNew'),qs=[...nm.querySelectorAll('.b-q p')],typ=br.querySelector('#bTyp'),qa=[...br.querySelectorAll('.w-qa')];
+  nm.classList.remove('in');qs.forEach(p=>p.classList.remove('in'));qa.forEach(q=>q.classList.remove('in'));
+  const slack=(async()=>{typ.classList.add('on');await wait(400);typ.classList.remove('on');nm.classList.add('in');await wait(150);for(const p of qs){p.classList.add('in');await wait(360)}})();
+  const bow=(async()=>{for(const q of qa){q.classList.add('in');await wait(500)}})();
+  await Promise.all([slack,bow]);
+  done();
+});
+})();
+</script>
+</body></html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Atrios · Our story</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0a1712}
+/* ===== ATRIOS OUR STORY (scoped .atr-story) ===== */
+.atr-story{--gold:#D9B77A;--gold2:#F3D9A0;--A:https://ace-atrios.github.io/ace-demo/story-ren/a/;position:relative;color:#efe6d2;font-family:Inter,system-ui,sans-serif;overflow:hidden;
+  background:radial-gradient(ellipse at 70% 6%,rgba(120,95,45,.24),rgba(0,0,0,0) 40%),linear-gradient(180deg,rgba(8,20,15,.82),rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover fixed,#0a1712}
+.atr-story *{box-sizing:border-box}
+.atr-story .s-in{max-width:1180px;margin:0 auto;padding:0 5vw}
+.atr-story .s-k{display:block;font:500 11.5px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.atr-story h1,.atr-story h2{font-family:'Cormorant Garamond',serif;font-weight:400;color:#f5ecd8;margin:0}
+.atr-story em{font-style:italic;color:var(--gold)}
+.atr-story p{margin:0}
+/* reveal */
+.atr-story .rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.atr-story .rv.in{opacity:1;transform:none}
+/* gilded hanging frame */
+.atr-story .s-frame{position:relative;width:100%;aspect-ratio:1536/1290;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.atr-story .s-frame .pic{position:absolute;left:13.4%;right:13.4%;top:17%;bottom:17.6%;background-size:cover;background-position:center;box-shadow:inset 0 0 40px rgba(0,0,0,.55)}
+.atr-story .s-frame:after{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/frame43.webp) center/100% 100% no-repeat;pointer-events:none}
+.atr-story .s-frame:before{display:none;content:"";position:absolute;left:50%;top:-34px;width:46%;height:46px;transform:translateX(-50%);border-top:1.5px solid rgba(201,163,90,.7);border-radius:50% 50% 0 0/100% 100% 0 0;clip-path:polygon(0 100%,50% 0,100% 100%);background:none}
+.atr-story .nail{position:absolute;left:50%;top:-44px;width:12px;height:16px;transform:translateX(-50%);border-radius:3px;background:linear-gradient(90deg,#8a6a2c,#f3d9a0,#8a6a2c);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
+/* plaque numeral */
+.atr-story .plq{display:inline-flex;align-items:center;justify-content:center;min-width:84px;height:46px;padding:0 18px;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/ren2-plaque.webp) center/100% 100%;font:600 22px 'Cormorant Garamond',serif;color:#3a2a10;letter-spacing:.08em;text-shadow:0 1px 0 rgba(255,240,200,.5);filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+/* HERO */
+.atr-story .s-hero{padding:96px 0 70px}
+.atr-story .s-hero .s-in{display:grid;grid-template-columns:1.05fr .95fr;gap:5vw;align-items:center}
+.atr-story .s-hero h1{font-size:clamp(46px,5.6vw,84px);line-height:1.02;margin:22px 0 22px}
+.atr-story .s-hero .lede{font:italic 400 clamp(22px,2vw,28px)/1.35 'Cormorant Garamond',serif;color:#e9dcbd;max-width:520px}
+.atr-story .portrait{position:relative;max-width:440px;margin:40px auto 0}
+.atr-story .portrait .s-frame{aspect-ratio:auto}
+.atr-story .portrait .gild{position:relative;padding:22px;background:linear-gradient(135deg,#7a5a22,#f1d495 22%,#a57c34 45%,#f3dca4 62%,#8a6428);box-shadow:0 30px 60px rgba(0,0,0,.6),inset 0 0 0 2px rgba(60,40,10,.5)}
+.atr-story .portrait .gild:before{content:"";position:absolute;inset:8px;border:2px solid rgba(255,240,200,.45);pointer-events:none}
+.atr-story .portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 0 0 4px #e8dcbc,inset 0 0 30px rgba(0,0,0,.5)}
+.atr-story .portrait .tag{position:relative;margin:-14px auto 0;width:82%;padding:14px 18px;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/ren-parchment.jpg) center/cover,#f1e6cc;color:#2a1d10;box-shadow:0 12px 26px rgba(0,0,0,.5)}
+.atr-story .portrait .tag b{display:block;font:500 22px 'Cormorant Garamond',serif}
+.atr-story .portrait .tag small{display:block;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#7a5a26;margin:3px 0 6px}
+.atr-story .portrait .tag i{font:italic 400 15px 'Cormorant Garamond',serif;color:#4c3a22}
+/* CHAPTERS */
+.atr-story .ch{padding:90px 0}
+.atr-story .ch .s-in{display:grid;grid-template-columns:1fr 1fr;gap:5.5vw;align-items:center}
+.atr-story .ch.flip .art{order:2}
+.atr-story .ch h2{font-size:clamp(40px,4.4vw,64px);line-height:1.04;margin:18px 0 20px}
+.atr-story .ch .big{font:400 clamp(21px,1.8vw,25px)/1.45 'Cormorant Garamond',serif;color:#efe2c4;margin-bottom:18px}
+.atr-story .ch .body{font-size:16.5px;line-height:1.75;color:#cfc6b1;margin-bottom:16px}
+.atr-story .quote{position:relative;margin:24px 0;padding:20px 26px 20px 46px;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/ren-parchment.jpg) center/cover,#efe2c4;color:#2a1d10;font:italic 500 clamp(21px,1.9vw,26px)/1.3 'Cormorant Garamond',serif;box-shadow:0 14px 30px rgba(0,0,0,.5),inset 0 0 0 1px rgba(110,75,30,.4)}
+.atr-story .quote:before{content:"“";position:absolute;left:14px;top:2px;font:600 52px 'Cormorant Garamond',serif;color:#9a7a3e}
+.atr-story .chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.atr-story .chips span{padding:13px 16px;border:1px solid rgba(217,183,122,.35);background:rgba(250,240,215,.04);font:500 19px 'Cormorant Garamond',serif;color:#efe2c4;position:relative;overflow:hidden}
+.atr-story .chips span:before{content:"◆";color:var(--gold);font-size:11px;margin-right:10px;vertical-align:2px}
+.atr-story .chips span:after{content:"";position:absolute;left:12px;right:12px;top:50%;height:1.5px;background:#b5473f;transform:scaleX(0);transform-origin:left;transition:transform .6s ease}
+.atr-story .chips.in span:after{transform:scaleX(1)}
+.atr-story .chips.in span:nth-child(2):after{transition-delay:.15s}.atr-story .chips.in span:nth-child(3):after{transition-delay:.3s}.atr-story .chips.in span:nth-child(4):after{transition-delay:.45s}
+.atr-story .kicker{font:italic 400 clamp(22px,2vw,27px)/1.35 'Cormorant Garamond',serif;color:var(--gold2)}
+/* IV: built Atrios (flow ledger) */
+.atr-story .built{padding:100px 0}
+.atr-story .built .head{text-align:center;max-width:760px;margin:0 auto 46px}
+.atr-story .built h2{font-size:clamp(44px,4.8vw,70px);margin:18px 0 16px}
+.atr-story .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:18px;max-width:1000px;margin:0 auto 46px}
+.atr-story .fnode{padding:22px 18px;text-align:center;border:1px solid rgba(217,183,122,.45);background:linear-gradient(180deg,rgba(22,42,33,.92),rgba(11,24,19,.94));box-shadow:0 0 0 4px rgba(9,18,14,.9),0 0 0 5px rgba(217,183,122,.16),0 20px 40px rgba(0,0,0,.45)}
+.atr-story .fnode b{display:block;font:500 26px 'Cormorant Garamond',serif;color:#f5ecd8}
+.atr-story .fnode small{display:block;font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.atr-story .fnode.x{border-style:dashed;opacity:.75}
+.atr-story .fnode.x b{text-decoration:line-through;text-decoration-color:#b5473f;text-decoration-thickness:2px;color:#bfb293}
+.atr-story .fnode.you{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(9,18,14,.9),0 0 0 5px rgba(243,217,160,.4),0 0 50px rgba(243,210,140,.22),0 20px 40px rgba(0,0,0,.45)}
+.atr-story .farrow{font:400 34px 'Cormorant Garamond',serif;color:var(--gold)}
+.atr-story .coins{position:relative;height:0}
+.atr-story .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1000px;margin:0 auto 34px}
+.atr-story .card{padding:26px 24px;background:url(https://ace-atrios.github.io/ace-demo/story-ren/a/ren-parchment.jpg) center/cover,#efe2c4;color:#2a1d10;box-shadow:0 16px 34px rgba(0,0,0,.5),inset 0 0 0 1px rgba(110,75,30,.4),inset 0 0 0 6px rgba(239,226,196,.6),inset 0 0 0 7px rgba(140,100,40,.45)}
+.atr-story .card .seal{width:44px;height:44px;margin-bottom:12px;background:url(https://ace-atrios.github.io/ace-demo/img/ren6/wax_a.webp) center/contain no-repeat;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4))}
+.atr-story .card b{display:block;font:600 24px/1.15 'Cormorant Garamond',serif;color:#2a1a08;margin-bottom:8px}
+.atr-story .card span{font-size:15px;line-height:1.6;color:#4c3a22}
+.atr-story .built .after{max-width:760px;margin:0 auto;text-align:center;font:400 clamp(20px,1.7vw,24px)/1.5 'Cormorant Garamond',serif;color:#e9dcbd}
+/* V: zero */
+.atr-story .zero{padding:100px 0;text-align:center}
+.atr-story .zero h2{font-size:clamp(44px,4.8vw,70px);margin:18px 0 20px}
+.atr-story .zero .big{max-width:720px;margin:0 auto 14px;font:400 clamp(21px,1.8vw,25px)/1.5 'Cormorant Garamond',serif;color:#efe2c4}
+.atr-story .zero .body{max-width:680px;margin:0 auto;font-size:16.5px;line-height:1.75;color:#cfc6b1}
+.atr-story .zplq{display:inline-flex;align-items:center;gap:22px;margin:40px auto;padding:24px 44px;border:1px solid rgba(217,183,122,.5);background:linear-gradient(180deg,rgba(22,42,33,.92),rgba(11,24,19,.94));box-shadow:0 0 0 5px rgba(9,18,14,.9),0 0 0 6px rgba(217,183,122,.25),0 24px 50px rgba(0,0,0,.5)}
+.atr-story .zplq b{font:500 96px/1 'Cormorant Garamond',serif;color:var(--gold2);font-variant-numeric:lining-nums}
+.atr-story .zplq i{max-width:300px;text-align:left;font:italic 400 22px/1.3 'Cormorant Garamond',serif;color:#e9dcbd}
+/* VI: join */
+.atr-story .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.atr-story .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font:600 15.5px Inter,sans-serif;text-decoration:none;transition:filter .2s,transform .2s}
+.atr-story .btn.g{color:#24170a;background:linear-gradient(180deg,#f8e6b6,#ddb46d 55%,#b98d48);box-shadow:0 6px 16px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,250,228,.85)}
+.atr-story .btn.o{color:#f3d9a0;border:1px solid rgba(243,217,160,.55)}
+.atr-story .btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.atr-story .sign{margin-top:40px;display:flex;align-items:center;gap:16px}
+.atr-story .sign img{width:58px;height:58px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #c9a35a}
+.atr-story .sign b{display:block;font:500 22px 'Cormorant Garamond',serif;color:#f5ecd8}
+.atr-story .sign small{font:500 10.5px 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--gold)}
+.atr-story .sign i{display:block;font:italic 400 17px 'Cormorant Garamond',serif;color:#d8cbb0;margin-top:2px}
+.atr-story .rule{height:1px;max-width:900px;margin:0 auto;background:linear-gradient(90deg,rgba(217,183,122,0),rgba(217,183,122,.45),rgba(217,183,122,0))}
+@media(max-width:900px){.atr-story{background-attachment:scroll}.atr-story .s-hero .s-in,.atr-story .ch .s-in{grid-template-columns:1fr}.atr-story .ch.flip .art{order:0}.atr-story .flow{grid-template-columns:1fr}.atr-story .farrow{transform:rotate(90deg);text-align:center}.atr-story .three{grid-template-columns:1fr}.atr-story .ch{padding:60px 0}.atr-story .zplq{flex-direction:column}.atr-story .zplq i{text-align:center}}
+/* ===== end CSS ===== */
+
+.atr-story{overflow:visible;overflow-x:clip}
+.atr-story .nx{position:relative;height:calc(100vh + var(--n) * 62vh)}
+.atr-story .nx-sticky{position:sticky;top:var(--nav,0px);height:calc(100vh - var(--nav,0px));display:flex;flex-direction:column;justify-content:center;max-width:1240px;margin:0 auto;padding:0 5vw}
+.atr-story .nx-head{text-align:center;margin-bottom:4vh}
+.atr-story .nx-head h2{font-size:clamp(40px,4.4vw,68px);line-height:1.04;margin:12px 0 0;text-wrap:balance}
+.atr-story .nx-head h2.long{font-size:clamp(32px,3.2vw,50px);max-width:1100px;margin-left:auto;margin-right:auto}
+.atr-story .nx-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:5vw;align-items:center}
+.atr-story .nx-item{position:relative;padding:10px 0 10px 26px;cursor:pointer}
+.atr-story .nx-item:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;background:var(--gold);opacity:0;transition:opacity .5s}
+.atr-story .nx-item.on:before{opacity:1}
+.atr-story .nx-n{display:block;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--gold);opacity:.7}
+.atr-story .nx-item h3{font:400 clamp(22px,2vw,30px)/1.2 'Cormorant Garamond',serif;color:#efe2c4;opacity:.42;margin:6px 0 0;transition:opacity .5s}
+.atr-story .nx-item.on h3{opacity:1}
+.atr-story .nx-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .7s ease,opacity .5s ease}
+.atr-story .nx-item.on .nx-body{max-height:560px;opacity:1}
+.atr-story .nx-body p{font-size:15.5px;line-height:1.7;color:#d4cbb6;margin:12px 0 0}
+.atr-story .nx-body .kick{font:500 22px/1.25 'Cormorant Garamond',serif;color:var(--gold2)}
+.atr-story .nx-body .quote{margin:14px 0 4px;font-size:20px;padding:14px 18px 14px 40px}
+.atr-story .nx-art{position:relative;aspect-ratio:1536/1290}
+.atr-story .nx-pic{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.atr-story .nx-pic.on{opacity:1}
+.atr-story .closing .txt p{margin:0 0 14px}
+.atr-story .closing .txt .lead{font:400 clamp(24px,2.1vw,30px)/1.4 'Cormorant Garamond',serif;color:#efe2c4;text-align:center}
+.atr-story .closing .txt .body{font-size:17px;line-height:1.8;color:#d4cbb6}
+.atr-story .closing .txt .strong{font:500 clamp(28px,2.6vw,38px)/1.2 'Cormorant Garamond',serif;color:var(--gold2);text-align:center;margin:44px 0 30px}
+.atr-story .closing{padding:100px 0 120px}
+.atr-story .closing .txt{max-width:660px;margin:0 auto}
+.atr-story .closing h2{font-size:clamp(40px,4.4vw,66px);margin:18px 0 30px;text-align:center}
+.atr-story .closing .cta,.atr-story .closing .sign{justify-content:center}
+@media(max-width:900px){.atr-story .nx{height:auto}.atr-story .nx-sticky{position:relative;height:auto;padding:70px 5vw}.atr-story .nx-grid{grid-template-columns:1fr}.atr-story .nx-art{order:-1}.atr-story .nx-item .nx-body{max-height:none;opacity:1}.atr-story .nx-item h3{opacity:1}.atr-story .nx-pic{display:none}.atr-story .nx-pic[data-k="0"]{display:block;position:relative;opacity:1}}
+.atr-story .nx{height:calc(100vh + var(--n) * 45vh)}
+.atr-story .bridge{max-width:820px;margin:0 auto;padding:16vh 6vw;text-align:center}
+.atr-story .bridge p{font:italic 400 clamp(26px,2.6vw,38px)/1.35 'Cormorant Garamond',serif;color:var(--gold2);margin:22px 0;text-wrap:balance}
+.atr-story .bridge span{display:block;width:1px;height:70px;margin:0 auto;background:linear-gradient(transparent,var(--gold),transparent);opacity:.7}
+/* ===== ATRIOS DECLARATION (scoped .atr-decl) ===== */
+.atr-decl{--A:https://ace-atrios.github.io/ace-demo/anim/declaration/a/;--P:https://ace-atrios.github.io/ace-demo/story-ren/a/;--ink:#2e1f0e;--ink2:#5a4126;--gold:#c9a24a;
+  padding:72px 16px 96px;display:flex;justify-content:center;font-family:'IM Fell English',Georgia,serif;color:var(--ink)}
+.atr-decl *{box-sizing:border-box}
+.atr-decl .sc{width:min(820px,100%);position:relative;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.atr-decl .sc-top,.atr-decl .sc-bot{width:100%;display:block;position:relative;z-index:2}
+.atr-decl .sc-top{aspect-ratio:984/160;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_top.webp) center/100% 100% no-repeat;margin-bottom:-2px}
+.atr-decl .sc-bot{aspect-ratio:984/216;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_bot.webp) center/100% 100% no-repeat;margin-top:-2px}
+.atr-decl .sc-body{background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;padding:clamp(18px,4vw,40px) clamp(30px,9%,92px) clamp(10px,3vw,24px)}
+.atr-decl .kick{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(17px,2.4vw,22px);color:var(--ink2);margin:0 0 4px;letter-spacing:.16em}
+.atr-decl .sub{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(12px,1.6vw,14px);letter-spacing:.24em;color:var(--ink2);margin:0 0 18px}
+.atr-decl h2{font-family:'IM Fell English',Georgia,serif;font-weight:400;letter-spacing:-.005em;text-align:center;font-size:clamp(36px,6.2vw,60px);line-height:1.08;margin:0 0 26px;color:var(--ink);text-wrap:balance}
+.atr-decl .orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:0 auto 26px;color:var(--ink2);width:70%}
+.atr-decl .orn:before,.atr-decl .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
+.atr-decl .txt p{font-size:clamp(18px,2.2vw,21.5px);line-height:1.62;color:#24180a;margin:0 0 16px;text-align:left;hyphens:manual}
+.atr-decl .txt p.lead:first-letter{font-family:'IM Fell English',serif;float:left;font-size:3.3em;line-height:.8;padding:6px 10px 0 0;color:#6b1d12}
+.atr-decl .txt p.strong{hyphens:manual;font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
+.atr-decl .txt p.last{text-align:center;font-size:clamp(19px,2.4vw,23px);margin-top:24px}
+/* founder block */
+.atr-decl .fd{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,36px);align-items:center;margin:34px 0 8px}
+.atr-decl .pt{width:clamp(130px,22vw,200px);aspect-ratio:4/5;border-radius:50%/42%;padding:7px;background:linear-gradient(145deg,#f2d991,#9c7424 45%,#f6e3a6 60%,#7c5a17);box-shadow:0 10px 22px rgba(40,25,5,.45),inset 0 0 0 1px rgba(255,240,200,.5)}
+.atr-decl .pt img{width:100%;height:100%;object-fit:cover;border-radius:50%/42%;display:block;filter:sepia(.18) contrast(1.03)}
+.atr-decl .sig{position:relative}
+.atr-decl .hancock{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(64px,12vw,116px);line-height:.9;color:#1d140a;white-space:nowrap;display:inline-block;transform:rotate(-4deg);transform-origin:left;
+  clip-path:inset(-30% 100% -30% 0);transition:clip-path 2.4s cubic-bezier(.6,.05,.3,1)}
+.atr-decl .flour{display:block;width:min(100%,430px);height:44px;margin-top:-14px;overflow:visible}
+.atr-decl .flour path{fill:none;stroke:#1d140a;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.4s 2.1s ease-out}
+.atr-decl.in .hancock{clip-path:inset(-30% -5% -30% 0)}
+.atr-decl.in .flour path{stroke-dashoffset:0}
+.atr-decl .who{font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:13px;color:var(--ink2);margin-top:4px}
+.atr-decl .tag{font-style:italic;color:var(--ink2);font-size:16px;margin-top:4px}
+/* join */
+.atr-decl .join{margin-top:30px;padding-top:26px;border-top:1px solid rgba(58,40,18,.35);text-align:center}
+.atr-decl .join h3{font-family:'IM Fell English',serif;font-style:italic;font-weight:400;font-size:clamp(22px,3vw,30px);margin:0 0 4px;color:var(--ink)}
+.atr-decl .join .hint{font-size:15px;color:var(--ink2);margin:0 0 14px}
+.atr-decl .line{position:relative;max-width:520px;margin:0 auto}
+.atr-decl .line input{width:100%;background:transparent;border:0;border-bottom:1.5px solid #2e1f0e;font-family:'Mrs Saint Delafield',cursive;font-size:clamp(46px,8vw,66px);color:#1d140a;text-align:center;padding:4px 8px 0;outline:none;line-height:1.25}
+.atr-decl .line input::placeholder{color:rgba(46,31,14,.28)}
+.atr-decl .line:before{content:"✗";position:absolute;left:4px;bottom:10px;font-size:20px;color:var(--ink2)}
+.atr-decl .cap{font-family:'IM Fell English SC',serif;letter-spacing:.2em;font-size:12px;color:var(--ink2);margin:6px 0 18px}
+.atr-decl .btn{display:inline-flex;align-items:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:16px;text-decoration:none;color:#1a1206;padding:14px 28px;border-radius:999px;
+  background:linear-gradient(180deg,#f3d98e,#c9a24a 55%,#a9822f);box-shadow:0 6px 16px rgba(60,35,5,.35),inset 0 1px 0 rgba(255,250,220,.7);transition:transform .2s,box-shadow .2s}
+.atr-decl .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(60,35,5,.42),inset 0 1px 0 rgba(255,250,220,.7)}
+.atr-decl .signed{font-style:italic;color:#6b1d12;min-height:22px;margin-top:10px;font-size:16px}
+
+/* photoreal ink + lighting */
+.atr-decl .kick,.atr-decl .sub,.atr-decl h2,.atr-decl .txt,.atr-decl .who,.atr-decl .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap{filter:url(#atrInk)}
+.atr-decl .sc{filter:drop-shadow(0 34px 34px rgba(0,0,0,.6)) drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.atr-decl .sc-body{position:relative}
+.atr-decl .sc-body>*{position:relative;z-index:1}
+.atr-decl .sc-body .kick,.atr-decl .sc-body .sub,.atr-decl .sc-body h2,.atr-decl .sc-body .txt,.atr-decl .sc-body .who,.atr-decl .sc-body .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap,.atr-decl .hancock,.atr-decl .flour,.atr-decl .signed{mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55),0 .4px .9px rgba(70,40,10,.25)}
+.atr-decl .sc-body:after{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:multiply;
+ background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(95,55,15,.34) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
+.atr-decl .sc-body:before{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+ background:radial-gradient(60% 40% at 35% 25%,rgba(255,248,225,.55),transparent 70%)}
+.atr-decl .line input{position:relative;z-index:3}
+.atr-decl .btn{position:relative;z-index:3}
+@media(max-width:560px){.atr-decl{padding:40px 8px 64px}.atr-decl .sc-body{padding:14px 13% 8px}.atr-decl .sub{letter-spacing:.14em}.atr-decl .txt p{hyphens:manual}.atr-decl .txt p.lead:first-letter{font-size:2.9em}.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
+</style></head><body>
+<!-- ===== ATRIOS OUR STORY MARKUP ===== -->
+<main class="atr-story"><section class="s-hero"><div class="s-in"><div class="rv"><span class="s-k">About Atrios · Founder's story</span><h1>I started Atrios because I was drowning in <em>FOMO.</em></h1><p class="lede">Every day, a new tool. Every day, another cold call. I knew there had to be a better way.</p></div>
+<div class="portrait rv"><div class="gild"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div><div class="tag"><b>Taylor Offer</b><small>FOUNDER · ATRIOS</small><i>Portrait with a sealed recommendation, oil on canvas</i></div></div></div></section><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">I</span><h2 class="">Too many tools</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>As a founder, I’ve always felt like I’m falling behind.</h3><div class="nx-body"><p>Every morning, another company launches something that’s supposedly going to change everything. A new AI agent. A better CRM. A smarter way to run payroll, banking, sales, hiring, or accounting.</p><p>Some products are actually game-changing. Some really suck. The right tool can save you hundreds of hours, replace an entire workflow, or give you an edge over competitors. The wrong one can cost you years.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>But how do I know which tools are good?</h3><div class="nx-body"><p>Every company claims to be the best. Every ad promises to change your life. Review sites feel like reviews people paid for. And nobody has time to sit through 50 demos just to pick software. I certainly didn’t.</p></div></div><div class="nx-item" data-i="2" data-img="1"><span class="nx-n">03</span><h3>So I asked people I trust.</h3><div class="nx-body"><p>I texted my friends. I asked other founders. I called people I respected and asked what they were using. Almost every time, the best products I found came from those conversations.</p><p>Not from an ad. Not from a cold email. Not from a salesperson.</p><p class="kick">From someone I trusted.</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_drowning.webp)"></div></div></div><div class="nx-pic" data-k="1"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_trust.webp)"></div></div></div></div></div></div></section><div class="bridge rv"><span></span><p>The best tools come from people we trust. Yet companies keep trying to reach us with spam.</p><span></span></div><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">II</span><h2 class="">Too much spam</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>The harder I looked, the more people tried to sell me.</h3><div class="nx-body"><p>My inbox flooded with automated emails. My phone wouldn’t stop ringing (I’m on Do Not Disturb permanently now, thanks to salespeople calling every 5 minutes). LinkedIn became a graveyard of AI-slop sales pitches.</p><p>Every company wanted 15 minutes of my time. Every salesperson was convinced that calling, emailing, and texting me 17 times was the way to get me to try their product.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>Something was fundamentally broken.</h3><div class="nx-body"><p>I wanted to discover the best products in the world. Companies wanted to get their products in front of people like me. We both wanted the same thing.</p><p>Yet the system designed to connect us was making it miserable for everyone.</p></div></div><div class="nx-item" data-i="2" data-img="0"><span class="nx-n">03</span><h3>The best product wasn’t winning.</h3><div class="nx-body"><p>The loudest (and often most annoying) sales team was. I was spending more time avoiding salespeople than discovering products that could actually help my business.</p><p class="kick">How backward is that?</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_spam.webp)"></div></div></div></div></div></div></section><div class="bridge rv"><span></span><p>That spam isn’t free. Companies spend billions on it every year.</p><span></span></div><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">III</span><h2 class="">Follow the money</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>Companies spend billions to get our attention.</h3><div class="nx-body"><p>Billions flow to Google, Meta, sales teams, ad agencies, cold-email software, and every platform designed to fight for our attention. All of it spent trying to convince us to buy something.</p><p>And what do we get? More ads. More emails. More interruptions.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>Then it hit me.</h3><div class="nx-body"><div class="quote">Instead of spamming us with billions, what if they just gave that money to us?</div><p>Instead of paying Google to show me another ad, why not pay me to discover a product that could actually help my business?</p><p>Instead of spending thousands convincing me to switch, why not reward me for switching to something better? Instead of paying strangers to spam my inbox, why not reward the people I trust for recommending products they love?</p></div></div><div class="nx-item" data-i="2" data-img="0"><span class="nx-n">03</span><h3>The money was already there.</h3><div class="nx-body"><p>Companies would still acquire customers. Customers would discover better products. And the people creating real value would finally get rewarded.</p><p class="kick">We just needed to change where it went.</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_money.webp)"></div></div></div></div></div></div></section><div class="bridge rv"><span></span><p>Let’s give those billions of dollars to you instead.</p><span></span></div><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">IV</span><h2 class="">So I built Atrios</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>The best products should win.</h3><div class="nx-body"><p>I started Atrios with a simple belief: the best products should win, and the money should go to people, not to spam.</p><p>Instead of companies spending billions interrupting people, that money flows directly to the people they’re trying to reach.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>Get rewarded to discover.</h3><div class="nx-body"><p>Get paid to discover a product that makes your business better. Get rewarded for switching to a tool that saves you time or money. Unlock perks, credits, and discounts just for trying something new.</p></div></div><div class="nx-item" data-i="2" data-img="0"><span class="nx-n">03</span><h3>Get rewarded to recommend.</h3><div class="nx-body"><p>Earn money simply by recommending a product you already love to someone who needs it.</p><p class="kick">That’s Atrios.</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_join.webp)"></div></div></div></div></div></div></section><div class="bridge rv"><span></span><p>Atrios pays you to discover great products. Ace finds the right ones for you.</p><span></span></div><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">V</span><h2 class="">Meet Ace</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>Your friend who knows every tool.</h3><div class="nx-body"><p>Ace is your personal AI agent for finding the best tools for your business. Think of it as the friend who has talked to every business, reviewed every product, and knows every founder.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>It learns what you actually need.</h3><div class="nx-body"><p>It learns about your company and what you’re trying to accomplish. It finds what founders, operators, and people you trust are really using, cuts through the noise, and brings you only what’s worth your attention.</p></div></div><div class="nx-item" data-i="2" data-img="0"><span class="nx-n">03</span><h3>And gets you rewarded for it.</h3><div class="nx-body"><p>When there’s a great opportunity, Ace helps you get rewarded for exploring it. No endless research. No guessing. No cold calls.</p><p class="kick">Text Ace whenever you want.</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_ace.webp)"></div></div></div></div></div></div></section><div class="bridge rv"><span></span><p>And it’s bigger than software. It’s a better way for the world to buy and sell.</p><span></span></div><section class="nx" style="--n:3"><div class="nx-sticky"><div class="nx-head"><span class="plq">VI</span><h2 class="long">The future of sales doesn’t have to suck</h2></div><div class="nx-grid"><div class="nx-list"><div class="nx-item on" data-i="0" data-img="0"><span class="nx-n">01</span><h3>A better way for the world to buy and sell.</h3><div class="nx-body"><p>Think about how much of our lives we spend being sold to. Every website. Every feed. Every inbox. Every phone call.</p><p>Somewhere along the way, we accepted that this is just how business works. It doesn’t have to be.</p></div></div><div class="nx-item" data-i="1" data-img="0"><span class="nx-n">02</span><h3>Trust becomes more powerful than advertising.</h3><div class="nx-body"><p>The best products spread because people genuinely love them. Your relationships, recommendations, and attention are recognized as valuable. And companies stop chasing customers, because their happiest customers become their greatest advocates.</p><p class="kick">Buyers aren’t targets. They’re partners.</p></div></div><div class="nx-item" data-i="2" data-img="0"><span class="nx-n">03</span><h3>The best products win because they’re the best.</h3><div class="nx-body"><p>Not because they have the biggest ad budgets. Discovering something new feels like a tip from your smartest friend, and every great recommendation creates value for the person giving it, the person receiving it, and the company behind the product.</p></div></div></div><div class="nx-art"><div class="nx-pic on" data-k="0"><div class="s-frame"><div class="pic" style="background-image:url(https://ace-atrios.github.io/ace-demo/story-ren/a/st_market.webp)"></div></div></div></div></div></div></section><div class="rule"></div><section class="atr-decl" id="atrDecl"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="atrInk" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.75 1.3" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg>
+ <div class="sc">
+  <div class="sc-top"></div>
+  <div class="sc-body">
+   <p class="kick">The Atrios Declaration</p>
+   <p class="sub">VII · In the year 2026</p>
+   <h2>Let’s change the way the world sells</h2>
+   <div class="orn">✦</div>
+   <div class="txt">
+    <p class="lead">What started as a personal frustration has turned into something much bigger.</p>
+    <p>Millions of people want to discover better products and get rewarded for the value they create. Millions of companies are building incredible products that deserve to be discovered.</p>
+    <p class="strong">We just need a better way to connect them.</p>
+    <p>That’s what we’re building at Atrios: taking an industry built on interruption and rebuilding it around trust, and putting the money that used to go to ads and spam into the hands of real people.</p>
+    <p>It won’t happen overnight. But every great product discovered, every recommendation rewarded, and every cold call replaced with a real connection brings us one step closer.</p>
+    <p class="strong">The future of sales doesn’t belong to the companies that spend the most to spam us. It belongs to the companies we trust, the products we love, and the people who bring us together.</p>
+    <p class="last">And I’d love for you to be part of it.</p>
+   </div>
+   <div class="fd">
+    <div class="pt"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div>
+    <div class="sig">
+     <span class="hancock">Taylor Offer</span>
+     <svg class="flour" viewBox="0 0 430 44" preserveAspectRatio="none"><path d="M6 30 C 80 6, 170 40, 250 22 S 380 4, 424 26 M 300 30 C 330 40, 380 40, 404 34"/></svg>
+     <div class="who">Founder, Atrios</div>
+     <div class="tag">The best tools, picked by people who use them.</div>
+    </div>
+   </div>
+   <div class="join">
+    <h3>If you want to join me, sign your name</h3>
+    <p class="hint">Then text Ace to get started.</p>
+    <div class="line"><input id="atrDeclName" type="text" maxlength="40" placeholder="Your name" autocomplete="name" aria-label="Your name"></div>
+    <div class="cap">Signature</div>
+    <a class="btn" id="atrDeclBtn" href="sms:+15303064813">Text Ace →</a>
+    <div class="signed" id="atrDeclSigned"></div>
+   </div>
+  </div>
+  <div class="sc-bot"></div>
+ </div>
+</section>
+<script>
+(()=>{const s=document.getElementById('atrDecl');if(!s)return;
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){s.classList.add('in');io.disconnect()}})},{threshold:.35});
+io.observe(s.querySelector('.fd'));
+const i=document.getElementById('atrDeclName'),b=document.getElementById('atrDeclBtn'),m=document.getElementById('atrDeclSigned');
+const upd=()=>{const n=i.value.trim();const body=n?`I signed the Atrios Declaration. ${n}`:'I want to join Atrios.';
+ b.href='sms:+15303064813?&body='+encodeURIComponent(body);m.textContent=n?`Signed by ${n}, ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:''};
+i.addEventListener('input',upd);upd();})();
+</script>
+</main>
+<script>
+/* ===== ATRIOS OUR STORY JS ===== */
+(function(){const root=document.querySelector('.atr-story');if(!root)return;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+root.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const secs=[...root.querySelectorAll('.nx')];
+function set(s,i){const its=[...s.querySelectorAll('.nx-item')];i=Math.max(0,Math.min(its.length-1,i));if(s._i===i)return;s._i=i;its.forEach((it,k)=>it.classList.toggle('on',k===i));const k=its[i].dataset.img;s.querySelectorAll('.nx-pic').forEach(p=>p.classList.toggle('on',p.dataset.k===k))}
+function tick(){if(innerWidth<=900)return;secs.forEach(s=>{const r=s.getBoundingClientRect(),n=s.querySelectorAll('.nx-item').length,span=s.offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,-r.top/Math.max(1,span)));set(s,Math.floor(p*n*0.999))})}
+addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);tick();
+secs.forEach(s=>s.querySelectorAll('.nx-item').forEach((it,i)=>it.addEventListener('click',()=>{const n=s.querySelectorAll('.nx-item').length,span=s.offsetHeight-innerHeight;scrollTo({top:s.getBoundingClientRect().top+scrollY+span*(i+.5)/n,behavior:'smooth'})})));
+})();
+</script>
+</body></html>

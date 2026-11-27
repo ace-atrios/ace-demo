@@ -1,0 +1,69 @@
+<!-- Atrios "signals" piece: same design as the original GIF, rebuilt as a smooth 60fps animation (no deps). Scales to its container. -->
+<div class="atr-sp">
+ <div class="sp-stage">
+  <img class="sp-plate" src="https://ace-atrios.github.io/ace-demo/img/ren4/sig_plate.jpg" alt="A cherub circles the signal astrolabe, gathering signals from founders, VCs, operators, Product Hunt, LinkedIn, Reddit, X, WhatsApp and Slack">
+  <svg class="sp-svg" viewBox="0 0 1536 1152" preserveAspectRatio="none"><defs><filter id="spG" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="spC"><stop offset="0" stop-color="#fff3c8" stop-opacity=".95"/><stop offset=".25" stop-color="#ffc35a" stop-opacity=".55"/><stop offset="1" stop-color="#ff9a1f" stop-opacity="0"/></radialGradient></defs>
+   <g filter="url(#spG)"><path data-k="ph" class="sp-thread" d="M272,282 L272,282"/><path data-k="li" class="sp-thread" d="M190,458 L190,458"/><path data-k="rd" class="sp-thread" d="M180,635 L180,635"/><path data-k="x" class="sp-thread" d="M245,810 L245,810"/><path data-k="wa" class="sp-thread" d="M1308,378 L1308,378"/><path data-k="sl" class="sp-thread" d="M1362,573 L1362,573"/><path data-k="fo" class="sp-thread" d="M518,150 L518,150"/><path data-k="vc" class="sp-thread" d="M770,105 L770,105"/><path data-k="op" class="sp-thread" d="M1022,155 L1022,155"/></g><circle class="sp-core" cx="0" cy="0" r="120" fill="url(#spC)"/></svg>
+  <i class="sp-glow" data-k="ph" style="left:17.708%;top:24.479%;width:16.797%"></i><i class="sp-glow" data-k="li" style="left:12.370%;top:39.757%;width:16.016%"></i><i class="sp-glow" data-k="rd" style="left:11.719%;top:55.122%;width:16.016%"></i><i class="sp-glow" data-k="x" style="left:15.951%;top:70.312%;width:16.016%"></i><i class="sp-glow" data-k="wa" style="left:85.156%;top:32.812%;width:17.188%"></i><i class="sp-glow" data-k="sl" style="left:88.672%;top:49.740%;width:16.797%"></i><i class="sp-glow" data-k="fo" style="left:33.724%;top:13.021%;width:17.969%"></i><i class="sp-glow" data-k="vc" style="left:50.130%;top:9.115%;width:17.188%"></i><i class="sp-glow" data-k="op" style="left:66.536%;top:13.455%;width:17.969%"></i>
+  <div class="sp-count" style="left:50.000%;top:46.875%"><b class="sp-num">52,262</b><i>signals today</i></div>
+  <div class="sp-ink"></div><img class="sp-cherub" src="https://ace-atrios.github.io/ace-demo/img/ren4/cherub_write.webp" alt="">
+  <div class="sp-cap" style="left:50.000%;top:88.715%"><span></span></div>
+ </div>
+ <img class="sp-frame" src="https://ace-atrios.github.io/ace-demo/img/ren4/frame43.webp" alt="">
+</div>
+<style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+.atr-sp{position:relative;width:100%;max-width:1000px;aspect-ratio:1536/1290;margin:0 auto;filter:drop-shadow(0 28px 36px rgba(0,0,0,.55))}
+.atr-sp .sp-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+.atr-sp .sp-stage{position:absolute;left:13.8%;right:13.87%;top:17.45%;bottom:17.97%;overflow:hidden;container-type:inline-size;background:#14100a}
+.atr-sp .sp-plate{position:absolute;inset:0;width:100%;height:100%;display:block}
+.atr-sp .sp-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;mix-blend-mode:screen}
+.atr-sp .sp-thread{fill:none;stroke:#ffcf6e;stroke-width:4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.atr-sp .sp-core{opacity:0;transform-origin:center;transform-box:fill-box}
+.atr-sp .sp-glow{position:absolute;aspect-ratio:1;transform:translate(-50%,-50%) scale(.85);border-radius:50%;background:radial-gradient(circle,rgba(255,236,170,.75) 0%,rgba(255,190,80,.45) 38%,rgba(255,150,40,0) 70%);mix-blend-mode:screen;opacity:0;z-index:3;pointer-events:none}
+.atr-sp .sp-count{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:4;font-family:'Cormorant Garamond',serif;color:#f7e7bf;text-shadow:0 2px 10px rgba(0,0,0,.9),0 0 18px rgba(255,190,90,.25)}
+.atr-sp .sp-count b{display:block;font-weight:600;font-size:7.2cqw;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.atr-sp .sp-count i{display:block;font-size:2.9cqw;margin-top:.2em}
+.atr-sp .sp-cherub{position:absolute;left:0;top:0;width:19%;z-index:6;will-change:transform;filter:drop-shadow(0 10px 12px rgba(0,0,0,.55));pointer-events:none}
+.atr-sp .sp-cap{position:absolute;transform:translate(-50%,-50%);width:44%;text-align:center;z-index:5}
+.atr-sp .sp-cap span{display:block;font:italic 600 3cqw/1.12 'Cormorant Garamond',serif;color:#3a240d;transition:opacity .6s ease,transform .6s ease}
+.atr-sp .sp-cap span.out{opacity:0;transform:translateY(.25em)}
+@media (prefers-reduced-motion:reduce){.atr-sp .sp-cherub{display:none}}
+.atr-sp .sp-thread{stroke-dasharray:none;stroke-dashoffset:0}
+.atr-sp .sp-core{transform-box:view-box}
+.atr-sp .sp-ink{position:absolute;left:0;top:0;width:3.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,240,190,.95),rgba(255,190,80,.5) 40%,transparent 70%);mix-blend-mode:screen;z-index:7;pointer-events:none;opacity:0}
+</style>
+<script>(()=>{const N={"ph": [0.17708333333333334, 0.24479166666666666], "li": [0.12369791666666667, 0.3975694444444444], "rd": [0.1171875, 0.5512152777777778], "x": [0.15950520833333334, 0.703125], "wa": [0.8515625, 0.328125], "sl": [0.88671875, 0.4973958333333333], "fo": [0.3372395833333333, 0.13020833333333334], "vc": [0.5013020833333334, 0.09114583333333333], "op": [0.6653645833333334, 0.1345486111111111]};
+const T=16;const NB=[.8335,.47];
+const WP=[[0,.14,.80],[1.6,.30,.40],[2.6,.36,.26],[3.6,.50,.24],[4.6,.64,.27],[6.0,.78,.44],[7.0,.80,.56],[8.2,.64,.64],[9.2,.40,.70],[10.0,.26,.64],[10.8,.26,.48],[11.6,.30,.34],[12.8,.50,.62],[13.6,.70,.56],[14.3,.50,.60],[15.6,.48,.62],[16,.14,.80]];
+const G=[['fo',2.2,3.4],['vc',3.3,4.5],['op',4.3,5.6],['sl',6.6,8.0],['x',9.2,10.6],['rd',9.8,11.2],['li',10.4,11.8],['ph',11.0,12.4],['wa',13.0,13.9],['sl',13.2,14.0]];
+const CAPS=[[0,"Talking to founders, VC's and Operators"],[6.2,"Scanning millions of posts"],[12.8,"Reading founder and operator community groups"],[14.4,"Writing down every signal for you"]];
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function cr(p0,p1,p2,p3,t){const t2=t*t,t3=t2*t;return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3)}
+function pos(t){let i=0;while(i<WP.length-2&&WP[i+1][0]<=t)i++;const a=WP[Math.max(0,i-1)],b=WP[i],c=WP[i+1],d=WP[Math.min(WP.length-1,i+2)];const u=ease((t-b[0])/(c[0]-b[0]));return[cr(a[1],b[1],c[1],d[1],u),cr(a[2],b[2],c[2],d[2],u)]}
+document.querySelectorAll('.atr-sp').forEach(el=>{
+ const st=el.querySelector('.sp-stage'),ch=el.querySelector('.sp-cherub'),ink=el.querySelector('.sp-ink'),num=el.querySelector('.sp-num'),cap=el.querySelector('.sp-cap span'),core=el.querySelector('.sp-core');
+ const glow={},thr={};el.querySelectorAll('.sp-glow').forEach(g=>glow[g.dataset.k]=g);el.querySelectorAll('.sp-thread').forEach(p=>thr[p.dataset.k]=p);
+ let capIdx=-1,t0=performance.now(),face=1,fs=1;cap.textContent=CAPS[0][1];
+ function frame(now){const t=((now-t0)/1000)%T;const w=st.clientWidth,h=st.clientHeight;
+  const [x,y]=pos(t),[x2]=pos((t+.12)%T);if(Math.abs(x2-x)>.002)face=x2>x?1:-1;fs+=(face-fs)*.15;
+  const bob=Math.sin(now/380)*.006;const cw=ch.offsetWidth,chh=ch.offsetHeight;
+  const scrib=Math.sin(now/90)*.7+Math.sin(now/57)*.4;
+  const tx=x*w-cw/2,ty=(y+bob)*h-chh/2;
+  ch.style.transform=`translate(${tx}px,${ty}px) rotate(${scrib}deg) scaleX(${fs})`;
+  const nfx=.5+(NB[0]-.5)*fs;const nbx=(tx+nfx*cw)/w*1536,nby=(ty+NB[1]*chh)/h*1152;
+  const iw=ink.offsetWidth;ink.style.transform=`translate(${(nbx/1536)*w-iw/2+Math.sin(now/70)*2}px,${(nby/1152)*h-iw/2+Math.cos(now/83)*2}px)`;
+  const lit={};G.forEach(([k,a,b])=>{let v=0;if(t>=a-.5&&t<=b+.8){v=t<a?(t-(a-.5))/.5:t<=b?1:1-(t-b)/.8}lit[k]=Math.max(lit[k]||0,Math.max(0,Math.min(1,v)))});
+  const fin=t>=14.2?Math.min(1,(t-14.2)/.6)*(t>15.5?Math.max(0,1-(t-15.5)/.5):1):0;
+  let any=0;
+  for(const k in glow){const v=Math.max(lit[k]||0,fin);any=Math.max(any,v);glow[k].style.opacity=v;glow[k].style.transform=`translate(-50%,-50%) scale(${.85+.25*v+.04*Math.sin(now/300)})`;
+   const px=N[k][0]*1536,py=N[k][1]*1152;const p=thr[k];
+   if(v>0.01){const r=ease(Math.min(1,v*1.3));const ex=px+(nbx-px)*r,ey=py+(nby-py)*r;const mx=(px+ex)/2,my=(py+ey)/2-80;
+     p.setAttribute('d',`M${px},${py} Q${mx},${my} ${ex},${ey}`);p.style.opacity=Math.min(1,v*1.4)*.9}else{p.style.opacity=0}}
+  ink.style.opacity=Math.min(1,any*1.2);
+  core.setAttribute('cx',nbx);core.setAttribute('cy',nby);core.setAttribute('r',60+70*fin);core.style.opacity=fin;
+  const c=52262+(110524-52262)*ease(Math.min(1,t/14.6));num.textContent=Math.floor(c).toLocaleString('en-US');
+  let ci=0;CAPS.forEach((c,i)=>{if(t>=c[0])ci=i});
+  if(ci!==capIdx){const first=capIdx<0;capIdx=ci;if(first){cap.textContent=CAPS[ci][1]}else{cap.classList.add('out');setTimeout(()=>{cap.textContent=CAPS[ci][1];cap.classList.remove('out')},350)}}
+  requestAnimationFrame(frame)}
+ requestAnimationFrame(frame)})})();
+</script>

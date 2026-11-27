@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mailbox domains · Atrios</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#0E2723;--g:#C9A96E;--c:#FFF4DE;--paper:#FAF8F5;--b:#E8DFC8;--m:#757575;--t:#221D1B}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);font:15px/1.5 -apple-system,Inter,system-ui,sans-serif;color:var(--t)}
+header{background:var(--p);color:var(--c);padding:22px 28px}h1{font:700 28px 'Nanum Myeongjo',serif;margin:0}header p{margin:4px 0 0;opacity:.8;font-size:14px}
+main{max-width:1000px;margin:24px auto;padding:0 20px;display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.card{background:#fff;border:1px solid var(--b);border-radius:12px;padding:18px}
+h2{font:700 19px 'Nanum Myeongjo',serif;margin:0 0 10px;color:var(--p)}
+.cnt{font-size:13px;color:var(--m);margin-bottom:10px}.cnt b{color:var(--p)}.ok{color:#1A4D36}.bad{color:#981B1B}
+ul{list-style:none;margin:0;padding:0}li{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border:1px solid var(--b);border-radius:8px;margin-bottom:6px;font-family:ui-monospace,Menlo,monospace;font-size:14px}
+button{border:0;border-radius:8px;padding:6px 12px;cursor:pointer;font:500 13px inherit}
+.x{background:#F5F5F5;color:#981B1B}.add{background:var(--g);color:#0A1A17}.pri{background:var(--p);color:var(--c);padding:10px 16px}
+.row{display:flex;gap:8px;margin-bottom:12px}input{flex:1;border:1px solid var(--b);border-radius:8px;padding:9px 11px;font:14px ui-monospace,Menlo,monospace}
+.st{font-size:13px;min-height:20px;margin-bottom:8px}.note{font-size:12px;color:var(--m)}
+#lock{max-width:360px;margin:80px auto;text-align:center}
+@media(max-width:800px){main{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>Mailbox domains</h1><p>New InboxKit domains for the Lemlist email-only team. Edit live: remove, swap in a spare, or type any name to check it. Ace buys exactly this list.</p></header>
+<div id="lock" class="card"><h2>Passcode</h2><div class="row"><input id="pc" type="password" placeholder="Ace Inbox passcode"><button class="pri" onclick="unlock()">Open</button></div><div class="st" id="lst"></div></div>
+<main id="app" style="display:none">
+<div class="card"><h2>Buying</h2><div class="cnt" id="cnt"></div><ul id="picked"></ul></div>
+<div><div class="card"><h2>Add a domain</h2>
+<div class="row"><input id="nd" placeholder="atrioshub.com" onkeydown="if(event.key=='Enter')check()"><button class="add" onclick="check()">Check + add</button></div>
+<div class="st" id="cst"></div><div class="note">Checks DNS live. Unregistered = available ($12.50/yr). .com recommended.</div></div>
+<div class="card" style="margin-top:20px"><h2>Spares (all available)</h2><ul id="spare"></ul></div>
+<div class="card" style="margin-top:20px"><h2>Recent edits</h2><ul id="log"></ul></div></div>
+</main>
+<script>
+const B={"s": "tuqqa/ftlk8HuK3vZK8nEQ==", "i": "FnJLCaloq0LyhYnY", "c": "tJzJIUTZyXNV3u1RxdItIoGaAvnODG1q+31F4HTL4C43xuEM3iSDS/j1g8UX7dZCYj7Zvlt4wnLi838Q4McQyDooWdp4J6cDUWdh01pS8qHab9UYNmbRhuFhczoMb9uCdBtJHngRL7jSVyrPtV1W4Z8dYIcR8uXb2apKVrqGjHz0fhvG+xEW9QtSrbYxYLep6zJf6VNY9ODrjUkFs3AGGA0QDSHs"};let C,DATA;
+const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function unlock(p){p=p||document.getElementById('pc').value;try{const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(B.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);C=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(B.i)},k,d(B.c))));localStorage.dpk=p;document.getElementById('lock').style.display='none';document.getElementById('app').style.display='grid';load();setInterval(load,10000)}catch(e){document.getElementById('lst').textContent='Wrong passcode'}}
+const H=()=>({apikey:C.a,Authorization:'Bearer '+C.a,'Content-Type':'application/json'});
+async function load(){const r=await fetch(C.u+'/rest/v1/shared_state?key=eq.'+C.k+'&select=data',{headers:H()});DATA=(await r.json())[0].data;render()}
+async function save(mut,msg){await load();mut(DATA);DATA.log=[(new Date().toLocaleTimeString())+' '+msg].concat(DATA.log||[]).slice(0,20);const r=await fetch(C.u+'/rest/v1/shared_state?key=eq.'+C.k,{method:'PATCH',headers:Object.assign(H(),{Prefer:'return=minimal'}),body:JSON.stringify({data:DATA,updated_at:new Date().toISOString()})});if(!r.ok)alert('Save failed '+r.status);render()}
+function render(){const n=DATA.picked.length,need=DATA.need;document.getElementById('cnt').innerHTML=`<b>${n}</b> of ${need} needed `+(n==need?'<span class=ok>✓ ready</span>':n<need?`<span class=bad>· add ${need-n} more</span>`:`<span class=bad>· ${n-need} over, remove some</span>`)+` · ~$${(n*12.5).toFixed(0)}/yr`;
+document.getElementById('picked').innerHTML=DATA.picked.map(x=>`<li>${x}<button class="x" onclick="rm('${x}')">Remove</button></li>`).join('');
+document.getElementById('spare').innerHTML=(DATA.spare||[]).map(x=>`<li>${x}<button class="add" onclick="addSp('${x}')">Add</button></li>`).join('')||'<div class=note>None</div>';
+document.getElementById('log').innerHTML=(DATA.log||[]).map(x=>`<li style="font-family:inherit;font-size:13px">${x}</li>`).join('')}
+function rm(x){save(D=>{D.picked=D.picked.filter(y=>y!=x);D.spare=[x].concat((D.spare||[]).filter(y=>y!=x))},'removed '+x)}
+function addSp(x){save(D=>{if(!D.picked.includes(x))D.picked.push(x);D.spare=(D.spare||[]).filter(y=>y!=x)},'added '+x)}
+async function check(){let x=document.getElementById('nd').value.trim().toLowerCase().replace(/^https?:\/\//,'').replace(/\/.*/,'');if(!x)return;if(!x.includes('.'))x+='.com';const st=document.getElementById('cst');st.textContent='Checking '+x+'…';
+try{const r=await(await fetch('https://dns.google/resolve?name='+x+'&type=NS')).json();if(r.Status===3){if(DATA.picked.includes(x)){st.innerHTML='<span class=bad>'+x+' is already on the list</span>';return}await save(D=>{D.picked.push(x);D.spare=(D.spare||[]).filter(y=>y!=x)},'added '+x);st.innerHTML='<span class=ok>✓ '+x+' is available, added</span>';document.getElementById('nd').value=''}else st.innerHTML='<span class=bad>✗ '+x+' is taken</span>'}catch(e){st.textContent='Check failed, try again'}}
+if(localStorage.dpk)unlock(localStorage.dpk);
+</script></body></html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · The network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0d1f19}
+/* ===== ATRIOS NETWORK COMPONENT CSS ===== */
+.atr-net{--cs:.86;--gold:#D9B77A;--gold2:#F3D9A0;--ink:#2a1d10;position:relative;overflow:hidden;padding:88px 6vw 96px;color:#efe6d2;font-family:Inter,system-ui,sans-serif;
+  background:linear-gradient(180deg,rgba(8,20,15,.86),rgba(8,20,15,.78) 40%,rgba(8,20,15,.9)),url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover}
+.atr-net .an-k{display:block;text-align:center;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.atr-net .an-h{text-align:center;font:400 clamp(38px,4.4vw,64px)/1.05 'Cormorant Garamond',serif;margin:18px 0 54px;color:#f5ecd8}
+.atr-net .an-h em{color:var(--gold);font-style:italic}
+.atr-net .an-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:56px;align-items:center;max-width:1280px;margin:0 auto}
+.atr-net .an-num{font:500 clamp(84px,9vw,132px)/.9 'Cormorant Garamond',serif;letter-spacing:-.01em;font-variant-numeric:lining-nums;
+  background:linear-gradient(180deg,#f6e2b0,#c99d55 70%,#9e7838);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
+.atr-net .an-tm{font:400 clamp(30px,2.8vw,40px)/1.1 'Cormorant Garamond',serif;color:#f5ecd8;margin:4px 0 6px}
+.atr-net .an-reach{font:italic 400 clamp(21px,1.8vw,26px)/1.3 'Cormorant Garamond',serif;color:#e9dcc0;margin:0 0 16px}
+.atr-net .an-reach b{color:var(--gold);font-weight:500}
+.atr-net .an-sub{font-size:16px;line-height:1.6;color:#c9c1ad;margin:0 0 30px;max-width:400px}
+.atr-net .an-cnt{border-top:1px solid rgba(217,183,122,.28);padding-top:22px;margin-bottom:26px}
+.atr-net .an-cnt b{display:block;font:500 64px/1 'Cormorant Garamond',serif;color:var(--gold2);font-variant-numeric:lining-nums tabular-nums;text-shadow:0 0 22px rgba(243,217,160,.35);transform-origin:left center}
+.atr-net .an-cnt b.bump{animation:anBump .3s}@keyframes anBump{50%{transform:scale(1.08)}}
+.atr-net .an-cnt span{display:block;margin-top:8px;font:italic 400 19px 'Cormorant Garamond',serif;color:#d9cfb8}
+.atr-net .an-cnt i{font:500 10px 'JetBrains Mono',monospace;letter-spacing:.2em;color:#9cc7a6;margin-left:8px;animation:anBlink 1.4s infinite}@keyframes anBlink{50%{opacity:.35}}
+.atr-net .an-leg{display:flex;flex-wrap:wrap;gap:6px 18px;font:italic 400 18px 'Cormorant Garamond',serif;color:#e4d8bd}
+.atr-net .an-leg span:before{content:"✦";margin-right:6px;font-style:normal}
+.atr-net .an-leg .f:before{color:#D9B77A}.atr-net .an-leg .i:before{color:#9cc7a6}.atr-net .an-leg .c:before{color:#9fb5d9}.atr-net .an-leg .o:before{color:#d9a3b6}.atr-net .an-leg .l:before{color:#fff4dc;text-shadow:0 0 6px #ffe7b0}
+.atr-net .an-frame{position:relative;width:100%;aspect-ratio:1536/1290;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
+.atr-net .an-frame:after{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/img/ren4/frame43.webp) center/100% 100% no-repeat;pointer-events:none;z-index:6}
+.atr-net .an-viz{position:absolute;left:13.4%;right:13.4%;top:17%;bottom:17.6%;overflow:hidden;box-shadow:inset 0 0 40px rgba(0,0,0,.7);
+  background:radial-gradient(ellipse at 50% 50%,rgba(84,66,30,.5),rgba(10,20,16,0) 55%),radial-gradient(ellipse at 50% 50%,#13261f 0%,#0a1612 70%,#060d0a 100%)}
+.atr-net .an-viz:before{content:"";position:absolute;inset:0;background:url(https://ace-atrios.github.io/ace-demo/img/ren2/bg_impasto.jpg) center/cover;opacity:.28;mix-blend-mode:overlay;pointer-events:none}
+.atr-net .an-world{position:absolute;left:50%;top:50%;transform-origin:center center}
+.atr-net .an-world canvas{position:absolute;inset:0}.atr-net .an-world canvas.an-top{z-index:4;pointer-events:none}
+.atr-net .an-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:160px;height:160px;border-radius:50%;z-index:3;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 34% 28%,#fff1c8 0%,#e8c27a 22%,#b4873f 55%,#6e4d1d 100%);box-shadow:0 0 0 6px rgba(20,14,6,.55),0 0 0 9px #c9a15e,0 0 80px rgba(243,210,140,.55),inset 0 -8px 18px rgba(60,35,8,.55),inset 0 6px 14px rgba(255,248,220,.6)}
+.atr-net .an-hub:before{content:"";position:absolute;inset:14px;border-radius:50%;border:1.5px solid rgba(70,45,12,.55);box-shadow:inset 0 0 0 4px rgba(255,236,190,.25)}
+.atr-net .an-hub b{position:relative;text-align:center;max-width:110px;font:600 27px/1 'Cormorant Garamond',serif;color:#3a260c;text-shadow:0 1px 0 rgba(255,240,200,.7),0 -1px 0 rgba(60,35,8,.4)}
+.atr-net .an-card{position:absolute;width:212px;transform:translate(-50%,-50%) scale(.85);opacity:0;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1);z-index:2;
+  padding:14px 16px 12px;color:var(--ink);border-radius:3px;box-sizing:border-box;
+  background:linear-gradient(180deg,rgba(255,250,235,.25),rgba(120,80,30,.12)),url(https://ace-atrios.github.io/ace-demo/img/ren2/parchment.png) center/cover,#e9dbbb;
+  box-shadow:0 10px 26px rgba(0,0,0,.55),inset 0 0 0 1px rgba(110,75,30,.45),inset 0 0 22px rgba(120,80,30,.35)}
+.atr-net .an-card.in{opacity:1;transform:translate(-50%,-50%) scale(var(--cs,1))}
+.atr-net .an-card .t{display:flex;align-items:center;gap:11px}
+.atr-net .an-card .av{width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font:600 17px 'Cormorant Garamond',serif;color:#fff6e0;box-shadow:0 0 0 2px #b88c47,inset 0 -4px 8px rgba(0,0,0,.35)}
+.atr-net .an-card b{display:block;font:600 21px/1.05 'Cormorant Garamond',serif;color:#24170a}
+.atr-net .an-card .r{display:block;font:italic 400 16px/1.2 'Cormorant Garamond',serif;color:#5a4224}
+.atr-net .an-card .m{margin-top:9px;padding-top:8px;border-top:1px solid rgba(90,60,25,.3);font:500 12.5px/1.3 Inter,sans-serif;color:#4c3a22}
+.atr-net .an-card .n{margin-top:4px;font:600 12.5px Inter,sans-serif;color:#7a5524}
+.atr-net .an-card .n:before{content:"✦ ";color:#a87a35}
+.atr-net .an-cap{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:italic 400 17px 'Cormorant Garamond',serif;color:#e8d9b6;z-index:4;text-shadow:0 1px 6px #000;pointer-events:none}
+@media(max-width:900px){.atr-net .an-grid{grid-template-columns:1fr;gap:36px}.atr-net{padding:64px 20px}.atr-net .an-txt{text-align:center}.atr-net .an-sub{margin-left:auto;margin-right:auto}.atr-net .an-leg{justify-content:center}.atr-net .an-cnt b{transform-origin:center}}
+@media(max-width:600px){.atr-net{--cs:.42}.atr-net .an-hub{width:84px;height:84px}.atr-net .an-hub b{font-size:15px;max-width:60px}.atr-net .an-hub b{font-size:16px;max-width:64px}.atr-net .an-cap{display:none}}
+/* ===== end component CSS ===== */
+</style></head><body>
+
+<!-- ===== ATRIOS NETWORK COMPONENT MARKUP ===== -->
+<section class="atr-net" id="atrNet" data-vendor="Your Company">
+  <span class="an-k">The Atrios Network</span>
+  <h2 class="an-h">Get access to <em>every room.</em></h2>
+  <div class="an-grid">
+    <div class="an-txt">
+      <div class="an-num">3,500+</div>
+      <div class="an-tm">tastemakers.</div>
+      <p class="an-reach">with access to <b>10M+ professionals</b></p>
+      <p class="an-sub">Each one opens a network of your next customers, people who already trust them.</p>
+      <div class="an-cnt"><b id="anCount">0</b><span>intros to your customers</span></div>
+      <div class="an-leg"><span class="f">Founders</span><span class="i">Investors</span><span class="c">Community leaders</span><span class="o">Operators</span><span class="l">Leads in their networks</span></div>
+    </div>
+    <div class="an-frame"><div class="an-viz" id="anViz"><div class="an-world"><canvas></canvas><canvas class="an-top"></canvas><div class="an-hub"><b>Your Company</b></div></div><div class="an-cap">Every tastemaker opens a room. Every glow is a new customer.</div></div></div>
+  </div>
+</section>
+
+<script>
+/* ===== ATRIOS NETWORK COMPONENT JS ===== */
+(function(){
+const root=document.getElementById('atrNet');if(!root)return;
+root.querySelector('.an-hub b').textContent=root.dataset.vendor||'Your Company';
+const PEOPLE=[['Priya S.','Founder & CEO','f','YC W24 · SF','2.4k'],['Marcus L.','Partner','i','Seed fund · NYC','5.1k'],['Dana K.','Community lead','c','Founder meetups · Austin','3.8k'],['Ethan R.','Fractional CFO','o','12 startups · Boston','1.9k'],['Sofia M.','Angel investor','i','40+ checks · LA','4.2k'],['Jamal T.','Founder','f','Series A · Chicago','2.7k'],['Lena W.','Accelerator director','c','Demo days · Miami','6.3k'],['Omar H.','VC principal','i','Fintech fund · NYC','3.3k']];
+const COL={f:'#a8782f',i:'#4f7d5c',c:'#4d6a92',o:'#9a5a6e'};
+const box=root.querySelector('#anViz'),world=box.querySelector('.an-world'),cv=world.querySelector('canvas'),cv2=world.querySelector('canvas.an-top'),ic=root.querySelector('#anCount');
+let raf=null,timers=[],running=false;
+function stop(){cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];running=false}
+function start(){
+  stop();running=true;world.querySelectorAll('.an-card').forEach(x=>x.remove());
+  const BW=box.clientWidth,BH=box.clientHeight,Z=2.1,W=Math.round(BW*Z),H=Math.round(BH*Z),dpr=Math.min(2,window.devicePixelRatio||1);
+  world.style.width=W+'px';world.style.height=H+'px';world.style.transition='none';world.style.transform='translate(-50%,-50%) scale(1)';
+  cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);cv2.width=W*dpr;cv2.height=H*dpr;cv2.style.width=W+'px';cv2.style.height=H+'px';const tctx=cv2.getContext('2d');tctx.setTransform(dpr,0,0,dpr,0,0);
+  const cx=W/2,cy=H/2,SZ=Math.min(BW/W,BH/H)*1.12,VX=BW/(2*SZ),VY=BH/(2*SZ);
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  const RX=BW*0.56,RY=BH*0.5;
+  const hubs=PEOPLE.map((p,k)=>{const an=-Math.PI/2+k*Math.PI*2/PEOPLE.length,x=cx+Math.cos(an)*RX,y=cy+Math.sin(an)*RY;return {p,a:Math.atan2(y-cy,x-cx),x,y,kids:[],cands:[]}});
+  const outRing=(x,y)=>Math.pow((x-cx)/(RX+150),2)+Math.pow((y-cy)/(RY+110),2)>1;
+  const inCard=(x,y,pad)=>hubs.some(o=>x+260>o.x-110-pad&&x-12<o.x+110+pad&&y+12>o.y-66-pad&&y-48<o.y+66+pad);
+  hubs.forEach(h=>{for(let n=0;n<110;n++){const a=h.a+(rnd()-.5)*1.7,d=60+Math.pow(rnd(),.8)*Math.min(W,H)*0.5;const x=h.x+Math.cos(a)*d,y=h.y+Math.sin(a)*d;if(x<10||y<10||x>W-10||y>H-10)continue;const node={x,y,r:1.2+rnd()*2.2,ph:rnd()*6,warm:rnd()};h.kids.push(node);
+    if(outRing(x,y)&&x>cx-VX+24&&x+250<cx+VX-12&&y-48>cy-VY+12&&y<cy+VY-60&&!inCard(x,y,20)&&Math.hypot(x-cx,y-cy)>230)h.cands.push(node)}});
+  hubs.forEach((h,k)=>{const el=document.createElement('div');el.className='an-card';el.style.left=h.x+'px';el.style.top=h.y+'px';const ini=h.p[0].split(' ').map(w=>w[0]).join('');
+    el.innerHTML=`<div class="t"><div class="av" style="background:radial-gradient(circle at 35% 30%,${COL[h.p[2]]}aa,${COL[h.p[2]]})">${ini}</div><div><b>${h.p[0]}</b><span class="r">${h.p[1]}</span></div></div><div class="m">${h.p[3]}</div><div class="n">${h.p[4]} connections</div>`;
+    world.appendChild(el);timers.push(setTimeout(()=>el.classList.add('in'),60+k*65))});
+  timers.push(setTimeout(()=>{world.style.transition='transform .9s cubic-bezier(.65,0,.35,1)';world.style.transform=`translate(-50%,-50%) scale(${SZ})`},650));
+  let icv=0,matches=[],nextM=1.15;const t0=performance.now();
+  const tag=(x,y,a)=>{if(a<=0)return;tctx.save();tctx.globalAlpha=a;tctx.font='italic 600 26px "Cormorant Garamond",serif';const lb='✓ New customer',tw=tctx.measureText(lb).width,bx=x+14,by=y-40,bw=tw+26,bh=34;
+    const g=tctx.createLinearGradient(bx,by,bx,by+bh);g.addColorStop(0,'#f4e8cc');g.addColorStop(1,'#dcc79c');tctx.fillStyle=g;tctx.shadowColor='rgba(0,0,0,.55)';tctx.shadowBlur=10;tctx.shadowOffsetY=3;tctx.fillRect(bx,by,bw,bh);
+    tctx.shadowBlur=0;tctx.shadowOffsetY=0;tctx.strokeStyle='rgba(120,80,30,.6)';tctx.lineWidth=1.2;tctx.strokeRect(bx+.5,by+.5,bw-1,bh-1);tctx.fillStyle='#3a260c';tctx.fillText(lb,bx+13,by+24);tctx.restore()};
+  const draw=t=>{const e=Math.max(0,(t-t0)/1000);ctx.clearRect(0,0,W,H);tctx.clearRect(0,0,W,H);
+    hubs.forEach((h,k)=>{const f=Math.min(1,Math.max(0,(e-0.06-k*0.065)/0.15));if(f<=0)return;
+      ctx.strokeStyle='rgba(217,183,122,'+(0.55*f)+')';ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+(h.x-cx)*f,cy+(h.y-cy)*f);ctx.stroke();
+      const pp=((e*1.2+k*0.13)%1);ctx.fillStyle='rgba(243,217,160,.95)';ctx.beginPath();ctx.arc(cx+(h.x-cx)*pp,cy+(h.y-cy)*pp,3,0,7);ctx.fill();
+      const g=Math.min(1,Math.max(0,(e-0.7)/0.65));if(g<=0)return;const ease=1-Math.pow(1-g,3);
+      h.kids.forEach(n=>{const x=h.x+(n.x-h.x)*ease,y=h.y+(n.y-h.y)*ease;ctx.strokeStyle='rgba(217,183,122,'+(0.09*ease)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(h.x,h.y);ctx.lineTo(x,y);ctx.stroke();
+        const tw=.55+.45*Math.sin(e*2+n.ph);ctx.globalAlpha=ease*tw;ctx.fillStyle=n.warm>.5?'#fff1d0':'#f3d9a0';ctx.shadowColor='rgba(255,220,150,.9)';ctx.shadowBlur=6;ctx.beginPath();ctx.arc(x,y,n.r*1.6,0,7);ctx.fill();ctx.shadowBlur=0;ctx.globalAlpha=1});
+    });
+    if(e>1.15){while(nextM<e){nextM+=0.1;const hs=hubs.filter(x=>x.cands.length);if(!hs.length)break;const h=hs[Math.floor(rnd()*hs.length)];const fr=h.cands.filter(c=>!matches.some(m=>Math.hypot(m.n.x-c.x,m.n.y-c.y)<130));if(!fr.length)continue;const n=fr[Math.floor(rnd()*fr.length)];matches.push({h,n,t:nextM-0.1});
+      icv+=4+Math.floor(rnd()*9);ic.textContent=icv.toLocaleString();ic.classList.remove('bump');void ic.offsetWidth;ic.classList.add('bump')}}
+    else{icv=Math.round(120*(1-Math.pow(1-Math.min(1,e/1.15),3)));ic.textContent=icv}
+    matches=matches.filter(m=>e-m.t<1.8);
+    matches.forEach(m=>{const age=e-m.t,d1=Math.min(1,age/0.15),d2=Math.min(1,Math.max(0,(age-0.15)/0.15)),fade=age>1.3?Math.max(0,1-(age-1.3)/0.5):1;
+      ctx.save();ctx.shadowColor='rgba(255,226,160,.95)';ctx.shadowBlur=24;ctx.strokeStyle='rgba(255,226,160,'+(0.95*fade)+')';ctx.lineWidth=3.4;ctx.beginPath();
+      ctx.moveTo(m.n.x,m.n.y);ctx.lineTo(m.n.x+(m.h.x-m.n.x)*d1,m.n.y+(m.h.y-m.n.y)*d1);
+      if(d2>0){ctx.moveTo(m.h.x,m.h.y);ctx.lineTo(m.h.x+(cx-m.h.x)*d2,m.h.y+(cy-m.h.y)*d2)}
+      ctx.stroke();const rg=ctx.createRadialGradient(m.n.x,m.n.y,0,m.n.x,m.n.y,9);rg.addColorStop(0,'rgba(255,250,230,'+fade+')');rg.addColorStop(1,'rgba(230,180,90,'+fade+')');ctx.fillStyle=rg;ctx.beginPath();ctx.arc(m.n.x,m.n.y,7.5,0,7);ctx.fill();
+      ctx.globalAlpha=Math.max(0,1-age/1.2)*fade;ctx.strokeStyle='rgba(255,226,160,.75)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(m.n.x,m.n.y,11+age*14,0,7);ctx.stroke();ctx.restore();
+      tag(m.n.x,m.n.y,fade*Math.min(1,age/0.2))});
+    if(running)raf=requestAnimationFrame(draw)};
+  raf=requestAnimationFrame(draw);
+}
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&!running)start();else if(!en.isIntersecting&&running)stop()}),{threshold:.25});io.observe(root);
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(running)start()},250)});
+})();
+</script>
+</body></html>

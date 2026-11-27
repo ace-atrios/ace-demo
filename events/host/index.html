@@ -1,0 +1,259 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios Events · Host</title><meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--forest:#1A4D36;--deep:#0E2723;--gold:#B08A4E;--gold2:#C9A96E;--bg:#EEECE8;--tint:#FAF4E8;--em:#609D77;--body:#3F3F3F;--muted:#8A8784;--card:#fff;--line:#E6E2DA;--serif:Newsreader,Georgia,serif;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{font-family:var(--serif);font-size:26px;color:var(--deep);letter-spacing:-.3px}
+.logo em{color:var(--gold);font-style:italic}
+.tabs{display:flex;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs button{border:0;background:none;font:500 13px var(--sans);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--deep);color:#fff}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1.02;color:var(--deep);letter-spacing:-1px}
+h1 em,h2 em{color:var(--gold);font-style:normal}
+h2{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);letter-spacing:-.5px;line-height:1.1}
+.sub{color:var(--muted);font-size:16px;max-width:560px;margin-top:14px}
+.hero{padding:40px 0 34px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:60px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.ev:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(14,39,35,.35)}
+.ev .cov{aspect-ratio:16/10;background:#ddd center/cover}
+.ev .b{padding:18px 20px 20px}
+.when{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.04em;text-transform:uppercase}
+.ev h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--deep);line-height:1.15;margin:6px 0 8px}
+.meta{font-size:13px;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 11px;border-radius:999px;background:var(--tint);color:var(--deep);border:1px solid #F0E3C8}
+.pill.g{background:#E8F1EB;border-color:#D3E6D9;color:var(--forest)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--deep);color:#fff;border:0;font:500 14px var(--sans);padding:12px 20px;border-radius:999px;cursor:pointer}
+.btn.lt{background:#fff;color:var(--deep);border:1px solid var(--line)}
+.btn.sm{padding:8px 14px;font-size:13px}
+/* detail */
+.detail{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;padding:10px 0 70px;align-items:start}
+.dcov{border-radius:26px;aspect-ratio:1/1;background:#ddd center/cover;border:1px solid var(--line)}
+.facts{margin:22px 0;display:grid;gap:12px}
+.fact{display:flex;gap:14px;align-items:center}
+.fact .ic{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+.fact b{display:block;color:var(--deep);font-weight:500}
+.rsvp{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin-top:6px}
+.rsvp h4{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--deep)}
+.rsvp p{color:var(--muted);font-size:14px;margin:6px 0 16px}
+.rsvpgrid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.qr{width:112px;height:112px;border-radius:14px;border:1px solid var(--line);background:#fff;padding:8px}
+.why{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.back{font-size:13px;color:var(--muted);cursor:pointer;display:inline-block;margin:6px 0 18px}
+/* phone */
+.phone{width:360px;max-width:100%;margin:0 auto;background:#0b0b0c;border-radius:48px;padding:12px;box-shadow:0 40px 80px -30px rgba(14,39,35,.5)}
+.scr{background:#fff;border-radius:38px;height:680px;overflow:hidden;display:flex;flex-direction:column}
+.ph{padding:16px 16px 10px;text-align:center;border-bottom:1px solid #eee}
+.av{width:44px;height:44px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;margin:0 auto 4px;font-family:var(--serif);font-size:20px}
+.ph small{font-size:11px;color:#888}
+.msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:6px;scroll-behavior:smooth}
+.m{max-width:78%;padding:8px 12px;border-radius:18px;font-size:14px;line-height:1.35;white-space:pre-wrap;opacity:0;transform:translateY(6px);animation:in .3s forwards}
+.m.me{align-self:flex-end;background:#0A84FF;color:#fff;border-bottom-right-radius:5px}
+.m.ace{align-self:flex-start;background:#E9E9EB;color:#111;border-bottom-left-radius:5px}
+.m.card{background:var(--tint);border:1px solid #F0E3C8;color:var(--deep)}
+.typing{align-self:flex-start;background:#E9E9EB;border-radius:18px;padding:10px 14px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#999;animation:b 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes in{to{opacity:1;transform:none}}@keyframes b{0%,100%{opacity:.3}50%{opacity:1}}
+.inp{border-top:1px solid #eee;padding:10px 12px;display:flex;gap:8px}
+.inp div{flex:1;border:1px solid #ddd;border-radius:999px;padding:8px 14px;color:#aaa;font-size:14px}
+/* admin */
+.list{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:60px}
+.lr{display:grid;grid-template-columns:1.3fr 1.2fr 1.6fr 1.2fr 70px 120px;gap:12px;padding:14px 20px;border-top:1px solid var(--line);align-items:center;font-size:14px}
+.lr.h{border-top:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:#FBFAF8}
+.lr b{color:var(--deep);font-weight:500}
+.sc{font-family:var(--serif);font-size:20px;color:var(--forest)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.kpi b{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--deep);display:block}
+.kpi span{font-size:12px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 60px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.step .n{font-family:var(--serif);font-size:30px;color:var(--gold)}
+.step h5{font-size:15px;color:var(--deep);font-weight:600;margin:6px 0}
+.step p{font-size:13px;color:var(--muted)}
+.view{display:none}.view.on{display:block}
+
+[data-theme=dark]{--forest:#8CC4A2;--deep:#F4EEDF;--gold:#C9A96E;--bg:#0E2723;--tint:#173A33;--em:#8CC4A2;--body:#D6D0C2;--muted:#9DB0A8;--card:#13312B;--line:#244A41}
+[data-theme=dark] .btn{background:#F4EEDF;color:#0E2723}
+[data-theme=dark] .btn.lt{background:var(--card);color:var(--deep);border-color:var(--line)}
+[data-theme=dark] .tabs{background:var(--card);border-color:var(--line)}
+[data-theme=dark] .tabs button.on{background:#F4EEDF;color:#0E2723}
+[data-theme=dark] .pill{border-color:#3E5240;background:#2A3A2C;color:#EAD9B0}
+[data-theme=dark] .pill.g{background:#1B4136;border-color:#2B5A4B;color:#B5DEC4}
+[data-theme=dark] .lr.h{background:#102C26}
+[data-theme=dark] .fact .ic{background:var(--card);border-color:var(--line)}
+[data-theme=dark] .ev:hover{box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+[data-theme=dark] .qr{background:#F2EEE6}
+.mode{border:1px solid var(--line);background:var(--card);color:var(--deep);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;margin-left:10px}
+body{transition:background .25s,color .25s}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:0 0 40px}
+@media(max-width:900px){.grid,.steps,.kpis{grid-template-columns:1fr}.detail{grid-template-columns:1fr}.lr{grid-template-columns:1fr 1fr;}.lr.h{display:none}}
+
+.gate{max-width:420px;margin:12vh auto;text-align:center}.gate input{width:100%;border:1px solid var(--line);background:var(--card);color:var(--deep);border-radius:14px;padding:14px;font:16px var(--sans);text-align:center;letter-spacing:.3em;margin:18px 0 10px}
+.err{color:#A43D20;font-size:13px;min-height:18px}
+.evtabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.evtabs button{border:1px solid var(--line);background:var(--card);color:var(--deep);border-radius:999px;padding:8px 14px;font:500 13px var(--sans);cursor:pointer}.evtabs button.on{background:var(--btn,#0E2723);color:#fff}
+[data-theme=dark] .evtabs button.on{background:#F4EEDF;color:#0E2723}
+.li{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:5px;background:#0A66C2;color:#fff;font:700 11px var(--sans);margin-left:6px;vertical-align:1px}.lis{font-size:11px;color:var(--muted);text-decoration:underline;margin-left:6px}.topbar{display:flex;gap:8px;margin-top:22px}.ce{display:grid;grid-template-columns:340px 1fr;gap:28px;margin:26px 0 30px}
+.covp{aspect-ratio:1/1;border-radius:22px;border:1px solid var(--line);background:linear-gradient(135deg,#0E2723,#1A4D36 55%,#B08A4E);display:flex;align-items:flex-end;padding:20px;color:#F4EEDF;font-family:var(--serif);font-size:30px;line-height:1.05;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.covs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.covs button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);cursor:pointer}
+.f{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 16px;margin-bottom:10px}
+.f label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:10px}
+.f input,.f textarea,.f select{width:100%;border:0;background:transparent;color:var(--deep);font:16px var(--sans);padding:6px 0 12px;outline:none;resize:vertical}
+.ename{font-family:var(--serif)!important;font-size:34px!important}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14px;color:var(--deep)}.opt:first-of-type{border-top:0}
+.tg{width:42px;height:24px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;border:0}.tg::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}.tg.on{background:var(--forest)}.tg.on::after{left:21px}
+.aud{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:6px}
+.aud h3{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--deep)}
+.ap{display:flex;gap:8px;margin:12px 0}.ap input{flex:1;border:1px solid var(--line);background:var(--bg);color:var(--deep);border-radius:999px;padding:12px 16px;font:15px var(--sans)}
+.evpick{display:flex;align-items:center;gap:12px;margin:18px 0 22px}.evpick label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.evpick select{appearance:none;-webkit-appearance:none;min-width:min(560px,100%);max-width:100%;padding:12px 44px 12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card,#fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8784' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 16px center;color:var(--deep);font:15px var(--sans);cursor:pointer}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips button{border:1px solid var(--line);background:var(--bg);color:var(--deep);border-radius:999px;padding:6px 12px;font:13px var(--sans);cursor:pointer}
+.ar{display:grid;grid-template-columns:28px 1.3fr 1.4fr 1.2fr;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:13px}.ar b{color:var(--deep);font-weight:500}
+.srcs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.brand{display:flex;align-items:center;gap:12px}.brand img{height:26px;width:auto;display:block}.brand .sep{width:1px;height:22px;background:var(--line)}.brand em{font-family:var(--serif);font-size:24px;color:var(--gold);font-style:italic;line-height:1}[data-theme=dark] .brand img{filter:brightness(0) invert(94%) sepia(10%) saturate(280%)}
+.hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 60px}.hcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;cursor:pointer;transition:transform .15s}.hcard:hover{transform:translateY(-2px)}.hcard h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--deep);margin:6px 0 12px;line-height:1.15}.hst{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;color:var(--muted)}.hst b{color:var(--deep);font-family:var(--serif);font-size:20px;font-weight:400;margin-right:4px}.hcard.new{border-style:dashed;border-color:var(--gold);background:var(--tint);display:flex;flex-direction:column;justify-content:center}@media(max-width:900px){.hgrid{grid-template-columns:1fr}}.prog{height:6px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:4px}.prog div{height:100%;background:linear-gradient(90deg,var(--forest),var(--gold))}.tgt{cursor:pointer;text-decoration:underline dotted}.kpi small{font-family:var(--sans)}
+.embed nav .brand,.embed nav a.btn,.embed nav #mode,.embed footer{display:none}.embed nav{justify-content:flex-end;padding-top:6px}.embed .wrap{padding-top:0}.agl{display:flex;gap:16px;align-items:flex-start;margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--tint)}.spin{width:26px;height:26px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);animation:sp 1s linear infinite;flex:none}@keyframes sp{to{transform:rotate(360deg)}}.hcard.past{opacity:.85}.hcard.past h3{color:var(--body)}</style></head><body><div class="wrap">
+<nav><a class="brand" href="./"><img src="../logo.svg" alt="Atrios"><span class="sep"></span><em>Events · Host</em></a><div style="display:flex;align-items:center"><div class="tabs" id="htabs" style="display:none;margin-right:10px"><button data-m="home">Events</button></div><button class="mode" id="mode">☾</button></div></nav>
+<div id="app"><div class="gate"><div class="eyebrow">Atrios team only</div><h2>Host view</h2><p class="sub" style="margin:8px auto 0">Enter the team passcode (same as the Ace Inbox).</p><input id="pc" type="password" inputmode="numeric" autocomplete="off" placeholder="••••••"><div class="err" id="err"></div><button class="btn" id="go">Unlock</button></div></div>
+<footer>Guest data is encrypted. Without the team passcode this page shows nothing.</footer></div>
+<script>
+if(new URLSearchParams(location.search).get('embed'))document.documentElement.classList.add('embed');
+addEventListener('storage',e=>{if(e.key==='atr_theme')document.documentElement.dataset.theme=e.newValue});
+(()=>{const r=document.documentElement,set=t=>{r.dataset.theme=t;localStorage.setItem('atr_theme',t);const b=document.getElementById('mode');b&&(b.textContent=t==='dark'?'☀':'☾')};set(localStorage.getItem('atr_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));document.addEventListener('click',e=>{if(e.target.id==='mode')set(r.dataset.theme==='dark'?'light':'dark')})})();
+const u8=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
+async function unlock(code){const d=await (await fetch('data.json?v='+Date.now())).json();const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveKey']);
+ const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u8(d.s),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+ return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(d.i)},k,u8(d.c))))}
+let D,cur=0;
+let MODE='home',AUDQ='',SEL=new Set(),COV=0;
+const COVERS=['linear-gradient(135deg,#0E2723,#1A4D36 55%,#B08A4E)','linear-gradient(160deg,#F4EEDF,#E6D7B8)','linear-gradient(135deg,#1A4D36,#609D77)','linear-gradient(135deg,#2B1D14,#B08A4E)','url(https://images.lumacdn.com/uploads/7z/6df72dfb-92a3-417c-a958-c63181f7b90d.png)'];
+const LS=()=>JSON.parse(localStorage.getItem('atr_drafts')||'[]');
+function events(){return [...LS(),...D.events]}
+function shell(inner){const t=document.getElementById('htabs');t.style.display='flex';t.querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b.dataset.m===(MODE==='create'?'create':'home'));b.onclick=()=>{MODE=b.dataset.m;render();window.scrollTo(0,0)}});
+const title=MODE==='create'?'Create <em>event.</em>':MODE==='home'?'Event <em>dashboard.</em>':MODE==='invite'?'Invite <em>more.</em>':'Guest <em>list.</em>';
+return `<div class="hero" style="padding-bottom:0"><div class="eyebrow">Host view · team only · synced ${D.synced||''}</div><h1>${title}</h1></div>${inner}`}
+function card(e,i){const t=target(e),pct=Math.min(100,Math.round(100*e.rsvps/t));const rec=e.recurring?` <span class="pill" style="margin-left:6px;font-size:11px;padding:2px 9px;text-transform:none;letter-spacing:0">↻ Recurring · ${e.recurring}</span>`:'';
+ if(e.past)return `<div class="hcard past" data-i="${i}"><div class="when">${e.when||''}${rec}</div><h3>${e.name}</h3><div class="hst"><span><b>${e.rsvps}</b> registered</span><span><b>${e.approved}</b> approved</span><span><b>${e.pending}</b> not approved</span><span><b>${invitedAll(e)}</b> invited</span></div><div style="display:flex;gap:8px;margin-top:14px"><span class="btn sm lt gl">Guest list →</span></div></div>`;
+ return `<div class="hcard" data-i="${i}"><div class="when">${e.draft?'✦ Draft in Ace':(e.when||'')}${rec}</div><h3>${e.name}</h3>
+<div class="prog"><div style="width:${pct}%"></div></div><div class="meta" style="margin:6px 0 10px"><b style="color:var(--deep)">${e.rsvps}</b> of <span class="tgt" data-id="${e.id}" title="Click to edit target">${t} target ✎</span> · ${pct}%</div>
+<div class="hst"><span><b>${e.approved}</b> approved</span><span><b>${e.pending}</b> waiting</span><span><b>${invitedAll(e)}</b> invited</span><span><b>${Math.max(0,t-e.rsvps)}</b> to go</span></div>
+<div style="display:flex;gap:8px;margin-top:14px"><span class="btn sm lt gl">Manage →</span><span class="btn sm im">+ Invite more</span></div></div>`}
+function renderHome(){const E=events(),U=E.map((e,i)=>[e,i]).filter(([e])=>!e.past),P=E.map((e,i)=>[e,i]).filter(([e])=>e.past);
+const UE=U.map(x=>x[0]);const tot=UE.reduce((a,e)=>a+e.rsvps,0),ti=UE.reduce((a,e)=>a+invitedAll(e),0),tt=UE.reduce((a,e)=>a+target(e),0),tp=UE.reduce((a,e)=>a+e.pending,0);
+document.getElementById('app').innerHTML=shell(`<div class="kpis"><div class="kpi"><b>${UE.length}</b><span>Upcoming events</span></div><div class="kpi"><b>${tot}<small style="font-size:18px;color:var(--muted)"> / ${tt}</small></b><span>Registered vs target</span></div><div class="kpi"><b>${ti}</b><span>Invited</span></div><div class="kpi"><b>${tp}</b><span>Waiting on approval</span></div></div>
+<h2 style="margin:10px 0 0">Upcoming</h2><div class="hgrid">${U.map(([e,i])=>card(e,i)).join('')}</div>
+${P.length?`<h2 style="margin:10px 0 0">Past</h2><div class="hgrid">${P.map(([e,i])=>card(e,i)).join('')}</div>`:''}`);
+document.querySelectorAll('.hcard[data-i]').forEach(c=>{const i=+c.dataset.i;const go=ev=>{ev&&ev.stopPropagation();cur=i;MODE='list';render();window.scrollTo(0,0)};c.querySelector('.gl').onclick=go;const im=c.querySelector('.im');if(im)im.onclick=ev=>{ev.stopPropagation();cur=i;MODE='invite';AUDQ='';SEL=new Set();render()};const tg=c.querySelector('.tgt');if(tg)tg.onclick=ev=>{ev.stopPropagation();const v=prompt('Target registrants for this event?',ev.target.textContent.replace(/\D/g,''));if(v&&+v>0){const T=TG();T[ev.target.dataset.id]=+v;localStorage.setItem('atr_targets',JSON.stringify(T));render()}};c.onclick=()=>go()})}
+function persist(){try{localStorage.setItem('atr_host_state',JSON.stringify({MODE,cur,AUDQ}))}catch(e){}}
+function render(){persist();if(MODE==='invite'){MODE='list';setTimeout(()=>{const a=document.getElementById('inv');a&&a.scrollIntoView({behavior:'smooth'})},50)}if(MODE==='create'){MODE='home'}if(MODE==='home')return renderHome();const E=events();if(cur>=E.length)cur=0;const e0=E[cur],e={...e0,guests:[...e0.guests,...(EXTRA()[e0.id]||[])],invited:invitedAll(e0)};
+document.getElementById('app').innerHTML=shell(`<span class="back" style="cursor:pointer;color:var(--muted);font-size:13px" onclick="MODE='home';render()">← All events</span><div class="when" style="margin-top:14px">${e.when||''}${e.past?' · past event':''}${e.recurring?' · ↻ '+e.recurring:''}</div><h2 style="margin:6px 0 0">${e.name}</h2><p class="sub">${e.draft?'Draft created in Ace (not on Luma yet). Invites go out by text from Ace.':(D.note||'')+` <a href="${e.luma}" target="_blank" style="text-decoration:underline">Open in Luma ↗</a>`}</p>
+<div class="evpick"><label>Event</label><select id="evsel">${[['Upcoming',E.map((x,i)=>[x,i]).filter(([x])=>!x.past)],['Past',E.map((x,i)=>[x,i]).filter(([x])=>x.past)]].filter(g=>g[1].length).map(([g,L])=>`<optgroup label="${g}">${L.map(([x,i])=>`<option value="${i}" ${i===cur?'selected':''}>${x.draft?'Draft · ':''}${x.name.replace(/"/g,'&quot;')}${x.when?' · '+x.when.split('·')[0].trim():''}</option>`).join('')}</optgroup>`).join('')}</select></div>
+<div class="kpis"><div class="kpi"><b>${e.rsvps}</b><span>Registered</span></div><div class="kpi"><b>${e.approved}</b><span>Approved</span></div><div class="kpi"><b>${e.pending}</b><span>Waiting on approval</span></div><div class="kpi"><b>${e.invited}</b><span>${e.draft?'Invited via Ace':'Invited by host'}</span></div></div>
+
+<div class="list"><div class="lr h" style="grid-template-columns:1.4fr 1fr 1.8fr 110px 120px"><span>Guest</span><span>Referred by</span><span>Registration answers</span><span>Status</span><span>In Ace</span></div>${e.guests.length?e.guests.map(g=>`<div class="lr" style="grid-template-columns:1.4fr 1fr 1.8fr 110px 120px"><span><b>${g[0]}</b> ${g[7]?(g[8]?`<a class="li" href="${g[7]}" target="_blank" title="LinkedIn">in</a>`:`<a class="lis" href="${g[7]}" target="_blank">find on LinkedIn</a>`):''}<div class="meta">${g[1]||''}</div></span><span>${g[3]}</span><span class="meta">${g[2]}</span><span><span class="pill ${g[5]==='Approved'?'g':''}">${g[5]}</span></span><span class="meta">${g[6]}</span></div>`).join(''):'<div class="lr"><span class="meta">No RSVPs yet.</span></div>'}</div><h2 style="margin-top:40px">Invite <em>more.</em></h2>${inviteBlock(true)}`);wireInvite(e0);
+document.getElementById('evsel').onchange=ev=>{cur=+ev.target.value;render();window.scrollTo(0,0)}}
+const SYN={founder:['founder','co-founder','cofounder','ceo','chief executive'],founders:['founder','co-founder','ceo'],ceo:['ceo','chief executive','founder'],vc:['vc','investor','partner','venture','capital','angel'],investor:['investor','vc','angel','partner','venture'],investors:['investor','vc','angel','venture'],community:['community','community builder','event host','newsletter','accelerator'],hr:[' hr','hr ','people ops','people operations','head of people','talent','chro','human resources','vp people','chief people'],people:['people ops','people operations','head of people','vp people','chief people','people &','people and','people partner','talent',' hr','hr ','human resources','chro'],nyc:['new york','nyc','brooklyn','manhattan'],'new york':['new york','nyc','brooklyn'],sf:['san francisco','bay area','sf'],tastemaker:['tastemaker'],tastemakers:['tastemaker'],gtm:['gtm','sales','growth','marketing','revenue'],sales:['sales','revenue','cro','account executive'],engineer:['engineer','cto','developer'],accelerator:['accelerator','incubator'],newsletter:['newsletter','podcast'],attendee:['event attendee'],attendees:['event attendee'],active:['active tastemaker'],connected:['linkedin connection of the team'],linkedin:['linkedin connection of the team'],network:['linkedin connection of the team','jordan'],allan:['to allan'],taylor:['to taylor'],kira:['to kira'],will:['to will'],shay:['to shay'],jordan:['jordan'],leaders:['head','director','vp','chief','lead','founder','ceo'],'people leaders':['people ops','people operations','head of people','vp people','chief people','people &','people and','people partner','talent',' hr','hr ','human resources','chro'],'gtm leaders':['gtm','sales','growth','marketing','revenue','cro']};
+const STOP=new Set(['in','the','and','or','who','are','of','for','with','a','an','to','our','all','that','invite','me','my','find','show','list','owners','folks','person','team','is','on','at','from','we','us','know','knows','who','whom','some','any','connected to'])
+function match(q){
+ const raw=q.toLowerCase().replace(/[^a-z0-9 \-]/g,' ').split(/\s+/).filter(Boolean);
+ // phrase + OR handling: tokens joined by "or" merge into one group
+ const groups=[];let orNext=false;
+ for(let i=0;i<raw.length;i++){const t=raw[i];if(t==='or'){orNext=true;continue}
+  const two=t+' '+(raw[i+1]||'');let g=null;if(SYN[two]){g=SYN[two];i++}else if(!STOP.has(t)){g=SYN[t]||[t]}
+  if(!g)continue;if(orNext&&groups.length){groups[groups.length-1]=[...groups[groups.length-1],...g]}else groups.push(g);orNext=false}
+ const AUD=D.audience||[];const hayOf=p=>p._h||(p._h=(p.n+' '+p.t+' '+p.c+' '+p.city+' '+p.tags.join(' ')+' '+p.src).toLowerCase());
+ // drop words that match nobody in our data (e.g. filler words), so they never zero out a search
+ const G=groups.filter(g=>AUD.some(p=>g.some(w=>hayOf(p).includes(w))));
+ if(!G.length)return [];
+ return AUD.filter(p=>G.every(g=>g.some(w=>hayOf(p).includes(w))))}
+function renderCreate(){const A=audResults();const d=JSON.parse(sessionStorage.getItem('ce')||'{}');
+document.getElementById('app').innerHTML=shell(`<div class="ce"><div><div class="covp" id="covp" style="background:${d.cimg?`url(${d.cimg})`:COVERS[COV]};background-size:cover;background-position:center"><span id="covt">${d.name||'Your event name'}</span></div><div class="covs">${COVERS.map((c,i)=>`<button style="background:${c};background-size:cover" onclick="COV=${i};save();renderCreate()"></button>`).join('')}</div><label class="btn lt sm" style="margin-top:12px;cursor:pointer">⬆ Upload photo<input type="file" id="cfile" accept="image/*" style="display:none"></label><p class="meta" style="margin-top:10px">Upload a photo, pick a preset, or paste an image URL.</p><div class="f"><label>Cover image URL</label><input id="cimg" placeholder="https://…" value="${d.cimg&&!d.cimg.startsWith('data:')?d.cimg:''}"></div></div>
+<div><div class="f"><label>Event name</label><input class="ename" id="nm" placeholder="Event Name" value="${d.name||''}"></div>
+<div class="f2"><div class="f"><label>Start</label><input id="st" type="datetime-local" value="${d.st||''}"></div><div class="f"><label>End</label><input id="en" type="datetime-local" value="${d.en||''}"></div></div>
+<div class="f"><label>Location</label><input id="loc" placeholder="Offline location or virtual link" value="${d.loc||''}"></div>
+<div class="f"><label>Description</label><textarea id="ds" rows="3" placeholder="What's this event about?">${d.ds||''}</textarea></div>
+<div class="f"><label>Event options</label>
+<div class="opt"><span>🎟 Tickets</span><span class="meta">Free</span></div>
+<div class="opt"><span>✦ Require approval</span><button class="tg ${d.appr!==false?'on':''}" id="appr" onclick="this.classList.toggle('on');save()"></button></div>
+<div class="opt"><span>👥 Capacity</span><input id="cap" style="width:110px;text-align:right;padding:0;font-size:14px" placeholder="Unlimited" value="${d.cap||''}"></div>
+<div class="opt"><span>💬 RSVP</span><span class="meta">Only by texting Ace · code <b id="code">${code(d.name)}</b></span></div></div>
+</div></div>
+${audHTML(A)}${priorHTML()}${invitedHTML()}
+<div style="display:flex;justify-content:space-between;align-items:center;margin:20px 0 70px;gap:14px;flex-wrap:wrap"><span class="meta"><b id="nsel">${SEL.size}</b> selected to invite</span><button class="btn" id="create">Create event & queue invites</button></div>`);
+['nm','st','en','loc','ds','cap','cimg'].forEach(id=>{const el=document.getElementById(id);el.oninput=()=>{save();if(id==='nm'){document.getElementById('covt').textContent=el.value||'Your event name';document.getElementById('code').textContent=code(el.value)}if(id==='cimg'&&el.value){document.getElementById('covp').style.background=`url(${el.value}) center/cover`}}});
+wireInvite(null);
+document.getElementById('cfile').onchange=ev=>{const f=ev.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const cv=document.createElement('canvas'),m=1000,sc=Math.min(1,m/Math.max(img.width,img.height));cv.width=img.width*sc;cv.height=img.height*sc;cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);const url=cv.toDataURL('image/jpeg',.82);const d=save();d.cimg=url;sessionStorage.setItem('ce',JSON.stringify(d));document.getElementById('covp').style.background=`url(${url}) center/cover`};img.src=rd.result};rd.readAsDataURL(f)};
+document.getElementById('create').onclick=()=>{const d=save();if(!d.name){alert('Add an event name');return}const ev={draft:true,id:'d'+Date.now(),name:d.name,rsvps:0,approved:0,pending:0,invited:SEL.size,guests:[...SEL].map(n=>{const p=findP(n);return [n,[p.t,p.c].filter(Boolean).join(' · '),'—','Invited via Ace audience: '+AUDQ,'', 'Invited',p.e?'Invite queued (Ace)':'Invite queued (Ace)',p.li||'',!!p.li]})};
+ localStorage.setItem('atr_drafts',JSON.stringify([ev,...LS()]));sessionStorage.removeItem('ce');SEL=new Set();AUDQ='';MODE='list';cur=0;render();window.scrollTo(0,0)}}
+function audHTML(A){return `<div class="aud"><h3>Invite an audience</h3><p class="meta">Describe who should be in the room. Ace pulls from our tastemakers, past Atrios event guests, Jordan's community trackers and the team's LinkedIn connections, then texts or emails each invite with the RSVP code.</p>
+<div class="srcs"><span class="pill g">${(D.audience||[]).filter(p=>p.src.includes('tastemaker')).length} Atrios tastemakers</span><span class="pill">${(D.audience||[]).filter(p=>p.src.includes('Past Atrios')).length} past event guests</span><span class="pill">${(D.audience||[]).filter(p=>p.src.includes('Jordan')).length} from Jordan's trackers</span><span class="pill">${(D.audience||[]).filter(p=>p.src.includes('Connected on LinkedIn')).length} team LinkedIn connections (NYC)</span></div>
+<div class="ap"><input id="aq" placeholder='e.g. "founders in NYC" or "community builders who run accelerators"' value="${AUDQ}"><button class="btn" id="arun">Find people</button></div>
+<div class="chips">${['founders in New York','people or HR leaders','investors','community builders'].map(c=>`<button onclick="AUDQ='${c}';SEL=new Set();agentSearch(AUDQ)">${c}</button>`).join('')}</div>
+${A===null?`<div class="agl"><div class="spin"></div><div><b style="color:var(--deep)">Ace is searching for "${AUDQ}"</b><div class="meta" id="agst">${PENDING&&PENDING.status||STEPS[0]}</div><div class="meta" style="margin-top:4px">Pulls from the admin dashboard, the team's LinkedIn networks, past event guests and Jordan's trackers. Usually takes a minute or two.</div></div></div>`:AUDQ?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><b style="color:var(--deep)">${A.length} people match "${AUDQ}"</b>${AGENT[AUDQ]?`<div class="meta">${AGENT[AUDQ].summary||"Found by Ace"}</div>`:`<div class="meta">Quick keyword preview. Hit Find people for Ace's full search.</div>`}<span><button class="btn lt sm" onclick="SEL=new Set((audResults()||[]).map(p=>p.n));rerender()">Select all</button></span></div>
+<div style="max-height:380px;overflow:auto;margin-top:8px">${(A||[]).slice(0,300).map(p=>`<div class="ar"><input type="checkbox" ${SEL.has(p.n)?'checked':''} onchange="this.checked?SEL.add('${p.n.replace(/'/g,"\\'")}'):SEL.delete('${p.n.replace(/'/g,"\\'")}');document.getElementById('nsel').textContent=SEL.size"><span><b>${p.n}</b> ${p.li?`<a class="li" href="${p.li}" target="_blank">in</a>`:''}<div class="meta">${[p.t,p.c].filter(Boolean).join(' · ')}</div></span><span class="meta">${p.tags.slice(0,3).join(' · ')}</span><span class="meta">${p.src.split(' · ')[0]}</span></div>`).join('')}${(A||[]).length>300?`<p class="meta" style="padding:10px 0">+${A.length-300} more</p>`:''}</div>`:''}
+</div>`}
+function findP(n){const pr=priorRows().find(x=>x.n===n);return (D.audience||[]).find(x=>x.n===n)||(pr?{n:pr.n,t:pr.t,c:'',li:pr.li}:null)||Object.values(AGENT).flatMap(R=>R.people).map(p=>({n:p.name,t:p.title||'',c:p.company||'',li:p.linkedin||'',e:p.email||''})).find(x=>x.n===n)||{}}
+function audResults(){if(PENDING&&PENDING.q===AUDQ)return null;const R=AGENT[AUDQ];if(R)return R.people.map(p=>({n:p.name,t:p.title||'',c:p.company||'',li:p.linkedin||'',tags:[p.why||''],src:p.source||'',e:p.email||''}));return AUDQ?match(AUDQ):[]}
+let INVF='',PRF='';
+function priorRows(){const M=new Map();for(const p of (D.audience||[]))if(p.src.includes('Past Atrios events'))M.set(p.n.toLowerCase(),{n:p.n,li:p.li,ok:!!p.li,t:[p.t,p.c].filter(Boolean).join(' · '),ev:p.src.split('Past Atrios events: ')[1]?.split(' · ')[0]||'Past Atrios event'});
+ for(const e of D.events)for(const g of e.guests)if(g[5]!=='Invited'&&!M.has(String(g[0]).toLowerCase()))M.set(String(g[0]).toLowerCase(),{n:g[0],li:g[7]||'',ok:g[8],t:g[10]||g[1]||'',ev:e.name.split(':')[0]+' ('+g[5].toLowerCase()+')'});return [...M.values()]}
+function priorHTML(){const all=priorRows(),f=PRF.toLowerCase(),R=f?all.filter(r=>(r.n+' '+r.t+' '+r.ev).toLowerCase().includes(f)):all;
+return `<div class="aud" style="margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3>Prior attendees & registrants <span class="meta" style="font-family:var(--sans);font-size:14px">${all.length}</span></h3><input id="prf" placeholder="Filter by name, title or event" value="${PRF}" style="border:1px solid var(--line);background:var(--bg);color:var(--deep);border-radius:999px;padding:9px 14px;font:14px var(--sans);min-width:260px"></div>
+<p class="meta" style="margin:4px 0 6px">Everyone who registered for or attended an Atrios event. Tick anyone to add them to this invite batch.</p>
+<div style="max-height:340px;overflow:auto">${R.slice(0,400).map(r=>`<div class="ar" style="grid-template-columns:28px 1.2fr 60px 1.6fr 1.2fr"><input type="checkbox" ${SEL.has(r.n)?'checked':''} data-n="${String(r.n).replace(/"/g,'&quot;')}" class="prsel"><b>${r.n}</b><span>${r.li?(r.ok?`<a class="li" href="${r.li}" target="_blank">in</a>`:`<a class="lis" href="${r.li}" target="_blank">find</a>`):'—'}</span><span class="meta">${r.t||'—'}</span><span class="meta">${r.ev}</span></div>`).join('')}</div></div>`}
+function invitedRows(){const E=MODE==='create'?events():[events()[cur]];const rows=[];for(const e of E){for(const g of [...e.guests,...(EXTRA()[e.id]||[])]){if(g[5]!=='Invited'&&!String(g[3]).startsWith('Invited via'))continue;rows.push({n:g[0],li:g[7]||'',ok:g[8],t:g[10]||g[1]||'',d:g[9]||new Date().toISOString().slice(0,19),ev:e.name.split(':')[0]})}}return rows.sort((a,b)=>b.d.localeCompare(a.d))}
+function invitedHTML(){const all=invitedRows(),f=INVF.toLowerCase(),R=f?all.filter(r=>(r.n+' '+r.t+' '+r.ev).toLowerCase().includes(f)):all;
+return `<div class="aud" style="margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3>Already invited <span class="meta" style="font-family:var(--sans);font-size:14px">${all.length}</span></h3><input id="invf" placeholder="Filter by name, title or event" value="${INVF}" style="border:1px solid var(--line);background:var(--bg);color:var(--deep);border-radius:999px;padding:9px 14px;font:14px var(--sans);min-width:260px"></div>
+<div class="ar" style="grid-template-columns:1.2fr 70px 1.6fr 1fr 90px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)"><span>Name</span><span>LinkedIn</span><span>Title</span><span>Event</span><span>Invited</span></div>
+<div style="max-height:360px;overflow:auto">${R.slice(0,300).map(r=>`<div class="ar" style="grid-template-columns:1.2fr 70px 1.6fr 1fr 90px"><b>${r.n}</b><span>${r.li?(r.ok?`<a class="li" href="${r.li}" target="_blank">in</a>`:`<a class="lis" href="${r.li}" target="_blank">find</a>`):'—'}</span><span class="meta">${r.t||'—'}</span><span class="meta">${r.ev}</span><span class="meta">${new Date(r.d+'Z').toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span></div>`).join('')||'<p class="meta" style="padding:10px 0">Nobody invited yet.</p>'}</div></div>`}
+function inviteBlock(withBtn){const A=audResults();return `<div id="inv"></div>${audHTML(A)}${priorHTML()}${invitedHTML()}${withBtn?`<div style="display:flex;justify-content:space-between;align-items:center;margin:20px 0 70px;gap:14px;flex-wrap:wrap"><span class="meta"><b id="nsel">${SEL.size}</b> selected to invite</span><button class="btn" id="qinv">Queue invites from Ace</button></div>`:''}`}
+function wireInvite(e){wireAud();const pr=document.getElementById('prf');if(pr)pr.oninput=()=>{PRF=pr.value;const pos=pr.selectionStart;rerender();const n=document.getElementById('prf');n.focus();n.setSelectionRange(pos,pos)};
+ document.querySelectorAll('.prsel').forEach(cb=>cb.onchange=()=>{cb.checked?SEL.add(cb.dataset.n):SEL.delete(cb.dataset.n);const ns=document.getElementById('nsel');if(ns)ns.textContent=SEL.size});
+ const q=document.getElementById('qinv');if(q&&e)q.onclick=()=>{if(!SEL.size){alert('Select people first');return}const X=EXTRA();X[e.id]=[...(X[e.id]||[]),...[...SEL].map(n=>{const p=findP(n);return [n,[p.t,p.c].filter(Boolean).join(' · ')||p.t||'','—','Invited via Ace'+(AUDQ?' audience: '+AUDQ:' (prior attendee)'),'','Invited','Invite queued (Ace)',p.li||'',!!p.li,new Date().toISOString().slice(0,19),p.t||'']})];localStorage.setItem('atr_extra',JSON.stringify(X));SEL=new Set();AUDQ='';rerender();window.scrollTo(0,0)}}
+function rerender(){persist();const y=scrollY;if(MODE==='create')renderCreate();else render();scrollTo(0,y)}
+const SB='https://pxvzxachxtbgckluilzd.supabase.co/rest/v1/web_chat',SBK='sb_publishable_Mg-H89tDDnZrT6LgZiepjA_z5YwefdV';
+const SID=localStorage.getItem('atr_search_sid')||(()=>{const v='evsearch-'+crypto.randomUUID();localStorage.setItem('atr_search_sid',v);return v})();
+const SH={apikey:SBK,Authorization:'Bearer '+SBK,'x-chat-session':SID,'Content-Type':'application/json'};
+let AGENT={},PENDING=null,POLL=null,LASTID=0;
+async function agentSearch(q){PENDING={q,t:Date.now(),step:0};rerender();
+ const r=await fetch(SB,{method:'POST',headers:{...SH,Prefer:'return=representation'},body:JSON.stringify({session:SID,sender:'user',body:('[EVENT AUDIENCE SEARCH] '+q+(MODE==='invite'?' | for event: '+events()[cur].name:'')).slice(0,1900),page:'events/host'})});
+ try{const j=await r.json();LASTID=Math.max(LASTID,(j[0]||{}).id||0)}catch(e){}
+ clearInterval(POLL);POLL=setInterval(async()=>{const rows=await (await fetch(SB+'?select=id,sender,body&order=id.asc&sender=eq.ace&id=gt.'+LASTID,{headers:SH})).json();
+  for(const row of rows){LASTID=Math.max(LASTID,row.id);const b=row.body||'';
+   if(b.startsWith('RESULTS::')){try{const R=JSON.parse(b.slice(9));AGENT[R.q||PENDING?.q]=R}catch(e){}if(PENDING){PENDING=null;clearInterval(POLL);rerender()}}
+   else if(b.startsWith('STATUS::')&&PENDING){PENDING.status=b.slice(8);rerender()}}
+  if(PENDING){PENDING.step++;const el=document.getElementById('agst');if(el)el.textContent=PENDING.status||STEPS[Math.min(STEPS.length-1,Math.floor(PENDING.step/4))]}},2500)}
+const STEPS=['Reading your prompt…','Searching the admin dashboard (tastemakers, past leads)…','Searching the team\'s LinkedIn networks…','Checking past Atrios event guests + Jordan\'s trackers…','Verifying LinkedIn profiles…','Ranking the best fits…'];
+function wireAud(){const iv=document.getElementById('invf');if(iv){iv.oninput=()=>{INVF=iv.value;const pos=iv.selectionStart;rerender();const n=document.getElementById('invf');n.focus();n.setSelectionRange(pos,pos)}}const run=()=>{AUDQ=document.getElementById('aq').value.trim();SEL=new Set();if(MODE==='create')save();if(AUDQ)agentSearch(AUDQ);else rerender()};document.getElementById('arun').onclick=run;document.getElementById('aq').onkeydown=e=>{if(e.key==='Enter')run()}}
+const TG=()=>JSON.parse(localStorage.getItem('atr_targets')||'{}');
+function target(e){return TG()[e.id]||e.target||(e.name.match(/dinner/i)?20:60)}
+const EXTRA=()=>JSON.parse(localStorage.getItem('atr_extra')||'{}');
+function invitedAll(e){return e.invited+((EXTRA()[e.id]||[]).length)}
+function renderInvite(){const E=events(),e=E[cur],A=audResults();
+document.getElementById('app').innerHTML=shell(`<span class="back" style="cursor:pointer;color:var(--muted);font-size:13px" onclick="MODE='home';AUDQ='';SEL=new Set();render()">← All events</span><p class="sub">Inviting more people to <b style="color:var(--deep)">${e.name}</b>. ${e.rsvps} registered of a ${target(e)} target.</p>${audHTML(A)}${invitedHTML()}
+<div style="display:flex;justify-content:space-between;align-items:center;margin:20px 0 70px;gap:14px;flex-wrap:wrap"><span class="meta"><b id="nsel">${SEL.size}</b> selected to invite</span><button class="btn" id="qinv">Queue invites from Ace</button></div>`);wireAud();
+document.getElementById('qinv').onclick=()=>{if(!SEL.size){alert('Select people first');return}const X=EXTRA();X[e.id]=[...(X[e.id]||[]),...[...SEL].map(n=>{const p=findP(n);return [n,[p.t,p.c].filter(Boolean).join(' · '),'—','Invited via Ace audience: '+AUDQ,'','Invited','Invite queued (Ace)',p.li||'',!!p.li]})];localStorage.setItem('atr_extra',JSON.stringify(X));SEL=new Set();AUDQ='';MODE='list';render();window.scrollTo(0,0)}}
+function code(n){return (n||'EVENT').toUpperCase().replace(/[^A-Z0-9 ]/g,'').split(/\s+/).filter(w=>!['THE','AND','X','BY','OF','A'].includes(w))[0]?.slice(0,12)||'EVENT'}
+function save(){const g=id=>(document.getElementById(id)||{}).value;const d={name:g('nm'),st:g('st'),en:g('en'),loc:g('loc'),ds:g('ds'),cap:g('cap'),cimg:g('cimg')||(JSON.parse(sessionStorage.getItem('ce')||'{}').cimg||''),appr:(document.getElementById('appr')||{classList:{contains:()=>true}}).classList.contains('on')};sessionStorage.setItem('ce',JSON.stringify(d));return d}
+setInterval(()=>{if(parent!==window)parent.postMessage({h:document.documentElement.scrollHeight},'*')},700);
+async function go(){const c=document.getElementById('pc').value.trim();try{D=await unlock(c);sessionStorage.setItem('ev_pc',c);localStorage.setItem('ev_pc_keep',c);localStorage.setItem('atr_host','1');const q=new URLSearchParams(location.search).get('e');const qi=D.events.findIndex(x=>x.id===q);if(qi>=0){cur=qi;MODE='list'}else{try{const st=JSON.parse(localStorage.getItem('atr_host_state')||'{}');if(st.MODE){MODE=st.MODE;cur=st.cur||0;AUDQ=st.AUDQ||''}}catch(e){}}render()}catch(e){document.getElementById('err').textContent='Wrong passcode'}}
+document.getElementById('go').onclick=go;document.getElementById('pc').onkeydown=e=>{if(e.key==='Enter')go()};
+const saved=sessionStorage.getItem('ev_pc')||localStorage.getItem('ev_pc_keep');if(saved){document.getElementById('pc').value=saved;go()}
+
+let VIS={},VISPEND={};const SBV='https://pxvzxachxtbgckluilzd.supabase.co/rest/v1/event_guest_vis',SBVK='sb_publishable_Mg-H89tDDnZrT6LgZiepjA_z5YwefdV';
+async function loadVis(){try{const r=await fetch(SBV+'?select=event_id,show',{headers:{apikey:SBVK,Authorization:'Bearer '+SBVK}});(await r.json()).forEach(x=>VIS[x.event_id]=x.show);if(D)rerender()}catch(e){}}
+async function setVis(id,show){const pc=sessionStorage.getItem('ev_pc')||localStorage.getItem('ev_pc_keep');if(!pc)return alert('Unlock with the host passcode first');const ts=Date.now();
+ const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pc),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+ const sig=[...new Uint8Array(await crypto.subtle.sign('HMAC',k,new TextEncoder().encode(id+'|'+show+'|'+ts)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+ VIS[id]=show;VISPEND[id]=1;rerender();
+ const r=await fetch(SBV+'?on_conflict=event_id',{method:'POST',headers:{apikey:SBVK,Authorization:'Bearer '+SBVK,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({event_id:id,show,ts,sig})});
+ if(!r.ok){VIS[id]=!show;alert('Could not save, try again')}setTimeout(()=>{delete VISPEND[id];rerender()},90000);rerender()}
+loadVis();
+</script></body></html>

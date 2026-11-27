@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · The Declaration</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Mrs+Saint+Delafield&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0f1a14}
+/* ===== ATRIOS DECLARATION (scoped .atr-decl) ===== */
+.atr-decl{--A:https://ace-atrios.github.io/ace-demo/anim/declaration/a/;--P:https://ace-atrios.github.io/ace-demo/story-ren/a/;--ink:#2e1f0e;--ink2:#5a4126;--gold:#c9a24a;
+  padding:72px 16px 96px;display:flex;justify-content:center;font-family:'IM Fell English',Georgia,serif;color:var(--ink)}
+.atr-decl *{box-sizing:border-box}
+.atr-decl .sc{width:min(820px,100%);position:relative;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.atr-decl .sc-top,.atr-decl .sc-bot{width:100%;display:block;position:relative;z-index:2}
+.atr-decl .sc-top{aspect-ratio:984/160;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_top.webp) center/100% 100% no-repeat;margin-bottom:-2px}
+.atr-decl .sc-bot{aspect-ratio:984/216;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_bot.webp) center/100% 100% no-repeat;margin-top:-2px}
+.atr-decl .sc-body{background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;padding:clamp(18px,4vw,40px) clamp(30px,9%,92px) clamp(10px,3vw,24px)}
+.atr-decl .kick{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(17px,2.4vw,22px);color:var(--ink2);margin:0 0 4px;letter-spacing:.16em}
+.atr-decl .sub{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(12px,1.6vw,14px);letter-spacing:.24em;color:var(--ink2);margin:0 0 18px}
+.atr-decl h2{font-family:'IM Fell English',Georgia,serif;font-weight:400;letter-spacing:-.005em;text-align:center;font-size:clamp(36px,6.2vw,60px);line-height:1.08;margin:0 0 26px;color:var(--ink);text-wrap:balance}
+.atr-decl .orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:0 auto 26px;color:var(--ink2);width:70%}
+.atr-decl .orn:before,.atr-decl .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
+.atr-decl .txt p{font-size:clamp(18px,2.2vw,21.5px);line-height:1.62;color:#24180a;margin:0 0 16px;text-align:left;hyphens:manual}
+.atr-decl .txt p.lead:first-letter{font-family:'IM Fell English',serif;float:left;font-size:3.3em;line-height:.8;padding:6px 10px 0 0;color:#6b1d12}
+.atr-decl .txt p.strong{hyphens:manual;font-style:italic;font-size:clamp(19px,2.5vw,24px);text-align:center;color:#3c220c;margin:22px 0}
+.atr-decl .txt p.last{text-align:center;font-size:clamp(19px,2.4vw,23px);margin-top:24px}
+/* founder block */
+.atr-decl .fd{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,36px);align-items:center;margin:34px 0 8px}
+.atr-decl .pt{width:clamp(130px,22vw,200px);aspect-ratio:4/5;border-radius:50%/42%;padding:7px;background:linear-gradient(145deg,#f2d991,#9c7424 45%,#f6e3a6 60%,#7c5a17);box-shadow:0 10px 22px rgba(40,25,5,.45),inset 0 0 0 1px rgba(255,240,200,.5)}
+.atr-decl .pt img{width:100%;height:100%;object-fit:cover;border-radius:50%/42%;display:block;filter:sepia(.18) contrast(1.03)}
+.atr-decl .sig{position:relative}
+.atr-decl .hancock{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(64px,12vw,116px);line-height:.9;color:#1d140a;white-space:nowrap;display:inline-block;transform:rotate(-4deg);transform-origin:left;
+  clip-path:inset(-30% 100% -30% 0);transition:clip-path 2.4s cubic-bezier(.6,.05,.3,1)}
+.atr-decl .flour{display:block;width:min(100%,430px);height:44px;margin-top:-14px;overflow:visible}
+.atr-decl .flour path{fill:none;stroke:#1d140a;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 1.4s 2.1s ease-out}
+.atr-decl.in .hancock{clip-path:inset(-30% -5% -30% 0)}
+.atr-decl.in .flour path{stroke-dashoffset:0}
+.atr-decl .who{font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:13px;color:var(--ink2);margin-top:4px}
+.atr-decl .tag{font-style:italic;color:var(--ink2);font-size:16px;margin-top:4px}
+/* join */
+.atr-decl .join{margin-top:30px;padding-top:26px;border-top:1px solid rgba(58,40,18,.35);text-align:center}
+.atr-decl .join h3{font-family:'IM Fell English',serif;font-style:italic;font-weight:400;font-size:clamp(22px,3vw,30px);margin:0 0 4px;color:var(--ink)}
+.atr-decl .join .hint{font-size:15px;color:var(--ink2);margin:0 0 14px}
+.atr-decl .line{position:relative;max-width:520px;margin:0 auto}
+.atr-decl .line input{width:100%;background:transparent;border:0;border-bottom:1.5px solid #2e1f0e;font-family:'Mrs Saint Delafield',cursive;font-size:clamp(46px,8vw,66px);color:#1d140a;text-align:center;padding:4px 8px 0;outline:none;line-height:1.25}
+.atr-decl .line input::placeholder{color:rgba(46,31,14,.28)}
+.atr-decl .line:before{content:"✗";position:absolute;left:4px;bottom:10px;font-size:20px;color:var(--ink2)}
+.atr-decl .cap{font-family:'IM Fell English SC',serif;letter-spacing:.2em;font-size:12px;color:var(--ink2);margin:6px 0 18px}
+.atr-decl .btn{display:inline-flex;align-items:center;gap:8px;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:16px;text-decoration:none;color:#1a1206;padding:14px 28px;border-radius:999px;
+  background:linear-gradient(180deg,#f3d98e,#c9a24a 55%,#a9822f);box-shadow:0 6px 16px rgba(60,35,5,.35),inset 0 1px 0 rgba(255,250,220,.7);transition:transform .2s,box-shadow .2s}
+.atr-decl .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(60,35,5,.42),inset 0 1px 0 rgba(255,250,220,.7)}
+.atr-decl .signed{font-style:italic;color:#6b1d12;min-height:22px;margin-top:10px;font-size:16px}
+
+/* photoreal ink + lighting */
+.atr-decl .kick,.atr-decl .sub,.atr-decl h2,.atr-decl .txt,.atr-decl .who,.atr-decl .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap{filter:url(#atrInk)}
+.atr-decl .sc{filter:drop-shadow(0 34px 34px rgba(0,0,0,.6)) drop-shadow(0 6px 8px rgba(0,0,0,.4))}
+.atr-decl .sc-body{position:relative}
+.atr-decl .sc-body>*{position:relative;z-index:1}
+.atr-decl .sc-body .kick,.atr-decl .sc-body .sub,.atr-decl .sc-body h2,.atr-decl .sc-body .txt,.atr-decl .sc-body .who,.atr-decl .sc-body .tag,.atr-decl .join h3,.atr-decl .join .hint,.atr-decl .cap,.atr-decl .hancock,.atr-decl .flour,.atr-decl .signed{mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55),0 .4px .9px rgba(70,40,10,.25)}
+.atr-decl .sc-body:after{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:multiply;
+ background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(95,55,15,.34) 100%),linear-gradient(100deg,rgba(255,245,220,.10),rgba(90,55,15,.08) 60%,rgba(255,245,220,.06))}
+.atr-decl .sc-body:before{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;z-index:2;pointer-events:none;mix-blend-mode:soft-light;opacity:.5;
+ background:radial-gradient(60% 40% at 35% 25%,rgba(255,248,225,.55),transparent 70%)}
+.atr-decl .line input{position:relative;z-index:3}
+.atr-decl .btn{position:relative;z-index:3}
+@media(max-width:560px){.atr-decl{padding:40px 8px 64px}.atr-decl .sc-body{padding:14px 13% 8px}.atr-decl .sub{letter-spacing:.14em}.atr-decl .txt p{hyphens:manual}.atr-decl .txt p.lead:first-letter{font-size:2.9em}.atr-decl .fd{grid-template-columns:1fr;justify-items:center;text-align:center}.atr-decl .hancock{transform-origin:center}.atr-decl .flour{margin-inline:auto}.atr-decl .txt p{text-align:left}}
+</style></head><body>
+<!-- ===== ATRIOS DECLARATION MARKUP ===== -->
+<section class="atr-decl" id="atrDecl"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="atrInk" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.75 1.3" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg>
+ <div class="sc">
+  <div class="sc-top"></div>
+  <div class="sc-body">
+   <p class="kick">The Atrios Declaration</p>
+   <p class="sub">VII · In the year 2026</p>
+   <h2>Let’s change the way the world sells</h2>
+   <div class="orn">✦</div>
+   <div class="txt">
+    <p class="lead">What started as a personal frustration has turned into something much bigger.</p>
+    <p>Millions of people want to discover better products and get rewarded for the value they create. Millions of companies are building incredible products that deserve to be discovered.</p>
+    <p class="strong">We just need a better way to connect them.</p>
+    <p>That’s what we’re building at Atrios: taking an industry built on interruption and rebuilding it around trust, and putting the money that used to go to ads and spam into the hands of real people.</p>
+    <p>It won’t happen overnight. But every great product discovered, every recommendation rewarded, and every cold call replaced with a real connection brings us one step closer.</p>
+    <p class="strong">The future of sales doesn’t belong to the companies that spend the most to spam us. It belongs to the companies we trust, the products we love, and the people who bring us together.</p>
+    <p class="last">And I’d love for you to be part of it.</p>
+   </div>
+   <div class="fd">
+    <div class="pt"><img src="https://ace-atrios.github.io/ace-demo/story-ren/a/taylor_portrait.jpg" alt="Taylor Offer"></div>
+    <div class="sig">
+     <span class="hancock">Taylor Offer</span>
+     <svg class="flour" viewBox="0 0 430 44" preserveAspectRatio="none"><path d="M6 30 C 80 6, 170 40, 250 22 S 380 4, 424 26 M 300 30 C 330 40, 380 40, 404 34"/></svg>
+     <div class="who">Founder, Atrios</div>
+     <div class="tag">The best tools, picked by people who use them.</div>
+    </div>
+   </div>
+   <div class="join">
+    <h3>If you want to join me, sign your name</h3>
+    <p class="hint">Then text Ace to get started.</p>
+    <div class="line"><input id="atrDeclName" type="text" maxlength="40" placeholder="Your name" autocomplete="name" aria-label="Your name"></div>
+    <div class="cap">Signature</div>
+    <a class="btn" id="atrDeclBtn" href="sms:+15303064813">Text Ace →</a>
+    <div class="signed" id="atrDeclSigned"></div>
+   </div>
+  </div>
+  <div class="sc-bot"></div>
+ </div>
+</section>
+<script>
+(()=>{const s=document.getElementById('atrDecl');if(!s)return;
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){s.classList.add('in');io.disconnect()}})},{threshold:.35});
+io.observe(s.querySelector('.fd'));
+const i=document.getElementById('atrDeclName'),b=document.getElementById('atrDeclBtn'),m=document.getElementById('atrDeclSigned');
+const upd=()=>{const n=i.value.trim();const body=n?`I signed the Atrios Declaration. ${n}`:'I want to join Atrios.';
+ b.href='sms:+15303064813?&body='+encodeURIComponent(body);m.textContent=n?`Signed by ${n}, ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`:''};
+i.addEventListener('input',upd);upd();})();
+</script>
+</body></html>

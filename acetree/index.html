@@ -1,0 +1,597 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ace Conversation Tree</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: router at top with three entry cards; each entry is its own top-down tree section; splits fan into branch columns and stack on phones */
+:root {
+  --bg: #f6f7f9;
+  --paper: #ffffff;
+  --ink: #1b2233;
+  --muted: #5d6578;
+  --line: #c5cad6;
+  --brass: #a4772f;
+  --brass-soft: #f4ecdd;
+  --ask: #2f4f8f;
+  --ask-soft: #e9eef8;
+  --act: #3d6b53;
+  --act-soft: #e6f0ea;
+  --book: #8a3f63;
+  --book-soft: #f6e8ef;
+  --display: "Gloock", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151d; --paper: #1b202b; --ink: #e8eaf0; --muted: #9aa2b4; --line: #3a4152;
+  --brass: #d6a85a; --brass-soft: #2e2719; --ask: #8fb0ec; --ask-soft: #1f2a40; --act: #87c3a1; --act-soft: #1b2e24;
+  --book: #e39bbd; --book-soft: #36202b;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151d; --paper: #1b202b; --ink: #e8eaf0; --muted: #9aa2b4; --line: #3a4152;
+  --brass: #d6a85a; --brass-soft: #2e2719; --ask: #8fb0ec; --ask-soft: #1f2a40; --act: #87c3a1; --act-soft: #1b2e24;
+  --book: #e39bbd; --book-soft: #36202b;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px; }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+
+header { display: grid; gap: 10px; max-width: 70ch; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--brass); }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; margin: 0; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid; }
+.sw.say { background: var(--brass-soft); border-color: var(--brass); }
+.sw.ask { background: var(--ask-soft); border-color: var(--ask); }
+.sw.act { background: var(--act-soft); border-color: var(--act); border-style: dashed; }
+.sw.book { background: var(--book-soft); border-color: var(--book); }
+
+.panel { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.panel h2, .entry-head h2 { font-family: var(--display); font-weight: 400; font-size: 22px; margin: 0; text-wrap: balance; }
+.panel ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--muted); }
+.panel ul b { color: var(--ink); font-weight: 600; }
+
+/* Router */
+.router { display: grid; gap: 14px; }
+.router-q { justify-self: center; text-align: center; max-width: 520px; }
+.entries { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.entry-card { background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start;
+  color: inherit; text-decoration: none; min-width: 0; }
+.entry-card:hover, .entry-card:focus-visible { border-color: var(--brass); outline: none; }
+.entry-card .tag { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--brass); }
+.entry-card h3 { font-family: var(--display); font-weight: 400; font-size: 19px; line-height: 1.2; margin: 0; }
+.entry-card dl { margin: 0; display: grid; gap: 6px; font-size: 13.5px; }
+.entry-card dt { font-weight: 600; font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.entry-card dd { margin: 0; }
+.entry-card ol { margin: 0; padding-left: 18px; display: grid; gap: 2px; }
+.entry-card .jump { font-size: 13px; color: var(--brass); font-weight: 600; }
+
+/* Entry sections */
+.entry { display: grid; gap: 18px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+.entry-head { display: grid; gap: 6px; max-width: 70ch; }
+.entry-head p { margin: 0; color: var(--muted); }
+
+/* Tree */
+.tree { display: flex; flex-direction: column; align-items: center; }
+.stage { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  background: var(--bg); padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; }
+.down { width: 2px; height: 26px; background: var(--line); }
+
+.node { background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px; padding: 14px 16px; width: 100%; max-width: 460px;
+  display: grid; gap: 6px; min-width: 0; }
+.node .kind { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; }
+.node .line { font-family: var(--display); font-size: 17px; line-height: 1.35; }
+.node .note { font-size: 13px; color: var(--muted); }
+.node ul { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 6px; }
+.node ul li { font-size: 14px; }
+
+.say { border-color: var(--brass); background: var(--brass-soft); }
+.say .kind { color: var(--brass); }
+.ask { border-color: var(--ask); background: var(--ask-soft); }
+.ask .kind { color: var(--ask); }
+.act { border-color: var(--act); background: var(--act-soft); border-style: dashed; }
+.act .kind { color: var(--act); }
+.book { border-color: var(--book); background: var(--book-soft); border-width: 2px; }
+.book .kind { color: var(--book); }
+.pick { border-width: 2.5px; box-shadow: 0 0 0 4px var(--brass-soft); }
+
+.split { width: 100%; display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: 20px; position: relative; padding-top: 26px; }
+.split::before { content: ""; position: absolute; top: 0; height: 2px; background: var(--line);
+  left: calc(100% / (var(--n, 2) * 2)); right: calc(100% / (var(--n, 2) * 2)); }
+.branch { display: flex; flex-direction: column; align-items: center; position: relative; min-width: 0; }
+.branch::before { content: ""; position: absolute; top: -26px; width: 2px; height: 26px; background: var(--line); }
+.cond { font-size: 12.5px; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  border-radius: 999px; padding: 4px 12px; text-align: center; max-width: 100%; }
+.cond b { color: var(--brass); }
+.rejoin { width: 100%; position: relative; height: 28px; }
+.rejoin::before { content: ""; position: absolute; bottom: 0; height: 2px; background: var(--line);
+  left: calc(100% / (var(--n, 2) * 2)); right: calc(100% / (var(--n, 2) * 2)); }
+.branch .grow { flex: 1; width: 2px; background: var(--line); min-height: 26px; }
+.goto { font-size: 12.5px; color: var(--muted); border: 1px dashed var(--line); border-radius: 8px; padding: 6px 10px; text-align: center; max-width: 460px; }
+.goto b { color: var(--ink); }
+
+.num { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--ask); color: var(--paper);
+  font-family: var(--mono); font-size: 11px; margin-right: 6px; vertical-align: 2px; }
+
+@media (max-width: 860px) { .entries { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  .split { grid-template-columns: 1fr; padding-top: 0; gap: 0; }
+  .split::before, .rejoin::before { display: none; }
+  .branch::before { position: static; display: block; height: 26px; }
+  .branch + .branch { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .branch + .branch::before { display: none; }
+  .rejoin { height: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Atrios · Ace playbook</div>
+    <h1>Ace Conversation Tree</h1>
+    <p>How Ace opens a conversation, depending on how the person got to Ace. Every entry starts by finding out who they are. Direct visitors then get help figuring out what they need. People from the perks page, the newsletter or a Tastemaker intro already know why they're here, so Ace gets them booked fast.</p>
+    <div class="legend">
+      <span><i class="sw say"></i>Ace says</span>
+      <span><i class="sw ask"></i>Ace asks</span>
+      <span><i class="sw act"></i>Ace does behind the scenes</span>
+      <span><i class="sw book"></i>Booking step</span>
+      <span>★ Quick pick (early value)</span>
+    </div>
+  </header>
+
+  <section class="router" aria-label="Entry points">
+    <div class="node act router-q">
+      <span class="kind">Ace does first</span>
+      <span class="note">Checks where the person came from (landing page, perks page, newsletter, or a Tastemaker intro by text or email) and picks the matching opening.</span>
+    </div>
+    <div class="entries">
+      <a class="entry-card" href="#direct">
+        <span class="tag">Entry 1</span>
+        <h3>Landing page or direct</h3>
+        <dl>
+          <div><dt>Comes from</dt><dd>The Atrios landing page, or texting Ace with no prior context</dd></div>
+          <div><dt>Ace's goal</dt><dd>Understand them and help</dd></div>
+          <div><dt>Steps</dt><dd><ol><li>Who are they? Match LinkedIn</li><li>What do they want? Something specific, or a diagnostic?</li></ol></dd></div>
+        </dl>
+        <span class="jump">See the tree ↓</span>
+      </a>
+      <a class="entry-card" href="#perks">
+        <span class="tag">Entry 2</span>
+        <h3>Perks page or newsletter</h3>
+        <dl>
+          <div><dt>Comes from</dt><dd>Clicking a perk on the perks page, or a link in the newsletter</dd></div>
+          <div><dt>Ace's goal</dt><dd>Get the meeting booked fast</dd></div>
+          <div><dt>Steps</dt><dd><ol><li>Who are they? Match LinkedIn</li><li>Offer days and times to book</li></ol></dd></div>
+        </dl>
+        <span class="jump">See the tree ↓</span>
+      </a>
+      <a class="entry-card" href="#tastemaker">
+        <span class="tag">Entry 3</span>
+        <h3>Tastemaker intro</h3>
+        <dl>
+          <div><dt>Comes from</dt><dd>A Tastemaker introducing them to Ace by text or email</dd></div>
+          <div><dt>Ace's goal</dt><dd>Get the meeting booked fast</dd></div>
+          <div><dt>Steps</dt><dd><ol><li>Who are they? Confirm LinkedIn</li><li>Offer days and times to book</li></ol></dd></div>
+        </dl>
+        <span class="jump">See the tree ↓</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>House style for every reply</h2>
+    <ul>
+      <li><b>Casual and friendly.</b> Talk like a helpful friend who knows a lot about tools. No gushing words like "wonderful," "lovely" or "delighted." Use their first name once you have it.</li>
+      <li><b>One question at a time.</b> Acknowledge each answer briefly before moving on ("Got it," "Makes sense").</li>
+      <li><b>Never pushy.</b> If someone hesitates, give them an easy out: "No worries, we can skip that."</li>
+      <li><b>Lead with value early.</b> For direct visitors, offer one quick pick as soon as a real need comes up.</li>
+      <li><b>Booking entries move fast.</b> For perks, newsletter and Tastemaker arrivals, offer real days and times right after confirming who they are. Don't run discovery first.</li>
+      <li><b>Always end with a clear next step.</b></li>
+    </ul>
+  </section>
+
+  <!-- ============ ENTRY 1 ============ -->
+  <section class="entry" id="direct">
+    <div class="entry-head">
+      <div class="eyebrow">Entry 1</div>
+      <h2>Landing page or direct</h2>
+      <p>No prior context. Ace finds out who they are, then whether they want help with something specific or a quick diagnostic.</p>
+    </div>
+    <div class="tree">
+      <span class="stage">Step 1 · Who are they?</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"Hey, I'm Ace. What's your name, and what company are you with?"</span>
+      </div>
+      <div class="down"></div>
+      <div class="node act">
+        <span class="kind">Ace does</span>
+        <span class="note">Searches for their LinkedIn profile using name + company.</span>
+      </div>
+
+      <div class="split" style="--n:2">
+        <div class="branch">
+          <span class="cond">If <b>profile found</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"Nice to meet you, Jordan. Is this you? linkedin.com/in/jordan-…"</span>
+          </div>
+          <div class="split" style="--n:2">
+            <div class="branch">
+              <span class="cond">If <b>"Yes"</b></span>
+              <div class="down"></div>
+              <div class="node say"><span class="kind">Ace says</span><span class="line">"Great, thanks."</span></div>
+              <div class="grow"></div>
+            </div>
+            <div class="branch">
+              <span class="cond">If <b>"Not me"</b></span>
+              <div class="down"></div>
+              <div class="node say"><span class="kind">Ace says</span><span class="line">"My bad. Mind sending me your LinkedIn link?"</span></div>
+              <div class="grow"></div>
+            </div>
+          </div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>no profile found</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"Nice to meet you, Jordan. I couldn't find your LinkedIn. Mind sending the link? It helps me tailor things to you."</span>
+          </div>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says (if they'd rather not)</span>
+            <span class="line">"No problem. What's your role?"</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="rejoin" style="--n:2"></div>
+      <div class="down"></div>
+
+      <span class="stage">Step 2 · What do they want?</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"Is there something specific you want help with, or should I ask a few quick questions to see where I can help?"</span>
+      </div>
+
+      <div class="split" style="--n:2">
+        <!-- Path A -->
+        <div class="branch">
+          <span class="cond">Path A · <b>Something specific</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"Sure. What's going on?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node say pick">
+            <span class="kind">★ Ace offers a quick pick</span>
+            <span class="line">"First thing that comes to mind is {tool}. It's good for {their need}. Want to go with that, or should I ask a few more questions to find a better fit?"</span>
+          </div>
+          <div class="split" style="--n:2">
+            <div class="branch">
+              <span class="cond">If <b>"Sounds good"</b></span>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace says</span>
+                <span class="line">"Cool. Here's why I think it fits…"</span>
+                <span class="note">Why it fits, what similar companies use it for, Atrios perks, offer to book or set up.</span>
+              </div>
+              <div class="down"></div>
+              <div class="goto">Go to <b>Close</b></div>
+              <div class="grow"></div>
+            </div>
+            <div class="branch">
+              <span class="cond">If <b>"Ask me more"</b></span>
+              <div class="down"></div>
+              <div class="node ask">
+                <span class="kind">Ace asks, one at a time</span>
+                <ul>
+                  <li>"What's making this a priority now?"</li>
+                  <li>"What have you tried so far?"</li>
+                  <li>"What would a good outcome look like?"</li>
+                  <li>"Any timeline you're working with?"</li>
+                  <li>"Who else is involved in the decision?"</li>
+                </ul>
+              </div>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace says (play it back)</span>
+                <span class="line">"So you're looking for ___ because ___, ideally by ___. That right?"</span>
+              </div>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace offers</span>
+                <span class="note">2–3 tools, one line each on why it fits them, plus Atrios perks. Then: "Want more detail on any of these, or help getting one set up?"</span>
+              </div>
+              <div class="grow"></div>
+            </div>
+          </div>
+          <div class="grow"></div>
+        </div>
+
+        <!-- Path B -->
+        <div class="branch">
+          <span class="cond">Path B · <b>Diagnostic</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"Sure. A few quick ones, and skip anything you want."</span>
+          </div>
+          <div class="down"></div>
+          <div class="node ask">
+            <span class="kind">Ace asks</span>
+            <span class="line"><span class="num">1</span>"Do you manage a team, or are you more of an individual contributor?"</span>
+            <span class="note">Skip if LinkedIn makes it clear; confirm instead.</span>
+          </div>
+          <div class="down"></div>
+          <div class="node ask">
+            <span class="kind">Ace asks</span>
+            <span class="line"><span class="num">2</span>"What part of your job would you happily never do again?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node say pick">
+            <span class="kind">★ Ace offers a quick pick</span>
+            <span class="line">"Yeah, I hear that a lot. First thing that comes to mind is {tool}. It could take {that task} off your plate. Want to go with that, or should I ask a few more questions?"</span>
+          </div>
+          <div class="split" style="--n:2">
+            <div class="branch">
+              <span class="cond">If <b>"Sounds good"</b></span>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace says</span>
+                <span class="line">"Cool. Here's why I think it'd work for you…"</span>
+                <span class="note">Why it fits + perks. Skip to the budget question.</span>
+              </div>
+              <div class="grow"></div>
+            </div>
+            <div class="branch">
+              <span class="cond">If <b>"Ask me more"</b></span>
+              <div class="down"></div>
+              <div class="node ask">
+                <span class="kind">Ace asks</span>
+                <span class="line"><span class="num">3</span>"Where do you think you could be doing better with the right help?"</span>
+              </div>
+              <div class="down"></div>
+              <div class="node ask">
+                <span class="kind">Ace asks</span>
+                <span class="line"><span class="num">4</span>"How big is the company right now, and have you raised money?"</span>
+                <span class="note">Check LinkedIn / public data first; only ask what's missing.</span>
+              </div>
+              <div class="grow"></div>
+            </div>
+          </div>
+          <div class="rejoin" style="--n:2"></div>
+          <div class="down"></div>
+          <div class="node ask">
+            <span class="kind">Ace asks</span>
+            <span class="line"><span class="num">5</span>"Do you have budget to try new tools?"</span>
+          </div>
+          <div class="split" style="--n:2">
+            <div class="branch">
+              <span class="cond">If <b>yes</b></span>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace says</span>
+                <span class="line">"Nice. Based on what you said, here are a few I'd look at…"</span>
+                <span class="note">2–3 tools tied to Q2/Q3, plus perks.</span>
+              </div>
+              <div class="grow"></div>
+            </div>
+            <div class="branch">
+              <span class="cond">If <b>no</b></span>
+              <div class="down"></div>
+              <div class="node ask">
+                <span class="kind">Ace asks</span>
+                <span class="line">"Got it. Who usually decides on that?"</span>
+              </div>
+              <div class="down"></div>
+              <div class="node say">
+                <span class="kind">Ace offers</span>
+                <span class="line">"Want me to write a short note you can send them?"</span>
+              </div>
+              <div class="grow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rejoin" style="--n:2"></div>
+      <div class="down"></div>
+
+      <span class="stage">Close</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"Thanks, Jordan. Anything else I can help with?"</span>
+      </div>
+      <div class="down"></div>
+      <div class="goto">Something new comes up: loop back to <b>Path A</b>. Otherwise, a quick friendly goodbye.</div>
+    </div>
+  </section>
+
+  <!-- ============ ENTRY 2 ============ -->
+  <section class="entry" id="perks">
+    <div class="entry-head">
+      <div class="eyebrow">Entry 2</div>
+      <h2>Perks page or newsletter</h2>
+      <p>They already saw something they liked. Ace confirms who they are, then gets the meeting on the calendar as quickly as possible.</p>
+    </div>
+    <div class="tree">
+      <span class="stage">Step 1 · Who are they?</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"Hey, I'm Ace. Saw you were checking out the {perk} perk. What's your name, and what company are you with?"</span>
+        <span class="note">Newsletter version: "Hey, I'm Ace. Thanks for coming over from the newsletter. What's your name, and what company are you with?"</span>
+      </div>
+      <div class="down"></div>
+      <div class="node act">
+        <span class="kind">Ace does</span>
+        <span class="note">Finds their LinkedIn and confirms it, same as Entry 1 ("Is this you?" / "Mind sending your LinkedIn link?"). Keeps it to one quick exchange.</span>
+      </div>
+      <div class="down"></div>
+
+      <span class="stage">Step 2 · Book the meeting</span>
+      <div class="down"></div>
+      <div class="node book">
+        <span class="kind">Ace offers times</span>
+        <span class="line">"Great, thanks. Want to grab a quick call with the {product} team? I've got Tue at 2pm, Wed at 10am, or Thu at 4pm. Any of those work?"</span>
+        <span class="note">Offer 3 real slots across the next few days. Newsletter arrivals with no perk picked: ask "Which perk caught your eye?" first.</span>
+      </div>
+
+      <div class="split" style="--n:3">
+        <div class="branch">
+          <span class="cond">If <b>picks a time</b></span>
+          <div class="down"></div>
+          <div class="node book">
+            <span class="kind">Ace confirms</span>
+            <span class="line">"Done. You're set for {day, time}. What's the best email for the invite?"</span>
+            <span class="note">Skip the email question if Ace already has it.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>none work</b></span>
+          <div class="down"></div>
+          <div class="node ask">
+            <span class="kind">Ace asks</span>
+            <span class="line">"No problem. What days are usually best for you?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node book">
+            <span class="kind">Ace offers</span>
+            <span class="note">3 new slots on those days, or a booking link they can pick from.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>not ready yet</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"All good. Want me to tell you a bit more about {perk} first?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node act">
+            <span class="kind">Ace does</span>
+            <span class="note">Answers briefly, then offers times again. If they want broader help, switch to Entry 1, Step 2.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="rejoin" style="--n:3"></div>
+      <div class="down"></div>
+      <span class="stage">Close</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"You're all set. Anything you want the team to know before the call?"</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENTRY 3 ============ -->
+  <section class="entry" id="tastemaker">
+    <div class="entry-head">
+      <div class="eyebrow">Entry 3</div>
+      <h2>Tastemaker intro (text or email)</h2>
+      <p>A Tastemaker vouched for this. The intro usually gives Ace a name and a reason, so Ace confirms who they are and books the meeting right away.</p>
+    </div>
+    <div class="tree">
+      <span class="stage">Step 1 · Who are they?</span>
+      <div class="down"></div>
+      <div class="node act">
+        <span class="kind">Ace does</span>
+        <span class="note">Pulls the person's name, company and the reason for the intro from the Tastemaker's message, then looks up their LinkedIn.</span>
+      </div>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"Thanks for the intro, {Tastemaker}! Hey Jordan, I'm Ace. {Tastemaker} mentioned you might want to check out {product}. Just to make sure I have the right person, is this you? linkedin.com/in/jordan-…"</span>
+        <span class="note">On email, move the Tastemaker to BCC in this first reply: "(Moving {Tastemaker} to BCC to spare their inbox.)"</span>
+      </div>
+      <div class="split" style="--n:2">
+        <div class="branch">
+          <span class="cond">If <b>"Yes"</b></span>
+          <div class="down"></div>
+          <div class="node say"><span class="kind">Ace says</span><span class="line">"Great, thanks."</span></div>
+          <div class="grow"></div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>"Not me" / no profile</b></span>
+          <div class="down"></div>
+          <div class="node say"><span class="kind">Ace says</span><span class="line">"My bad. Mind sending me your LinkedIn link?"</span></div>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="rejoin" style="--n:2"></div>
+      <div class="down"></div>
+
+      <span class="stage">Step 2 · Book the meeting</span>
+      <div class="down"></div>
+      <div class="node book">
+        <span class="kind">Ace offers times</span>
+        <span class="line">"{Tastemaker} thought {product} could be a good fit for you. Want to grab a quick call with their team? I've got Tue at 2pm, Wed at 10am, or Thu at 4pm."</span>
+        <span class="note">Offer 3 real slots across the next few days.</span>
+      </div>
+      <div class="split" style="--n:3">
+        <div class="branch">
+          <span class="cond">If <b>picks a time</b></span>
+          <div class="down"></div>
+          <div class="node book">
+            <span class="kind">Ace confirms</span>
+            <span class="line">"Done. You're set for {day, time}. What's the best email for the invite?"</span>
+            <span class="note">On email, use the address they wrote from.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>none work</b></span>
+          <div class="down"></div>
+          <div class="node ask">
+            <span class="kind">Ace asks</span>
+            <span class="line">"No problem. What days are usually best for you?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node book">
+            <span class="kind">Ace offers</span>
+            <span class="note">3 new slots on those days, or a booking link.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+        <div class="branch">
+          <span class="cond">If <b>has questions first</b></span>
+          <div class="down"></div>
+          <div class="node say">
+            <span class="kind">Ace says</span>
+            <span class="line">"Sure, what do you want to know?"</span>
+          </div>
+          <div class="down"></div>
+          <div class="node act">
+            <span class="kind">Ace does</span>
+            <span class="note">Answers briefly, then offers times again. Never makes them redo what the Tastemaker already said.</span>
+          </div>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="rejoin" style="--n:3"></div>
+      <div class="down"></div>
+      <span class="stage">Close</span>
+      <div class="down"></div>
+      <div class="node say">
+        <span class="kind">Ace says</span>
+        <span class="line">"You're all set. Anything you want the team to know before the call?"</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body></html>

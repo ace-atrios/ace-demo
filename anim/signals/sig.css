@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
+.atr-sig{position:relative;width:100%;max-width:1100px;aspect-ratio:1536/1024;margin:0 auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.atr-sig .sg-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.atr-sig .sg-stage{position:absolute;left:10.6%;right:10.6%;top:15.3%;bottom:15.9%;overflow:hidden;container-type:inline-size;background:#1d140b}
+.atr-sig .sg-bg{position:absolute;left:-4%;top:-4%;width:108%;height:108%;object-fit:cover;animation:sgDrift 40s ease-in-out infinite alternate;will-change:transform}
+@keyframes sgDrift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.05) translate(-1.2%,-.8%)}}
+.atr-sig .sg-stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 35%,rgba(10,6,2,.55) 100%);pointer-events:none;z-index:4}
+.atr-sig .sg-wires{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.atr-sig .sg-wire{fill:none;stroke:url(#sgGold);stroke-width:1.6;opacity:.55}
+.atr-sig .sg-pulse{fill:none;stroke:#ffd88a;stroke-width:3.2;stroke-linecap:round;stroke-dasharray:7 93;stroke-dashoffset:100;animation:sgFlow var(--t) cubic-bezier(.45,.05,.55,.95) var(--d) infinite}
+@keyframes sgFlow{0%{stroke-dashoffset:100;opacity:0}8%{opacity:1}88%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.atr-sig .sg-node{position:absolute;width:8.4%;transform:translate(-50%,-58%);z-index:2}
+.atr-sig .sg-bez{width:100%;display:block;filter:drop-shadow(0 6px 8px rgba(0,0,0,.6))}
+.atr-sig .sg-ic{position:absolute;left:50%;top:58.5%;width:38%;transform:translate(-50%,-50%);fill:#4a2f12;opacity:.88;mix-blend-mode:multiply}
+.atr-sig .sg-lbl{position:absolute;left:50%;top:104%;transform:translateX(-50%);white-space:nowrap;font:italic 500 1.55cqw/1 'Cormorant Garamond',serif;color:#f0d9a0;text-shadow:0 1px 3px #000}
+.atr-sig .sg-aud{position:absolute;transform:translate(-50%,-50%);font:600 1.5cqw/1 'Cormorant Garamond',serif;letter-spacing:.14em;text-transform:uppercase;color:#f3dca2;padding:.45em .9em;border:1px solid rgba(232,194,106,.6);background:linear-gradient(#3a2812cc,#1e1409cc);border-radius:2px;box-shadow:0 0 0 3px rgba(0,0,0,.25),inset 0 0 12px rgba(232,194,106,.15);z-index:2}
+.atr-sig .sg-coinwrap{position:absolute;left:50%;top:42.86%;width:19.7%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;animation:sgFloat 6s ease-in-out infinite;will-change:transform}
+@keyframes sgFloat{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-53%)}}
+.atr-sig .sg-coin{position:relative;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.7))}
+.atr-sig .sg-halo{position:absolute;inset:-28%;border-radius:50%;background:radial-gradient(circle,rgba(255,206,120,.55) 0%,rgba(255,170,60,.18) 40%,transparent 68%);animation:sgHalo 2.8s ease-in-out infinite;will-change:transform,opacity}
+@keyframes sgHalo{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.04)}}
+.atr-sig .sg-sheen{position:absolute;inset:0;-webkit-mask:url(%B%coin_A.png) center/contain no-repeat;mask:url(%B%coin_A.png) center/contain no-repeat;background:linear-gradient(115deg,transparent 38%,rgba(255,250,225,.5) 48%,transparent 58%) 0 0/250% 100%;mix-blend-mode:screen;animation:sgSheen 5.5s ease-in-out infinite}
+@keyframes sgSheen{0%{background-position:130% 0}60%,100%{background-position:-30% 0}}
+.atr-sig .sg-count{position:absolute;left:50%;top:69%;transform:translate(-50%,-50%);text-align:center;z-index:3;font-family:'Cormorant Garamond',serif;color:#f6e3b0;text-shadow:0 2px 6px #000}
+.atr-sig .sg-count b{display:block;font-weight:600;font-size:4.6cqw;line-height:1;font-variant-numeric:lining-nums tabular-nums;letter-spacing:.02em}
+.atr-sig .sg-count i{font-size:1.8cqw}
+.atr-sig .sg-banner{position:absolute;left:50%;top:87%;width:46%;transform:translate(-50%,-50%);z-index:3}
+.atr-sig .sg-banner img{width:100%;display:block;filter:drop-shadow(0 8px 10px rgba(0,0,0,.6))}
+.atr-sig .sg-cap{position:absolute;inset:0 6% 6% 9%;display:flex;align-items:center;justify-content:center;text-align:center;font:italic 500 2cqw/1.15 'Cormorant Garamond',serif;color:#3b2610;transition:opacity .7s ease,transform .7s ease}
+.atr-sig .sg-cap.out{opacity:0;transform:translateY(6px)}
+@media (prefers-reduced-motion:reduce){.atr-sig *{animation:none!important}}

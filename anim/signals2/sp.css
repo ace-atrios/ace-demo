@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+.atr-sp{position:relative;width:100%;max-width:1000px;aspect-ratio:1536/1290;margin:0 auto;filter:drop-shadow(0 28px 36px rgba(0,0,0,.55))}
+.atr-sp .sp-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+.atr-sp .sp-stage{position:absolute;left:13.8%;right:13.87%;top:17.45%;bottom:17.97%;overflow:hidden;container-type:inline-size;background:#14100a}
+.atr-sp .sp-plate{position:absolute;inset:0;width:100%;height:100%;display:block}
+.atr-sp .sp-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;mix-blend-mode:screen}
+.atr-sp .sp-thread{fill:none;stroke:#ffcf6e;stroke-width:4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.atr-sp .sp-core{opacity:0;transform-origin:center;transform-box:fill-box}
+.atr-sp .sp-glow{position:absolute;aspect-ratio:1;transform:translate(-50%,-50%) scale(.85);border-radius:50%;background:radial-gradient(circle,rgba(255,236,170,.75) 0%,rgba(255,190,80,.45) 38%,rgba(255,150,40,0) 70%);mix-blend-mode:screen;opacity:0;z-index:3;pointer-events:none}
+.atr-sp .sp-count{position:absolute;transform:translate(-50%,-50%);text-align:center;z-index:4;font-family:'Cormorant Garamond',serif;color:#f7e7bf;text-shadow:0 2px 10px rgba(0,0,0,.9),0 0 18px rgba(255,190,90,.25)}
+.atr-sp .sp-count b{display:block;font-weight:600;font-size:7.2cqw;line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.atr-sp .sp-count i{display:block;font-size:2.9cqw;margin-top:.2em}
+.atr-sp .sp-cherub{position:absolute;left:0;top:0;width:19%;z-index:6;will-change:transform;filter:drop-shadow(0 10px 12px rgba(0,0,0,.55));pointer-events:none}
+.atr-sp .sp-cap{position:absolute;transform:translate(-50%,-50%);width:44%;text-align:center;z-index:5}
+.atr-sp .sp-cap span{display:block;font:italic 600 3cqw/1.12 'Cormorant Garamond',serif;color:#3a240d;transition:opacity .6s ease,transform .6s ease}
+.atr-sp .sp-cap span.out{opacity:0;transform:translateY(.25em)}
+@media (prefers-reduced-motion:reduce){.atr-sp .sp-cherub{display:none}}
+.atr-sp .sp-thread{stroke-dasharray:none;stroke-dashoffset:0}
+.atr-sp .sp-core{transform-box:view-box}
+.atr-sp .sp-ink{position:absolute;left:0;top:0;width:3.2%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,240,190,.95),rgba(255,190,80,.5) 40%,transparent 70%);mix-blend-mode:screen;z-index:7;pointer-events:none;opacity:0}

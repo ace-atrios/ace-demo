@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrios · Make an intro, get paid</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Mrs+Saint+Delafield&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0f1a14}
+/* ===== ATRIOS "MAKE AN INTRO" (scoped .atr-mi) ===== */
+.atr-mi{--ink:#2e1f0e;--ink2:#5a4126;--gold:#c9a24a;--cream:#f4ead2;--mut:rgba(244,234,210,.62);
+ color:var(--cream);font-family:Inter,system-ui,sans-serif;padding:22px 24px 110px;max-width:1040px;margin:0 auto}
+.atr-mi *{box-sizing:border-box}
+/* hero */
+.atr-mi .hero{display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;margin-bottom:26px}
+.atr-mi .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(201,162,74,.85);margin:0 0 10px}
+.atr-mi h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(42px,5.6vw,66px);line-height:1.02;margin:0;letter-spacing:-.01em}
+.atr-mi h1 i{color:var(--gold);font-style:normal}
+.atr-mi .lede{color:var(--mut);font-size:15px;line-height:1.55;max-width:480px;margin:10px 0 0}
+.atr-mi .hang{position:relative;padding-top:34px;width:clamp(120px,13vw,150px)}
+.atr-mi .hang svg{position:absolute;top:0;left:0;width:100%;height:38px;overflow:visible}
+.atr-mi .frame{position:relative;aspect-ratio:388/546;padding:11px;border-radius:3px;
+ background:linear-gradient(135deg,#f7e2a1 0%,#a57a25 18%,#f2d68a 32%,#7a5716 50%,#e9c977 66%,#8d6420 82%,#f5dd98 100%);
+ box-shadow:0 26px 40px rgba(0,0,0,.55),0 4px 10px rgba(0,0,0,.4),inset 0 0 0 2px rgba(70,45,8,.6),inset 0 0 0 5px rgba(255,236,170,.35)}
+.atr-mi .frame:before{content:"";position:absolute;inset:6px;border:1.5px solid rgba(60,38,6,.55);border-radius:2px;pointer-events:none}
+.atr-mi .frame img{width:100%;height:100%;object-fit:cover;display:block;box-shadow:inset 0 0 18px rgba(0,0,0,.6);border:2px solid #3a2808}
+/* steps */
+.atr-mi .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);position:relative;margin-bottom:26px}
+.atr-mi .steps:before{content:"";position:absolute;top:8px;left:8px;right:0;height:1px;background:linear-gradient(90deg,rgba(201,162,74,.5),rgba(201,162,74,.15))}
+.atr-mi .st .dia{width:14px;height:14px;transform:rotate(45deg);border:1.5px solid var(--gold);background:#0f1a14;position:relative;margin-bottom:12px;margin-left:1px}
+.atr-mi .st .num{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums}
+.atr-mi .st h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;line-height:1.15;margin:4px 0 6px}
+.atr-mi .st p{color:var(--mut);font-size:14px;line-height:1.5;margin:0}
+.atr-mi .ways{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:5px}
+.atr-mi .ways li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--cream);background:rgba(201,162,74,.07);border:1px solid rgba(201,162,74,.28);border-radius:9px;padding:6px 11px}
+.atr-mi .ways b{font-weight:600}
+.atr-mi .ways .ic{color:var(--gold);flex:none;width:16px;text-align:center}
+.atr-mi .ways a{color:var(--gold)}
+.atr-mi .both{display:flex;gap:10px;margin-top:12px}
+.atr-mi .both span{flex:1;text-align:center;border:1px solid rgba(201,162,74,.35);border-radius:10px;padding:10px 6px;font-size:13px;color:var(--mut)}
+.atr-mi .both b{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);font-weight:600}
+/* scroll */
+.atr-mi .sc{width:min(820px,100%);margin:0 auto;position:relative;filter:drop-shadow(0 34px 34px rgba(0,0,0,.6)) drop-shadow(0 6px 8px rgba(0,0,0,.4));color:var(--ink);font-family:'IM Fell English',Georgia,serif}
+.atr-mi .sc-top{aspect-ratio:984/160;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_top.webp) center/100% 100% no-repeat;margin-bottom:-2px;position:relative;z-index:2}
+.atr-mi .sc-bot{aspect-ratio:984/216;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_bot.webp) center/100% 100% no-repeat;margin-top:-2px;position:relative;z-index:2}
+.atr-mi .sc-body{position:relative;background:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;padding:clamp(16px,3.5vw,34px) clamp(30px,9%,92px) clamp(10px,3vw,24px)}
+.atr-mi .sc-body:after{content:"";position:absolute;inset:0;-webkit-mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;mask:url(https://ace-atrios.github.io/ace-demo/anim/declaration/a/scroll_mid.webp) center/100% 100% no-repeat;pointer-events:none;mix-blend-mode:multiply;
+ background:radial-gradient(120% 70% at 50% 40%,rgba(255,250,235,0) 55%,rgba(95,55,15,.32) 100%)}
+.atr-mi .sc-body>*{position:relative;z-index:1}
+.atr-mi .ink{filter:url(#atrMiInk);mix-blend-mode:multiply;text-shadow:0 0 .6px rgba(40,22,6,.55)}
+.atr-mi .kick{font-family:'IM Fell English SC',serif;text-align:center;font-size:clamp(12px,1.6vw,14px);letter-spacing:.26em;color:var(--ink2);margin:0 0 6px}
+.atr-mi .sc h2{font-weight:400;text-align:center;font-size:clamp(38px,6.4vw,62px);line-height:1.05;margin:0 0 14px;color:var(--ink)}
+.atr-mi .orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:0 auto 22px;color:var(--ink2);width:70%}
+.atr-mi .orn:before,.atr-mi .orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(58,40,18,.55),transparent)}
+.atr-mi .pre{text-align:center;font-style:italic;font-size:clamp(17px,2.1vw,20px);color:#3c220c;margin:0 0 18px}
+.atr-mi .vows{list-style:none;padding:0;margin:0 0 8px}
+.atr-mi .vow{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;padding:13px 4px;border-bottom:1px dashed rgba(58,40,18,.32);cursor:pointer;user-select:none}
+.atr-mi .vow:last-child{border-bottom:0}
+.atr-mi .vow input{position:absolute;opacity:0;pointer-events:none}
+.atr-mi .box{width:34px;height:34px;position:relative}
+.atr-mi .box svg{width:100%;height:100%;overflow:visible}
+.atr-mi .box .sq{fill:none;stroke:#3a2812;stroke-width:1.6;opacity:.75}
+.atr-mi .box .ck{fill:none;stroke:#6b1d12;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:80;stroke-dashoffset:80;transition:stroke-dashoffset .55s cubic-bezier(.6,.05,.3,1)}
+.atr-mi .vow.on .ck{stroke-dashoffset:0}
+.atr-mi .vow .t{font-size:clamp(18px,2.2vw,21px);line-height:1.4;color:#24180a}
+.atr-mi .vow:hover .sq{opacity:1}
+.atr-mi .vow:focus-visible{outline:2px solid #6b1d12;outline-offset:2px;border-radius:6px}
+.atr-mi .count{text-align:center;font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:12px;color:var(--ink2);margin:10px 0 0}
+.atr-mi .creed{text-align:center;font-style:italic;font-size:clamp(22px,3vw,30px);color:#3c220c;margin:26px 0 6px}
+.atr-mi .q{text-align:center;font-size:17px;color:var(--ink2);margin:0 0 22px}
+.atr-mi .q a{color:#6b1d12;text-decoration:underline;text-underline-offset:3px}
+.atr-mi .signbox{border-top:1px solid rgba(58,40,18,.35);padding-top:22px;text-align:center;transition:opacity .4s}
+.atr-mi .signbox.locked{opacity:.45}
+.atr-mi .line{position:relative;max-width:520px;margin:0 auto}
+.atr-mi .line input{width:100%;background:transparent;border:0;border-bottom:1.5px solid #2e1f0e;font-family:'Mrs Saint Delafield',cursive;font-size:clamp(44px,8vw,64px);color:#1d140a;text-align:center;padding:4px 8px 0;outline:none;line-height:1.25;position:relative;z-index:3}
+.atr-mi .line input::placeholder{color:rgba(46,31,14,.28)}
+.atr-mi .line input:disabled{cursor:not-allowed}
+.atr-mi .line:before{content:"✗";position:absolute;left:4px;bottom:10px;font-size:20px;color:var(--ink2)}
+.atr-mi .cap{font-family:'IM Fell English SC',serif;letter-spacing:.2em;font-size:12px;color:var(--ink2);margin:6px 0 18px}
+.atr-mi .stamp{display:inline-flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;cursor:pointer;position:relative;z-index:3;font-family:'IM Fell English SC',serif;letter-spacing:.18em;font-size:12px;color:#6b1d12}
+.atr-mi .stamp .wax{width:clamp(96px,13vw,124px);aspect-ratio:1;background:url(https://ace-atrios.github.io/ace-demo/img/ren7/seal_red.webp) center/contain no-repeat;
+ filter:drop-shadow(0 10px 10px rgba(60,10,5,.45)) drop-shadow(0 2px 2px rgba(40,5,0,.5));transition:transform .25s cubic-bezier(.3,1.4,.5,1),filter .3s}
+.atr-mi .stamp:hover:not(:disabled) .wax{transform:translateY(-4px) rotate(-3deg) scale(1.04);filter:drop-shadow(0 16px 14px rgba(60,10,5,.4)) drop-shadow(0 3px 3px rgba(40,5,0,.45))}
+.atr-mi .stamp:disabled{cursor:not-allowed}
+.atr-mi .stamp.press .wax{opacity:1}
+.atr-mi .stamp:disabled:not(.press) .wax{filter:grayscale(.85) brightness(.9) drop-shadow(0 6px 6px rgba(60,40,10,.3));opacity:.55}
+.atr-mi .stamp:focus-visible{outline:2px solid #6b1d12;outline-offset:6px;border-radius:50%}
+.atr-mi .stamp.press .wax{animation:atrMiStamp .9s cubic-bezier(.5,0,.3,1) forwards}
+@keyframes atrMiStamp{0%{transform:translateY(0) scale(1)}35%{transform:translateY(-34px) scale(1.18) rotate(-6deg);filter:drop-shadow(0 34px 22px rgba(40,10,5,.3))}
+ 62%{transform:translateY(2px) scale(.9) rotate(-8deg);filter:drop-shadow(0 2px 2px rgba(40,5,0,.6))}78%{transform:scale(1.03) rotate(-8deg)}100%{transform:scale(1) rotate(-8deg);filter:drop-shadow(0 4px 3px rgba(50,8,3,.55)) drop-shadow(0 1px 1px rgba(30,5,0,.6))}}
+.atr-mi .stamp.press:after{content:"";position:absolute;top:calc(clamp(96px,13vw,124px)/2);left:50%;width:10px;height:10px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 rgba(107,29,18,.35);animation:atrMiRing .7s .55s ease-out}
+@keyframes atrMiRing{to{box-shadow:0 0 0 46px rgba(107,29,18,0)}}
+.atr-mi .done{display:none;justify-content:center;margin:2px 0 4px}
+.atr-mi .done.show{display:flex}
+.atr-mi .done .sig{font-family:'Mrs Saint Delafield',cursive;font-size:clamp(54px,9vw,82px);color:#1d140a;line-height:1;transform:rotate(-4deg);clip-path:inset(-30% 100% -30% 0);transition:clip-path 1.8s cubic-bezier(.6,.05,.3,1);mix-blend-mode:multiply}
+.atr-mi .done.show .sig{clip-path:inset(-30% -5% -30% 0)}
+.atr-mi .dated{font-style:italic;color:#6b1d12;font-size:16px;margin-top:8px;min-height:22px}
+@media(max-width:820px){.atr-mi .steps{grid-template-columns:1fr}.atr-mi .steps:before{display:none}.atr-mi .hero{grid-template-columns:1fr;justify-items:start}.atr-mi .hang{order:-1;margin:0 auto}}
+@media(max-width:560px){.atr-mi{padding:36px 14px 72px}.atr-mi .sc-body{padding:14px 12% 8px}.atr-mi .vow{grid-template-columns:34px 1fr;gap:10px}.atr-mi .box{width:28px;height:28px}}
+</style></head><body>
+<!-- ===== ATRIOS "MAKE AN INTRO" MARKUP ===== -->
+<section class="atr-mi" id="atrMi">
+ <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="atrMiInk" x="-2%" y="-2%" width="104%" height="104%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.75 1.3" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg>
+
+ <div class="hero">
+  <div>
+   <p class="eyebrow">To share · How it works</p>
+   <h1>Make an intro, get paid<i>.</i></h1>
+   <p class="lede">Companies on Atrios pay to meet the right people. You know them. Here's how to make an intro that counts.</p>
+  </div>
+  <div class="hang">
+   <svg viewBox="0 0 100 64" preserveAspectRatio="none"><path d="M18 64 L50 10 L82 64" fill="none" stroke="#a88337" stroke-width="1.2"/><circle cx="50" cy="9" r="4.5" fill="#c9a24a" stroke="#6d5016"/></svg>
+   <div class="frame"><img src="https://ace-atrios.github.io/ace-demo/img/ren7/whisper2.webp" alt="Two women sharing a secret over a sealed letter"></div>
+  </div>
+ </div>
+
+ <div class="steps">
+  <div class="st">
+   <div class="dia"></div><div class="num">I</div>
+   <h3>Know who they want to meet</h3>
+   <p>Every company lists exactly who they're looking to talk to. Read it, then think of the founder or operator you know who fits and has a real need they can help with.</p>
+  </div>
+  <div class="st">
+   <div class="dia"></div><div class="num">II</div>
+   <h3>Make the intro</h3>
+   <ul class="ways">
+    <li><span class="ic">✦</span><span><b>Group text</b> with you, your friend and Ace</span></li>
+    <li><span class="ic">✉</span><span><b>Email an intro</b> and cc <a href="mailto:ace@atrios.com">ace@atrios.com</a></span></li>
+    <li><span class="ic">❦</span><span><b>Share your perks page</b> so they can pick</span></li>
+   </ul>
+   <p style="margin-top:6px">Ace handles the rest and books the call.</p>
+  </div>
+  <div class="st">
+   <div class="dia"></div><div class="num">III</div>
+   <h3>You both get rewarded</h3>
+   <p>Once the call is held, you and your friend each get paid within 14 days. Some companies add a bonus if they sign.</p>
+  </div>
+ </div>
+
+ <div class="sc">
+  <div class="sc-top"></div>
+  <div class="sc-body">
+   <h2 class="ink">Atrios Code of Conduct</h2>
+   <div class="orn ink">✦</div>
+   <p class="pre ink">Before you make your first intro, check each pledge.</p>
+   <ul class="vows">
+    <li class="vow" tabindex="0" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 34 34"><rect class="sq" x="2" y="4" width="28" height="27" rx="2" transform="rotate(-1.5 17 17)"/><path class="ck" d="M6 17 C 9 19, 12 23, 14 27 C 18 17, 24 9, 33 2"/></svg></span><span class="t ink">I agree to only introduce people that the vendors want to talk to.</span></li>
+    <li class="vow" tabindex="0" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 34 34"><rect class="sq" x="2" y="3" width="28" height="28" rx="2" transform="rotate(1 17 17)"/><path class="ck" d="M6 16 C 9 19, 12 22, 14 27 C 18 17, 24 9, 33 2"/></svg></span><span class="t ink">I understand I won't get rewarded if my friend is not qualified.</span></li>
+    <li class="vow" tabindex="0" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 34 34"><rect class="sq" x="2" y="4" width="28" height="27" rx="2" transform="rotate(-1 17 17)"/><path class="ck" d="M6 17 C 9 19, 12 23, 14 27 C 18 17, 24 9, 33 2"/></svg></span><span class="t ink">I agree to only introduce people who will show up, camera on, and not ghost the vendor after.</span></li>
+    <li class="vow" tabindex="0" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 34 34"><rect class="sq" x="2" y="3" width="28" height="28" rx="2" transform="rotate(1.5 17 17)"/><path class="ck" d="M6 16 C 9 19, 12 22, 14 27 C 18 17, 24 9, 33 2"/></svg></span><span class="t ink">I agree to only introduce people who are actually interested in the vendor's products or services.</span></li>
+   </ul>
+   <p class="count ink" id="atrMiCount">0 of 4 pledges checked</p>
+   <p class="creed ink">Every intro is attached to your name. Make it count!</p>
+   <p class="q ink">If you ever have any questions, <a href="sms:+15303064813">text Ace</a>.</p>
+   <div class="signbox locked" id="atrMiSign">
+    <div class="line"><input id="atrMiName" type="text" maxlength="40" placeholder="Your name" autocomplete="name" aria-label="Your name" disabled></div>
+    <div class="cap ink">Signature</div>
+    <div class="done" id="atrMiDone"><span class="sig" id="atrMiSig"></span></div>
+    <button class="stamp" id="atrMiBtn" disabled aria-label="Press the seal to sign the Code"><span class="wax"></span><span class="lbl" id="atrMiLbl">Check all 4 pledges to seal</span></button>
+    <div class="dated ink" id="atrMiDated"></div>
+   </div>
+  </div>
+  <div class="sc-bot"></div>
+ </div>
+</section>
+<script>
+(()=>{const r=document.getElementById('atrMi');if(!r)return;
+const vows=[...r.querySelectorAll('.vow')],cnt=document.getElementById('atrMiCount'),box=document.getElementById('atrMiSign'),
+ inp=document.getElementById('atrMiName'),btn=document.getElementById('atrMiBtn'),done=document.getElementById('atrMiDone'),
+ sig=document.getElementById('atrMiSig'),dated=document.getElementById('atrMiDated');
+const all=()=>vows.every(v=>v.classList.contains('on'));
+const upd=()=>{const n=vows.filter(v=>v.classList.contains('on')).length;cnt.textContent=n===4?'All pledges checked. Now sign below.':`${n} of 4 pledges checked`;
+ const ok=n===4;box.classList.toggle('locked',!ok);inp.disabled=!ok;btn.disabled=!ok||!inp.value.trim();document.getElementById('atrMiLbl').textContent=!ok?'Check all 4 pledges to seal':(!inp.value.trim()?'Sign your name, then press the seal':'Press the seal to sign');};
+vows.forEach(v=>{const t=()=>{if(done.classList.contains('show'))return;v.classList.toggle('on');v.setAttribute('aria-checked',v.classList.contains('on'));upd();};
+ v.addEventListener('click',t);v.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();t();}});});
+inp.addEventListener('input',upd);
+btn.addEventListener('click',()=>{const n=inp.value.trim();if(!all()||!n)return;
+ btn.classList.add('press');btn.disabled=true;btn.style.cursor='default';document.getElementById('atrMiLbl').textContent='';
+ setTimeout(()=>{sig.textContent=n;inp.parentElement.style.display='none';r.querySelector('.signbox .cap').style.display='none';done.classList.add('show');},600);
+ dated.textContent=`Signed by ${n}, ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}`;
+ r.dispatchEvent(new CustomEvent('atrios:code-signed',{detail:{name:n},bubbles:true}));});
+upd();})();
+</script>
+</body></html>
